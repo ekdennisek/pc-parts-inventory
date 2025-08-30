@@ -3,6 +3,7 @@ export interface PCPart {
   name: string;
   brand: string;
   description: string;
+  releaseYear?: string;
 }
 
 export interface CPU extends PCPart {
