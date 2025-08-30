@@ -27,21 +27,13 @@
   flex-wrap: wrap;
 }
 
-.total-parts, .in-stock-parts {
+.total-parts {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-weight: 600;
   font-size: 0.9rem;
-}
-
-.total-parts {
   background-color: #e9ecef;
   color: #495057;
-}
-
-.in-stock-parts {
-  background-color: #d4edda;
-  color: #155724;
 }
 
 .search-section {

@@ -47,7 +47,6 @@ export const PartPage: React.FC = () => {
   }
 
   const partTypeLabel = PART_TYPES[partType];
-  const inStockCount = parts.filter((part) => part.inStock).length;
 
   return (
     <div className="part-page">
@@ -55,7 +54,6 @@ export const PartPage: React.FC = () => {
         <h1>{partTypeLabel}</h1>
         <div className="page-stats">
           <span className="total-parts">{parts.length} total parts</span>
-          <span className="in-stock-parts">{inStockCount} in stock</span>
         </div>
       </div>
 
@@ -90,7 +88,6 @@ export const PartPage: React.FC = () => {
       {parts.length === 0 && (
         <div className="no-results">
           <p>No {partTypeLabel.toLowerCase()} available at the moment.</p>
-          <p>Check back later for new inventory.</p>
         </div>
       )}
     </div>

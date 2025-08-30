@@ -37,17 +37,16 @@ export const HomePage: React.FC = () => {
 
   // Group parts by type for summary
   const partsSummary = useMemo(() => {
-    const summary: Record<PartType, { total: number; inStock: number }> = {
-      cpu: { total: 0, inStock: 0 },
-      motherboard: { total: 0, inStock: 0 },
-      powerSupply: { total: 0, inStock: 0 },
-      graphicCard: { total: 0, inStock: 0 },
+    const summary: Record<PartType, { total: number }> = {
+      cpu: { total: 0 },
+      motherboard: { total: 0 },
+      powerSupply: { total: 0 },
+      graphicCard: { total: 0 },
     };
 
     Object.entries(allParts).forEach(([partType, parts]) => {
       const type = partType as PartType;
       summary[type].total = parts.length;
-      summary[type].inStock = parts.filter((part) => part.inStock).length;
     });
 
     return summary;
@@ -65,18 +64,14 @@ export const HomePage: React.FC = () => {
         <div className="summary-grid">
           {Object.entries(PART_TYPES).map(([key, label]) => {
             const partType = key as PartType;
-            const { total, inStock } = partsSummary[partType];
+            const { total } = partsSummary[partType];
             return (
               <div key={key} className="summary-card">
                 <h3>{label}</h3>
                 <div className="summary-stats">
                   <div className="stat">
                     <span className="stat-number">{total}</span>
-                    <span className="stat-label">Total</span>
-                  </div>
-                  <div className="stat">
-                    <span className="stat-number in-stock">{inStock}</span>
-                    <span className="stat-label">In Stock</span>
+                    <span className="stat-label">Total Parts</span>
                   </div>
                 </div>
               </div>
