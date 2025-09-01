@@ -10,7 +10,7 @@ export interface CPU extends PCPart {
   cores: number;
   threads: number;
   baseClock: number; // GHz
-  boostClock: number; // GHz
+  boostClock?: number; // GHz
   socket: string;
   tdp: number; // Watts
 }

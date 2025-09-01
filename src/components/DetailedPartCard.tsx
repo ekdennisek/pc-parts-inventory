@@ -36,7 +36,9 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
             </div>
             <div className="spec-item">
               <span className="spec-label">Boost Clock:</span>
-              <span className="spec-value">{cpu.boostClock} GHz</span>
+              <span className="spec-value">
+                {cpu.boostClock ? `${cpu.boostClock} GHz` : "-"}
+              </span>
             </div>
             <div className="spec-item">
               <span className="spec-label">Socket:</span>

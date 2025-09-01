@@ -9,7 +9,6 @@ export const cpus: CPU[] = [
     cores: 2,
     threads: 2,
     baseClock: 2.4,
-    boostClock: 0,
     socket: "LGA775",
     tdp: 65,
     releaseYear: "2006",
