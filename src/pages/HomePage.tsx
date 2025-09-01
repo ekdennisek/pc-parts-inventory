@@ -56,7 +56,7 @@ export const HomePage: React.FC = () => {
     <div className="home-page">
       <div className="hero-section">
         <h1>PC Parts Inventory</h1>
-        <p>Find the perfect components for your next PC build</p>
+        <p>Keep track of what you've got and plan your builds</p>
       </div>
 
       <div className="summary-section">
