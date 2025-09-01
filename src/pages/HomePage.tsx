@@ -41,7 +41,7 @@ export const HomePage: React.FC = () => {
       cpu: { total: 0 },
       motherboard: { total: 0 },
       powerSupply: { total: 0 },
-      graphicCard: { total: 0 },
+      graphicsCard: { total: 0 },
     };
 
     Object.entries(allParts).forEach(([partType, parts]) => {

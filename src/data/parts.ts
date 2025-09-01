@@ -1,4 +1,4 @@
-import type { CPU, Motherboard, PowerSupply, GraphicCard } from "../types";
+import type { CPU, Motherboard, PowerSupply, GraphicsCard } from "../types";
 
 export const cpus: CPU[] = [
   {
@@ -66,7 +66,7 @@ export const powerSupplies: PowerSupply[] = [
   },
 ];
 
-export const graphicCards: GraphicCard[] = [
+export const graphicsCards: GraphicsCard[] = [
   {
     id: "gpu-1",
     name: "ASUS GeForce GTX 1060 3GB DUAL OC",
@@ -85,5 +85,5 @@ export const allParts = {
   cpu: cpus,
   motherboard: motherboards,
   powerSupply: powerSupplies,
-  graphicCard: graphicCards,
+  graphicsCard: graphicsCards,
 };

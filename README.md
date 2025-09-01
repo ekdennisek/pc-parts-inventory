@@ -1,12 +1,12 @@
 # PC Parts Inventory
 
-A React-based PC parts inventory application built with Vite and TypeScript. Browse and search through different PC components including CPUs, motherboards, power supplies, and graphic cards.
+A React-based PC parts inventory application built with Vite and TypeScript. Browse and search through different PC components including CPUs, motherboards, power supplies, and graphics cards.
 
 ## Features
 
 - **Summary Dashboard**: Overview of all parts with inventory statistics
 - **Search Functionality**: Search across all parts or within specific categories
-- **Category Pages**: Dedicated pages for each part type (CPUs, Motherboards, Power Supplies, Graphic Cards)
+- **Category Pages**: Dedicated pages for each part type (CPUs, Motherboards, Power Supplies, Graphics Cards)
 - **Detailed Specifications**: View detailed specifications for each component
 - **Responsive Design**: Works on desktop and mobile devices
 
@@ -75,7 +75,7 @@ The application includes sample data for:
 - **CPUs**: AMD and Intel processors with specs like cores, threads, clock speeds
 - **Motherboards**: Various form factors with socket types and features
 - **Power Supplies**: Different wattages and efficiency ratings
-- **Graphic Cards**: NVIDIA and AMD GPUs with memory and performance specs
+- **Graphics Cards**: NVIDIA and AMD GPUs with memory and performance specs
 
 ## Contributing
 

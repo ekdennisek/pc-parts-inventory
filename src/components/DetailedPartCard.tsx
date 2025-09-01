@@ -3,14 +3,14 @@ import type {
   CPU,
   Motherboard,
   PowerSupply,
-  GraphicCard,
+  GraphicsCard,
   PartType,
 } from "../types";
 import { PartCard } from "./PartCard";
 import "./DetailedPartCard.css";
 
 interface DetailedPartCardProps {
-  part: CPU | Motherboard | PowerSupply | GraphicCard;
+  part: CPU | Motherboard | PowerSupply | GraphicsCard;
   partType: PartType;
 }
 
@@ -108,8 +108,8 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
         );
       }
 
-      case "graphicCard": {
-        const gpu = part as GraphicCard;
+      case "graphicsCard": {
+        const gpu = part as GraphicsCard;
         return (
           <div className="specifications">
             <div className="spec-item">

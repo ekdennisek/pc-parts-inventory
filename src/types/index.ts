@@ -31,7 +31,7 @@ export interface PowerSupply extends PCPart {
   formFactor: string;
 }
 
-export interface GraphicCard extends PCPart {
+export interface GraphicsCard extends PCPart {
   memory: number; // GB
   memoryType: string; // GDDR6, etc.
   coreClock: number; // MHz
@@ -40,11 +40,11 @@ export interface GraphicCard extends PCPart {
   interface: string; // PCIe 4.0, etc.
 }
 
-export type PartType = "cpu" | "motherboard" | "powerSupply" | "graphicCard";
+export type PartType = "cpu" | "motherboard" | "powerSupply" | "graphicsCard";
 
 export const PART_TYPES: Record<PartType, string> = {
   cpu: "CPUs",
   motherboard: "Motherboards",
   powerSupply: "Power Supplies",
-  graphicCard: "Graphic Cards",
+  graphicsCard: "Graphics Cards",
 };
