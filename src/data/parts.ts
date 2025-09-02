@@ -76,6 +76,7 @@ export const motherboards: Motherboard[] = [
     memorySlots: 2,
     maxMemory: 32,
     pciSlots: 1,
+    releaseYear: "2014",
   },
 ];
 
@@ -89,6 +90,7 @@ export const powerSupplies: PowerSupply[] = [
     efficiency: "80+ Bronze",
     modular: false,
     formFactor: "ATX",
+    releaseYear: "2013",
   },
   {
     id: "psu-2",
@@ -99,6 +101,7 @@ export const powerSupplies: PowerSupply[] = [
     efficiency: "80+ Platinum",
     modular: true,
     formFactor: "SFX",
+    releaseYear: "2019",
   },
 ];
 
@@ -114,6 +117,7 @@ export const graphicsCards: GraphicsCard[] = [
     boostClock: 1809,
     powerConsumption: 120,
     interface: "PCIe 3.0",
+    releaseYear: "2016",
   },
 ];
 
