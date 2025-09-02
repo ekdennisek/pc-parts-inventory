@@ -11,7 +11,7 @@ export const cpus: CPU[] = [
     baseClock: 2.4,
     socket: "LGA775",
     tdp: 65,
-    releaseYear: "2006",
+    releaseYear: 2006,
   },
   {
     id: "cpu-2",
@@ -24,7 +24,7 @@ export const cpus: CPU[] = [
     boostClock: 3.7,
     socket: "FM2",
     tdp: 65,
-    releaseYear: "2012",
+    releaseYear: 2012,
   },
   {
     id: "cpu-3",
@@ -36,7 +36,7 @@ export const cpus: CPU[] = [
     baseClock: 2.3,
     socket: "AM2",
     tdp: 45,
-    releaseYear: "2008",
+    releaseYear: 2008,
   },
   {
     id: "cpu-4",
@@ -48,7 +48,7 @@ export const cpus: CPU[] = [
     baseClock: 2.3,
     socket: "AM2+",
     tdp: 95,
-    releaseYear: "2008",
+    releaseYear: 2008,
   },
   {
     id: "cpu-5",
@@ -60,7 +60,7 @@ export const cpus: CPU[] = [
     baseClock: 3.1,
     socket: "AM3",
     tdp: 95,
-    releaseYear: "2010",
+    releaseYear: 2010,
   },
 ];
 
@@ -76,7 +76,7 @@ export const motherboards: Motherboard[] = [
     memorySlots: 2,
     maxMemory: 32,
     pciSlots: 1,
-    releaseYear: "2014",
+    releaseYear: 2014,
   },
 ];
 
@@ -90,7 +90,7 @@ export const powerSupplies: PowerSupply[] = [
     efficiency: "80+ Bronze",
     modular: false,
     formFactor: "ATX",
-    releaseYear: "2013",
+    releaseYear: 2013,
   },
   {
     id: "psu-2",
@@ -101,7 +101,7 @@ export const powerSupplies: PowerSupply[] = [
     efficiency: "80+ Platinum",
     modular: true,
     formFactor: "SFX",
-    releaseYear: "2019",
+    releaseYear: 2019,
   },
 ];
 
@@ -117,7 +117,7 @@ export const graphicsCards: GraphicsCard[] = [
     boostClock: 1809,
     powerConsumption: 120,
     interface: "PCIe 3.0",
-    releaseYear: "2016",
+    releaseYear: 2016,
   },
 ];
 
