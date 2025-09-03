@@ -1,4 +1,10 @@
-import type { CPU, Motherboard, PowerSupply, GraphicsCard } from "../types";
+import type {
+  CPU,
+  Motherboard,
+  PowerSupply,
+  GraphicsCard,
+  RAM,
+} from "../types";
 
 export const cpus: CPU[] = [
   {
@@ -105,6 +111,61 @@ export const powerSupplies: PowerSupply[] = [
   },
 ];
 
+export const ram: RAM[] = [
+  {
+    id: "ram-1",
+    name: "KHX16C10B1RK2/16X",
+    brand: "Kingston",
+    description: "8GB DDR3 1600MHz CL10",
+    capacity: 8,
+    type: "DDR3",
+    speed: 1600,
+    timings: "CL10-10-10",
+    voltage: 1.5,
+    formFactor: "DIMM",
+    releaseYear: 2012,
+  },
+  {
+    id: "ram-2",
+    name: "KHX16C10B1RK2/16X",
+    brand: "Kingston",
+    description: "8GB DDR3 1600MHz CL10",
+    capacity: 8,
+    type: "DDR3",
+    speed: 1600,
+    timings: "CL10-10-10",
+    voltage: 1.5,
+    formFactor: "DIMM",
+    releaseYear: 2012,
+  },
+  {
+    id: "ram-3",
+    name: "CML16GX3M2A1600C10",
+    brand: "Corsair",
+    description: "8GB DDR3 1600MHz CL10",
+    capacity: 8,
+    type: "DDR3",
+    speed: 1600,
+    timings: "CL10-10-10-27",
+    voltage: 1.5,
+    formFactor: "DIMM",
+    releaseYear: 2012,
+  },
+  {
+    id: "ram-4",
+    name: "CML16GX3M2A1600C10",
+    brand: "Corsair",
+    description: "8GB DDR3 1600MHz CL10",
+    capacity: 8,
+    type: "DDR3",
+    speed: 1600,
+    timings: "CL10-10-10-27",
+    voltage: 1.5,
+    formFactor: "DIMM",
+    releaseYear: 2012,
+  },
+];
+
 export const graphicsCards: GraphicsCard[] = [
   {
     id: "gpu-1",
@@ -126,4 +187,5 @@ export const allParts = {
   motherboard: motherboards,
   powerSupply: powerSupplies,
   graphicsCard: graphicsCards,
+  ram: ram,
 };

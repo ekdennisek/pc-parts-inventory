@@ -4,13 +4,14 @@ import type {
   Motherboard,
   PowerSupply,
   GraphicsCard,
+  RAM,
   PartType,
 } from "../types";
 import { PartCard } from "./PartCard";
 import "./DetailedPartCard.css";
 
 interface DetailedPartCardProps {
-  part: CPU | Motherboard | PowerSupply | GraphicsCard;
+  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM;
   partType: PartType;
 }
 
@@ -133,6 +134,40 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
             <div className="spec-item">
               <span className="spec-label">Interface:</span>
               <span className="spec-value">{gpu.interface}</span>
+            </div>
+          </div>
+        );
+      }
+
+      case "ram": {
+        const memory = part as RAM;
+        return (
+          <div className="specifications">
+            <div className="spec-item">
+              <span className="spec-label">Capacity:</span>
+              <span className="spec-value">{memory.capacity} GB</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Type:</span>
+              <span className="spec-value">{memory.type}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Speed:</span>
+              <span className="spec-value">{memory.speed} MHz</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Timings:</span>
+              <span className="spec-value">{memory.timings || "-"}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Voltage:</span>
+              <span className="spec-value">
+                {memory.voltage ? `${memory.voltage}V` : "-"}
+              </span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Form Factor:</span>
+              <span className="spec-value">{memory.formFactor}</span>
             </div>
           </div>
         );

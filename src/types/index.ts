@@ -40,11 +40,26 @@ export interface GraphicsCard extends PCPart {
   interface: string; // PCIe 4.0, etc.
 }
 
-export type PartType = "cpu" | "motherboard" | "powerSupply" | "graphicsCard";
+export interface RAM extends PCPart {
+  capacity: number; // GB
+  type: string; // DDR3, DDR4, DDR5, etc.
+  speed: number; // MHz
+  timings?: string; // CL16-18-18-38
+  voltage?: number; // V
+  formFactor: string; // DIMM, SO-DIMM
+}
+
+export type PartType =
+  | "cpu"
+  | "motherboard"
+  | "powerSupply"
+  | "graphicsCard"
+  | "ram";
 
 export const PART_TYPES: Record<PartType, string> = {
   cpu: "CPUs",
   motherboard: "Motherboards",
   powerSupply: "Power Supplies",
   graphicsCard: "Graphics Cards",
+  ram: "RAM",
 };
