@@ -133,6 +133,19 @@ export const cpus: CPU[] = [
     tdp: 95,
     releaseYear: 2011,
   },
+  {
+    id: "cpu-11",
+    name: "Intel Core i7-3820",
+    brand: "Intel",
+    description: "Quad core processor",
+    cores: 4,
+    threads: 8,
+    baseClock: 3.6,
+    boostClock: 3.8,
+    socket: "LGA2011",
+    tdp: 130,
+    releaseYear: 2012,
+  },
 ];
 
 export const motherboards: Motherboard[] = [
