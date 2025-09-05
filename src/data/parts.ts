@@ -146,6 +146,19 @@ export const cpus: CPU[] = [
     tdp: 130,
     releaseYear: 2012,
   },
+  {
+    id: "cpu-12",
+    name: "Intel Core i3-2120",
+    brand: "Intel",
+    description: "Dual core processor",
+    cores: 2,
+    threads: 4,
+    baseClock: 3.3,
+    boostClock: 3.4,
+    socket: "LGA1155",
+    tdp: 65,
+    releaseYear: 2011,
+  },
 ];
 
 export const motherboards: Motherboard[] = [
