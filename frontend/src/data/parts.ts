@@ -200,6 +200,18 @@ export const powerSupplies: PowerSupply[] = [
     formFactor: "SFX",
     releaseYear: 2019,
   },
+  {
+    id: "psu-3",
+    name: "Fractal Design FSP300-60GHS",
+    brand: "Fractal Design",
+    description:
+      "300W 80+ power supply. Came with the Fractal Design Array case and was produced by Fortron Source",
+    wattage: 300,
+    efficiency: "80+",
+    modular: false,
+    formFactor: "SFX",
+    releaseYear: 2010,
+  },
 ];
 
 export const ram: RAM[] = [
