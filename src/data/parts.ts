@@ -215,6 +215,7 @@ export const ram: RAM[] = [
     voltage: 1.5,
     formFactor: "DIMM",
     releaseYear: 2012,
+    datasheet: "KHX16C10B1RK216X.pdf",
   },
   {
     id: "ram-2",
@@ -228,6 +229,7 @@ export const ram: RAM[] = [
     voltage: 1.5,
     formFactor: "DIMM",
     releaseYear: 2012,
+    datasheet: "KHX16C10B1RK216X.pdf",
   },
   {
     id: "ram-3",
@@ -241,6 +243,7 @@ export const ram: RAM[] = [
     voltage: 1.5,
     formFactor: "DIMM",
     releaseYear: 2012,
+    datasheet: "CML16GX3M2A1600C10.pdf",
   },
   {
     id: "ram-4",
@@ -254,6 +257,7 @@ export const ram: RAM[] = [
     voltage: 1.5,
     formFactor: "DIMM",
     releaseYear: 2012,
+    datasheet: "CML16GX3M2A1600C10.pdf",
   },
   {
     id: "ram-5",
@@ -343,6 +347,7 @@ export const ram: RAM[] = [
     timings: "CL5",
     voltage: 1.8,
     formFactor: "DIMM",
+    datasheet: "KVR667D2D4P5K28G.pdf",
   },
   {
     id: "ram-12",
@@ -355,6 +360,7 @@ export const ram: RAM[] = [
     timings: "CL5",
     voltage: 1.8,
     formFactor: "DIMM",
+    datasheet: "KVR667D2D4P5K28G.pdf",
   },
   {
     id: "ram-13",
