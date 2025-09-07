@@ -6,8 +6,11 @@ import type { PCPart, PartType } from "../types";
 import { PART_TYPES } from "../types";
 import "./HomePage.css";
 
+type SortOption = "releaseYear";
+
 export const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState<SortOption>("releaseYear");
 
   // Flatten all parts into a single array with part type information
   const allPartsFlat = useMemo(() => {
@@ -34,6 +37,45 @@ export const HomePage: React.FC = () => {
         part.description.toLowerCase().includes(searchLower)
     );
   }, [allPartsFlat, searchTerm]);
+
+  // Sort and group parts based on sort option
+  const sortedAndGroupedParts = useMemo(() => {
+    if (sortOption === "releaseYear") {
+      // Group parts by release year
+      const grouped = new Map<
+        number | "unknown",
+        Array<PCPart & { partType: PartType }>
+      >();
+
+      filteredParts.forEach((part) => {
+        const year = part.releaseYear ?? "unknown";
+        if (!grouped.has(year)) {
+          grouped.set(year, []);
+        }
+        grouped.get(year)!.push(part);
+      });
+
+      // Sort groups by year (descending), with "unknown" at the end
+      const sortedGroups = Array.from(grouped.entries()).sort(([a], [b]) => {
+        if (a === "unknown" && b === "unknown") return 0;
+        if (a === "unknown") return 1;
+        if (b === "unknown") return -1;
+        return (b as number) - (a as number);
+      });
+
+      return sortedGroups.map(([year, parts]) => ({
+        year,
+        parts: parts.sort((a, b) => a.name.localeCompare(b.name)),
+      }));
+    }
+
+    return [
+      {
+        year: "all" as const,
+        parts: filteredParts,
+      },
+    ];
+  }, [filteredParts, sortOption]);
 
   // Group parts by type for summary
   const partsSummary = useMemo(() => {
@@ -82,7 +124,19 @@ export const HomePage: React.FC = () => {
       </div>
 
       <div className="search-section">
-        <h2>Search All Parts</h2>
+        <div className="search-header">
+          <h2>Search All Parts</h2>
+          <div className="sort-dropdown">
+            <label htmlFor="sort-select">Sort by:</label>
+            <select
+              id="sort-select"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value as SortOption)}
+            >
+              <option value="releaseYear">Release Year</option>
+            </select>
+          </div>
+        </div>
         <SearchBar
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
@@ -97,11 +151,27 @@ export const HomePage: React.FC = () => {
         )}
       </div>
 
-      <div className="parts-grid">
-        {filteredParts.map((part) => (
-          <div key={part.id} className="part-item">
-            <div className="part-type-badge">{PART_TYPES[part.partType]}</div>
-            <PartCard part={part} />
+      <div className="parts-section">
+        {sortedAndGroupedParts.map(({ year, parts }) => (
+          <div key={year} className="parts-group">
+            {year !== "all" && (
+              <div className="year-header">
+                <h3>{year === "unknown" ? "Unknown Release Year" : year}</h3>
+                <span className="part-count">
+                  {parts.length} part{parts.length !== 1 ? "s" : ""}
+                </span>
+              </div>
+            )}
+            <div className="parts-grid">
+              {parts.map((part) => (
+                <div key={part.id} className="part-item">
+                  <div className="part-type-badge">
+                    {PART_TYPES[part.partType]}
+                  </div>
+                  <PartCard part={part} />
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
