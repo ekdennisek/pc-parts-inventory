@@ -66,6 +66,18 @@ export class PcPartsInventoryStack extends cdk.Stack {
       },
       certificate,
       domainNames: [subdomain],
+      errorResponses: [
+        {
+          httpStatus: 403,
+          responseHttpStatus: 200,
+          responsePagePath: "/index.html",
+        },
+        {
+          httpStatus: 404,
+          responseHttpStatus: 200,
+          responsePagePath: "/index.html",
+        },
+      ],
     });
 
     new route53.ARecord(this, "PPIAliasRecord", {
