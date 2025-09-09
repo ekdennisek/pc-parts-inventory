@@ -192,7 +192,7 @@ export const motherboards: Motherboard[] = [
     name: "ASRock FM2A78M-ITX+",
     brand: "ASRock",
     description: "Mini ITX motherboard",
-    socket: "FM2",
+    socket: "FM2+",
     formFactor: "Mini ITX",
     chipset: "A78",
     memorySlots: 2,
