@@ -159,6 +159,31 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2011,
   },
+  {
+    id: "cpu-13",
+    name: "Intel Core i3-3220",
+    brand: "Intel",
+    description: "Dual core Ivy Bridge processor",
+    cores: 2,
+    threads: 4,
+    baseClock: 3.3,
+    socket: "LGA1155",
+    tdp: 55,
+    releaseYear: 2012,
+  },
+  {
+    id: "cpu-14",
+    name: "Intel Core i7-920",
+    brand: "Intel",
+    description: "Quad core Bloomfield processor",
+    cores: 4,
+    threads: 8,
+    baseClock: 2.66,
+    boostClock: 2.93,
+    socket: "LGA1366",
+    tdp: 130,
+    releaseYear: 2008,
+  },
 ];
 
 export const motherboards: Motherboard[] = [
@@ -174,6 +199,19 @@ export const motherboards: Motherboard[] = [
     maxMemory: 32,
     pciSlots: 1,
     releaseYear: 2014,
+  },
+  {
+    id: "mb-2",
+    name: "ASUS P6T SE",
+    brand: "ASUS",
+    description: "ATX motherboard",
+    socket: "LGA1366",
+    formFactor: "ATX",
+    chipset: "X58",
+    memorySlots: 6,
+    maxMemory: 24,
+    pciSlots: 3,
+    releaseYear: 2008,
   },
 ];
 
