@@ -79,7 +79,7 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
             </div>
             <div className="spec-item">
               <span className="spec-label">PCIe Slots:</span>
-              <span className="spec-value">{mb.pciSlots}</span>
+              <span className="spec-value">{mb.pcieSlots}</span>
             </div>
           </div>
         );

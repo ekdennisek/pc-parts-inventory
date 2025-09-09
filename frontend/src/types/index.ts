@@ -22,7 +22,7 @@ export interface Motherboard extends PCPart {
   chipset: string;
   memorySlots: number;
   maxMemory: number; // GB
-  pciSlots: number;
+  pcieSlots: number;
 }
 
 export interface PowerSupply extends PCPart {

@@ -197,7 +197,7 @@ export const motherboards: Motherboard[] = [
     chipset: "A78",
     memorySlots: 2,
     maxMemory: 32,
-    pciSlots: 1,
+    pcieSlots: 1,
     releaseYear: 2014,
   },
   {
@@ -210,7 +210,7 @@ export const motherboards: Motherboard[] = [
     chipset: "X58",
     memorySlots: 6,
     maxMemory: 24,
-    pciSlots: 3,
+    pcieSlots: 3,
     releaseYear: 2008,
   },
 ];
