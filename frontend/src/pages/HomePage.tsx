@@ -109,7 +109,7 @@ export const HomePage: React.FC = () => {
             const partType = key as PartType;
             const { total } = partsSummary[partType];
             return (
-              <div key={key} className="summary-card">
+              <div key={key} className="summary-card" data-type={partType}>
                 <h3>{label}</h3>
                 <div className="summary-stats">
                   <div className="stat">
@@ -165,7 +165,7 @@ export const HomePage: React.FC = () => {
             <div className="parts-grid">
               {parts.map((part) => (
                 <div key={part.id} className="part-item">
-                  <div className="part-type-badge">
+                  <div className="part-type-badge" data-type={part.partType}>
                     {PART_TYPES[part.partType]}
                   </div>
                   <PartCard part={part} />

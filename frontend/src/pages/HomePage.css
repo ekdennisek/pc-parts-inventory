@@ -48,6 +48,33 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #e9ecef;
+  border-top: 4px solid var(--type-color, #6c757d);
+}
+
+/* Component type colors */
+.summary-card[data-type="cpu"] {
+  --type-color: #3b82f6; /* Blue */
+  background: linear-gradient(145deg, #ffffff 0%, #f0f8ff 100%);
+}
+
+.summary-card[data-type="motherboard"] {
+  --type-color: #10b981; /* Emerald */
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.summary-card[data-type="powerSupply"] {
+  --type-color: #f59e0b; /* Amber */
+  background: linear-gradient(145deg, #ffffff 0%, #fefdf0 100%);
+}
+
+.summary-card[data-type="graphicsCard"] {
+  --type-color: #ef4444; /* Red */
+  background: linear-gradient(145deg, #ffffff 0%, #fef2f2 100%);
+}
+
+.summary-card[data-type="ram"] {
+  --type-color: #ec4899; /* Pink */
+  background: linear-gradient(145deg, #ffffff 0%, #fdf2f8 100%);
 }
 
 .summary-card h3 {
@@ -188,7 +215,7 @@
   position: absolute;
   top: -0.5rem;
   right: -0.5rem;
-  background-color: #007acc;
+  background-color: var(--badge-color, #007acc);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -198,6 +225,27 @@
   letter-spacing: 0.5px;
   z-index: 1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Part type badge colors */
+.part-type-badge[data-type="cpu"] {
+  --badge-color: #3b82f6; /* Blue */
+}
+
+.part-type-badge[data-type="motherboard"] {
+  --badge-color: #10b981; /* Emerald */
+}
+
+.part-type-badge[data-type="powerSupply"] {
+  --badge-color: #f59e0b; /* Amber */
+}
+
+.part-type-badge[data-type="graphicsCard"] {
+  --badge-color: #ef4444; /* Red */
+}
+
+.part-type-badge[data-type="ram"] {
+  --badge-color: #ec4899; /* Pink */
 }
 
 .no-results {
