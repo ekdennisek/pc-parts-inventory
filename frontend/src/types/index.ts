@@ -21,6 +21,7 @@ export interface Motherboard extends PCPart {
   formFactor: string;
   chipset: string;
   memorySlots: number;
+  memoryTypes: string[];
   maxMemory: number; // GB
   pcieSlots: number;
 }
