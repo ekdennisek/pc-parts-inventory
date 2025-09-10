@@ -248,6 +248,7 @@ export const motherboards: Motherboard[] = [
     maxMemory: 32,
     pcieSlots: 1,
     releaseYear: 2014,
+    datasheet: "FM2A78M-ITX+.pdf",
   },
   {
     id: "mb-2",
@@ -261,6 +262,7 @@ export const motherboards: Motherboard[] = [
     maxMemory: 24,
     pcieSlots: 3,
     releaseYear: 2008,
+    datasheet: "e4481_P6T SE.pdf",
   },
 ];
 
