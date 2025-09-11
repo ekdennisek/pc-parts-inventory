@@ -65,3 +65,15 @@ export const PART_TYPES: Record<PartType, string> = {
   graphicsCard: "Graphics Cards",
   ram: "RAM",
 };
+
+export interface PCBuild {
+  id: string;
+  name: string;
+  motherboard?: Motherboard;
+  cpu?: CPU;
+  ram: RAM[];
+  powerSupply?: PowerSupply;
+  graphicsCard?: GraphicsCard;
+}
+
+export type BuildStep = "motherboard" | "cpu" | "ram" | "complete";

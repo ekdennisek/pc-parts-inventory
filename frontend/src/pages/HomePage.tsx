@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { PartCard } from "../components/PartCard";
 import { allParts } from "../data/parts";
@@ -100,6 +101,11 @@ export const HomePage: React.FC = () => {
       <div className="hero-section">
         <h1>PC Parts Inventory</h1>
         <p>My PC parts inventory and the builds they're in</p>
+        <div className="hero-actions">
+          <Link to="/build-planner" className="cta-button">
+            🔧 Plan a PC Build
+          </Link>
+        </div>
       </div>
 
       <div className="summary-section">

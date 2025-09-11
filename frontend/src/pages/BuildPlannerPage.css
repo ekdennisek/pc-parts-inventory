@@ -1,0 +1,342 @@
+.build-planner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.build-planner-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.build-planner-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.build-planner-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.build-progress {
+  margin-bottom: 2rem;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background-color: #e0e0e0;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-number {
+  background-color: #007bff;
+  color: white;
+}
+
+.step.completed .step-number {
+  background-color: #28a745;
+  color: white;
+}
+
+.step-label {
+  font-size: 0.9rem;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-label,
+.step.completed .step-label {
+  color: #333;
+  font-weight: 500;
+}
+
+.build-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.build-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.current-build {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.current-build h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.selected-component {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.selected-component:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.selected-component h4 {
+  margin: 0 0 0.5rem 0;
+  color: #495057;
+  font-size: 1rem;
+}
+
+.component-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.component-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.component-detail {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.ram-module {
+  font-size: 0.85rem;
+  color: #666;
+  padding: 0.25rem 0.5rem;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin: 0.125rem 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.build-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.build-main {
+  min-height: 600px;
+}
+
+.step-content h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.step-content p {
+  margin: 0 0 1.5rem 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.clickable {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+}
+
+.clickable.selected {
+  box-shadow: 0 0 0 3px #007bff40;
+}
+
+.clickable.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.clickable.disabled:hover {
+  transform: none;
+}
+
+.selected-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #28a745;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.disabled-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #dc3545;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.ram-info {
+  background: #e3f2fd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #1565c0;
+}
+
+.ram-info span {
+  font-weight: 500;
+}
+
+.no-compatible {
+  background: #fff3cd;
+  color: #856404;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ffeaa7;
+  text-align: center;
+  font-style: italic;
+}
+
+.step-actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+  transform: translateY(-1px);
+}
+
+.build-summary {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.build-summary h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.build-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.build-summary li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.build-summary li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .build-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .build-sidebar {
+    order: 2;
+    position: static;
+  }
+  
+  .progress-steps {
+    gap: 1rem;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+  
+  .step-label {
+    font-size: 0.8rem;
+  }
+  
+  .parts-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
