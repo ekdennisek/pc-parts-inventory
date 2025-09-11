@@ -65,6 +65,36 @@ export const BuildPlannerPage: React.FC = () => {
     setCurrentStep("motherboard");
   };
 
+  const changeMotherboard = () => {
+    setBuild((prev) => ({
+      ...prev,
+      motherboard: undefined,
+      cpu: undefined, // Reset CPU when changing motherboard
+      ram: [], // Reset RAM when changing motherboard
+    }));
+    setCurrentStep("motherboard");
+  };
+
+  const changeCPU = () => {
+    setBuild((prev) => ({ ...prev, cpu: undefined }));
+    setCurrentStep("cpu");
+  };
+
+  const changeRAM = () => {
+    setCurrentStep("ram");
+  };
+
+  const goToStep = (step: BuildStep) => {
+    // Only allow going to steps that are available
+    if (step === "motherboard") {
+      setCurrentStep("motherboard");
+    } else if (step === "cpu" && build.motherboard) {
+      setCurrentStep("cpu");
+    } else if (step === "ram" && build.motherboard && build.cpu) {
+      setCurrentStep("ram");
+    }
+  };
+
   // Filter compatible CPUs based on selected motherboard
   const compatibleCPUs = useMemo(() => {
     if (!build.motherboard) return [];
@@ -100,17 +130,25 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "motherboard"
                 ? "active"
                 : build.motherboard
-                ? "completed"
+                ? "completed clickable"
                 : ""
             }`}
+            onClick={() => goToStep("motherboard")}
           >
             <span className="step-number">1</span>
             <span className="step-label">Motherboard</span>
           </div>
           <div
             className={`step ${
-              currentStep === "cpu" ? "active" : build.cpu ? "completed" : ""
+              currentStep === "cpu"
+                ? "active"
+                : build.cpu
+                ? "completed clickable"
+                : build.motherboard
+                ? "available"
+                : ""
             }`}
+            onClick={() => build.motherboard && goToStep("cpu")}
           >
             <span className="step-number">2</span>
             <span className="step-label">CPU</span>
@@ -120,9 +158,12 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "ram"
                 ? "active"
                 : build.ram.length > 0
-                ? "completed"
+                ? "completed clickable"
+                : build.motherboard && build.cpu
+                ? "available"
                 : ""
             }`}
+            onClick={() => build.motherboard && build.cpu && goToStep("ram")}
           >
             <span className="step-number">3</span>
             <span className="step-label">RAM</span>
@@ -137,7 +178,16 @@ export const BuildPlannerPage: React.FC = () => {
 
             {build.motherboard && (
               <div className="selected-component">
-                <h4>Motherboard</h4>
+                <div className="component-header">
+                  <h4>Motherboard</h4>
+                  <button
+                    onClick={changeMotherboard}
+                    className="btn btn-change"
+                    title="Change motherboard"
+                  >
+                    Change
+                  </button>
+                </div>
                 <div className="component-info">
                   <span className="component-name">
                     {build.motherboard.name}
@@ -157,7 +207,16 @@ export const BuildPlannerPage: React.FC = () => {
 
             {build.cpu && (
               <div className="selected-component">
-                <h4>CPU</h4>
+                <div className="component-header">
+                  <h4>CPU</h4>
+                  <button
+                    onClick={changeCPU}
+                    className="btn btn-change"
+                    title="Change CPU"
+                  >
+                    Change
+                  </button>
+                </div>
                 <div className="component-info">
                   <span className="component-name">{build.cpu.name}</span>
                   <span className="component-detail">
@@ -172,9 +231,18 @@ export const BuildPlannerPage: React.FC = () => {
 
             {build.ram.length > 0 && (
               <div className="selected-component">
-                <h4>
-                  RAM ({slotsUsed}/{maxSlots} slots)
-                </h4>
+                <div className="component-header">
+                  <h4>
+                    RAM ({slotsUsed}/{maxSlots} slots)
+                  </h4>
+                  <button
+                    onClick={changeRAM}
+                    className="btn btn-change"
+                    title="Change RAM selection"
+                  >
+                    Change
+                  </button>
+                </div>
                 <div className="component-info">
                   <span className="component-detail">
                     Total: {totalRAMCapacity}GB

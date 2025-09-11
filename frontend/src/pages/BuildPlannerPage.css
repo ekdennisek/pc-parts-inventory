@@ -62,6 +62,24 @@
   color: white;
 }
 
+.step.available .step-number {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.step.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.step.clickable:hover {
+  transform: translateY(-2px);
+}
+
+.step.clickable:hover .step-number {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .step-label {
   font-size: 0.9rem;
   color: #666;
@@ -72,6 +90,19 @@
 .step.completed .step-label {
   color: #333;
   font-weight: 500;
+}
+
+.step.available .step-label {
+  color: #856404;
+  font-weight: 500;
+}
+
+.step.clickable .step-label {
+  color: #007bff;
+}
+
+.step.clickable:hover .step-label {
+  color: #0056b3;
 }
 
 .build-content {
@@ -113,6 +144,19 @@
 
 .selected-component h4 {
   margin: 0 0 0.5rem 0;
+  color: #495057;
+  font-size: 1rem;
+}
+
+.component-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.component-header h4 {
+  margin: 0;
   color: #495057;
   font-size: 1rem;
 }
@@ -279,6 +323,22 @@
 }
 
 .btn-secondary:hover {
+  background-color: #545b62;
+  transform: translateY(-1px);
+}
+
+.btn-change {
+  background-color: #6c757d;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-change:hover {
   background-color: #545b62;
   transform: translateY(-1px);
 }
