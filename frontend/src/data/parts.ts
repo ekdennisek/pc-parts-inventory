@@ -233,6 +233,18 @@ export const cpus: CPU[] = [
     tdp: 16.8,
     releaseYear: 1998,
   },
+  {
+    id: "cpu-19",
+    name: "AMD Athlon 64 X2 4400+",
+    brand: "AMD",
+    description: "Dual core AM2 processor",
+    cores: 2,
+    threads: 2,
+    baseClock: 2.3,
+    socket: "AM2",
+    tdp: 65,
+    releaseYear: 2005,
+  },
 ];
 
 export const motherboards: Motherboard[] = [
@@ -265,6 +277,20 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 3,
     releaseYear: 2008,
     datasheet: "e4481_P6T SE.pdf",
+  },
+  {
+    id: "mb-3",
+    name: "ASUS M2N",
+    brand: "ASUS",
+    description: "AM2 ATX motherboard",
+    socket: "AM2",
+    formFactor: "ATX",
+    chipset: "NVIDIA nForce 430",
+    memorySlots: 4,
+    maxMemory: 8,
+    memoryTypes: ["DDR2"],
+    pcieSlots: 1,
+    releaseYear: 2006,
   },
 ];
 
@@ -549,6 +575,32 @@ export const ram: RAM[] = [
     voltage: 1.8,
     formFactor: "DIMM",
   },
+  {
+    id: "ram-20",
+    name: "Corsair Value Select VS1GB667D2",
+    brand: "Corsair",
+    description: "1GB DDR2 667MHz CL5",
+    capacity: 1,
+    type: "DDR2",
+    speed: 667,
+    timings: "CL5",
+    voltage: 1.9,
+    formFactor: "DIMM",
+    releaseYear: 2006,
+  },
+  {
+    id: "ram-21",
+    name: "Corsair Value Select VS1GB667D2",
+    brand: "Corsair",
+    description: "1GB DDR2 667MHz CL5",
+    capacity: 1,
+    type: "DDR2",
+    speed: 667,
+    timings: "CL5",
+    voltage: 1.9,
+    formFactor: "DIMM",
+    releaseYear: 2006,
+  },
 ];
 
 export const graphicsCards: GraphicsCard[] = [
@@ -564,6 +616,19 @@ export const graphicsCards: GraphicsCard[] = [
     powerConsumption: 120,
     interface: "PCIe 3.0",
     releaseYear: 2016,
+  },
+  {
+    id: "gpu-2",
+    name: "Powercolor ATI Radeon HD 3870 PCS 512MB",
+    brand: "ATI",
+    description: "Radeon HD 3870 512MB",
+    memory: 0.5,
+    memoryType: "GDDR4",
+    coreClock: 800,
+    boostClock: 0,
+    powerConsumption: 106,
+    interface: "PCIe 2.0",
+    releaseYear: 2007,
   },
 ];
 
