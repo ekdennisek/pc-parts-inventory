@@ -601,6 +601,32 @@ export const ram: RAM[] = [
     formFactor: "DIMM",
     releaseYear: 2006,
   },
+  {
+    id: "ram-22",
+    name: "Crucial CT51264BA1339.M16FMR",
+    brand: "Crucial",
+    description: "4GB DDR3 1333MHz CL9",
+    capacity: 4,
+    type: "DDR3",
+    speed: 1333,
+    timings: "CL9",
+    voltage: 1.5,
+    formFactor: "DIMM",
+    releaseYear: 2012,
+  },
+  {
+    id: "ram-23",
+    name: "Crucial CT51264BA1339.M16FMR",
+    brand: "Crucial",
+    description: "4GB DDR3 1333MHz CL9",
+    capacity: 4,
+    type: "DDR3",
+    speed: 1333,
+    timings: "CL9",
+    voltage: 1.5,
+    formFactor: "DIMM",
+    releaseYear: 2012,
+  },
 ];
 
 export const graphicsCards: GraphicsCard[] = [
