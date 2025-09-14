@@ -1,3 +1,56 @@
+export const intelSockets = [
+  "Slot 1",
+  "Socket 370",
+  "Socket 423",
+  "Socket 478",
+  "LGA 775",
+  "LGA 1366",
+  "LGA 1156",
+  "LGA 1155",
+  "LGA 2011",
+  "LGA 1150",
+  "LGA 1151-1",
+  "LGA 1151-2",
+  "LGA 1200",
+  "LGA 1700",
+  "LGA 1851",
+] as const;
+type IntelSocket = (typeof intelSockets)[number];
+
+export const amdSockets = [
+  "Socket A",
+  "Socket 754",
+  "Socket 940",
+  "Socket 939",
+  "Socket AM2",
+  "Socket AM2+",
+  "Socket AM3",
+  "Socket FM1",
+  "Socket AM3+",
+  "Socket FM2",
+  "Socket FM2+",
+  "Socket AM1",
+  "Socket AM4",
+  "Socket AM5",
+] as const;
+type AmdSocket = (typeof amdSockets)[number];
+
+type CpuSocket = IntelSocket | AmdSocket;
+
+type MotherboardFormFactor = "ATX" | "Micro ATX" | "Mini ITX";
+
+type MemoryType = "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
+
+type MemoryFormFactor = "DIMM" | "SO-DIMM";
+
+type GpuInterface =
+  | "AGP 3.3V"
+  | "AGP 1.5V"
+  | "PCIe 1.0"
+  | "PCIe 2.0"
+  | "PCIe 3.0"
+  | "PCIe 4.0";
+
 export interface PCPart {
   id: string;
   name: string;
@@ -12,16 +65,16 @@ export interface CPU extends PCPart {
   threads: number;
   baseClock: number; // GHz
   boostClock?: number; // GHz
-  socket: string;
+  socket: CpuSocket;
   tdp: number; // Watts
 }
 
 export interface Motherboard extends PCPart {
-  socket: string;
-  formFactor: string;
+  socket: CpuSocket;
+  formFactor: MotherboardFormFactor;
   chipset: string;
   memorySlots: number;
-  memoryTypes: string[];
+  memoryTypes: MemoryType[];
   maxMemory: number; // GB
   pcieSlots: number;
 }
@@ -39,16 +92,16 @@ export interface GraphicsCard extends PCPart {
   coreClock: number; // MHz
   boostClock: number; // MHz
   powerConsumption: number; // Watts
-  interface: string; // PCIe 4.0, etc.
+  interface: GpuInterface; // PCIe 4.0, etc.
 }
 
 export interface RAM extends PCPart {
   capacity: number; // GB
-  type: string; // DDR3, DDR4, DDR5, etc.
+  type: MemoryType; // DDR3, DDR4, DDR5, etc.
   speed: number; // MHz
   timings?: string; // CL16-18-18-38
   voltage?: number; // V
-  formFactor: string; // DIMM, SO-DIMM
+  formFactor: MemoryFormFactor; // DIMM, SO-DIMM
 }
 
 export type PartType =
