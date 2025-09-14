@@ -15,7 +15,7 @@ export const intelSockets = [
   "LGA 1700",
   "LGA 1851",
 ] as const;
-type IntelSocket = (typeof intelSockets)[number];
+export type IntelSocket = (typeof intelSockets)[number];
 
 export const amdSockets = [
   "Socket A",
@@ -33,9 +33,9 @@ export const amdSockets = [
   "Socket AM4",
   "Socket AM5",
 ] as const;
-type AmdSocket = (typeof amdSockets)[number];
+export type AmdSocket = (typeof amdSockets)[number];
 
-type CpuSocket = IntelSocket | AmdSocket;
+export type CpuSocket = IntelSocket | AmdSocket;
 
 type MotherboardFormFactor = "ATX" | "Micro ATX" | "Mini ITX";
 
@@ -130,3 +130,20 @@ export interface PCBuild {
 }
 
 export type BuildStep = "motherboard" | "cpu" | "ram" | "complete";
+
+// Utility functions for socket detection
+export const isIntelSocket = (socket: CpuSocket): boolean => {
+  return intelSockets.includes(socket as IntelSocket);
+};
+
+export const isAmdSocket = (socket: CpuSocket): boolean => {
+  return amdSockets.includes(socket as AmdSocket);
+};
+
+export const getSocketColor = (
+  socket: CpuSocket
+): "intel" | "amd" | "unknown" => {
+  if (isIntelSocket(socket)) return "intel";
+  if (isAmdSocket(socket)) return "amd";
+  return "unknown";
+};

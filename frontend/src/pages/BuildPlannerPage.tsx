@@ -275,6 +275,16 @@ export const BuildPlannerPage: React.FC = () => {
                 Choose a motherboard to start your build. This will determine
                 CPU and RAM compatibility.
               </p>
+              <div className="socket-legend">
+                <div className="legend-item">
+                  <div className="legend-color intel-color"></div>
+                  <span>Intel Sockets</span>
+                </div>
+                <div className="legend-item">
+                  <div className="legend-color amd-color"></div>
+                  <span>AMD Sockets</span>
+                </div>
+              </div>
               <div className="parts-grid">
                 {motherboards.map((motherboard) => (
                   <div
@@ -282,7 +292,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectMotherboard(motherboard)}
                     className="clickable"
                   >
-                    <PartCard part={motherboard} />
+                    <PartCard part={motherboard} socket={motherboard.socket} />
                   </div>
                 ))}
               </div>

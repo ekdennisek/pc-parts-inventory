@@ -177,7 +177,12 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
 
   return (
     <div className="detailed-part-card">
-      <PartCard part={part} />
+      <PartCard
+        part={part}
+        socket={
+          partType === "motherboard" ? (part as Motherboard).socket : undefined
+        }
+      />
       {renderSpecifications()}
     </div>
   );

@@ -70,6 +70,19 @@ export const PartPage: React.FC = () => {
             "{searchTerm}"
           </p>
         )}
+
+        {partType === "motherboard" && (
+          <div className="socket-legend">
+            <div className="legend-item">
+              <div className="legend-color intel-color"></div>
+              <span>Intel Sockets</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color amd-color"></div>
+              <span>AMD Sockets</span>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="parts-list">
