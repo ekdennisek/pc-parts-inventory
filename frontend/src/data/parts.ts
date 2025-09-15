@@ -319,7 +319,7 @@ export const motherboards: Motherboard[] = [
     id: "mb-3",
     name: "ASUS M2N",
     brand: "ASUS",
-    description: "AM2 ATX motherboard",
+    description: "Socket AM2 ATX motherboard",
     socket: "Socket AM2",
     formFactor: "ATX",
     chipset: "NVIDIA nForce 430",
