@@ -40,6 +40,44 @@
   margin-bottom: 2rem;
 }
 
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-dropdown label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.sort-dropdown select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 0.9rem;
+  color: #495057;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.sort-dropdown select:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
 .socket-legend {
   display: flex;
   gap: 2rem;
@@ -122,6 +160,19 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .search-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sort-dropdown {
+    align-self: stretch;
+  }
+
+  .sort-dropdown select {
+    flex: 1;
   }
 
   .socket-legend {

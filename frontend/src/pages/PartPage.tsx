@@ -3,13 +3,16 @@ import { useParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
-import type { PartType } from "../types";
-import { PART_TYPES } from "../types";
+import type { PartType, CPU, Motherboard, CpuSocket } from "../types";
+import { PART_TYPES, intelSockets, amdSockets } from "../types";
 import "./PartPage.css";
+
+type SortOption = "standard";
 
 export const PartPage: React.FC = () => {
   const { partType } = useParams<{ partType: PartType }>();
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState<SortOption>("standard");
 
   // Get parts for the current part type
   const parts = useMemo(() => {
@@ -18,6 +21,24 @@ export const PartPage: React.FC = () => {
     }
     return allParts[partType];
   }, [partType]);
+
+  // Helper function to get socket sort order
+  const getSocketSortOrder = (socket: CpuSocket): number => {
+    // Intel sockets come first
+    const intelIndex = (intelSockets as readonly string[]).indexOf(socket);
+    if (intelIndex !== -1) {
+      return intelIndex;
+    }
+
+    // AMD sockets come after Intel sockets
+    const amdIndex = (amdSockets as readonly string[]).indexOf(socket);
+    if (amdIndex !== -1) {
+      return intelSockets.length + amdIndex;
+    }
+
+    // Unknown sockets at the end
+    return intelSockets.length + amdSockets.length;
+  };
 
   // Filter parts based on search term
   const filteredParts = useMemo(() => {
@@ -33,6 +54,33 @@ export const PartPage: React.FC = () => {
         part.description.toLowerCase().includes(searchLower)
     );
   }, [parts, searchTerm]);
+
+  // Sort parts based on sort option
+  const sortedParts = useMemo(() => {
+    if (
+      sortOption === "standard" &&
+      (partType === "motherboard" || partType === "cpu")
+    ) {
+      // Sort by socket order for CPU and motherboard parts
+      return [...filteredParts].sort((a, b) => {
+        const partA = a as CPU | Motherboard;
+        const partB = b as CPU | Motherboard;
+
+        const socketOrderA = getSocketSortOrder(partA.socket);
+        const socketOrderB = getSocketSortOrder(partB.socket);
+
+        if (socketOrderA !== socketOrderB) {
+          return socketOrderA - socketOrderB;
+        }
+
+        // If same socket, sort by name
+        return partA.name.localeCompare(partB.name);
+      });
+    }
+
+    // For other part types or sort options, return as is
+    return filteredParts;
+  }, [filteredParts, sortOption, partType]);
 
   // Handle invalid part type
   if (!partType || !allParts[partType]) {
@@ -58,11 +106,26 @@ export const PartPage: React.FC = () => {
       </div>
 
       <div className="search-section">
-        <SearchBar
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          placeholder={`Search ${partTypeLabel.toLowerCase()}...`}
-        />
+        <div className="search-header">
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            placeholder={`Search ${partTypeLabel.toLowerCase()}...`}
+          />
+
+          {(partType === "motherboard" || partType === "cpu") && (
+            <div className="sort-dropdown">
+              <label htmlFor="sort-select">Sort by:</label>
+              <select
+                id="sort-select"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value as SortOption)}
+              >
+                <option value="standard">Standard</option>
+              </select>
+            </div>
+          )}
+        </div>
 
         {searchTerm && (
           <p className="search-results-info">
@@ -99,7 +162,7 @@ export const PartPage: React.FC = () => {
       </div>
 
       <div className="parts-list">
-        {filteredParts.map((part) => (
+        {sortedParts.map((part) => (
           <DetailedPartCard key={part.id} part={part} partType={partType} />
         ))}
       </div>
