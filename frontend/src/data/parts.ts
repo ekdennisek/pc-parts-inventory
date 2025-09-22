@@ -318,6 +318,18 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2011,
   },
+  {
+    id: "cpu-26",
+    name: "Intel Q6600",
+    brand: "Intel",
+    description: "Quad core LGA775 Kentsfield processor",
+    cores: 4,
+    threads: 4,
+    baseClock: 2.4,
+    socket: "LGA 775",
+    tdp: 95,
+    releaseYear: 2007,
+  },
 ];
 
 export const motherboards: Motherboard[] = [
