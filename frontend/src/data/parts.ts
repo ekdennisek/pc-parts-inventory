@@ -387,7 +387,7 @@ export const cpus: CPU[] = [
     threads: 1,
     baseClock: 1.533,
     socket: "Socket A",
-    tdp: 0,
+    tdp: 66,
     releaseYear: 2001,
   },
 ];
