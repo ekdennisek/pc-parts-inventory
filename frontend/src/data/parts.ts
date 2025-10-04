@@ -366,6 +366,30 @@ export const cpus: CPU[] = [
     tdp: 0,
     releaseYear: 1992,
   },
+  {
+    id: "cpu-30",
+    name: "Intel Pentium III SL3VK",
+    brand: "Intel",
+    description: "Socket 370 Coppermine processor",
+    cores: 1,
+    threads: 1,
+    baseClock: 0.667,
+    socket: "Socket 370",
+    tdp: 0,
+    releaseYear: 1999,
+  },
+  {
+    id: "cpu-31",
+    name: "AMD Athlon XP 1800+",
+    brand: "AMD",
+    description: "Socket A Palomino processor",
+    cores: 1,
+    threads: 1,
+    baseClock: 1.533,
+    socket: "Socket A",
+    tdp: 0,
+    releaseYear: 2001,
+  },
 ];
 
 export const motherboards: Motherboard[] = [
