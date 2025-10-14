@@ -6,6 +6,7 @@ import { allParts } from "../data/parts";
 import type { PCPart, PartType } from "../types";
 import { PART_TYPES } from "../types";
 import "./HomePage.css";
+import { ScrollToTop } from "../components/ScrollToTop";
 
 type SortOption = "releaseYear";
 
@@ -188,6 +189,8 @@ export const HomePage: React.FC = () => {
           <p>Try different keywords or browse specific categories.</p>
         </div>
       )}
+
+      <ScrollToTop />
     </div>
   );
 };

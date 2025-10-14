@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { QuickFilters } from "../components/QuickFilters";
+import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
 import type { PartType, CPU, Motherboard, GraphicsCard, CpuSocket } from "../types";
@@ -236,6 +237,8 @@ export const PartPage: React.FC = () => {
           <p>No {partTypeLabel.toLowerCase()} available at the moment.</p>
         </div>
       )}
+
+      <ScrollToTop />
     </div>
   );
 };
