@@ -1,0 +1,159 @@
+.quick-filters {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.quick-filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quick-filters-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.clear-filters-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #dc3545;
+  background-color: transparent;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-filters-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.quick-filters-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  background-color: white;
+  border: 2px solid #ced4da;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Intel socket colors */
+.filter-btn.filter-intel {
+  border-color: #93c5fd;
+}
+
+.filter-btn.filter-intel:hover {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.filter-btn.filter-intel.active {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+/* AMD socket colors */
+.filter-btn.filter-amd {
+  border-color: #fca5a5;
+}
+
+.filter-btn.filter-amd:hover {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.filter-btn.filter-amd.active {
+  background-color: #dc2626;
+  border-color: #dc2626;
+  color: white;
+}
+
+/* Default (for GPU interfaces and unknown sockets) */
+.filter-btn.filter-default {
+  border-color: #ced4da;
+}
+
+.filter-btn.filter-default:hover {
+  border-color: #6c757d;
+  background-color: #f8f9fa;
+}
+
+.filter-btn.filter-default.active {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+/* Focus state for accessibility */
+.filter-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .quick-filters {
+    padding: 0.75rem;
+  }
+
+  .quick-filters-title {
+    font-size: 0.95rem;
+  }
+
+  .quick-filters-buttons {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .clear-filters-btn {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-filters-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}

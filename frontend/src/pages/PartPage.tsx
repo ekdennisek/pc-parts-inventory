@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
+import { QuickFilters } from "../components/QuickFilters";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
-import type { PartType, CPU, Motherboard, CpuSocket } from "../types";
-import { PART_TYPES, intelSockets, amdSockets } from "../types";
+import type { PartType, CPU, Motherboard, GraphicsCard, CpuSocket } from "../types";
+import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor } from "../types";
 import "./PartPage.css";
 
 type SortOption = "standard";
@@ -13,6 +14,12 @@ export const PartPage: React.FC = () => {
   const { partType } = useParams<{ partType: PartType }>();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("standard");
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  // Clear filters when switching between component pages
+  useEffect(() => {
+    setSelectedFilters([]);
+  }, [partType]);
 
   // Get parts for the current part type
   const parts = useMemo(() => {
@@ -40,20 +47,48 @@ export const PartPage: React.FC = () => {
     return intelSockets.length + amdSockets.length;
   };
 
-  // Filter parts based on search term
+  // Get available filters based on part type
+  const availableFilters = useMemo(() => {
+    if (partType === "cpu" || partType === "motherboard") {
+      return [...intelSockets, ...amdSockets];
+    } else if (partType === "graphicsCard") {
+      return [...gpuInterfaces];
+    }
+    return [];
+  }, [partType]);
+
+  // Filter parts based on search term and quick filters
   const filteredParts = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return parts;
+    let filtered = [...parts];
+
+    // Apply search filter
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        (part) =>
+          part.name.toLowerCase().includes(searchLower) ||
+          part.brand.toLowerCase().includes(searchLower) ||
+          part.description.toLowerCase().includes(searchLower)
+      );
     }
 
-    const searchLower = searchTerm.toLowerCase();
-    return parts.filter(
-      (part) =>
-        part.name.toLowerCase().includes(searchLower) ||
-        part.brand.toLowerCase().includes(searchLower) ||
-        part.description.toLowerCase().includes(searchLower)
-    );
-  }, [parts, searchTerm]);
+    // Apply quick filters
+    if (selectedFilters.length > 0) {
+      if (partType === "cpu" || partType === "motherboard") {
+        filtered = filtered.filter((part) => {
+          const p = part as CPU | Motherboard;
+          return selectedFilters.includes(p.socket);
+        });
+      } else if (partType === "graphicsCard") {
+        filtered = filtered.filter((part) => {
+          const p = part as GraphicsCard;
+          return selectedFilters.includes(p.interface);
+        });
+      }
+    }
+
+    return filtered;
+  }, [parts, searchTerm, selectedFilters, partType]);
 
   // Sort parts based on sort option
   const sortedParts = useMemo(() => {
@@ -127,10 +162,32 @@ export const PartPage: React.FC = () => {
           )}
         </div>
 
-        {searchTerm && (
+        {availableFilters.length > 0 && (
+          <QuickFilters
+            filters={availableFilters}
+            selectedFilters={selectedFilters}
+            onFilterChange={setSelectedFilters}
+            filterType={partType === "graphicsCard" ? "interface" : "socket"}
+            getFilterColor={
+              partType === "cpu" || partType === "motherboard"
+                ? (filter: string) => {
+                    const color = getSocketColor(filter as CpuSocket);
+                    return color === "unknown" ? "default" : color;
+                  }
+                : undefined
+            }
+          />
+        )}
+
+        {(searchTerm || selectedFilters.length > 0) && (
           <p className="search-results-info">
-            Found {filteredParts.length} {partTypeLabel.toLowerCase()} matching
-            "{searchTerm}"
+            Found {filteredParts.length} {partTypeLabel.toLowerCase()}
+            {searchTerm && ` matching "${searchTerm}"`}
+            {searchTerm && selectedFilters.length > 0 && " and"}
+            {selectedFilters.length > 0 &&
+              ` filtered by ${selectedFilters.length} ${
+                partType === "graphicsCard" ? "interface" : "socket"
+              }${selectedFilters.length > 1 ? "s" : ""}`}
           </p>
         )}
 

@@ -44,13 +44,16 @@ type MemoryType = "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
 
 type MemoryFormFactor = "DIMM" | "SO-DIMM";
 
-type GpuInterface =
-  | "AGP 3.3V"
-  | "AGP 1.5V"
-  | "PCIe 1.0"
-  | "PCIe 2.0"
-  | "PCIe 3.0"
-  | "PCIe 4.0";
+export const gpuInterfaces = [
+  "AGP 3.3V",
+  "AGP 1.5V",
+  "PCIe 1.0",
+  "PCIe 2.0",
+  "PCIe 3.0",
+  "PCIe 4.0",
+] as const;
+
+type GpuInterface = (typeof gpuInterfaces)[number];
 
 export interface PCPart {
   id: string;
