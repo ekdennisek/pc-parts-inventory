@@ -1,0 +1,38 @@
+import type { PowerSupply } from "../types";
+
+export const powerSupplies: PowerSupply[] = [
+  {
+    id: "psu-1",
+    name: "EVGA 500B",
+    brand: "EVGA",
+    description: "500W 80+ Bronze",
+    wattage: 500,
+    efficiency: "80+ Bronze",
+    modular: false,
+    formFactor: "ATX",
+    releaseYear: 2013,
+  },
+  {
+    id: "psu-2",
+    name: "Corsair SF750",
+    brand: "Corsair",
+    description: "80+ Platinum modular SFX power supply",
+    wattage: 750,
+    efficiency: "80+ Platinum",
+    modular: true,
+    formFactor: "SFX",
+    releaseYear: 2019,
+  },
+  {
+    id: "psu-3",
+    name: "Fractal Design FSP300-60GHS",
+    brand: "Fractal Design",
+    description:
+      "300W 80+ power supply. Came with the Fractal Design Array case and was produced by Fortron Source",
+    wattage: 300,
+    efficiency: "80+",
+    modular: false,
+    formFactor: "SFX",
+    releaseYear: 2010,
+  },
+];
