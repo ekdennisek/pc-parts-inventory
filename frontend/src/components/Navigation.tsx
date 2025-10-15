@@ -82,36 +82,43 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <nav
-      className="navigation"
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-    >
-      <div className="nav-container">
-        <div className="nav-brand">
-          <Link to="/">PC Parts Inventory</Link>
-        </div>
+    <>
+      {/* Swipe edge area for opening menu from left edge */}
+      <div
+        className={`swipe-edge ${isMenuOpen ? "hidden" : ""}`}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      />
 
-        <button
-          className="hamburger-button"
-          onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMenuOpen}
-        >
-          <span className={`hamburger-icon ${isMenuOpen ? "open" : ""}`}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </button>
+      <nav className="navigation">
+        <div className="nav-container">
+          <div className="nav-brand">
+            <Link to="/">PC Parts Inventory</Link>
+          </div>
 
-        <div className={`nav-overlay ${isMenuOpen ? "visible" : ""}`} />
+          <button
+            className="hamburger-button"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span className={`hamburger-icon ${isMenuOpen ? "open" : ""}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
 
-        <ul
-          ref={menuRef}
-          className={`nav-links ${isMenuOpen ? "open" : ""}`}
-        >
+          <div className={`nav-overlay ${isMenuOpen ? "visible" : ""}`} />
+
+          <ul
+            ref={menuRef}
+            className={`nav-links ${isMenuOpen ? "open" : ""}`}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
           <li>
             <Link to="/" className={location.pathname === "/" ? "active" : ""}>
               Home
@@ -138,5 +145,6 @@ export const Navigation: React.FC = () => {
         </ul>
       </div>
     </nav>
+    </>
   );
 };

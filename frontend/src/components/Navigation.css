@@ -85,6 +85,18 @@
   pointer-events: auto;
 }
 
+/* Swipe edge area for opening menu on mobile */
+.swipe-edge {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 100vh;
+  z-index: 998;
+  pointer-events: auto;
+}
+
 .nav-links {
   list-style: none;
   padding: 0;
@@ -132,6 +144,14 @@
 
   .nav-overlay {
     display: block;
+  }
+
+  .swipe-edge {
+    display: block;
+  }
+
+  .swipe-edge.hidden {
+    display: none;
   }
 
   .nav-links {
