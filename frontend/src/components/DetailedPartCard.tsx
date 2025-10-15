@@ -5,13 +5,14 @@ import type {
   PowerSupply,
   GraphicsCard,
   RAM,
+  Case,
   PartType,
 } from "../types";
 import { PartCard } from "./PartCard";
 import "./DetailedPartCard.css";
 
 interface DetailedPartCardProps {
-  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM;
+  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case;
   partType: PartType;
 }
 
@@ -168,6 +169,34 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
             <div className="spec-item">
               <span className="spec-label">Form Factor:</span>
               <span className="spec-value">{memory.formFactor}</span>
+            </div>
+          </div>
+        );
+      }
+
+      case "case": {
+        const pcCase = part as Case;
+        return (
+          <div className="specifications">
+            <div className="spec-item">
+              <span className="spec-label">Supported Form Factors:</span>
+              <span className="spec-value">
+                {pcCase.supportedFormFactors.join(", ")}
+              </span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">5.25" Drive Bays:</span>
+              <span className="spec-value">{pcCase.external525Drives}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">3.5" Drive Bays:</span>
+              <span className="spec-value">{pcCase.external35Drives}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Glass Panel:</span>
+              <span className="spec-value">
+                {pcCase.glassPanel ? "Yes" : "No"}
+              </span>
             </div>
           </div>
         );

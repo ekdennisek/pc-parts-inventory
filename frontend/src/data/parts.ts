@@ -3,6 +3,7 @@ import { graphicsCards } from "./gpus";
 import { motherboards } from "./motherboards";
 import { powerSupplies } from "./powerSupplies";
 import { ram } from "./ram";
+import { cases } from "./cases";
 
 export const allParts = {
   cpu: cpus,
@@ -10,4 +11,5 @@ export const allParts = {
   powerSupply: powerSupplies,
   graphicsCard: graphicsCards,
   ram: ram,
+  case: cases,
 };

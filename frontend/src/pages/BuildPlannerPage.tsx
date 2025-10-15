@@ -1,7 +1,12 @@
 import React, { useState, useMemo } from "react";
-import type { PCBuild, BuildStep, Motherboard, CPU, RAM } from "../types";
-import { motherboards, cpus, ram } from "../data/parts";
+import type { PCBuild, BuildStep, Motherboard, CPU, RAM, Case, MotherboardFormFactor } from "../types";
+import { motherboards } from "../data/motherboards";
+import { cpus } from "../data/cpus";
+import { ram } from "../data/ram";
+import { cases } from "../data/cases";
+import { motherboardFormFactors } from "../types";
 import { PartCard } from "../components/PartCard";
+import { QuickFilters } from "../components/QuickFilters";
 import "./BuildPlannerPage.css";
 
 export const BuildPlannerPage: React.FC = () => {
@@ -11,7 +16,37 @@ export const BuildPlannerPage: React.FC = () => {
     ram: [],
   });
 
-  const [currentStep, setCurrentStep] = useState<BuildStep>("motherboard");
+  const [currentStep, setCurrentStep] = useState<BuildStep>("case");
+  const [selectedFormFactors, setSelectedFormFactors] = useState<MotherboardFormFactor[]>([]);
+
+  const selectCase = (pcCase: Case) => {
+    setBuild((prev) => ({
+      ...prev,
+      case: pcCase,
+      // Reset downstream selections if case compatibility changes
+      motherboard: prev.case && prev.motherboard &&
+        !pcCase.supportedFormFactors.includes(prev.motherboard.formFactor)
+        ? undefined
+        : prev.motherboard,
+      cpu: prev.case && prev.motherboard &&
+        !pcCase.supportedFormFactors.includes(prev.motherboard.formFactor)
+        ? undefined
+        : prev.cpu,
+      ram: prev.case && prev.motherboard &&
+        !pcCase.supportedFormFactors.includes(prev.motherboard.formFactor)
+        ? []
+        : prev.ram,
+    }));
+    setCurrentStep("motherboard");
+  };
+
+  const skipCase = () => {
+    setCurrentStep("motherboard");
+  };
+
+  const changeCase = () => {
+    setCurrentStep("case");
+  };
 
   const selectMotherboard = (motherboard: Motherboard) => {
     setBuild((prev) => ({
@@ -62,7 +97,8 @@ export const BuildPlannerPage: React.FC = () => {
       name: "My PC Build",
       ram: [],
     });
-    setCurrentStep("motherboard");
+    setSelectedFormFactors([]);
+    setCurrentStep("case");
   };
 
   const changeMotherboard = () => {
@@ -86,7 +122,9 @@ export const BuildPlannerPage: React.FC = () => {
 
   const goToStep = (step: BuildStep) => {
     // Only allow going to steps that are available
-    if (step === "motherboard") {
+    if (step === "case") {
+      setCurrentStep("case");
+    } else if (step === "motherboard") {
       setCurrentStep("motherboard");
     } else if (step === "cpu" && build.motherboard) {
       setCurrentStep("cpu");
@@ -94,6 +132,28 @@ export const BuildPlannerPage: React.FC = () => {
       setCurrentStep("ram");
     }
   };
+
+  // Filter cases based on selected form factors
+  const filteredCases = useMemo(() => {
+    if (selectedFormFactors.length === 0) {
+      return cases;
+    }
+    return cases.filter((pcCase) =>
+      selectedFormFactors.some((formFactor) =>
+        pcCase.supportedFormFactors.includes(formFactor)
+      )
+    );
+  }, [selectedFormFactors]);
+
+  // Filter motherboards based on selected case (if any)
+  const availableMotherboards = useMemo(() => {
+    if (!build.case) {
+      return motherboards;
+    }
+    return motherboards.filter((mb) =>
+      build.case!.supportedFormFactors.includes(mb.formFactor)
+    );
+  }, [build.case]);
 
   // Filter compatible CPUs based on selected motherboard
   const compatibleCPUs = useMemo(() => {
@@ -127,15 +187,28 @@ export const BuildPlannerPage: React.FC = () => {
         <div className="progress-steps">
           <div
             className={`step ${
+              currentStep === "case"
+                ? "active"
+                : build.case
+                ? "completed clickable"
+                : "clickable"
+            }`}
+            onClick={() => goToStep("case")}
+          >
+            <span className="step-number">1</span>
+            <span className="step-label">Case</span>
+          </div>
+          <div
+            className={`step ${
               currentStep === "motherboard"
                 ? "active"
                 : build.motherboard
                 ? "completed clickable"
-                : ""
+                : "clickable"
             }`}
             onClick={() => goToStep("motherboard")}
           >
-            <span className="step-number">1</span>
+            <span className="step-number">2</span>
             <span className="step-label">Motherboard</span>
           </div>
           <div
@@ -150,7 +223,7 @@ export const BuildPlannerPage: React.FC = () => {
             }`}
             onClick={() => build.motherboard && goToStep("cpu")}
           >
-            <span className="step-number">2</span>
+            <span className="step-number">3</span>
             <span className="step-label">CPU</span>
           </div>
           <div
@@ -165,7 +238,7 @@ export const BuildPlannerPage: React.FC = () => {
             }`}
             onClick={() => build.motherboard && build.cpu && goToStep("ram")}
           >
-            <span className="step-number">3</span>
+            <span className="step-number">4</span>
             <span className="step-label">RAM</span>
           </div>
         </div>
@@ -175,6 +248,37 @@ export const BuildPlannerPage: React.FC = () => {
         <div className="build-sidebar">
           <div className="current-build">
             <h3>Current Build</h3>
+
+            {build.case && (
+              <div className="selected-component">
+                <div className="component-header">
+                  <h4>Case</h4>
+                  <button
+                    onClick={changeCase}
+                    className="btn btn-change"
+                    title="Change case"
+                  >
+                    Change
+                  </button>
+                </div>
+                <div className="component-info">
+                  <span className="component-name">
+                    {build.case.name}
+                  </span>
+                  <span className="component-detail">
+                    Form Factors: {build.case.supportedFormFactors.join(", ")}
+                  </span>
+                  <span className="component-detail">
+                    Glass Panel: {build.case.glassPanel ? "Yes" : "No"}
+                  </span>
+                  {(build.case.external525Drives > 0 || build.case.external35Drives > 0) && (
+                    <span className="component-detail">
+                      Drive Bays: {build.case.external525Drives}x 5.25", {build.case.external35Drives}x 3.5"
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
 
             {build.motherboard && (
               <div className="selected-component">
@@ -268,12 +372,48 @@ export const BuildPlannerPage: React.FC = () => {
         </div>
 
         <div className="build-main">
+          {currentStep === "case" && (
+            <div className="step-content">
+              <h2>Step 1: Select a Case (Optional)</h2>
+              <p>
+                Choose a case for your build, or skip this step. Selecting a case will filter motherboards by compatible form factors.
+              </p>
+
+              <QuickFilters
+                filters={[...motherboardFormFactors]}
+                selectedFilters={selectedFormFactors}
+                onFilterChange={(filters) => setSelectedFormFactors(filters as MotherboardFormFactor[])}
+                filterType="formFactor"
+              />
+
+              <div className="parts-grid">
+                {filteredCases.map((pcCase) => (
+                  <div
+                    key={pcCase.id}
+                    onClick={() => selectCase(pcCase)}
+                    className="clickable"
+                  >
+                    <PartCard part={pcCase} />
+                  </div>
+                ))}
+              </div>
+
+              <div className="step-actions">
+                <button onClick={skipCase} className="btn btn-secondary">
+                  Skip - No Case Selection
+                </button>
+              </div>
+            </div>
+          )}
+
           {currentStep === "motherboard" && (
             <div className="step-content">
-              <h2>Step 1: Select a Motherboard</h2>
+              <h2>Step 2: Select a Motherboard</h2>
               <p>
-                Choose a motherboard to start your build. This will determine
-                CPU and RAM compatibility.
+                {build.case
+                  ? `Choose a motherboard compatible with your ${build.case.name} case (${build.case.supportedFormFactors.join(", ")}).`
+                  : "Choose a motherboard to start your build. This will determine CPU and RAM compatibility."
+                }
               </p>
               <div className="socket-legend">
                 <div className="legend-item">
@@ -286,7 +426,7 @@ export const BuildPlannerPage: React.FC = () => {
                 </div>
               </div>
               <div className="parts-grid">
-                {motherboards.map((motherboard) => (
+                {availableMotherboards.map((motherboard) => (
                   <div
                     key={motherboard.id}
                     onClick={() => selectMotherboard(motherboard)}
@@ -296,12 +436,17 @@ export const BuildPlannerPage: React.FC = () => {
                   </div>
                 ))}
               </div>
+              {build.case && availableMotherboards.length === 0 && (
+                <p className="no-compatible">
+                  No motherboards compatible with this case's form factors.
+                </p>
+              )}
             </div>
           )}
 
           {currentStep === "cpu" && (
             <div className="step-content">
-              <h2>Step 2: Select a CPU</h2>
+              <h2>Step 3: Select a CPU</h2>
               <p>
                 Choose a CPU compatible with your {build.motherboard?.socket}{" "}
                 motherboard.
@@ -328,7 +473,7 @@ export const BuildPlannerPage: React.FC = () => {
 
           {currentStep === "ram" && (
             <div className="step-content">
-              <h2>Step 3: Select RAM</h2>
+              <h2>Step 4: Select RAM</h2>
               <p>
                 Choose RAM modules compatible with your motherboard. You can
                 select multiple modules (up to {maxSlots} slots).
@@ -399,6 +544,11 @@ export const BuildPlannerPage: React.FC = () => {
               <div className="build-summary">
                 <h3>Build Summary</h3>
                 <ul>
+                  {build.case && (
+                    <li>
+                      <strong>Case:</strong> {build.case.name}
+                    </li>
+                  )}
                   <li>
                     <strong>Motherboard:</strong> {build.motherboard?.name}
                   </li>

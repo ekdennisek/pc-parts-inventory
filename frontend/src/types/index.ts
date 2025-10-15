@@ -109,12 +109,20 @@ export interface RAM extends PCPart {
   formFactor: MemoryFormFactor; // DIMM, SO-DIMM
 }
 
+export interface Case extends PCPart {
+  supportedFormFactors: MotherboardFormFactor[]; // Supported motherboard sizes
+  external525Drives: number; // Number of 5.25" drive bays
+  external35Drives: number; // Number of 3.5" drive bays
+  glassPanel: boolean; // Whether it has a glass panel
+}
+
 export type PartType =
   | "cpu"
   | "motherboard"
   | "powerSupply"
   | "graphicsCard"
-  | "ram";
+  | "ram"
+  | "case";
 
 export const PART_TYPES: Record<PartType, string> = {
   cpu: "CPUs",
@@ -122,11 +130,13 @@ export const PART_TYPES: Record<PartType, string> = {
   powerSupply: "Power Supplies",
   graphicsCard: "Graphics Cards",
   ram: "RAM",
+  case: "Cases",
 };
 
 export interface PCBuild {
   id: string;
   name: string;
+  case?: Case;
   motherboard?: Motherboard;
   cpu?: CPU;
   ram: RAM[];
@@ -134,7 +144,7 @@ export interface PCBuild {
   graphicsCard?: GraphicsCard;
 }
 
-export type BuildStep = "motherboard" | "cpu" | "ram" | "complete";
+export type BuildStep = "case" | "motherboard" | "cpu" | "ram" | "complete";
 
 // Utility functions for socket detection
 export const isIntelSocket = (socket: CpuSocket): boolean => {

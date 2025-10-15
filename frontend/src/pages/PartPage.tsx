@@ -5,7 +5,7 @@ import { QuickFilters } from "../components/QuickFilters";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
-import type { PartType, CPU, Motherboard, GraphicsCard, CpuSocket } from "../types";
+import type { PartType, CPU, Motherboard, GraphicsCard, Case, CpuSocket, MotherboardFormFactor } from "../types";
 import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor, motherboardFormFactors } from "../types";
 import "./PartPage.css";
 
@@ -80,6 +80,16 @@ export const PartPage: React.FC = () => {
       filtered = filtered.filter((part) => {
         const p = part as Motherboard;
         return selectedFormFactors.includes(p.formFactor);
+      });
+    }
+
+    // Apply form factor filters for cases
+    if (partType === "case" && selectedFormFactors.length > 0) {
+      filtered = filtered.filter((part) => {
+        const p = part as Case;
+        return selectedFormFactors.some((formFactor) =>
+          p.supportedFormFactors.includes(formFactor as MotherboardFormFactor)
+        );
       });
     }
 
@@ -173,7 +183,7 @@ export const PartPage: React.FC = () => {
           )}
         </div>
 
-        {partType === "motherboard" && (
+        {(partType === "motherboard" || partType === "case") && (
           <QuickFilters
             filters={motherboardFormFactors}
             selectedFilters={selectedFormFactors}
