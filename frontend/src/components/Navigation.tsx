@@ -93,10 +93,6 @@ export const Navigation: React.FC = () => {
 
       <nav className="navigation">
         <div className="nav-container">
-          <div className="nav-brand">
-            <Link to="/">PC Parts Inventory</Link>
-          </div>
-
           <button
             className="hamburger-button"
             onClick={toggleMenu}
@@ -109,6 +105,10 @@ export const Navigation: React.FC = () => {
               <span></span>
             </span>
           </button>
+
+          <div className="nav-brand">
+            <Link to="/">PC Parts Inventory</Link>
+          </div>
 
           <div className={`nav-overlay ${isMenuOpen ? "visible" : ""}`} />
 
