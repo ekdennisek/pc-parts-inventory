@@ -5,8 +5,9 @@ interface QuickFiltersProps {
   filters: readonly string[];
   selectedFilters: string[];
   onFilterChange: (filters: string[]) => void;
-  filterType?: "socket" | "interface";
+  filterType?: "socket" | "interface" | "formFactor";
   getFilterColor?: (filter: string) => "intel" | "amd" | "default";
+  title?: string;
 }
 
 export const QuickFilters: React.FC<QuickFiltersProps> = ({
@@ -15,6 +16,7 @@ export const QuickFilters: React.FC<QuickFiltersProps> = ({
   onFilterChange,
   filterType = "socket",
   getFilterColor,
+  title,
 }) => {
   const handleFilterClick = (filter: string) => {
     if (selectedFilters.includes(filter)) {
@@ -30,11 +32,18 @@ export const QuickFilters: React.FC<QuickFiltersProps> = ({
     onFilterChange([]);
   };
 
+  const getDefaultTitle = () => {
+    if (filterType === "socket") return "Socket";
+    if (filterType === "interface") return "Interface";
+    if (filterType === "formFactor") return "Form Factor";
+    return "Filter";
+  };
+
   return (
     <div className="quick-filters">
       <div className="quick-filters-header">
         <h3 className="quick-filters-title">
-          Quick Filter by {filterType === "socket" ? "Socket" : "Interface"}
+          Quick Filter by {title || getDefaultTitle()}
         </h3>
         {selectedFilters.length > 0 && (
           <button className="clear-filters-btn" onClick={handleClearAll}>

@@ -6,7 +6,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
 import type { PartType, CPU, Motherboard, GraphicsCard, CpuSocket } from "../types";
-import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor } from "../types";
+import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor, motherboardFormFactors } from "../types";
 import "./PartPage.css";
 
 type SortOption = "standard";
@@ -16,10 +16,12 @@ export const PartPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("standard");
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedFormFactors, setSelectedFormFactors] = useState<string[]>([]);
 
   // Clear filters when switching between component pages
   useEffect(() => {
     setSelectedFilters([]);
+    setSelectedFormFactors([]);
   }, [partType]);
 
   // Get parts for the current part type
@@ -73,6 +75,14 @@ export const PartPage: React.FC = () => {
       );
     }
 
+    // Apply form factor filters for motherboards
+    if (partType === "motherboard" && selectedFormFactors.length > 0) {
+      filtered = filtered.filter((part) => {
+        const p = part as Motherboard;
+        return selectedFormFactors.includes(p.formFactor);
+      });
+    }
+
     // Apply quick filters
     if (selectedFilters.length > 0) {
       if (partType === "cpu" || partType === "motherboard") {
@@ -89,7 +99,7 @@ export const PartPage: React.FC = () => {
     }
 
     return filtered;
-  }, [parts, searchTerm, selectedFilters, partType]);
+  }, [parts, searchTerm, selectedFilters, selectedFormFactors, partType]);
 
   // Sort parts based on sort option
   const sortedParts = useMemo(() => {
@@ -163,6 +173,15 @@ export const PartPage: React.FC = () => {
           )}
         </div>
 
+        {partType === "motherboard" && (
+          <QuickFilters
+            filters={motherboardFormFactors}
+            selectedFilters={selectedFormFactors}
+            onFilterChange={setSelectedFormFactors}
+            filterType="formFactor"
+          />
+        )}
+
         {availableFilters.length > 0 && (
           <QuickFilters
             filters={availableFilters}
@@ -180,13 +199,16 @@ export const PartPage: React.FC = () => {
           />
         )}
 
-        {(searchTerm || selectedFilters.length > 0) && (
+        {(searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0) && (
           <p className="search-results-info">
             Found {filteredParts.length} {partTypeLabel.toLowerCase()}
             {searchTerm && ` matching "${searchTerm}"`}
-            {searchTerm && selectedFilters.length > 0 && " and"}
+            {searchTerm && (selectedFormFactors.length > 0 || selectedFilters.length > 0) && " and"}
+            {selectedFormFactors.length > 0 &&
+              ` filtered by ${selectedFormFactors.length} form factor${selectedFormFactors.length > 1 ? "s" : ""}`}
+            {selectedFormFactors.length > 0 && selectedFilters.length > 0 && " and"}
             {selectedFilters.length > 0 &&
-              ` filtered by ${selectedFilters.length} ${
+              ` ${selectedFormFactors.length > 0 ? "" : "filtered by "}${selectedFilters.length} ${
                 partType === "graphicsCard" ? "interface" : "socket"
               }${selectedFilters.length > 1 ? "s" : ""}`}
           </p>

@@ -38,7 +38,8 @@ export type AmdSocket = (typeof amdSockets)[number];
 
 export type CpuSocket = IntelSocket | AmdSocket;
 
-type MotherboardFormFactor = "ATX" | "Micro ATX" | "Mini ITX";
+export const motherboardFormFactors = ["ATX", "Micro ATX", "Mini ITX"] as const;
+export type MotherboardFormFactor = (typeof motherboardFormFactors)[number];
 
 type MemoryType = "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
 
