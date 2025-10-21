@@ -7,10 +7,22 @@ export const cases: Case[] = [
     brand: "Hyrican",
     description:
       "mATX case, probably from 2015 (see https://web.archive.org/web/20150917052923/http://www.hyrican.de/index.php/produkte/gaming/cyber-gamer/)",
-    supportedFormFactors: ["Micro ATX"],
+    supportedFormFactors: ["Micro ATX"], // TODO mini ITX?
     external525Drives: 2,
     external35Drives: 1,
     glassPanel: false,
     releaseYear: 2015,
+  },
+  {
+    id: "case-2",
+    name: "Hansan Systems Power III (Audi)",
+    brand: "Hansan Systems",
+    description:
+      "ATX case, https://web.archive.org/web/20010124100100/http://www.hansansystems.com/PowerIII.htm",
+    supportedFormFactors: ["ATX"], // TODO micro atx, mini itx?
+    external525Drives: 5,
+    external35Drives: 2,
+    glassPanel: false,
+    releaseYear: 2001,
   },
 ];
