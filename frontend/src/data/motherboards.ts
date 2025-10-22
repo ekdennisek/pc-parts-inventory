@@ -115,4 +115,18 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 2,
     releaseYear: 2012,
   },
+  {
+    id: "mb-9",
+    name: "Biostar P4M900-M4",
+    brand: "Biostar",
+    description: "Socket 478 Micro ATX motherboard",
+    socket: "Socket 478",
+    formFactor: "Micro ATX",
+    chipset: "VIA P4M900",
+    memorySlots: 2,
+    maxMemory: 4,
+    pcieSlots: 1,
+    memoryTypes: ["DDR2"],
+    releaseYear: 2008,
+  },
 ];
