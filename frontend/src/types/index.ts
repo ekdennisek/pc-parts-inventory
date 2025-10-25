@@ -41,13 +41,14 @@ export type CpuSocket = IntelSocket | AmdSocket;
 export const motherboardFormFactors = ["ATX", "Micro ATX", "Mini ITX"] as const;
 export type MotherboardFormFactor = (typeof motherboardFormFactors)[number];
 
-type MemoryType = "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
+type MemoryType = "SDR" | "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
 
 type MemoryFormFactor = "DIMM" | "SO-DIMM";
 
 export const gpuInterfaces = [
   "AGP 3.3V",
   "AGP 1.5V",
+  "AGP 0.8V",
   "PCIe 1.0",
   "PCIe 2.0",
   "PCIe 3.0",
@@ -63,6 +64,8 @@ export interface PCPart {
   description: string;
   releaseYear?: number;
   datasheet?: string;
+  tested?: boolean;
+  working?: boolean;
 }
 
 export interface CPU extends PCPart {

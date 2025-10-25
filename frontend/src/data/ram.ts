@@ -446,4 +446,18 @@ export const ram: RAM[] = [
     voltage: 1.8,
     formFactor: "DIMM",
   },
+  {
+    id: "ram-42",
+    name: "Micron MTBLSDT1664AG-133E1",
+    brand: "Micron",
+    description: "128MB SDR 133MHz CL3",
+    capacity: 0.125,
+    type: "SDR",
+    speed: 133,
+    timings: "CL3",
+    voltage: 3.3,
+    formFactor: "DIMM",
+    tested: true,
+    working: true,
+  },
 ];

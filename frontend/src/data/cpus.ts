@@ -448,4 +448,18 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2013,
   },
+  {
+    id: "cpu-37",
+    name: "Intel Pentium III SL4MD",
+    brand: "Intel",
+    description: "Socket 370 Coppermine processor",
+    cores: 1,
+    threads: 1,
+    baseClock: 0.886,
+    socket: "Socket 370",
+    tdp: 0,
+    releaseYear: 2000,
+    tested: true,
+    working: true,
+  },
 ];

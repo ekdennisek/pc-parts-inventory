@@ -35,4 +35,17 @@ export const powerSupplies: PowerSupply[] = [
     formFactor: "SFX",
     releaseYear: 2010,
   },
+  {
+    id: "psu-4",
+    name: "Antec Signature SG-850",
+    brand: "Antec",
+    description: "850W 80+ Bronze power supply",
+    wattage: 850,
+    efficiency: "80+ Bronze",
+    modular: false,
+    formFactor: "ATX",
+    releaseYear: 2009,
+    tested: true,
+    working: true,
+  },
 ];

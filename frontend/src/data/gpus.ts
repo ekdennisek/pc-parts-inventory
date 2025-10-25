@@ -105,4 +105,19 @@ export const graphicsCards: GraphicsCard[] = [
     interface: "PCIe 2.0",
     releaseYear: 2014,
   },
+  {
+    id: "gpu-9",
+    name: "Sapphire Radeon 9250 128MB",
+    brand: "ATI",
+    description: "Radeon 9250 128MB 1024-RC26-1F-SA 128MB",
+    memory: 0.125,
+    memoryType: "DDR",
+    coreClock: 240,
+    boostClock: 0,
+    powerConsumption: 0,
+    interface: "AGP 0.8V", // 8x
+    releaseYear: 2005, // Perhaps 2004?
+    tested: true,
+    working: true,
+  },
 ];
