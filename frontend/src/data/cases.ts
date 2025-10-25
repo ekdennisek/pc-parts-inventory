@@ -20,7 +20,7 @@ export const cases: Case[] = [
     description:
       "ATX case, https://web.archive.org/web/20010124100100/http://www.hansansystems.com/PowerIII.htm",
     supportedFormFactors: ["ATX"], // TODO micro atx, mini itx?
-    external525Drives: 5,
+    external525Drives: 3,
     external35Drives: 2,
     glassPanel: false,
     releaseYear: 2001,
