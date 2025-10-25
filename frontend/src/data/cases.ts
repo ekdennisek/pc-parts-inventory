@@ -25,4 +25,15 @@ export const cases: Case[] = [
     glassPanel: false,
     releaseYear: 2001,
   },
+  {
+    id: "case-3",
+    name: "Lian Li PC-7B Plus II",
+    brand: "Lian Li",
+    description: "ATX case with aluminum body",
+    supportedFormFactors: ["ATX", "Micro ATX"], // TODO mini ITX?
+    external525Drives: 4,
+    external35Drives: 2,
+    glassPanel: false,
+    releaseYear: 2006,
+  },
 ];
