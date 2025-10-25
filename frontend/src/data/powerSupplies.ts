@@ -48,4 +48,17 @@ export const powerSupplies: PowerSupply[] = [
     tested: true,
     working: true,
   },
+  {
+    id: "psu-5",
+    name: "LITEON PS-5281-02 VB",
+    brand: "LITEON",
+    description: "280W power supply",
+    wattage: 280,
+    efficiency: "",
+    modular: false,
+    formFactor: "ATX",
+    releaseYear: 2018,
+    tested: true,
+    working: true,
+  },
 ];
