@@ -1,5 +1,10 @@
-.detailed-part-card {
+.detailed-part-card-wrapper {
+  position: relative;
   margin-bottom: 2rem;
+}
+
+.detailed-part-card {
+  /* removed margin-bottom as it's now on the wrapper */
 }
 
 .specifications {
@@ -33,4 +38,46 @@
   color: #212529;
   font-size: 0.9rem;
   text-align: right;
+}
+
+/* Release year badge styling (same as home page type badges) */
+.part-year-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: var(--badge-color, #007acc);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Part type badge colors (matching home page) */
+.part-year-badge[data-type="cpu"] {
+  --badge-color: #3b82f6; /* Blue */
+}
+
+.part-year-badge[data-type="motherboard"] {
+  --badge-color: #10b981; /* Emerald */
+}
+
+.part-year-badge[data-type="powerSupply"] {
+  --badge-color: #f59e0b; /* Amber */
+}
+
+.part-year-badge[data-type="graphicsCard"] {
+  --badge-color: #ef4444; /* Red */
+}
+
+.part-year-badge[data-type="ram"] {
+  --badge-color: #ec4899; /* Pink */
+}
+
+.part-year-badge[data-type="case"] {
+  --badge-color: #8b5cf6; /* Purple */
 }

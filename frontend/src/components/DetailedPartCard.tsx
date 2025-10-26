@@ -205,18 +205,25 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
   };
 
   return (
-    <div className="detailed-part-card">
-      <PartCard
-        part={part}
-        socket={
-          partType === "motherboard"
-            ? (part as Motherboard).socket
-            : partType === "cpu"
-            ? (part as CPU).socket
-            : undefined
-        }
-      />
-      {renderSpecifications()}
+    <div className="detailed-part-card-wrapper">
+      {part.releaseYear && (
+        <div className="part-year-badge" data-type={partType}>
+          {part.releaseYear}
+        </div>
+      )}
+      <div className="detailed-part-card">
+        <PartCard
+          part={part}
+          socket={
+            partType === "motherboard"
+              ? (part as Motherboard).socket
+              : partType === "cpu"
+              ? (part as CPU).socket
+              : undefined
+          }
+        />
+        {renderSpecifications()}
+      </div>
     </div>
   );
 };
