@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { QuickFilters } from "../components/QuickFilters";
+import { ReleaseYearFilter } from "../components/ReleaseYearFilter";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
@@ -17,11 +18,16 @@ export const PartPage: React.FC = () => {
   const [sortOption, setSortOption] = useState<SortOption>("standard");
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedFormFactors, setSelectedFormFactors] = useState<string[]>([]);
+  const [yearRangeFilter, setYearRangeFilter] = useState<{
+    min: number | null;
+    max: number | null;
+  }>({ min: null, max: null });
 
   // Clear filters when switching between component pages
   useEffect(() => {
     setSelectedFilters([]);
     setSelectedFormFactors([]);
+    setYearRangeFilter({ min: null, max: null });
   }, [partType]);
 
   // Get parts for the current part type
@@ -31,6 +37,19 @@ export const PartPage: React.FC = () => {
     }
     return allParts[partType];
   }, [partType]);
+
+  // Calculate min and max year from all parts of current type (with release years only)
+  const { minYear, maxYear } = useMemo(() => {
+    const partsWithYears = parts.filter((part) => part.releaseYear !== undefined);
+    if (partsWithYears.length === 0) {
+      return { minYear: new Date().getFullYear(), maxYear: new Date().getFullYear() };
+    }
+    const years = partsWithYears.map((part) => part.releaseYear!);
+    return {
+      minYear: Math.min(...years),
+      maxYear: Math.max(...years),
+    };
+  }, [parts]);
 
   // Helper function to get socket sort order
   const getSocketSortOrder = (socket: CpuSocket): number => {
@@ -60,7 +79,7 @@ export const PartPage: React.FC = () => {
     return [];
   }, [partType]);
 
-  // Filter parts based on search term and quick filters
+  // Filter parts based on search term, quick filters, and year range
   const filteredParts = useMemo(() => {
     let filtered = [...parts];
 
@@ -108,8 +127,22 @@ export const PartPage: React.FC = () => {
       }
     }
 
+    // Apply year range filter
+    const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+    if (isYearFilterActive) {
+      filtered = filtered.filter((part) => {
+        // Hide parts without release year when filter is active
+        if (part.releaseYear === undefined) {
+          return false;
+        }
+        const min = yearRangeFilter.min ?? minYear;
+        const max = yearRangeFilter.max ?? maxYear;
+        return part.releaseYear >= min && part.releaseYear <= max;
+      });
+    }
+
     return filtered;
-  }, [parts, searchTerm, selectedFilters, selectedFormFactors, partType]);
+  }, [parts, searchTerm, selectedFilters, selectedFormFactors, partType, yearRangeFilter, minYear, maxYear]);
 
   // Sort parts based on sort option
   const sortedParts = useMemo(() => {
@@ -137,6 +170,16 @@ export const PartPage: React.FC = () => {
     // For other part types or sort options, return as is
     return filteredParts;
   }, [filteredParts, sortOption, partType]);
+
+  const handleYearRangeChange = (min: number, max: number) => {
+    setYearRangeFilter({ min, max });
+  };
+
+  const handleClearYearFilter = () => {
+    setYearRangeFilter({ min: null, max: null });
+  };
+
+  const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
 
   // Handle invalid part type
   if (!partType || !allParts[partType]) {
@@ -209,18 +252,31 @@ export const PartPage: React.FC = () => {
           />
         )}
 
-        {(searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0) && (
+        <ReleaseYearFilter
+          minYear={minYear}
+          maxYear={maxYear}
+          selectedMin={yearRangeFilter.min}
+          selectedMax={yearRangeFilter.max}
+          onRangeChange={handleYearRangeChange}
+          onClear={handleClearYearFilter}
+          isActive={isYearFilterActive}
+        />
+
+        {(searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0 || isYearFilterActive) && (
           <p className="search-results-info">
             Found {filteredParts.length} {partTypeLabel.toLowerCase()}
             {searchTerm && ` matching "${searchTerm}"`}
-            {searchTerm && (selectedFormFactors.length > 0 || selectedFilters.length > 0) && " and"}
+            {searchTerm && (selectedFormFactors.length > 0 || selectedFilters.length > 0 || isYearFilterActive) && " and"}
             {selectedFormFactors.length > 0 &&
               ` filtered by ${selectedFormFactors.length} form factor${selectedFormFactors.length > 1 ? "s" : ""}`}
-            {selectedFormFactors.length > 0 && selectedFilters.length > 0 && " and"}
+            {selectedFormFactors.length > 0 && (selectedFilters.length > 0 || isYearFilterActive) && " and"}
             {selectedFilters.length > 0 &&
               ` ${selectedFormFactors.length > 0 ? "" : "filtered by "}${selectedFilters.length} ${
                 partType === "graphicsCard" ? "interface" : "socket"
               }${selectedFilters.length > 1 ? "s" : ""}`}
+            {selectedFilters.length > 0 && isYearFilterActive && " and"}
+            {isYearFilterActive &&
+              ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
           </p>
         )}
 

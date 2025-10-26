@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { PartCard } from "../components/PartCard";
+import { ReleaseYearFilter } from "../components/ReleaseYearFilter";
 import { allParts } from "../data/parts";
 import type { PCPart, PartType } from "../types";
 import { PART_TYPES } from "../types";
@@ -13,6 +14,10 @@ type SortOption = "releaseYear";
 export const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("releaseYear");
+  const [yearRangeFilter, setYearRangeFilter] = useState<{
+    min: number | null;
+    max: number | null;
+  }>({ min: null, max: null });
 
   // Flatten all parts into a single array with part type information
   const allPartsFlat = useMemo(() => {
@@ -25,20 +30,50 @@ export const HomePage: React.FC = () => {
     return flat;
   }, []);
 
-  // Filter parts based on search term
+  // Calculate min and max year from all parts (with release years only)
+  const { minYear, maxYear } = useMemo(() => {
+    const partsWithYears = allPartsFlat.filter((part) => part.releaseYear !== undefined);
+    if (partsWithYears.length === 0) {
+      return { minYear: new Date().getFullYear(), maxYear: new Date().getFullYear() };
+    }
+    const years = partsWithYears.map((part) => part.releaseYear!);
+    return {
+      minYear: Math.min(...years),
+      maxYear: Math.max(...years),
+    };
+  }, [allPartsFlat]);
+
+  // Filter parts based on search term and year range
   const filteredParts = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return allPartsFlat;
+    let filtered = allPartsFlat;
+
+    // Apply search filter
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        (part) =>
+          part.name.toLowerCase().includes(searchLower) ||
+          part.brand.toLowerCase().includes(searchLower) ||
+          part.description.toLowerCase().includes(searchLower)
+      );
     }
 
-    const searchLower = searchTerm.toLowerCase();
-    return allPartsFlat.filter(
-      (part) =>
-        part.name.toLowerCase().includes(searchLower) ||
-        part.brand.toLowerCase().includes(searchLower) ||
-        part.description.toLowerCase().includes(searchLower)
-    );
-  }, [allPartsFlat, searchTerm]);
+    // Apply year range filter
+    const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+    if (isYearFilterActive) {
+      filtered = filtered.filter((part) => {
+        // Hide parts without release year when filter is active
+        if (part.releaseYear === undefined) {
+          return false;
+        }
+        const min = yearRangeFilter.min ?? minYear;
+        const max = yearRangeFilter.max ?? maxYear;
+        return part.releaseYear >= min && part.releaseYear <= max;
+      });
+    }
+
+    return filtered;
+  }, [allPartsFlat, searchTerm, yearRangeFilter, minYear, maxYear]);
 
   // Sort and group parts based on sort option
   const sortedAndGroupedParts = useMemo(() => {
@@ -98,6 +133,16 @@ export const HomePage: React.FC = () => {
     return summary;
   }, []);
 
+  const handleYearRangeChange = (min: number, max: number) => {
+    setYearRangeFilter({ min, max });
+  };
+
+  const handleClearYearFilter = () => {
+    setYearRangeFilter({ min: null, max: null });
+  };
+
+  const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+
   return (
     <div className="home-page">
       <div className="hero-section">
@@ -151,10 +196,24 @@ export const HomePage: React.FC = () => {
           placeholder="Search by name, brand, or description..."
         />
 
-        {searchTerm && (
+        <ReleaseYearFilter
+          minYear={minYear}
+          maxYear={maxYear}
+          selectedMin={yearRangeFilter.min}
+          selectedMax={yearRangeFilter.max}
+          onRangeChange={handleYearRangeChange}
+          onClear={handleClearYearFilter}
+          isActive={isYearFilterActive}
+        />
+
+        {(searchTerm || isYearFilterActive) && (
           <p className="search-results-info">
             Found {filteredParts.length} part
-            {filteredParts.length !== 1 ? "s" : ""} matching "{searchTerm}"
+            {filteredParts.length !== 1 ? "s" : ""}
+            {searchTerm && ` matching "${searchTerm}"`}
+            {searchTerm && isYearFilterActive && " and"}
+            {isYearFilterActive &&
+              ` ${searchTerm ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
           </p>
         )}
       </div>
