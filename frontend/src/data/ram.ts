@@ -231,6 +231,7 @@ export const ram: RAM[] = [
     timings: "CL2.5",
     voltage: 2.5,
     formFactor: "DIMM",
+    condition: "working",
   },
   {
     id: "ram-25",
@@ -243,6 +244,7 @@ export const ram: RAM[] = [
     timings: "CL2.5",
     voltage: 2.5,
     formFactor: "DIMM",
+    condition: "defective",
   },
   {
     id: "ram-26",
@@ -257,6 +259,7 @@ export const ram: RAM[] = [
     formFactor: "DIMM",
     releaseYear: 2014,
     datasheet: "hx316c10fk2_8.pdf",
+    condition: "working",
   },
   {
     id: "ram-27 ",
@@ -271,6 +274,7 @@ export const ram: RAM[] = [
     formFactor: "DIMM",
     releaseYear: 2014,
     datasheet: "hx316c10fk2_8.pdf",
+    condition: "working",
   },
   {
     id: "ram-28",

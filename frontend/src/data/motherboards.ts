@@ -58,6 +58,7 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR"],
     pcieSlots: 0,
     releaseYear: 2002,
+    condition: "working",
   },
   {
     id: "mb-5",
@@ -86,6 +87,7 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR3"],
     pcieSlots: 2,
     releaseYear: 2013,
+    condition: "working",
   },
   {
     id: "mb-7",

@@ -250,6 +250,7 @@ export const cpus: CPU[] = [
     socket: "Socket 478",
     tdp: 59.8,
     releaseYear: 2002,
+    condition: "working",
   },
   {
     id: "cpu-21",
@@ -275,6 +276,7 @@ export const cpus: CPU[] = [
     socket: "Socket AM3+",
     tdp: 125,
     releaseYear: 2012,
+    condition: "working",
   },
   {
     id: "cpu-23",
