@@ -52,6 +52,7 @@ export const graphicsCards: GraphicsCard[] = [
     powerConsumption: 0,
     interface: "AGP 1.5V", // Maybe?
     releaseYear: 2002,
+    condition: "working",
   },
   {
     id: "gpu-5",
@@ -131,6 +132,45 @@ export const graphicsCards: GraphicsCard[] = [
     powerConsumption: 120,
     interface: "PCIe 3.0",
     releaseYear: 2015,
+    condition: "working",
+  },
+  {
+    id: "gpu-11",
+    name: "Leadtek WinFast Geforce2 TH",
+    brand: "NVIDIA",
+    description: "Leadtek WinFast Geforce2 TH 64MB AGP LRI 2850",
+    memory: 0.0625,
+    memoryType: "SDR",
+    coreClock: 0,
+    boostClock: 0,
+    powerConsumption: 0,
+    interface: "AGP 3.3V", // TODO Verify
+    condition: "working",
+  },
+  {
+    id: "gpu-12",
+    name: "Gainward 9804-12A",
+    brand: "Gainward",
+    description: "Gainward 9804-12A 8MB AGP",
+    memory: 0.008,
+    memoryType: "SDR",
+    coreClock: 0,
+    boostClock: 0,
+    powerConsumption: 0,
+    interface: "AGP 3.3V",
+    condition: "working",
+  },
+  {
+    id: "gpu-13",
+    name: "Matrox Mystique 220 8MB (OEM)",
+    brand: "Matrox",
+    description: "Matrox Mystique 220 8MB AGP",
+    memory: 0.008, // TODO Verify
+    memoryType: "DRAM", // TODO DRAM?
+    coreClock: 0,
+    boostClock: 0,
+    powerConsumption: 0,
+    interface: "PCI",
     condition: "working",
   },
 ];

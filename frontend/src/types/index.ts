@@ -46,6 +46,7 @@ type MemoryType = "SDR" | "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
 type MemoryFormFactor = "DIMM" | "SO-DIMM";
 
 export const gpuInterfaces = [
+  "PCI",
   "AGP 3.3V",
   "AGP 1.5V",
   "AGP 0.8V",
