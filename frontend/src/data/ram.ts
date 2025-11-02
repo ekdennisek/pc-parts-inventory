@@ -107,6 +107,7 @@ export const ram: RAM[] = [
     timings: "CL5",
     voltage: 1.8,
     formFactor: "DIMM",
+    condition: "working",
   },
   {
     id: "ram-15",
@@ -288,6 +289,7 @@ export const ram: RAM[] = [
     voltage: 2.1,
     formFactor: "DIMM",
     releaseYear: 2008,
+    condition: "working",
   },
   {
     id: "ram-29",
@@ -301,6 +303,7 @@ export const ram: RAM[] = [
     voltage: 2.1,
     formFactor: "DIMM",
     releaseYear: 2008,
+    condition: "working",
   },
   {
     id: "ram-30",
@@ -314,6 +317,7 @@ export const ram: RAM[] = [
     voltage: 2.1,
     formFactor: "DIMM",
     releaseYear: 2008,
+    condition: "working",
   },
   {
     id: "ram-31",
@@ -327,6 +331,7 @@ export const ram: RAM[] = [
     voltage: 2.1,
     formFactor: "DIMM",
     releaseYear: 2008,
+    condition: "working",
   },
   {
     id: "ram-32",
@@ -340,6 +345,7 @@ export const ram: RAM[] = [
     voltage: 2.1,
     formFactor: "DIMM",
     releaseYear: 2008,
+    condition: "working",
   },
   {
     id: "ram-33",
@@ -353,6 +359,7 @@ export const ram: RAM[] = [
     voltage: 2.1,
     formFactor: "DIMM",
     releaseYear: 2008,
+    condition: "working",
   },
   {
     id: "ram-34",
@@ -437,6 +444,7 @@ export const ram: RAM[] = [
     timings: "CL5-5-5-18",
     voltage: 1.8,
     formFactor: "DIMM",
+    condition: "working",
   },
   {
     id: "ram-41",
@@ -449,6 +457,7 @@ export const ram: RAM[] = [
     timings: "CL5-5-5-18",
     voltage: 1.8,
     formFactor: "DIMM",
+    condition: "working",
   },
   {
     id: "ram-42",
