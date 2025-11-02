@@ -474,7 +474,7 @@ export const ram: RAM[] = [
   },
   {
     id: "ram-43",
-    name: "Corsair Dominator Platinum 8GB DDR3 PC3-12800",
+    name: "Corsair Dominator Platinum 4GB DDR3 PC3-12800",
     brand: "Corsair",
     description: "4GB DDR3 1600MHz CL8 CMD8GX3M2A1600C8",
     capacity: 4,
@@ -487,7 +487,7 @@ export const ram: RAM[] = [
   },
   {
     id: "ram-44",
-    name: "Corsair Dominator Platinum 8GB DDR3 PC3-12800",
+    name: "Corsair Dominator Platinum 4GB DDR3 PC3-12800",
     brand: "Corsair",
     description: "4GB DDR3 1600MHz CL8 CMD8GX3M2A1600C8",
     capacity: 4,
