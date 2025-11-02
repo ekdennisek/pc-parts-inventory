@@ -44,6 +44,7 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR2"],
     pcieSlots: 1,
     releaseYear: 2006,
+    condition: "working",
   },
   {
     id: "mb-4",

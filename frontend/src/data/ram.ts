@@ -181,6 +181,7 @@ export const ram: RAM[] = [
     voltage: 1.9,
     formFactor: "DIMM",
     releaseYear: 2006,
+    condition: "working",
   },
   {
     id: "ram-21",
@@ -194,6 +195,7 @@ export const ram: RAM[] = [
     voltage: 1.9,
     formFactor: "DIMM",
     releaseYear: 2006,
+    condition: "working",
   },
   {
     id: "ram-22",
