@@ -12,6 +12,7 @@ export const cases: Case[] = [
     external35Drives: 1,
     glassPanel: false,
     releaseYear: 2015,
+    condition: "working",
   },
   {
     id: "case-2",
@@ -24,6 +25,7 @@ export const cases: Case[] = [
     external35Drives: 2,
     glassPanel: false,
     releaseYear: 2001,
+    condition: "working",
   },
   {
     id: "case-3",
@@ -35,5 +37,6 @@ export const cases: Case[] = [
     external35Drives: 2,
     glassPanel: false,
     releaseYear: 2006,
+    condition: "working",
   },
 ];

@@ -142,8 +142,7 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 0,
     memoryTypes: ["SDR"],
     releaseYear: 2000,
-    tested: true,
-    working: true,
+    condition: "working",
   },
   {
     id: "mb-11",
@@ -158,7 +157,6 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR3"],
     pcieSlots: 2,
     releaseYear: 2010,
-    tested: true,
-    working: true,
+    condition: "working",
   },
 ];

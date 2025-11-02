@@ -457,8 +457,7 @@ export const ram: RAM[] = [
     timings: "CL3",
     voltage: 3.3,
     formFactor: "DIMM",
-    tested: true,
-    working: true,
+    condition: "working",
   },
   {
     id: "ram-43",
@@ -471,8 +470,7 @@ export const ram: RAM[] = [
     timings: "CL8-8-8-24",
     voltage: 1.5,
     formFactor: "DIMM",
-    tested: true,
-    working: true,
+    condition: "working",
   },
   {
     id: "ram-44",
@@ -485,7 +483,6 @@ export const ram: RAM[] = [
     timings: "CL8-8-8-24",
     voltage: 1.5,
     formFactor: "DIMM",
-    tested: true,
-    working: true,
+    condition: "working",
   },
 ];

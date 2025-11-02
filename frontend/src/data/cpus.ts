@@ -459,8 +459,7 @@ export const cpus: CPU[] = [
     socket: "Socket 370",
     tdp: 0,
     releaseYear: 2000,
-    tested: true,
-    working: true,
+    condition: "working",
   },
   {
     id: "cpu-38",
@@ -474,7 +473,6 @@ export const cpus: CPU[] = [
     socket: "LGA 1156",
     tdp: 95,
     releaseYear: 2010,
-    tested: true,
-    working: true,
+    condition: "working",
   },
 ];

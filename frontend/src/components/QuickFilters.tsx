@@ -5,8 +5,8 @@ interface QuickFiltersProps {
   filters: readonly string[];
   selectedFilters: string[];
   onFilterChange: (filters: string[]) => void;
-  filterType?: "socket" | "interface" | "formFactor";
-  getFilterColor?: (filter: string) => "intel" | "amd" | "default";
+  filterType?: "socket" | "interface" | "formFactor" | "condition";
+  getFilterColor?: (filter: string) => "intel" | "amd" | "default" | "working" | "defective" | "unknown";
   title?: string;
 }
 
@@ -36,6 +36,7 @@ export const QuickFilters: React.FC<QuickFiltersProps> = ({
     if (filterType === "socket") return "Socket";
     if (filterType === "interface") return "Interface";
     if (filterType === "formFactor") return "Form Factor";
+    if (filterType === "condition") return "Condition";
     return "Filter";
   };
 

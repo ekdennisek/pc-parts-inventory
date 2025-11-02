@@ -64,8 +64,7 @@ export interface PCPart {
   description: string;
   releaseYear?: number;
   datasheet?: string;
-  tested?: boolean;
-  working?: boolean;
+  condition?: "working" | "defective";
 }
 
 export interface CPU extends PCPart {

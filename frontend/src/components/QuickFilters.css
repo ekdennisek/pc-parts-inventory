@@ -114,6 +114,54 @@
   color: white;
 }
 
+/* Working condition colors */
+.filter-btn.filter-working {
+  border-color: #86efac;
+}
+
+.filter-btn.filter-working:hover {
+  border-color: #16a34a;
+  background-color: #f0fdf4;
+}
+
+.filter-btn.filter-working.active {
+  background-color: #16a34a;
+  border-color: #16a34a;
+  color: white;
+}
+
+/* Defective condition colors */
+.filter-btn.filter-defective {
+  border-color: #fca5a5;
+}
+
+.filter-btn.filter-defective:hover {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.filter-btn.filter-defective.active {
+  background-color: #dc2626;
+  border-color: #dc2626;
+  color: white;
+}
+
+/* Unknown condition colors */
+.filter-btn.filter-unknown {
+  border-color: #d1d5db;
+}
+
+.filter-btn.filter-unknown:hover {
+  border-color: #6b7280;
+  background-color: #f9fafb;
+}
+
+.filter-btn.filter-unknown.active {
+  background-color: #6b7280;
+  border-color: #6b7280;
+  color: white;
+}
+
 /* Focus state for accessibility */
 .filter-btn:focus {
   outline: none;

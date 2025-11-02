@@ -45,8 +45,7 @@ export const powerSupplies: PowerSupply[] = [
     modular: false,
     formFactor: "ATX",
     releaseYear: 2009,
-    tested: true,
-    working: true,
+    condition: "working",
   },
   {
     id: "psu-5",
@@ -58,7 +57,6 @@ export const powerSupplies: PowerSupply[] = [
     modular: false,
     formFactor: "ATX",
     releaseYear: 2018,
-    tested: true,
-    working: true,
+    condition: "working",
   },
 ];

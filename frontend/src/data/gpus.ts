@@ -117,8 +117,7 @@ export const graphicsCards: GraphicsCard[] = [
     powerConsumption: 0,
     interface: "AGP 0.8V", // 8x
     releaseYear: 2005, // Perhaps 2004?
-    tested: true,
-    working: true,
+    condition: "working",
   },
   {
     id: "gpu-10",
@@ -132,7 +131,6 @@ export const graphicsCards: GraphicsCard[] = [
     powerConsumption: 120,
     interface: "PCIe 3.0",
     releaseYear: 2015,
-    tested: true,
-    working: true,
+    condition: "working",
   },
 ];

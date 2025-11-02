@@ -12,12 +12,15 @@ import "./PartPage.css";
 
 type SortOption = "standard";
 
+const conditionOptions = ["Working", "Defective", "Unknown"] as const;
+
 export const PartPage: React.FC = () => {
   const { partType } = useParams<{ partType: PartType }>();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("standard");
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedFormFactors, setSelectedFormFactors] = useState<string[]>([]);
+  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
   const [yearRangeFilter, setYearRangeFilter] = useState<{
     min: number | null;
     max: number | null;
@@ -27,6 +30,7 @@ export const PartPage: React.FC = () => {
   useEffect(() => {
     setSelectedFilters([]);
     setSelectedFormFactors([]);
+    setSelectedConditions([]);
     setYearRangeFilter({ min: null, max: null });
   }, [partType]);
 
@@ -79,7 +83,7 @@ export const PartPage: React.FC = () => {
     return [];
   }, [partType]);
 
-  // Filter parts based on search term, quick filters, and year range
+  // Filter parts based on search term, quick filters, condition, and year range
   const filteredParts = useMemo(() => {
     let filtered = [...parts];
 
@@ -127,6 +131,18 @@ export const PartPage: React.FC = () => {
       }
     }
 
+    // Apply condition filter
+    if (selectedConditions.length > 0) {
+      filtered = filtered.filter((part) => {
+        return selectedConditions.some((condition) => {
+          if (condition === "Working") return part.condition === "working";
+          if (condition === "Defective") return part.condition === "defective";
+          if (condition === "Unknown") return part.condition === undefined;
+          return false;
+        });
+      });
+    }
+
     // Apply year range filter
     const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
     if (isYearFilterActive) {
@@ -142,7 +158,7 @@ export const PartPage: React.FC = () => {
     }
 
     return filtered;
-  }, [parts, searchTerm, selectedFilters, selectedFormFactors, partType, yearRangeFilter, minYear, maxYear]);
+  }, [parts, searchTerm, selectedFilters, selectedFormFactors, selectedConditions, partType, yearRangeFilter, minYear, maxYear]);
 
   // Sort parts based on sort option
   const sortedParts = useMemo(() => {
@@ -177,6 +193,12 @@ export const PartPage: React.FC = () => {
 
   const handleClearYearFilter = () => {
     setYearRangeFilter({ min: null, max: null });
+  };
+
+  const getConditionColor = (condition: string): "working" | "defective" | "unknown" => {
+    if (condition === "Working") return "working";
+    if (condition === "Defective") return "defective";
+    return "unknown";
   };
 
   const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
@@ -252,6 +274,14 @@ export const PartPage: React.FC = () => {
           />
         )}
 
+        <QuickFilters
+          filters={conditionOptions}
+          selectedFilters={selectedConditions}
+          onFilterChange={setSelectedConditions}
+          filterType="condition"
+          getFilterColor={getConditionColor}
+        />
+
         <ReleaseYearFilter
           minYear={minYear}
           maxYear={maxYear}
@@ -262,21 +292,24 @@ export const PartPage: React.FC = () => {
           isActive={isYearFilterActive}
         />
 
-        {(searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0 || isYearFilterActive) && (
+        {(searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0 || selectedConditions.length > 0 || isYearFilterActive) && (
           <p className="search-results-info">
             Found {filteredParts.length} {partTypeLabel.toLowerCase()}
             {searchTerm && ` matching "${searchTerm}"`}
-            {searchTerm && (selectedFormFactors.length > 0 || selectedFilters.length > 0 || isYearFilterActive) && " and"}
+            {searchTerm && (selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 || isYearFilterActive) && " and"}
             {selectedFormFactors.length > 0 &&
               ` filtered by ${selectedFormFactors.length} form factor${selectedFormFactors.length > 1 ? "s" : ""}`}
-            {selectedFormFactors.length > 0 && (selectedFilters.length > 0 || isYearFilterActive) && " and"}
+            {selectedFormFactors.length > 0 && (selectedFilters.length > 0 || selectedConditions.length > 0 || isYearFilterActive) && " and"}
             {selectedFilters.length > 0 &&
               ` ${selectedFormFactors.length > 0 ? "" : "filtered by "}${selectedFilters.length} ${
                 partType === "graphicsCard" ? "interface" : "socket"
               }${selectedFilters.length > 1 ? "s" : ""}`}
-            {selectedFilters.length > 0 && isYearFilterActive && " and"}
+            {selectedFilters.length > 0 && (selectedConditions.length > 0 || isYearFilterActive) && " and"}
+            {selectedConditions.length > 0 &&
+              ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
+            {selectedConditions.length > 0 && isYearFilterActive && " and"}
             {isYearFilterActive &&
-              ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
+              ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
           </p>
         )}
 

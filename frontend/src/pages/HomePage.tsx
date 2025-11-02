@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { PartCard } from "../components/PartCard";
+import { QuickFilters } from "../components/QuickFilters";
 import { ReleaseYearFilter } from "../components/ReleaseYearFilter";
 import { allParts } from "../data/parts";
 import type { PCPart, PartType } from "../types";
@@ -11,9 +12,12 @@ import { ScrollToTop } from "../components/ScrollToTop";
 
 type SortOption = "releaseYear";
 
+const conditionOptions = ["Working", "Defective", "Unknown"] as const;
+
 export const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("releaseYear");
+  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
   const [yearRangeFilter, setYearRangeFilter] = useState<{
     min: number | null;
     max: number | null;
@@ -43,7 +47,7 @@ export const HomePage: React.FC = () => {
     };
   }, [allPartsFlat]);
 
-  // Filter parts based on search term and year range
+  // Filter parts based on search term, condition, and year range
   const filteredParts = useMemo(() => {
     let filtered = allPartsFlat;
 
@@ -56,6 +60,18 @@ export const HomePage: React.FC = () => {
           part.brand.toLowerCase().includes(searchLower) ||
           part.description.toLowerCase().includes(searchLower)
       );
+    }
+
+    // Apply condition filter
+    if (selectedConditions.length > 0) {
+      filtered = filtered.filter((part) => {
+        return selectedConditions.some((condition) => {
+          if (condition === "Working") return part.condition === "working";
+          if (condition === "Defective") return part.condition === "defective";
+          if (condition === "Unknown") return part.condition === undefined;
+          return false;
+        });
+      });
     }
 
     // Apply year range filter
@@ -73,7 +89,7 @@ export const HomePage: React.FC = () => {
     }
 
     return filtered;
-  }, [allPartsFlat, searchTerm, yearRangeFilter, minYear, maxYear]);
+  }, [allPartsFlat, searchTerm, selectedConditions, yearRangeFilter, minYear, maxYear]);
 
   // Sort and group parts based on sort option
   const sortedAndGroupedParts = useMemo(() => {
@@ -141,6 +157,12 @@ export const HomePage: React.FC = () => {
     setYearRangeFilter({ min: null, max: null });
   };
 
+  const getConditionColor = (condition: string): "working" | "defective" | "unknown" => {
+    if (condition === "Working") return "working";
+    if (condition === "Defective") return "defective";
+    return "unknown";
+  };
+
   const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
 
   return (
@@ -196,6 +218,14 @@ export const HomePage: React.FC = () => {
           placeholder="Search by name, brand, or description..."
         />
 
+        <QuickFilters
+          filters={conditionOptions}
+          selectedFilters={selectedConditions}
+          onFilterChange={setSelectedConditions}
+          filterType="condition"
+          getFilterColor={getConditionColor}
+        />
+
         <ReleaseYearFilter
           minYear={minYear}
           maxYear={maxYear}
@@ -206,14 +236,17 @@ export const HomePage: React.FC = () => {
           isActive={isYearFilterActive}
         />
 
-        {(searchTerm || isYearFilterActive) && (
+        {(searchTerm || selectedConditions.length > 0 || isYearFilterActive) && (
           <p className="search-results-info">
             Found {filteredParts.length} part
             {filteredParts.length !== 1 ? "s" : ""}
             {searchTerm && ` matching "${searchTerm}"`}
-            {searchTerm && isYearFilterActive && " and"}
+            {searchTerm && (selectedConditions.length > 0 || isYearFilterActive) && " and"}
+            {selectedConditions.length > 0 &&
+              ` ${searchTerm ? "" : "with "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
+            {selectedConditions.length > 0 && isYearFilterActive && " and"}
             {isYearFilterActive &&
-              ` ${searchTerm ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
+              ` ${searchTerm || selectedConditions.length > 0 ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
           </p>
         )}
       </div>
