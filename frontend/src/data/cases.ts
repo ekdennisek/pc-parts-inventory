@@ -39,4 +39,16 @@ export const cases: Case[] = [
     releaseYear: 2006,
     condition: "working",
   },
+  {
+    id: "case-4",
+    name: "Eagle Tech BAX-4638",
+    brand: "Eagle Tech",
+    description: "ATX case with alumin body",
+    supportedFormFactors: ["ATX"], // TODO more?
+    external525Drives: 4,
+    external35Drives: 2,
+    glassPanel: false,
+    releaseYear: 2004,
+    condition: "working",
+  },
 ];
