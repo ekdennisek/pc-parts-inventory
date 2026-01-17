@@ -1,0 +1,109 @@
+.builds-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.builds-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.builds-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.builds-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.no-builds {
+  text-align: center;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.no-builds p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.no-builds a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.no-builds a:hover {
+  text-decoration: underline;
+}
+
+.builds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.build-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.build-card h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.build-description {
+  color: #666;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.build-components {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.build-component {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.build-component:last-child {
+  border-bottom: none;
+}
+
+.component-label {
+  font-weight: 600;
+  color: #495057;
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.component-value {
+  color: #333;
+  display: block;
+}
+
+.component-detail {
+  font-size: 0.85rem;
+  color: #666;
+  display: block;
+  margin-top: 0.125rem;
+}
+
+@media (max-width: 768px) {
+  .builds-grid {
+    grid-template-columns: 1fr;
+  }
+}

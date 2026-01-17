@@ -132,6 +132,14 @@ export const Navigation: React.FC = () => {
               Build Planner
             </Link>
           </li>
+          <li>
+            <Link
+              to="/builds"
+              className={location.pathname === "/builds" ? "active" : ""}
+            >
+              PC Builds
+            </Link>
+          </li>
           {Object.entries(PART_TYPES).map(([key, label]) => (
             <li key={key}>
               <Link

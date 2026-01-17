@@ -361,6 +361,16 @@
   transform: translateY(-1px);
 }
 
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
 .btn-change {
   background-color: #6c757d;
   color: white;

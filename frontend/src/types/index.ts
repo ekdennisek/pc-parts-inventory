@@ -147,7 +147,19 @@ export interface PCBuild {
   graphicsCard?: GraphicsCard;
 }
 
-export type BuildStep = "case" | "motherboard" | "cpu" | "ram" | "complete";
+export type BuildStep = "case" | "motherboard" | "cpu" | "ram" | "powerSupply" | "graphicsCard" | "complete";
+
+export interface SavedBuild {
+  id: string;
+  name: string;
+  description?: string;
+  caseId: string;
+  motherboardId: string;
+  cpuIds: string[];
+  ramIds: string[];
+  powerSupplyId: string;
+  graphicsCardIds?: string[];
+}
 
 // Utility functions for socket detection
 export const isIntelSocket = (socket: CpuSocket): boolean => {

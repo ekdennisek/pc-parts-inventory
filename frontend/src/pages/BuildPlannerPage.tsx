@@ -1,9 +1,22 @@
 import React, { useState, useMemo } from "react";
-import type { PCBuild, BuildStep, Motherboard, CPU, RAM, Case, MotherboardFormFactor } from "../types";
+import type {
+  PCBuild,
+  BuildStep,
+  Motherboard,
+  CPU,
+  RAM,
+  Case,
+  PowerSupply,
+  GraphicsCard,
+  MotherboardFormFactor,
+  SavedBuild,
+} from "../types";
 import { motherboards } from "../data/motherboards";
 import { cpus } from "../data/cpus";
 import { ram } from "../data/ram";
 import { cases } from "../data/cases";
+import { powerSupplies } from "../data/powerSupplies";
+import { graphicsCards } from "../data/gpus";
 import { motherboardFormFactors } from "../types";
 import { PartCard } from "../components/PartCard";
 import { QuickFilters } from "../components/QuickFilters";
@@ -17,30 +30,35 @@ export const BuildPlannerPage: React.FC = () => {
   });
 
   const [currentStep, setCurrentStep] = useState<BuildStep>("case");
-  const [selectedFormFactors, setSelectedFormFactors] = useState<MotherboardFormFactor[]>([]);
+  const [selectedFormFactors, setSelectedFormFactors] = useState<
+    MotherboardFormFactor[]
+  >([]);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const selectCase = (pcCase: Case) => {
     setBuild((prev) => ({
       ...prev,
       case: pcCase,
       // Reset downstream selections if case compatibility changes
-      motherboard: prev.case && prev.motherboard &&
+      motherboard:
+        prev.case &&
+        prev.motherboard &&
         !pcCase.supportedFormFactors.includes(prev.motherboard.formFactor)
-        ? undefined
-        : prev.motherboard,
-      cpu: prev.case && prev.motherboard &&
+          ? undefined
+          : prev.motherboard,
+      cpu:
+        prev.case &&
+        prev.motherboard &&
         !pcCase.supportedFormFactors.includes(prev.motherboard.formFactor)
-        ? undefined
-        : prev.cpu,
-      ram: prev.case && prev.motherboard &&
+          ? undefined
+          : prev.cpu,
+      ram:
+        prev.case &&
+        prev.motherboard &&
         !pcCase.supportedFormFactors.includes(prev.motherboard.formFactor)
-        ? []
-        : prev.ram,
+          ? []
+          : prev.ram,
     }));
-    setCurrentStep("motherboard");
-  };
-
-  const skipCase = () => {
     setCurrentStep("motherboard");
   };
 
@@ -87,6 +105,26 @@ export const BuildPlannerPage: React.FC = () => {
     });
   };
 
+  const proceedToPSU = () => {
+    setCurrentStep("powerSupply");
+  };
+
+  const selectPowerSupply = (psu: PowerSupply) => {
+    setBuild((prev) => ({ ...prev, powerSupply: psu }));
+    setCurrentStep("graphicsCard");
+  };
+
+  const toggleGraphicsCard = (gpu: GraphicsCard) => {
+    setBuild((prev) => {
+      const currentCards = prev.graphicsCard ? [prev.graphicsCard] : [];
+      const isSelected = currentCards.some((g) => g.id === gpu.id);
+      if (isSelected) {
+        return { ...prev, graphicsCard: undefined };
+      }
+      return { ...prev, graphicsCard: gpu };
+    });
+  };
+
   const finishBuild = () => {
     setCurrentStep("complete");
   };
@@ -99,14 +137,17 @@ export const BuildPlannerPage: React.FC = () => {
     });
     setSelectedFormFactors([]);
     setCurrentStep("case");
+    setCopySuccess(false);
   };
 
   const changeMotherboard = () => {
     setBuild((prev) => ({
       ...prev,
       motherboard: undefined,
-      cpu: undefined, // Reset CPU when changing motherboard
-      ram: [], // Reset RAM when changing motherboard
+      cpu: undefined,
+      ram: [],
+      powerSupply: undefined,
+      graphicsCard: undefined,
     }));
     setCurrentStep("motherboard");
   };
@@ -120,16 +161,66 @@ export const BuildPlannerPage: React.FC = () => {
     setCurrentStep("ram");
   };
 
+  const changePSU = () => {
+    setBuild((prev) => ({ ...prev, powerSupply: undefined }));
+    setCurrentStep("powerSupply");
+  };
+
+  const changeGPU = () => {
+    setCurrentStep("graphicsCard");
+  };
+
   const goToStep = (step: BuildStep) => {
-    // Only allow going to steps that are available
     if (step === "case") {
       setCurrentStep("case");
-    } else if (step === "motherboard") {
+    } else if (step === "motherboard" && build.case) {
       setCurrentStep("motherboard");
     } else if (step === "cpu" && build.motherboard) {
       setCurrentStep("cpu");
     } else if (step === "ram" && build.motherboard && build.cpu) {
       setCurrentStep("ram");
+    } else if (
+      step === "powerSupply" &&
+      build.motherboard &&
+      build.cpu &&
+      build.ram.length > 0
+    ) {
+      setCurrentStep("powerSupply");
+    } else if (
+      step === "graphicsCard" &&
+      build.motherboard &&
+      build.cpu &&
+      build.ram.length > 0 &&
+      build.powerSupply
+    ) {
+      setCurrentStep("graphicsCard");
+    }
+  };
+
+  const copyBuildToClipboard = async () => {
+    if (!build.case || !build.motherboard || !build.cpu || !build.powerSupply) {
+      return;
+    }
+
+    const savedBuild: SavedBuild = {
+      id: `build-${Date.now()}`,
+      name: build.name,
+      caseId: build.case.id,
+      motherboardId: build.motherboard.id,
+      cpuIds: [build.cpu.id],
+      ramIds: build.ram.map((r) => r.id),
+      powerSupplyId: build.powerSupply.id,
+      ...(build.graphicsCard && { graphicsCardIds: [build.graphicsCard.id] }),
+    };
+
+    const jsonString = JSON.stringify(savedBuild, null, 2);
+
+    try {
+      await navigator.clipboard.writeText(jsonString);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
     }
   };
 
@@ -145,7 +236,7 @@ export const BuildPlannerPage: React.FC = () => {
     );
   }, [selectedFormFactors]);
 
-  // Filter motherboards based on selected case (if any)
+  // Filter motherboards based on selected case
   const availableMotherboards = useMemo(() => {
     if (!build.case) {
       return motherboards;
@@ -191,7 +282,7 @@ export const BuildPlannerPage: React.FC = () => {
                 ? "active"
                 : build.case
                 ? "completed clickable"
-                : "clickable"
+                : ""
             }`}
             onClick={() => goToStep("case")}
           >
@@ -204,9 +295,11 @@ export const BuildPlannerPage: React.FC = () => {
                 ? "active"
                 : build.motherboard
                 ? "completed clickable"
-                : "clickable"
+                : build.case
+                ? "available"
+                : ""
             }`}
-            onClick={() => goToStep("motherboard")}
+            onClick={() => build.case && goToStep("motherboard")}
           >
             <span className="step-number">2</span>
             <span className="step-label">Motherboard</span>
@@ -241,6 +334,36 @@ export const BuildPlannerPage: React.FC = () => {
             <span className="step-number">4</span>
             <span className="step-label">RAM</span>
           </div>
+          <div
+            className={`step ${
+              currentStep === "powerSupply"
+                ? "active"
+                : build.powerSupply
+                ? "completed clickable"
+                : build.ram.length > 0
+                ? "available"
+                : ""
+            }`}
+            onClick={() => build.ram.length > 0 && goToStep("powerSupply")}
+          >
+            <span className="step-number">5</span>
+            <span className="step-label">PSU</span>
+          </div>
+          <div
+            className={`step ${
+              currentStep === "graphicsCard"
+                ? "active"
+                : build.graphicsCard
+                ? "completed clickable"
+                : build.powerSupply
+                ? "available"
+                : ""
+            }`}
+            onClick={() => build.powerSupply && goToStep("graphicsCard")}
+          >
+            <span className="step-number">6</span>
+            <span className="step-label">GPU</span>
+          </div>
         </div>
       </div>
 
@@ -262,18 +385,18 @@ export const BuildPlannerPage: React.FC = () => {
                   </button>
                 </div>
                 <div className="component-info">
-                  <span className="component-name">
-                    {build.case.name}
-                  </span>
+                  <span className="component-name">{build.case.name}</span>
                   <span className="component-detail">
                     Form Factors: {build.case.supportedFormFactors.join(", ")}
                   </span>
                   <span className="component-detail">
                     Glass Panel: {build.case.glassPanel ? "Yes" : "No"}
                   </span>
-                  {(build.case.external525Drives > 0 || build.case.external35Drives > 0) && (
+                  {(build.case.external525Drives > 0 ||
+                    build.case.external35Drives > 0) && (
                     <span className="component-detail">
-                      Drive Bays: {build.case.external525Drives}x 5.25", {build.case.external35Drives}x 3.5"
+                      Drive Bays: {build.case.external525Drives}x 5.25",{" "}
+                      {build.case.external35Drives}x 3.5"
                     </span>
                   )}
                 </div>
@@ -361,6 +484,53 @@ export const BuildPlannerPage: React.FC = () => {
               </div>
             )}
 
+            {build.powerSupply && (
+              <div className="selected-component">
+                <div className="component-header">
+                  <h4>Power Supply</h4>
+                  <button
+                    onClick={changePSU}
+                    className="btn btn-change"
+                    title="Change PSU"
+                  >
+                    Change
+                  </button>
+                </div>
+                <div className="component-info">
+                  <span className="component-name">
+                    {build.powerSupply.name}
+                  </span>
+                  <span className="component-detail">
+                    {build.powerSupply.wattage}W |{" "}
+                    {build.powerSupply.efficiency || "No rating"}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {build.graphicsCard && (
+              <div className="selected-component">
+                <div className="component-header">
+                  <h4>Graphics Card</h4>
+                  <button
+                    onClick={changeGPU}
+                    className="btn btn-change"
+                    title="Change GPU"
+                  >
+                    Change
+                  </button>
+                </div>
+                <div className="component-info">
+                  <span className="component-name">
+                    {build.graphicsCard.name}
+                  </span>
+                  <span className="component-detail">
+                    {build.graphicsCard.memory}GB {build.graphicsCard.memoryType}
+                  </span>
+                </div>
+              </div>
+            )}
+
             {currentStep === "complete" && (
               <div className="build-actions">
                 <button onClick={startOver} className="btn btn-secondary">
@@ -374,15 +544,18 @@ export const BuildPlannerPage: React.FC = () => {
         <div className="build-main">
           {currentStep === "case" && (
             <div className="step-content">
-              <h2>Step 1: Select a Case (Optional)</h2>
+              <h2>Step 1: Select a Case</h2>
               <p>
-                Choose a case for your build, or skip this step. Selecting a case will filter motherboards by compatible form factors.
+                Choose a case for your build. This will filter motherboards by
+                compatible form factors.
               </p>
 
               <QuickFilters
                 filters={[...motherboardFormFactors]}
                 selectedFilters={selectedFormFactors}
-                onFilterChange={(filters) => setSelectedFormFactors(filters as MotherboardFormFactor[])}
+                onFilterChange={(filters) =>
+                  setSelectedFormFactors(filters as MotherboardFormFactor[])
+                }
                 filterType="formFactor"
               />
 
@@ -397,12 +570,6 @@ export const BuildPlannerPage: React.FC = () => {
                   </div>
                 ))}
               </div>
-
-              <div className="step-actions">
-                <button onClick={skipCase} className="btn btn-secondary">
-                  Skip - No Case Selection
-                </button>
-              </div>
             </div>
           )}
 
@@ -412,8 +579,7 @@ export const BuildPlannerPage: React.FC = () => {
               <p>
                 {build.case
                   ? `Choose a motherboard compatible with your ${build.case.name} case (${build.case.supportedFormFactors.join(", ")}).`
-                  : "Choose a motherboard to start your build. This will determine CPU and RAM compatibility."
-                }
+                  : "Choose a motherboard to start your build. This will determine CPU and RAM compatibility."}
               </p>
               <div className="socket-legend">
                 <div className="legend-item">
@@ -511,7 +677,7 @@ export const BuildPlannerPage: React.FC = () => {
                         >
                           <PartCard part={ramModule} />
                           {isSelected && (
-                            <div className="selected-indicator">✓ Selected</div>
+                            <div className="selected-indicator">Selected</div>
                           )}
                           {!canSelect && (
                             <div className="disabled-indicator">
@@ -524,8 +690,8 @@ export const BuildPlannerPage: React.FC = () => {
                   </div>
                   {build.ram.length > 0 && (
                     <div className="step-actions">
-                      <button onClick={finishBuild} className="btn btn-primary">
-                        Finish Build
+                      <button onClick={proceedToPSU} className="btn btn-primary">
+                        Continue to PSU
                       </button>
                     </div>
                   )}
@@ -534,9 +700,59 @@ export const BuildPlannerPage: React.FC = () => {
             </div>
           )}
 
+          {currentStep === "powerSupply" && (
+            <div className="step-content">
+              <h2>Step 5: Select a Power Supply</h2>
+              <p>Choose a power supply for your build.</p>
+              <div className="parts-grid">
+                {powerSupplies.map((psu) => (
+                  <div
+                    key={psu.id}
+                    onClick={() => selectPowerSupply(psu)}
+                    className="clickable"
+                  >
+                    <PartCard part={psu} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {currentStep === "graphicsCard" && (
+            <div className="step-content">
+              <h2>Step 6: Select a Graphics Card (Optional)</h2>
+              <p>
+                Choose a graphics card for your build, or skip this step if not
+                needed.
+              </p>
+              <div className="parts-grid">
+                {graphicsCards.map((gpu) => {
+                  const isSelected = build.graphicsCard?.id === gpu.id;
+                  return (
+                    <div
+                      key={gpu.id}
+                      onClick={() => toggleGraphicsCard(gpu)}
+                      className={`clickable ${isSelected ? "selected" : ""}`}
+                    >
+                      <PartCard part={gpu} />
+                      {isSelected && (
+                        <div className="selected-indicator">Selected</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="step-actions">
+                <button onClick={finishBuild} className="btn btn-primary">
+                  {build.graphicsCard ? "Finish Build" : "Finish Without GPU"}
+                </button>
+              </div>
+            </div>
+          )}
+
           {currentStep === "complete" && (
             <div className="step-content">
-              <h2>🎉 Build Complete!</h2>
+              <h2>Build Complete!</h2>
               <p>
                 Your PC build is ready. Review your selected components in the
                 sidebar.
@@ -544,11 +760,9 @@ export const BuildPlannerPage: React.FC = () => {
               <div className="build-summary">
                 <h3>Build Summary</h3>
                 <ul>
-                  {build.case && (
-                    <li>
-                      <strong>Case:</strong> {build.case.name}
-                    </li>
-                  )}
+                  <li>
+                    <strong>Case:</strong> {build.case?.name}
+                  </li>
                   <li>
                     <strong>Motherboard:</strong> {build.motherboard?.name}
                   </li>
@@ -559,7 +773,23 @@ export const BuildPlannerPage: React.FC = () => {
                     <strong>RAM:</strong> {build.ram.length} modules,{" "}
                     {totalRAMCapacity}GB total
                   </li>
+                  <li>
+                    <strong>PSU:</strong> {build.powerSupply?.name}
+                  </li>
+                  {build.graphicsCard && (
+                    <li>
+                      <strong>GPU:</strong> {build.graphicsCard.name}
+                    </li>
+                  )}
                 </ul>
+              </div>
+              <div className="step-actions">
+                <button
+                  onClick={copyBuildToClipboard}
+                  className={`btn ${copySuccess ? "btn-success" : "btn-primary"}`}
+                >
+                  {copySuccess ? "Copied!" : "Copy Build to Clipboard"}
+                </button>
               </div>
             </div>
           )}

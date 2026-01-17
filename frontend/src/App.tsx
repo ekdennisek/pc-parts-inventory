@@ -3,6 +3,7 @@ import { Navigation } from "./components/Navigation";
 import { HomePage } from "./pages/HomePage";
 import { PartPage } from "./pages/PartPage";
 import { BuildPlannerPage } from "./pages/BuildPlannerPage";
+import { BuildsPage } from "./pages/BuildsPage";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/build-planner" element={<BuildPlannerPage />} />
+            <Route path="/builds" element={<BuildsPage />} />
             <Route path="/:partType" element={<PartPage />} />
           </Routes>
         </main>
