@@ -36,9 +36,14 @@ export const HomePage: React.FC = () => {
 
   // Calculate min and max year from all parts (with release years only)
   const { minYear, maxYear } = useMemo(() => {
-    const partsWithYears = allPartsFlat.filter((part) => part.releaseYear !== undefined);
+    const partsWithYears = allPartsFlat.filter(
+      (part) => part.releaseYear !== undefined,
+    );
     if (partsWithYears.length === 0) {
-      return { minYear: new Date().getFullYear(), maxYear: new Date().getFullYear() };
+      return {
+        minYear: new Date().getFullYear(),
+        maxYear: new Date().getFullYear(),
+      };
     }
     const years = partsWithYears.map((part) => part.releaseYear!);
     return {
@@ -58,7 +63,7 @@ export const HomePage: React.FC = () => {
         (part) =>
           part.name.toLowerCase().includes(searchLower) ||
           part.brand.toLowerCase().includes(searchLower) ||
-          part.description.toLowerCase().includes(searchLower)
+          part.description.toLowerCase().includes(searchLower),
       );
     }
 
@@ -75,7 +80,8 @@ export const HomePage: React.FC = () => {
     }
 
     // Apply year range filter
-    const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+    const isYearFilterActive =
+      yearRangeFilter.min !== null || yearRangeFilter.max !== null;
     if (isYearFilterActive) {
       filtered = filtered.filter((part) => {
         // Hide parts without release year when filter is active
@@ -89,7 +95,14 @@ export const HomePage: React.FC = () => {
     }
 
     return filtered;
-  }, [allPartsFlat, searchTerm, selectedConditions, yearRangeFilter, minYear, maxYear]);
+  }, [
+    allPartsFlat,
+    searchTerm,
+    selectedConditions,
+    yearRangeFilter,
+    minYear,
+    maxYear,
+  ]);
 
   // Sort and group parts based on sort option
   const sortedAndGroupedParts = useMemo(() => {
@@ -139,6 +152,7 @@ export const HomePage: React.FC = () => {
       graphicsCard: { total: 0 },
       ram: { total: 0 },
       case: { total: 0 },
+      storage: { total: 0 },
     };
 
     Object.entries(allParts).forEach(([partType, parts]) => {
@@ -157,13 +171,16 @@ export const HomePage: React.FC = () => {
     setYearRangeFilter({ min: null, max: null });
   };
 
-  const getConditionColor = (condition: string): "working" | "defective" | "unknown" => {
+  const getConditionColor = (
+    condition: string,
+  ): "working" | "defective" | "unknown" => {
     if (condition === "Working") return "working";
     if (condition === "Defective") return "defective";
     return "unknown";
   };
 
-  const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+  const isYearFilterActive =
+    yearRangeFilter.min !== null || yearRangeFilter.max !== null;
 
   return (
     <div className="home-page">
@@ -236,12 +253,16 @@ export const HomePage: React.FC = () => {
           isActive={isYearFilterActive}
         />
 
-        {(searchTerm || selectedConditions.length > 0 || isYearFilterActive) && (
+        {(searchTerm ||
+          selectedConditions.length > 0 ||
+          isYearFilterActive) && (
           <p className="search-results-info">
             Found {filteredParts.length} part
             {filteredParts.length !== 1 ? "s" : ""}
             {searchTerm && ` matching "${searchTerm}"`}
-            {searchTerm && (selectedConditions.length > 0 || isYearFilterActive) && " and"}
+            {searchTerm &&
+              (selectedConditions.length > 0 || isYearFilterActive) &&
+              " and"}
             {selectedConditions.length > 0 &&
               ` ${searchTerm ? "" : "with "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
             {selectedConditions.length > 0 && isYearFilterActive && " and"}
