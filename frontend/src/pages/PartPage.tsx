@@ -6,8 +6,8 @@ import { ReleaseYearFilter } from "../components/ReleaseYearFilter";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
-import type { PartType, CPU, Motherboard, GraphicsCard, Case, CpuSocket, MotherboardFormFactor } from "../types";
-import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor, motherboardFormFactors } from "../types";
+import type { PartType, CPU, Motherboard, GraphicsCard, Case, Storage, CpuSocket, MotherboardFormFactor, StorageFormFactor } from "../types";
+import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor, motherboardFormFactors, storageFormFactors, storageInterfaces } from "../types";
 import "./PartPage.css";
 
 type SortOption = "standard";
@@ -79,6 +79,8 @@ export const PartPage: React.FC = () => {
       return [...intelSockets, ...amdSockets];
     } else if (partType === "graphicsCard") {
       return [...gpuInterfaces];
+    } else if (partType === "storage") {
+      return [...storageInterfaces];
     }
     return [];
   }, [partType]);
@@ -116,6 +118,14 @@ export const PartPage: React.FC = () => {
       });
     }
 
+    // Apply form factor filters for storage
+    if (partType === "storage" && selectedFormFactors.length > 0) {
+      filtered = filtered.filter((part) => {
+        const p = part as Storage;
+        return selectedFormFactors.includes(p.formFactor as StorageFormFactor);
+      });
+    }
+
     // Apply quick filters
     if (selectedFilters.length > 0) {
       if (partType === "cpu" || partType === "motherboard") {
@@ -126,6 +136,11 @@ export const PartPage: React.FC = () => {
       } else if (partType === "graphicsCard") {
         filtered = filtered.filter((part) => {
           const p = part as GraphicsCard;
+          return selectedFilters.includes(p.interface);
+        });
+      } else if (partType === "storage") {
+        filtered = filtered.filter((part) => {
+          const p = part as Storage;
           return selectedFilters.includes(p.interface);
         });
       }
@@ -257,12 +272,21 @@ export const PartPage: React.FC = () => {
           />
         )}
 
+        {partType === "storage" && (
+          <QuickFilters
+            filters={storageFormFactors}
+            selectedFilters={selectedFormFactors}
+            onFilterChange={setSelectedFormFactors}
+            filterType="formFactor"
+          />
+        )}
+
         {availableFilters.length > 0 && (
           <QuickFilters
             filters={availableFilters}
             selectedFilters={selectedFilters}
             onFilterChange={setSelectedFilters}
-            filterType={partType === "graphicsCard" ? "interface" : "socket"}
+            filterType={partType === "graphicsCard" || partType === "storage" ? "interface" : "socket"}
             getFilterColor={
               partType === "cpu" || partType === "motherboard"
                 ? (filter: string) => {

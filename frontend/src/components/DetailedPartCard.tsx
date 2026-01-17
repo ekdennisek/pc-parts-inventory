@@ -6,13 +6,14 @@ import type {
   GraphicsCard,
   RAM,
   Case,
+  Storage,
   PartType,
 } from "../types";
 import { PartCard } from "./PartCard";
 import "./DetailedPartCard.css";
 
 interface DetailedPartCardProps {
-  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case;
+  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case | Storage;
   partType: PartType;
 }
 
@@ -201,6 +202,56 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
           </div>
         );
       }
+
+      case "storage": {
+        const storageDevice = part as Storage;
+        return (
+          <div className="specifications">
+            <div className="spec-item">
+              <span className="spec-label">Capacity:</span>
+              <span className="spec-value">
+                {storageDevice.capacity >= 1000
+                  ? `${storageDevice.capacity / 1000} TB`
+                  : `${storageDevice.capacity} GB`}
+              </span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Type:</span>
+              <span className="spec-value">{storageDevice.type}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Form Factor:</span>
+              <span className="spec-value">{storageDevice.formFactor}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Interface:</span>
+              <span className="spec-value">{storageDevice.interface}</span>
+            </div>
+            {storageDevice.readSpeed && (
+              <div className="spec-item">
+                <span className="spec-label">Read Speed:</span>
+                <span className="spec-value">
+                  {storageDevice.readSpeed} MB/s
+                </span>
+              </div>
+            )}
+            {storageDevice.writeSpeed && (
+              <div className="spec-item">
+                <span className="spec-label">Write Speed:</span>
+                <span className="spec-value">
+                  {storageDevice.writeSpeed} MB/s
+                </span>
+              </div>
+            )}
+            {storageDevice.rpm && (
+              <div className="spec-item">
+                <span className="spec-label">RPM:</span>
+                <span className="spec-value">{storageDevice.rpm}</span>
+              </div>
+            )}
+          </div>
+        );
+      }
     }
   };
 
@@ -218,8 +269,8 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
             partType === "motherboard"
               ? (part as Motherboard).socket
               : partType === "cpu"
-              ? (part as CPU).socket
-              : undefined
+                ? (part as CPU).socket
+                : undefined
           }
         />
         {renderSpecifications()}

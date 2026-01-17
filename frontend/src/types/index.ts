@@ -58,6 +58,19 @@ export const gpuInterfaces = [
 
 type GpuInterface = (typeof gpuInterfaces)[number];
 
+export const storageFormFactors = ['3.5"', '2.5"', "M.2"] as const;
+export type StorageFormFactor = (typeof storageFormFactors)[number];
+
+export const storageInterfaces = [
+  "IDE",
+  "SATA II",
+  "SATA III",
+  "NVMe",
+] as const;
+export type StorageInterface = (typeof storageInterfaces)[number];
+
+type StorageType = "SSD" | "HDD";
+
 export interface PCPart {
   id: string;
   name: string;
@@ -119,13 +132,24 @@ export interface Case extends PCPart {
   glassPanel: boolean; // Whether it has a glass panel
 }
 
+export interface Storage extends PCPart {
+  capacity: number; // GB
+  type: StorageType; // SSD or HDD
+  formFactor: StorageFormFactor;
+  interface: StorageInterface;
+  readSpeed?: number; // MB/s
+  writeSpeed?: number; // MB/s
+  rpm?: number; // RPM for HDDs
+}
+
 export type PartType =
   | "cpu"
   | "motherboard"
   | "powerSupply"
   | "graphicsCard"
   | "ram"
-  | "case";
+  | "case"
+  | "storage";
 
 export const PART_TYPES: Record<PartType, string> = {
   cpu: "CPUs",
@@ -134,6 +158,7 @@ export const PART_TYPES: Record<PartType, string> = {
   graphicsCard: "Graphics Cards",
   ram: "RAM",
   case: "Cases",
+  storage: "Storage",
 };
 
 export interface PCBuild {
@@ -147,7 +172,14 @@ export interface PCBuild {
   graphicsCard?: GraphicsCard;
 }
 
-export type BuildStep = "case" | "motherboard" | "cpu" | "ram" | "powerSupply" | "graphicsCard" | "complete";
+export type BuildStep =
+  | "case"
+  | "motherboard"
+  | "cpu"
+  | "ram"
+  | "powerSupply"
+  | "graphicsCard"
+  | "complete";
 
 export interface SavedBuild {
   id: string;
@@ -171,7 +203,7 @@ export const isAmdSocket = (socket: CpuSocket): boolean => {
 };
 
 export const getSocketColor = (
-  socket: CpuSocket
+  socket: CpuSocket,
 ): "intel" | "amd" | "unknown" => {
   if (isIntelSocket(socket)) return "intel";
   if (isAmdSocket(socket)) return "amd";
