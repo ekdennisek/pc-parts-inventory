@@ -479,4 +479,17 @@ export const cpus: CPU[] = [
     releaseYear: 2010,
     condition: "working",
   },
+  {
+    id: "cpu-39",
+    name: "Intel i5-5675C",
+    brand: "Intel",
+    description: "Quad core LGA 1150 Broadwell processor",
+    cores: 4,
+    threads: 4,
+    baseClock: 3.1,
+    boostClock: 3.6,
+    socket: "LGA 1150",
+    tdp: 65,
+    releaseYear: 2015,
+  },
 ];
