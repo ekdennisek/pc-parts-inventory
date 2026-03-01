@@ -1,0 +1,178 @@
+.cpu-collections-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.cpu-collections-page h1 {
+  margin-bottom: 1.5rem;
+  color: #1a1a2e;
+}
+
+.brand-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.brand-tab {
+  padding: 0.6rem 1.5rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.brand-tab:hover {
+  transform: translateY(-1px);
+}
+
+.brand-tab.intel {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.brand-tab.intel.active {
+  background: #2563eb;
+  color: white;
+}
+
+.brand-tab.amd {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.brand-tab.amd.active {
+  background: #dc2626;
+  color: white;
+}
+
+.collections-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.collections-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.collections-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.group-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.group-row:hover {
+  background: #f8fafc;
+}
+
+.group-row td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.expand-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.expand-arrow.expanded {
+  transform: rotate(90deg);
+}
+
+.collected-yes {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.collected-partial {
+  color: #d97706;
+  font-weight: 600;
+}
+
+.collected-no {
+  color: #94a3b8;
+}
+
+.collected-indicator {
+  display: inline-block;
+  width: 1.2rem;
+  margin-right: 0.4rem;
+  font-weight: 700;
+}
+
+.collected-indicator.yes {
+  color: #16a34a;
+}
+
+.collected-indicator.no {
+  color: #dc2626;
+}
+
+.cpu-detail-row td {
+  padding: 0;
+}
+
+.cpu-detail-list {
+  background: #f8fafc;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+}
+
+.cpu-detail-item {
+  padding: 0.4rem 0;
+  color: #475569;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cpu-detail-item + .cpu-detail-item {
+  border-top: 1px solid #e2e8f0;
+}
+
+.cpu-detail-name {
+  font-weight: 500;
+}
+
+.cpu-detail-specs {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
+}
+
+.collection-stats {
+  margin-bottom: 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .cpu-collections-page {
+    padding: 1rem;
+  }
+}

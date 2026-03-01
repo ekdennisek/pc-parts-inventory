@@ -140,6 +140,14 @@ export const Navigation: React.FC = () => {
               PC Builds
             </Link>
           </li>
+          <li>
+            <Link
+              to="/cpu-collections"
+              className={location.pathname === "/cpu-collections" ? "active" : ""}
+            >
+              CPU Collections
+            </Link>
+          </li>
           {Object.entries(PART_TYPES).map(([key, label]) => (
             <li key={key}>
               <Link

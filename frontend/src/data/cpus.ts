@@ -12,6 +12,7 @@ export const cpus: CPU[] = [
     socket: "LGA 775",
     tdp: 65,
     releaseYear: 2006,
+    codename: "Conroe",
   },
   {
     id: "cpu-2",
@@ -25,6 +26,7 @@ export const cpus: CPU[] = [
     socket: "Socket FM2",
     tdp: 65,
     releaseYear: 2012,
+    codename: "Trinity",
   },
   {
     id: "cpu-3",
@@ -37,6 +39,8 @@ export const cpus: CPU[] = [
     socket: "Socket AM2",
     tdp: 45,
     releaseYear: 2008,
+    codename: "Brisbane",
+    partNumber: "ADH4450IAA5DO",
   },
   {
     id: "cpu-4",
@@ -49,6 +53,8 @@ export const cpus: CPU[] = [
     socket: "Socket AM2+",
     tdp: 95,
     releaseYear: 2008,
+    codename: "Toliman",
+    partNumber: "HD8650WCJ3BGH",
   },
   {
     id: "cpu-5",
@@ -61,6 +67,8 @@ export const cpus: CPU[] = [
     socket: "Socket AM3",
     tdp: 95,
     releaseYear: 2010,
+    codename: "Propus",
+    partNumber: "ADX645WFK42GM",
   },
   {
     id: "cpu-6",
@@ -74,6 +82,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1151-1",
     tdp: 65,
     releaseYear: 2015,
+    codename: "Skylake",
   },
   {
     id: "cpu-7",
@@ -87,6 +96,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1155",
     tdp: 95,
     releaseYear: 2011,
+    codename: "Sandy Bridge",
   },
   {
     id: "cpu-8",
@@ -100,6 +110,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1156",
     tdp: 95,
     releaseYear: 2009,
+    codename: "Lynnfield",
   },
   {
     id: "cpu-9",
@@ -113,6 +124,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1366",
     tdp: 130,
     releaseYear: 2008,
+    codename: "Bloomfield",
   },
   {
     id: "cpu-10",
@@ -126,6 +138,8 @@ export const cpus: CPU[] = [
     socket: "Socket AM3+",
     tdp: 95,
     releaseYear: 2011,
+    codename: "Zambezi",
+    partNumber: "FD6100WMW6KGU",
   },
   {
     id: "cpu-11",
@@ -139,6 +153,7 @@ export const cpus: CPU[] = [
     socket: "LGA 2011",
     tdp: 130,
     releaseYear: 2012,
+    codename: "Sandy Bridge-E",
   },
   {
     id: "cpu-12",
@@ -152,6 +167,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1155",
     tdp: 65,
     releaseYear: 2011,
+    codename: "Sandy Bridge",
   },
   {
     id: "cpu-13",
@@ -164,6 +180,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1155",
     tdp: 55,
     releaseYear: 2012,
+    codename: "Ivy Bridge",
   },
   {
     id: "cpu-14",
@@ -177,6 +194,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1366",
     tdp: 130,
     releaseYear: 2008,
+    codename: "Bloomfield",
   },
   {
     id: "cpu-15",
@@ -190,6 +208,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1150",
     tdp: 84,
     releaseYear: 2014,
+    codename: "Haswell",
   },
   {
     id: "cpu-16",
@@ -202,6 +221,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1156",
     tdp: 73,
     releaseYear: 2010,
+    codename: "Clarkdale",
   },
   {
     id: "cpu-17",
@@ -214,6 +234,7 @@ export const cpus: CPU[] = [
     socket: "LGA 775",
     tdp: 65,
     releaseYear: 2010,
+    codename: "Wolfdale",
   },
   {
     id: "cpu-18",
@@ -226,6 +247,7 @@ export const cpus: CPU[] = [
     socket: "Slot 1",
     tdp: 16.8,
     releaseYear: 1998,
+    codename: "Deschutes",
   },
   {
     id: "cpu-19",
@@ -239,6 +261,7 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2005,
     condition: "working",
+    codename: "Brisbane",
   },
   {
     id: "cpu-20",
@@ -252,6 +275,7 @@ export const cpus: CPU[] = [
     tdp: 59.8,
     releaseYear: 2002,
     condition: "working",
+    codename: "Northwood",
   },
   {
     id: "cpu-21",
@@ -264,6 +288,7 @@ export const cpus: CPU[] = [
     socket: "LGA 775",
     tdp: 65,
     releaseYear: 2008,
+    codename: "Wolfdale",
   },
   {
     id: "cpu-22",
@@ -278,6 +303,7 @@ export const cpus: CPU[] = [
     tdp: 125,
     releaseYear: 2012,
     condition: "working",
+    codename: "Vishera",
   },
   {
     id: "cpu-23",
@@ -290,6 +316,7 @@ export const cpus: CPU[] = [
     socket: "Socket 423",
     tdp: 54.7,
     releaseYear: 2000,
+    codename: "Willamette",
   },
   {
     id: "cpu-24",
@@ -302,6 +329,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1151-1",
     tdp: 51,
     releaseYear: 2017,
+    codename: "Kaby Lake",
   },
   {
     id: "cpu-25",
@@ -314,6 +342,8 @@ export const cpus: CPU[] = [
     socket: "Socket FM1",
     tdp: 65,
     releaseYear: 2011,
+    codename: "Llano",
+    partNumber: "AD3400OJZ22GX",
   },
   {
     id: "cpu-26",
@@ -326,6 +356,7 @@ export const cpus: CPU[] = [
     socket: "LGA 775",
     tdp: 95,
     releaseYear: 2007,
+    codename: "Kentsfield",
   },
   {
     id: "cpu-27",
@@ -339,6 +370,7 @@ export const cpus: CPU[] = [
     tdp: 81.9,
     releaseYear: 2003,
     condition: "working",
+    codename: "Northwood",
   },
   {
     id: "cpu-28",
@@ -375,6 +407,7 @@ export const cpus: CPU[] = [
     socket: "Socket 370",
     tdp: 0,
     releaseYear: 1999,
+    codename: "Coppermine",
   },
   {
     id: "cpu-31",
@@ -387,6 +420,8 @@ export const cpus: CPU[] = [
     socket: "Socket A",
     tdp: 66,
     releaseYear: 2001,
+    codename: "Palomino",
+    partNumber: "AX1800DMT3C",
   },
   {
     id: "cpu-32",
@@ -400,6 +435,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1151-2",
     tdp: 65,
     releaseYear: 2017,
+    codename: "Coffee Lake",
   },
   {
     id: "cpu-33",
@@ -413,6 +449,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1155",
     tdp: 95,
     releaseYear: 2011,
+    codename: "Sandy Bridge",
   },
   {
     id: "cpu-34",
@@ -426,6 +463,7 @@ export const cpus: CPU[] = [
     socket: "LGA 1155",
     tdp: 95,
     releaseYear: 2011,
+    codename: "Sandy Bridge",
   },
   {
     id: "cpu-35",
@@ -438,6 +476,8 @@ export const cpus: CPU[] = [
     socket: "Socket AM3",
     tdp: 65,
     releaseYear: 2009,
+    codename: "Regor",
+    partNumber: "ADXB240CK23GQ",
   },
   {
     id: "cpu-36",
@@ -451,6 +491,8 @@ export const cpus: CPU[] = [
     socket: "Socket FM2",
     tdp: 65,
     releaseYear: 2013,
+    codename: "Richland",
+    partNumber: "AD6700OKA44HL",
   },
   {
     id: "cpu-37",
@@ -464,6 +506,7 @@ export const cpus: CPU[] = [
     tdp: 0,
     releaseYear: 2000,
     condition: "working",
+    codename: "Coppermine",
   },
   {
     id: "cpu-38",
@@ -478,6 +521,7 @@ export const cpus: CPU[] = [
     tdp: 95,
     releaseYear: 2010,
     condition: "working",
+    codename: "Lynnfield",
   },
   {
     id: "cpu-39",
@@ -491,5 +535,6 @@ export const cpus: CPU[] = [
     socket: "LGA 1150",
     tdp: 65,
     releaseYear: 2015,
+    codename: "Broadwell",
   },
 ];

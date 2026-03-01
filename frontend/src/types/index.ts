@@ -88,6 +88,8 @@ export interface CPU extends PCPart {
   boostClock?: number; // GHz
   socket: CpuSocket;
   tdp: number; // Watts
+  codename?: string;
+  partNumber?: string;
 }
 
 export interface Motherboard extends PCPart {
