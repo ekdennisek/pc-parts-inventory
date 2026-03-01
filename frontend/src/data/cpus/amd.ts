@@ -1,4 +1,5 @@
 import type { AmdSocket } from "../../types";
+import { athlon64 } from "./amd/athlon64";
 
 export type AmdCpu = {
   name: string;
@@ -8,90 +9,6 @@ export type AmdCpu = {
   partNumber: string;
   note?: string;
 };
-
-const athlon64Orleans: AmdCpu[] = [
-  {
-    name: "Athlon 64 3000+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F2",
-    partNumber: "ADA3000IAA4CN",
-  },
-  {
-    name: "Athlon 64 3200+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F2",
-    partNumber: "ADA3200IAA4CN",
-  },
-  {
-    name: "Athlon 64 3500+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F2",
-    partNumber: "ADA3500IAA4CN",
-  },
-  {
-    name: "Athlon 64 3500+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F3",
-    partNumber: "ADA3500IAA4DH",
-  },
-  {
-    name: "Athlon 64 3800+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F2",
-    partNumber: "ADA3800IAA4CN",
-  },
-  {
-    name: "Athlon 64 3800+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F3",
-    partNumber: "ADA3800IAA4DH",
-  },
-  {
-    name: "Athlon 64 4000+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F3",
-    partNumber: "ADA4000IAA4DH",
-  },
-  {
-    name: "Athlon 64 LE-1600",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F3",
-    partNumber: "ADH1600IAA5DH",
-    note: "Energy-efficient",
-  },
-  {
-    name: "Athlon 64 LE-1620",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F3",
-    partNumber: "ADH1620IAA5DH",
-    note: "Energy-efficient",
-  },
-  {
-    name: "Athlon 64 LE-1640",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F3",
-    partNumber: "ADH1640IAA5DH",
-    note: "Energy-efficient",
-  },
-  {
-    name: "Athlon 64 3500+",
-    socket: "Socket AM2",
-    codeName: "Orleans",
-    stepping: "F2",
-    partNumber: "ADD3500IAA4CN",
-    note: "Energy-efficient small form factor",
-  },
-];
 
 const athlon64Brisbane: AmdCpu[] = [
   {
@@ -606,7 +523,7 @@ const athlonX2Brisbane: AmdCpu[] = [
 ];
 
 export const amdCpus: AmdCpu[] = [
-  ...athlon64Orleans,
+  ...athlon64,
   ...athlon64Brisbane,
   ...athlon64X2Windsor,
   ...athlonX2Brisbane,
