@@ -1,5 +1,6 @@
 import type { AmdSocket } from "../../types";
 import { athlon64 } from "./amd/athlon64";
+import { phenom } from "./amd/phenom";
 
 export type AmdCpu = {
   name: string;
@@ -10,7 +11,7 @@ export type AmdCpu = {
   note?: string;
 };
 
-const athlon64Brisbane: AmdCpu[] = [
+const athlon64X2Brisbane: AmdCpu[] = [
   {
     name: "Athlon 64 X2 3600+",
     socket: "Socket AM2",
@@ -524,7 +525,8 @@ const athlonX2Brisbane: AmdCpu[] = [
 
 export const amdCpus: AmdCpu[] = [
   ...athlon64,
-  ...athlon64Brisbane,
+  ...phenom,
+  ...athlon64X2Brisbane,
   ...athlon64X2Windsor,
   ...athlonX2Brisbane,
 ];
