@@ -2,6 +2,7 @@ import type { AmdSocket } from "../../types";
 import { athlon64 } from "./amd/athlon64";
 import { athlonIi } from "./amd/athlonIi";
 import { fx } from "./amd/fx";
+import { igpu } from "./amd/igpu";
 import { phenom } from "./amd/phenom";
 
 export type AmdCpu = {
@@ -530,6 +531,7 @@ export const amdCpus: AmdCpu[] = [
   ...phenom,
   ...athlonIi,
   ...fx,
+  ...igpu,
   ...athlon64X2Brisbane,
   ...athlon64X2Windsor,
   ...athlonX2Brisbane,
