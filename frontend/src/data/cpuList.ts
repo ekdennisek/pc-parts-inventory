@@ -1,9 +1,12 @@
 import type { CpuSocket } from "../types";
 import { amdCpus } from "./cpus/amd";
+import { intelCpus } from "./cpus/intel";
 
 export interface MasterdataCpu {
   name: string;
-  partNumber: string;
+  partNumber?: string;
+  sSpec?: string;
+  partNumbers?: string[];
   stepping?: string;
   note?: string;
 }
@@ -15,16 +18,9 @@ export interface CpuGroup {
   cpus: MasterdataCpu[];
 }
 
-function groupByCodename<
-  T extends {
-    codeName: string;
-    socket: CpuSocket;
-    name: string;
-    partNumber: string;
-    stepping?: string;
-    note?: string;
-  },
->(entries: T[], brand: "Intel" | "AMD"): CpuGroup[] {
+function groupAmdByCodename(
+  entries: typeof amdCpus,
+): CpuGroup[] {
   const groups: CpuGroup[] = [];
   const seen = new Map<string, CpuGroup>();
 
@@ -33,7 +29,7 @@ function groupByCodename<
     let group = seen.get(key);
     if (!group) {
       group = {
-        brand,
+        brand: "AMD",
         socket: entry.socket,
         codename: entry.codeName,
         cpus: [],
@@ -52,6 +48,38 @@ function groupByCodename<
   return groups;
 }
 
-const amdGroups = groupByCodename(amdCpus, "AMD");
+function groupIntelByCodename(
+  entries: typeof intelCpus,
+): CpuGroup[] {
+  const groups: CpuGroup[] = [];
+  const seen = new Map<string, CpuGroup>();
 
-export const cpuList: CpuGroup[] = [...amdGroups];
+  for (const entry of entries) {
+    const key = `${entry.socket}|${entry.codeName}`;
+    let group = seen.get(key);
+    if (!group) {
+      group = {
+        brand: "Intel",
+        socket: entry.socket,
+        codename: entry.codeName,
+        cpus: [],
+      };
+      seen.set(key, group);
+      groups.push(group);
+    }
+    group.cpus.push({
+      name: entry.name,
+      sSpec: entry.sSpec,
+      partNumbers: entry.partNumbers,
+      stepping: entry.stepping,
+      note: entry.note,
+    });
+  }
+
+  return groups;
+}
+
+const amdGroups = groupAmdByCodename(amdCpus);
+const intelGroups = groupIntelByCodename(intelCpus);
+
+export const cpuList: CpuGroup[] = [...amdGroups, ...intelGroups];
