@@ -4,7 +4,7 @@ import { amdCpus } from "./cpus/amd";
 export interface MasterdataCpu {
   name: string;
   partNumber: string;
-  stepping: string;
+  stepping?: string;
   note?: string;
 }
 
@@ -15,10 +15,16 @@ export interface CpuGroup {
   cpus: MasterdataCpu[];
 }
 
-function groupByCodename<T extends { codeName: string; socket: CpuSocket; name: string; partNumber: string; stepping: string; note?: string }>(
-  entries: T[],
-  brand: "Intel" | "AMD",
-): CpuGroup[] {
+function groupByCodename<
+  T extends {
+    codeName: string;
+    socket: CpuSocket;
+    name: string;
+    partNumber: string;
+    stepping?: string;
+    note?: string;
+  },
+>(entries: T[], brand: "Intel" | "AMD"): CpuGroup[] {
   const groups: CpuGroup[] = [];
   const seen = new Map<string, CpuGroup>();
 
