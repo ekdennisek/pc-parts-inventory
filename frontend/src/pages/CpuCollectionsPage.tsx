@@ -123,7 +123,7 @@ export const CpuCollectionsPage: React.FC = () => {
                             {group.cpus.map((entry) => {
                               const matched = isCollected(entry);
                               return (
-                                <div key={entry.sSpec ?? entry.partNumber} className="cpu-detail-item">
+                                <div key={entry.sSpec ?? entry.partNumber ?? entry.name} className="cpu-detail-item">
                                   <span className="cpu-detail-name">
                                     <span className={`collected-indicator ${matched ? "yes" : "no"}`}>
                                       {matched ? "\u2713" : "\u2717"}
@@ -131,7 +131,7 @@ export const CpuCollectionsPage: React.FC = () => {
                                     {entry.name}
                                   </span>
                                   <span className="cpu-detail-specs">
-                                    {entry.sSpec ?? entry.partNumber}
+                                    {entry.sSpec ?? entry.partNumber ?? ""}
                                     {entry.stepping && ` \u00b7 ${entry.stepping}`}
                                     {entry.note && ` \u00b7 ${entry.note}`}
                                   </span>
