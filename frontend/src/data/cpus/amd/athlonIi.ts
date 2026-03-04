@@ -277,13 +277,6 @@ const regor: AmdCpu[] = [
     partNumber: "ADX240OCK23GQ",
   },
   {
-    name: "Athlon II X2 240",
-    socket: "Socket AM3",
-    codeName: "Regor",
-    stepping: "C2",
-    partNumber: "ADX240OCK23GQ",
-  },
-  {
     name: "Athlon II X2 240e",
     socket: "Socket AM3",
     codeName: "Regor",
@@ -296,27 +289,6 @@ const regor: AmdCpu[] = [
     codeName: "Regor",
     stepping: "C3",
     partNumber: "AD240EHDK23GM",
-  },
-  {
-    name: "Athlon II X2 240",
-    socket: "Socket AM3",
-    codeName: "Regor",
-    stepping: "C2",
-    partNumber: "ADX240OCK23GQ",
-  },
-  {
-    name: "Athlon II X2 245",
-    socket: "Socket AM3",
-    codeName: "Regor",
-    stepping: "C2",
-    partNumber: "ADX240OCK23GQ",
-  },
-  {
-    name: "Athlon II X2 245",
-    socket: "Socket AM3",
-    codeName: "Regor",
-    stepping: "C3",
-    partNumber: "ADX245EHDK23GM",
   },
   {
     name: "Athlon II X2 245",
@@ -337,7 +309,7 @@ const regor: AmdCpu[] = [
     socket: "Socket AM3",
     codeName: "Regor",
     stepping: "C3",
-    partNumber: "ADX245EHDK23GM",
+    partNumber: "AD245EHDK23GM",
   },
   {
     name: "Athlon II X2 250e",
