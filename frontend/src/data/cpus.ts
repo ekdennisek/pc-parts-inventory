@@ -467,7 +467,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-35",
-    name: "AMD Athlon II X2 240",
+    name: "AMD Athlon II X2 B24",
     brand: "AMD",
     description: "Dual core AM3 Regor processor",
     cores: 2,
@@ -477,7 +477,7 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2009,
     codename: "Regor",
-    partNumber: "ADXB240CK23GQ",
+    partNumber: "ADXB24OCK23GQ",
   },
   {
     id: "cpu-36",
