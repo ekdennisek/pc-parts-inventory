@@ -7,6 +7,7 @@ import { coreI4thGen } from "./intel/coreI4thGen";
 import { coreI5thGen } from "./intel/coreI5thGen";
 import { coreI6thGen } from "./intel/coreI6thGen";
 import { coreI7thGen } from "./intel/coreI7thGen";
+import { coreI8thGen } from "./intel/coreI8thGen";
 
 export type IntelCpu = {
   name: string;
@@ -27,4 +28,5 @@ export const intelCpus: IntelCpu[] = [
   ...coreI5thGen,
   ...coreI6thGen,
   ...coreI7thGen,
+  ...coreI8thGen,
 ];
