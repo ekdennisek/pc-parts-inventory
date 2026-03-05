@@ -198,7 +198,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-15",
-    name: "Intel i5-4460",
+    name: "Intel Core i5-4460",
     brand: "Intel",
     description: "Quad core LGA1150 Haswell processor",
     cores: 4,
@@ -212,7 +212,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-16",
-    name: "Intel i3-540",
+    name: "Intel Core i3-540",
     brand: "Intel",
     description: "Dual core LGA1156 Clarkdale processor",
     cores: 2,
@@ -320,7 +320,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-24",
-    name: "Intel i3-7100",
+    name: "Intel Core i3-7100",
     brand: "Intel",
     description: "Dual core LGA1151 Kaby Lake processor",
     cores: 2,
@@ -510,7 +510,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-38",
-    name: "Intel i5-760",
+    name: "Intel Core i5-760",
     brand: "Intel",
     description: "Quad core LGA1156 Lynnfield processor",
     cores: 4,
@@ -525,7 +525,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-39",
-    name: "Intel i5-5675C",
+    name: "Intel Core i5-5675C",
     brand: "Intel",
     description: "Quad core LGA 1150 Broadwell processor",
     cores: 4,
