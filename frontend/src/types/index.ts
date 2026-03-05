@@ -9,6 +9,7 @@ export const intelSockets = [
   "LGA 1156",
   "LGA 1155",
   "LGA 2011",
+  "LGA 2011-3",
   "LGA 1150",
   "LGA 1151-1",
   "LGA 1151-2",
