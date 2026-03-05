@@ -1,5 +1,11 @@
 export const intelSockets = [
   "PGA168",
+  "Socket 1",
+  "Socket 2",
+  "Socket 3",
+  "Socket 4",
+  "Socket 5",
+  "Socket 7",
   "Slot 1",
   "Socket 370",
   "Socket 423",
