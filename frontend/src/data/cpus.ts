@@ -589,4 +589,17 @@ export const cpus: CPU[] = [
     releaseYear: 2007,
     codename: "Kentsfield",
   },
+  {
+    id: "cpu-44",
+    name: "Intel Core 2 Quad Q8300",
+    brand: "Intel",
+    description: "Quad Core LGA 775 Yorkfield processor",
+    cores: 4,
+    threads: 4,
+    baseClock: 2.5,
+    socket: "LGA 775",
+    tdp: 95,
+    releaseYear: 2008,
+    codename: "Yorkfield",
+  },
 ];
