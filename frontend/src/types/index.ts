@@ -27,6 +27,7 @@ export const intelSockets = [
 export type IntelSocket = (typeof intelSockets)[number];
 
 export const amdSockets = [
+  "Slot A",
   "Socket A",
   "Socket 754",
   "Socket 940",
