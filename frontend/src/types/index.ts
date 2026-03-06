@@ -31,6 +31,7 @@ export const amdSockets = [
   "Socket 754",
   "Socket 940",
   "Socket 939",
+  "Socket F",
   "Socket AM2",
   "Socket AM2+",
   "Socket AM3",
