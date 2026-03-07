@@ -15,12 +15,18 @@ export const CpuCollectionsPage: React.FC = () => {
   }, [activeTab]);
 
   const isCollected = (entry: MasterdataCpu): boolean => {
-    return cpus.some((cpu) =>
-      cpu.partNumber
-        ? cpu.partNumber === entry.partNumber ||
+    return cpus.some((cpu) => {
+      if (cpu.partNumber) {
+        return (
+          cpu.partNumber === entry.partNumber ||
           entry.partNumbers?.includes(cpu.partNumber)
-        : cpu.name.includes(entry.name)
-    );
+        );
+      }
+      if (cpu.sSpec) {
+        return cpu.sSpec === entry.sSpec;
+      }
+      return cpu.name.includes(entry.name);
+    });
   };
 
   const toggleRow = (key: string) => {
