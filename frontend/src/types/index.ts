@@ -6,6 +6,7 @@ export const intelSockets = [
   "Socket 4",
   "Socket 5",
   "Socket 7",
+  "Socket 8",
   "Slot 1",
   "Socket 370",
   "Socket 423",
