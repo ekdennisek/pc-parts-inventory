@@ -2,6 +2,7 @@ import type { AmdSocket } from "../../types";
 import { athlon } from "./amd/athlon";
 import { athlon64 } from "./amd/athlon64";
 import { athlonIi } from "./amd/athlonIi";
+import { athlonX2 } from "./amd/athlonX2";
 import { athlonXp } from "./amd/athlonXp";
 import { fx } from "./amd/fx";
 import { igpu } from "./amd/igpu";
@@ -23,5 +24,6 @@ export const amdCpus: AmdCpu[] = [
   ...athlonIi,
   ...fx,
   ...igpu,
+  ...athlonX2,
   ...athlonXp,
 ];
