@@ -238,7 +238,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-18",
-    name: "Intel Pentium II SL2W7",
+    name: "Intel Pentium II 266",
     brand: "Intel",
     description: "Slot 1 Deschutes processor",
     cores: 1,
@@ -248,6 +248,7 @@ export const cpus: CPU[] = [
     tdp: 16.8,
     releaseYear: 1998,
     codename: "Deschutes",
+    sSpec: "SL2W7",
   },
   {
     id: "cpu-19",
@@ -265,7 +266,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-20",
-    name: "Intel Pentium 4 SL6SH",
+    name: "Intel Pentium 4",
     brand: "Intel",
     description: "Socket 478 Northwood processor",
     cores: 1,
@@ -276,6 +277,7 @@ export const cpus: CPU[] = [
     releaseYear: 2002,
     condition: "working",
     codename: "Northwood",
+    sSpec: "SL6SH",
   },
   {
     id: "cpu-21",
@@ -307,7 +309,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-23",
-    name: "Intel Pentium 4 SL4SH",
+    name: "Intel Pentium 4",
     brand: "Intel",
     description: "Socket 423 Willamette processor",
     cores: 1,
@@ -317,6 +319,7 @@ export const cpus: CPU[] = [
     tdp: 54.7,
     releaseYear: 2000,
     codename: "Willamette",
+    sSpec: "SL4SH",
   },
   {
     id: "cpu-24",
@@ -360,7 +363,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-27",
-    name: "Intel Pentium 4 SL6WK",
+    name: "Intel Pentium 4",
     brand: "Intel",
     description: "Socket 478 Northwood processor",
     cores: 1,
@@ -371,10 +374,11 @@ export const cpus: CPU[] = [
     releaseYear: 2003,
     condition: "working",
     codename: "Northwood",
+    sSpec: "SL6WK",
   },
   {
     id: "cpu-28",
-    name: "Intel i486SX SX797",
+    name: "Intel i486SX",
     brand: "Intel",
     description: "PGA168 A80486SX-33 processor, L4280761 (W28 1994)",
     cores: 1,
@@ -383,10 +387,11 @@ export const cpus: CPU[] = [
     socket: "PGA168",
     tdp: 0,
     releaseYear: 1992,
+    sSpec: "SX797",
   },
   {
     id: "cpu-29",
-    name: "Intel i486SX SX902",
+    name: "Intel i486SX",
     brand: "Intel",
     description: "PGA168 A80486SX-33 processor, L4252476 (W25 1994)",
     cores: 1,
@@ -395,10 +400,11 @@ export const cpus: CPU[] = [
     socket: "PGA168",
     tdp: 0,
     releaseYear: 1992,
+    sSpec: "SX902",
   },
   {
     id: "cpu-30",
-    name: "Intel Pentium III SL3VK",
+    name: "Intel Pentium III",
     brand: "Intel",
     description: "Socket 370 Coppermine processor",
     cores: 1,
@@ -408,6 +414,7 @@ export const cpus: CPU[] = [
     tdp: 0,
     releaseYear: 1999,
     codename: "Coppermine",
+    sSpec: "SL3VK",
   },
   {
     id: "cpu-31",
@@ -496,7 +503,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-37",
-    name: "Intel Pentium III SL4MD",
+    name: "Intel Pentium III",
     brand: "Intel",
     description: "Socket 370 Coppermine processor",
     cores: 1,
@@ -507,6 +514,7 @@ export const cpus: CPU[] = [
     releaseYear: 2000,
     condition: "working",
     codename: "Coppermine",
+    sSpec: "SL4MD",
   },
   {
     id: "cpu-38",
@@ -539,7 +547,7 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-40",
-    name: "Intel Pentium II SL2HD",
+    name: "Intel Pentium II",
     brand: "Intel",
     description: "Slot 1 Klamath processor",
     cores: 1,
@@ -549,10 +557,11 @@ export const cpus: CPU[] = [
     tdp: 0,
     releaseYear: 1997,
     codename: "Klamath",
+    sSpec: "SL2HD",
   },
   {
     id: "cpu-41",
-    name: "Intel Pentium 133 (SY022)",
+    name: "Intel Pentium 133",
     brand: "Intel",
     description: "Socket 7 processor",
     cores: 1,
@@ -561,6 +570,7 @@ export const cpus: CPU[] = [
     socket: "Socket 7",
     tdp: 0,
     releaseYear: 1995,
+    sSpec: "SY022",
   },
   {
     id: "cpu-42",

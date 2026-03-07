@@ -101,6 +101,7 @@ export interface CPU extends PCPart {
   tdp: number; // Watts
   codename?: string;
   partNumber?: string;
+  sSpec?: string;
 }
 
 export interface Motherboard extends PCPart {
