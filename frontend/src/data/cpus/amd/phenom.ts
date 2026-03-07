@@ -293,7 +293,7 @@ const thuban: AmdCpu[] = [
     partNumber: "HDT75TFBK6DGR",
   },
   {
-    name: "Phenom II X6 1075T Black Edition",
+    name: "Phenom II X6 1075T",
     socket: "Socket AM3",
     codeName: "Thuban",
     stepping: "E0",
@@ -301,7 +301,7 @@ const thuban: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X6 1090T Black Edition",
+    name: "Phenom II X6 1090T",
     socket: "Socket AM3",
     codeName: "Thuban",
     stepping: "E0",
@@ -309,7 +309,7 @@ const thuban: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X6 1100T Black Edition",
+    name: "Phenom II X6 1100T",
     socket: "Socket AM3",
     codeName: "Thuban",
     stepping: "E0",
@@ -334,7 +334,7 @@ const zosma: AmdCpu[] = [
     partNumber: "HD840TWFK4DGR",
   },
   {
-    name: "Phenom II X4 960T Black Edition",
+    name: "Phenom II X4 960T",
     socket: "Socket AM3",
     codeName: "Zosma",
     stepping: "E0",
@@ -349,7 +349,7 @@ const zosma: AmdCpu[] = [
     partNumber: "HD960TFBK4DGR",
   },
   {
-    name: "Phenom II X4 970 Black Edition",
+    name: "Phenom II X4 970",
     socket: "Socket AM3",
     codeName: "Zosma",
     stepping: "E0",
@@ -416,7 +416,7 @@ const deneb: AmdCpu[] = [
     partNumber: "HD910EOCK4DGM",
   },
   {
-    name: "Phenom II X4 920 Black Edition",
+    name: "Phenom II X4 920",
     socket: "Socket AM2+",
     codeName: "Deneb",
     stepping: "C2",
@@ -438,7 +438,7 @@ const deneb: AmdCpu[] = [
     partNumber: "HDX925WFK4DGM",
   },
   {
-    name: "Phenom II X4 940 Black Edition",
+    name: "Phenom II X4 940",
     socket: "Socket AM2+",
     codeName: "Deneb",
     stepping: "C2",
@@ -488,7 +488,7 @@ const deneb: AmdCpu[] = [
     partNumber: "HDX955WFK4DGM",
   },
   {
-    name: "Phenom II X4 955 Black Edition",
+    name: "Phenom II X4 955",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C2",
@@ -496,7 +496,7 @@ const deneb: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X4 955 Black Edition",
+    name: "Phenom II X4 955",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C3",
@@ -504,7 +504,7 @@ const deneb: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X4 965 Black Edition",
+    name: "Phenom II X4 965",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C2",
@@ -512,7 +512,7 @@ const deneb: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X4 965 Black Edition",
+    name: "Phenom II X4 965",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C3",
@@ -520,7 +520,7 @@ const deneb: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X4 970 Black Edition",
+    name: "Phenom II X4 970",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C3",
@@ -528,7 +528,7 @@ const deneb: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X4 975 Black Edition",
+    name: "Phenom II X4 975",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C3",
@@ -536,7 +536,7 @@ const deneb: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X4 980 Black Edition",
+    name: "Phenom II X4 980",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C3",
@@ -617,7 +617,7 @@ const heka: AmdCpu[] = [
     partNumber: "HDX710WFK3DGI",
   },
   {
-    name: "Phenom II X3 715 Black Edition",
+    name: "Phenom II X3 715",
     socket: "Socket AM2+",
     codeName: "Heka",
     stepping: "C2",
@@ -632,7 +632,7 @@ const heka: AmdCpu[] = [
     partNumber: "HDX720WFK3DGI",
   },
   {
-    name: "Phenom II X3 720 Black Edition",
+    name: "Phenom II X3 720",
     socket: "Socket AM3",
     codeName: "Heka",
     stepping: "C2",
@@ -640,7 +640,7 @@ const heka: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X3 740 Black Edition",
+    name: "Phenom II X3 740",
     socket: "Socket AM3",
     codeName: "Heka",
     stepping: "C2",
@@ -697,7 +697,7 @@ const callisto: AmdCpu[] = [
     partNumber: "HDX545WFK2DGM",
   },
   {
-    name: "Phenom II X2 550 Black Edition",
+    name: "Phenom II X2 550",
     socket: "Socket AM3",
     codeName: "Callisto",
     stepping: "C2",
@@ -712,7 +712,7 @@ const callisto: AmdCpu[] = [
     partNumber: "HDX550WFK2DGM",
   },
   {
-    name: "Phenom II X2 555 Black Edition",
+    name: "Phenom II X2 555",
     socket: "Socket AM3",
     codeName: "Callisto",
     stepping: "C3",
@@ -720,7 +720,7 @@ const callisto: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X2 560 Black Edition",
+    name: "Phenom II X2 560",
     socket: "Socket AM3",
     codeName: "Callisto",
     stepping: "C3",
@@ -728,7 +728,7 @@ const callisto: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X2 565 Black Edition",
+    name: "Phenom II X2 565",
     socket: "Socket AM3",
     codeName: "Callisto",
     stepping: "C3",
@@ -736,7 +736,7 @@ const callisto: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Phenom II X2 570 Black Edition",
+    name: "Phenom II X2 570",
     socket: "Socket AM3",
     codeName: "Callisto",
     stepping: "C3",
@@ -804,7 +804,7 @@ const phenomIiRegor: AmdCpu[] = [
 
 const twkr: AmdCpu[] = [
   {
-    name: "Phenom II 42 TWKR Black Edition",
+    name: "Phenom II 42 TWKR",
     socket: "Socket AM3",
     codeName: "Deneb",
     stepping: "C2",

@@ -125,7 +125,7 @@ const brisbane: AmdCpu[] = [
 
 const kuma: AmdCpu[] = [
   {
-    name: "Athlon X2 6500 Black Edition",
+    name: "Athlon X2 6500",
     socket: "Socket AM2+",
     codeName: "Kuma",
     stepping: "B3",
@@ -154,7 +154,7 @@ const kuma: AmdCpu[] = [
     partNumber: "AD7750WCJ2BGH",
   },
   {
-    name: "Athlon X2 7750 Black Edition",
+    name: "Athlon X2 7750",
     socket: "Socket AM2+",
     codeName: "Kuma",
     stepping: "B3",
@@ -162,7 +162,7 @@ const kuma: AmdCpu[] = [
     note: "Black Edition",
   },
   {
-    name: "Athlon X2 7850 Black Edition",
+    name: "Athlon X2 7850",
     socket: "Socket AM2+",
     codeName: "Kuma",
     stepping: "B3",
