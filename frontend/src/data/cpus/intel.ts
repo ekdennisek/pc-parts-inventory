@@ -1,6 +1,7 @@
 import type { IntelSocket } from "../../types";
 import { core2 } from "./intel/core2";
 import { pentium4 } from "./intel/pentium4";
+import { pentium } from "./intel/pentium";
 import { pentiumIi } from "./intel/pentiumIi";
 import { pentiumIii } from "./intel/pentiumIii";
 import { coreI1stGen } from "./intel/coreI1stGen";
@@ -46,5 +47,6 @@ export const intelCpus: IntelCpu[] = [
   ...coreI14thGen,
   ...pentium4,
   ...pentiumIi,
+  ...pentium,
   ...pentiumIii,
 ];
