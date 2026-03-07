@@ -7,7 +7,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4SF",
     stepping: "B2",
-    partNumbers: ["80528PC013G0K","YD80528PC013G0K"],
+    partNumbers: ["80528PC013G0K", "YD80528PC013G0K"],
   },
   {
     name: "Pentium 4 1.3",
@@ -15,7 +15,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4QD",
     stepping: "B2",
-    partNumbers: ["80528PC013G0K","YD80528PC013G0K"],
+    partNumbers: ["80528PC013G0K", "YD80528PC013G0K"],
   },
   {
     name: "Pentium 4 1.3",
@@ -23,7 +23,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5GC",
     stepping: "C1",
-    partNumbers: ["80528PC013G0K","YD80528PC013G0K"],
+    partNumbers: ["80528PC013G0K", "YD80528PC013G0K"],
   },
   {
     name: "Pentium 4 1.3",
@@ -31,7 +31,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5FW",
     stepping: "C1",
-    partNumbers: ["80528PC013G0K","YD80528PC013G0K"],
+    partNumbers: ["80528PC013G0K", "YD80528PC013G0K"],
   },
   {
     name: "Pentium 4 1.4",
@@ -39,7 +39,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4SG",
     stepping: "B2",
-    partNumbers: ["80528PC017G0K","YD80528PC017G0K"],
+    partNumbers: ["80528PC017G0K", "YD80528PC017G0K"],
   },
   {
     name: "Pentium 4 1.4",
@@ -47,7 +47,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4SC",
     stepping: "B2",
-    partNumbers: ["80528PC017G0K","YD80528PC017G0K"],
+    partNumbers: ["80528PC017G0K", "YD80528PC017G0K"],
   },
   {
     name: "Pentium 4 1.4",
@@ -55,7 +55,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4X2",
     stepping: "C1",
-    partNumbers: ["80528PC017G0K","YD80528PC017G0K"],
+    partNumbers: ["80528PC017G0K", "YD80528PC017G0K"],
   },
   {
     name: "Pentium 4 1.4",
@@ -63,7 +63,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4WS",
     stepping: "C1",
-    partNumbers: ["80528PC017G0K","YD80528PC017G0K"],
+    partNumbers: ["80528PC017G0K", "YD80528PC017G0K"],
   },
   {
     name: "Pentium 4 1.5",
@@ -71,7 +71,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4SH",
     stepping: "B2",
-    partNumbers: ["80528PC021G0K","YD80528PC021G0K","RN80528PC021G0K"],
+    partNumbers: ["80528PC021G0K", "YD80528PC021G0K", "RN80528PC021G0K"],
   },
   {
     name: "Pentium 4 1.5",
@@ -79,7 +79,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4TY",
     stepping: "B2",
-    partNumbers: ["80528PC021G0K","YD80528PC021G0K","RN80528PC021G0K"],
+    partNumbers: ["80528PC021G0K", "YD80528PC021G0K", "RN80528PC021G0K"],
   },
   {
     name: "Pentium 4 1.5",
@@ -87,7 +87,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4WT",
     stepping: "C1",
-    partNumbers: ["80528PC021G0K","YD80528PC021G0K","RN80528PC021G0K"],
+    partNumbers: ["80528PC021G0K", "YD80528PC021G0K", "RN80528PC021G0K"],
   },
   {
     name: "Pentium 4 1.5",
@@ -95,7 +95,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4X3",
     stepping: "C1",
-    partNumbers: ["80528PC021G0K","YD80528PC021G0K","RN80528PC021G0K"],
+    partNumbers: ["80528PC021G0K", "YD80528PC021G0K", "RN80528PC021G0K"],
   },
   {
     name: "Pentium 4 1.5",
@@ -103,7 +103,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5SX",
     stepping: "D0",
-    partNumbers: ["80528PC021G0K","YD80528PC021G0K","RN80528PC021G0K"],
+    partNumbers: ["80528PC021G0K", "YD80528PC021G0K", "RN80528PC021G0K"],
   },
   {
     name: "Pentium 4 1.5",
@@ -111,7 +111,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5TN",
     stepping: "D0",
-    partNumbers: ["80528PC021G0K","YD80528PC021G0K","RN80528PC021G0K"],
+    partNumbers: ["80528PC021G0K", "YD80528PC021G0K", "RN80528PC021G0K"],
   },
   {
     name: "Pentium 4 1.6",
@@ -119,7 +119,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4WU",
     stepping: "C1",
-    partNumbers: ["YD80528PC025G0K","RN80528PC025G0K"],
+    partNumbers: ["YD80528PC025G0K", "RN80528PC025G0K"],
   },
   {
     name: "Pentium 4 1.6",
@@ -127,7 +127,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4X4",
     stepping: "C1",
-    partNumbers: ["YD80528PC025G0K","RN80528PC025G0K"],
+    partNumbers: ["YD80528PC025G0K", "RN80528PC025G0K"],
   },
   {
     name: "Pentium 4 1.6",
@@ -135,7 +135,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UL",
     stepping: "D0",
-    partNumbers: ["YD80528PC025G0K","RN80528PC025G0K"],
+    partNumbers: ["YD80528PC025G0K", "RN80528PC025G0K"],
   },
   {
     name: "Pentium 4 1.6",
@@ -143,7 +143,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5VL",
     stepping: "D0",
-    partNumbers: ["YD80528PC025G0K","RN80528PC025G0K"],
+    partNumbers: ["YD80528PC025G0K", "RN80528PC025G0K"],
   },
   {
     name: "Pentium 4 1.7",
@@ -151,7 +151,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL57V",
     stepping: "C1",
-    partNumbers: ["YD80528PC029G0K","RN80528PC029G0K"],
+    partNumbers: ["YD80528PC029G0K", "RN80528PC029G0K"],
   },
   {
     name: "Pentium 4 1.7",
@@ -159,7 +159,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL57W",
     stepping: "C1",
-    partNumbers: ["YD80528PC029G0K","RN80528PC029G0K"],
+    partNumbers: ["YD80528PC029G0K", "RN80528PC029G0K"],
   },
   {
     name: "Pentium 4 1.7",
@@ -167,7 +167,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5SY",
     stepping: "D0",
-    partNumbers: ["YD80528PC029G0K","RN80528PC029G0K"],
+    partNumbers: ["YD80528PC029G0K", "RN80528PC029G0K"],
   },
   {
     name: "Pentium 4 1.7",
@@ -175,7 +175,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5TP",
     stepping: "D0",
-    partNumbers: ["YD80528PC029G0K","RN80528PC029G0K"],
+    partNumbers: ["YD80528PC029G0K", "RN80528PC029G0K"],
   },
   {
     name: "Pentium 4 1.8",
@@ -183,7 +183,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4WV",
     stepping: "C1",
-    partNumbers: ["YD80528PC033G0K","RN80528PC033G0K"],
+    partNumbers: ["YD80528PC033G0K", "RN80528PC033G0K"],
   },
   {
     name: "Pentium 4 1.8",
@@ -191,7 +191,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL4X5",
     stepping: "C1",
-    partNumbers: ["YD80528PC033G0K","RN80528PC033G0K"],
+    partNumbers: ["YD80528PC033G0K", "RN80528PC033G0K"],
   },
   {
     name: "Pentium 4 1.8",
@@ -199,7 +199,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UM",
     stepping: "D0",
-    partNumbers: ["YD80528PC033G0K","RN80528PC033G0K"],
+    partNumbers: ["YD80528PC033G0K", "RN80528PC033G0K"],
   },
   {
     name: "Pentium 4 1.8",
@@ -207,20 +207,22 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5VM",
     stepping: "D0",
-    partNumbers: ["YD80528PC033G0K","RN80528PC033G0K"],
+    partNumbers: ["YD80528PC033G0K", "RN80528PC033G0K"],
   },
   {
     name: "Pentium 4 1.9",
     socket: "Socket 423",
     codeName: "Willamette",
-    sSpec: "SL5VN&nbsp;(D0)",
+    sSpec: "SL5VN",
+    stepping: "D0",
     partNumbers: ["RN80528PC037G0K"],
   },
   {
     name: "Pentium 4 1.9",
     socket: "Socket 423",
     codeName: "Willamette",
-    sSpec: "SL5WH&nbsp;(D0)",
+    sSpec: "SL5WH",
+    stepping: "D0",
     partNumbers: ["RN80528PC037G0K"],
   },
   {
@@ -277,7 +279,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL59V",
     stepping: "C1",
-    partNumbers: ["RK80531PC021G0K","RK80531PC021256"],
+    partNumbers: ["RK80531PC021G0K", "RK80531PC021256"],
   },
   {
     name: "Pentium 4 1.5",
@@ -285,7 +287,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5N8",
     stepping: "C1",
-    partNumbers: ["RK80531PC021G0K","RK80531PC021256"],
+    partNumbers: ["RK80531PC021G0K", "RK80531PC021256"],
   },
   {
     name: "Pentium 4 1.5",
@@ -293,7 +295,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5TJ",
     stepping: "D0",
-    partNumbers: ["RK80531PC021G0K","RK80531PC021256"],
+    partNumbers: ["RK80531PC021G0K", "RK80531PC021256"],
   },
   {
     name: "Pentium 4 1.5",
@@ -301,7 +303,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UF",
     stepping: "D0",
-    partNumbers: ["RK80531PC021G0K","RK80531PC021256"],
+    partNumbers: ["RK80531PC021G0K", "RK80531PC021256"],
   },
   {
     name: "Pentium 4 1.5",
@@ -309,7 +311,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL62Y",
     stepping: "D0",
-    partNumbers: ["RK80531PC021G0K","RK80531PC021256"],
+    partNumbers: ["RK80531PC021G0K", "RK80531PC021256"],
   },
   {
     name: "Pentium 4 1.5",
@@ -317,7 +319,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL6BA",
     stepping: "E0",
-    partNumbers: ["RK80531PC021G0K","RK80531PC021256"],
+    partNumbers: ["RK80531PC021G0K", "RK80531PC021256"],
   },
   {
     name: "Pentium 4 1.6",
@@ -325,7 +327,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5US",
     stepping: "B2",
-    partNumbers: ["RK80531PC025G0K","RK80531PC025256"],
+    partNumbers: ["RK80531PC025G0K", "RK80531PC025256"],
   },
   {
     name: "Pentium 4 1.6",
@@ -333,7 +335,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UW",
     stepping: "C1",
-    partNumbers: ["RK80531PC025G0K","RK80531PC025256"],
+    partNumbers: ["RK80531PC025G0K", "RK80531PC025256"],
   },
   {
     name: "Pentium 4 1.6",
@@ -341,7 +343,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UJ",
     stepping: "D0",
-    partNumbers: ["RK80531PC025G0K","RK80531PC025256"],
+    partNumbers: ["RK80531PC025G0K", "RK80531PC025256"],
   },
   {
     name: "Pentium 4 1.6",
@@ -349,7 +351,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5VH",
     stepping: "D0",
-    partNumbers: ["RK80531PC025G0K","RK80531PC025256"],
+    partNumbers: ["RK80531PC025G0K", "RK80531PC025256"],
   },
   {
     name: "Pentium 4 1.6",
@@ -357,7 +359,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL6BC",
     stepping: "E0",
-    partNumbers: ["RK80531PC025G0K","RK80531PC025256"],
+    partNumbers: ["RK80531PC025G0K", "RK80531PC025256"],
   },
   {
     name: "Pentium 4 1.6",
@@ -365,7 +367,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL679",
     stepping: "E0",
-    partNumbers: ["RK80531PC025G0K","RK80531PC025256"],
+    partNumbers: ["RK80531PC025G0K", "RK80531PC025256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -373,7 +375,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5N9",
     stepping: "C1",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -381,7 +383,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL59X",
     stepping: "C1",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -389,7 +391,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5TK",
     stepping: "D0",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -397,7 +399,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UG",
     stepping: "D0",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -405,7 +407,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL62Z",
     stepping: "D0",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -413,7 +415,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL6BD",
     stepping: "E0",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.7",
@@ -421,7 +423,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL67A",
     stepping: "E0",
-    partNumbers: ["RK80531PC029G0K","RK80531PC029256"],
+    partNumbers: ["RK80531PC029G0K", "RK80531PC029256"],
   },
   {
     name: "Pentium 4 1.8",
@@ -429,7 +431,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UT",
     stepping: "C1",
-    partNumbers: ["RK80531PC033G0K","RK80531PC033256"],
+    partNumbers: ["RK80531PC033G0K", "RK80531PC033256"],
   },
   {
     name: "Pentium 4 1.8",
@@ -437,7 +439,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UV",
     stepping: "C1",
-    partNumbers: ["RK80531PC033G0K","RK80531PC033256"],
+    partNumbers: ["RK80531PC033G0K", "RK80531PC033256"],
   },
   {
     name: "Pentium 4 1.8",
@@ -445,7 +447,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5UK",
     stepping: "D0",
-    partNumbers: ["RK80531PC033G0K","RK80531PC033256"],
+    partNumbers: ["RK80531PC033G0K", "RK80531PC033256"],
   },
   {
     name: "Pentium 4 1.8",
@@ -453,7 +455,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5VJ",
     stepping: "D0",
-    partNumbers: ["RK80531PC033G0K","RK80531PC033256"],
+    partNumbers: ["RK80531PC033G0K", "RK80531PC033256"],
   },
   {
     name: "Pentium 4 1.8",
@@ -461,7 +463,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL6BE",
     stepping: "E0",
-    partNumbers: ["RK80531PC033G0K","RK80531PC033256"],
+    partNumbers: ["RK80531PC033G0K", "RK80531PC033256"],
   },
   {
     name: "Pentium 4 1.8",
@@ -469,7 +471,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL67B",
     stepping: "E0",
-    partNumbers: ["RK80531PC033G0K","RK80531PC033256"],
+    partNumbers: ["RK80531PC033G0K", "RK80531PC033256"],
   },
   {
     name: "Pentium 4 1.9",
@@ -477,7 +479,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5VK",
     stepping: "D0",
-    partNumbers: ["RK80531PC037G0K","RK80531PC037256"],
+    partNumbers: ["RK80531PC037G0K", "RK80531PC037256"],
   },
   {
     name: "Pentium 4 1.9",
@@ -485,7 +487,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL5WG",
     stepping: "D0",
-    partNumbers: ["RK80531PC037G0K","RK80531PC037256"],
+    partNumbers: ["RK80531PC037G0K", "RK80531PC037256"],
   },
   {
     name: "Pentium 4 1.9",
@@ -493,7 +495,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL6BF",
     stepping: "D0",
-    partNumbers: ["RK80531PC037G0K","RK80531PC037256"],
+    partNumbers: ["RK80531PC037G0K", "RK80531PC037256"],
   },
   {
     name: "Pentium 4 1.9",
@@ -501,7 +503,7 @@ const willamette: IntelCpu[] = [
     codeName: "Willamette",
     sSpec: "SL67C",
     stepping: "E0",
-    partNumbers: ["RK80531PC037G0K","RK80531PC037256"],
+    partNumbers: ["RK80531PC037G0K", "RK80531PC037256"],
   },
   {
     name: "Pentium 4 2.0",
@@ -536,7 +538,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL63X",
     stepping: "B0",
-    partNumbers: ["RK80532PC033512","BX80532PC1800D"],
+    partNumbers: ["RK80532PC033512", "BX80532PC1800D"],
   },
   {
     name: "Pentium 4 1.8A",
@@ -544,7 +546,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL62P",
     stepping: "B0",
-    partNumbers: ["RK80532PC033512","BX80532PC1800D"],
+    partNumbers: ["RK80532PC033512", "BX80532PC1800D"],
   },
   {
     name: "Pentium 4 1.8A",
@@ -552,15 +554,15 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL68Q",
     stepping: "B0",
-    partNumbers: ["RK80532PC033512","BX80532PC1800D"],
+    partNumbers: ["RK80532PC033512", "BX80532PC1800D"],
   },
   {
     name: "Pentium 4 1.8A",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL66Q",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["RK80532PC033512","BX80532PC1800D"],
+    stepping: "B0",
+    partNumbers: ["RK80532PC033512", "BX80532PC1800D"],
   },
   {
     name: "Pentium 4 1.8A",
@@ -568,7 +570,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6LA",
     stepping: "C1",
-    partNumbers: ["RK80532PC033512","BX80532PC1800D"],
+    partNumbers: ["RK80532PC033512", "BX80532PC1800D"],
   },
   {
     name: "Pentium 4 1.8A",
@@ -576,7 +578,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6QL",
     stepping: "D1",
-    partNumbers: ["RK80532PC033512","BX80532PC1800D"],
+    partNumbers: ["RK80532PC033512", "BX80532PC1800D"],
   },
   {
     name: "Pentium 4 2.0A",
@@ -584,7 +586,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL5YR",
     stepping: "B0",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.0A",
@@ -592,23 +594,23 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL5ZT",
     stepping: "B0",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.0A",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL66R",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    stepping: "B0",
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.0A",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL68R",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    stepping: "B0",
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.0A",
@@ -616,7 +618,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6GQ",
     stepping: "C1",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.0A",
@@ -624,7 +626,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6S7",
     stepping: "C1",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.0A",
@@ -632,7 +634,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6SP",
     stepping: "C1",
-    partNumbers: ["RK80532PC041512","BX80532PC2000D"],
+    partNumbers: ["RK80532PC041512", "BX80532PC2000D"],
   },
   {
     name: "Pentium 4 2.2",
@@ -640,15 +642,15 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL5YS",
     stepping: "B0",
-    partNumbers: ["RK80532PC049512","BX80532PC2200D"],
+    partNumbers: ["RK80532PC049512", "BX80532PC2200D"],
   },
   {
     name: "Pentium 4 2.2",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL66S",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["RK80532PC049512","BX80532PC2200D"],
+    stepping: "B0",
+    partNumbers: ["RK80532PC049512", "BX80532PC2200D"],
   },
   {
     name: "Pentium 4 2.4",
@@ -656,7 +658,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL65R",
     stepping: "B0",
-    partNumbers: ["BX80532PC2400D","RK80532PC056512"],
+    partNumbers: ["BX80532PC2400D", "RK80532PC056512"],
   },
   {
     name: "Pentium 4 2.4",
@@ -664,7 +666,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL66T",
     stepping: "B0",
-    partNumbers: ["BX80532PC2400D","RK80532PC056512"],
+    partNumbers: ["BX80532PC2400D", "RK80532PC056512"],
   },
   {
     name: "Pentium 4 2.4",
@@ -672,7 +674,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6GS",
     stepping: "C1",
-    partNumbers: ["BX80532PC2400D","RK80532PC056512"],
+    partNumbers: ["BX80532PC2400D", "RK80532PC056512"],
   },
   {
     name: "Pentium 4 2.4",
@@ -680,7 +682,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6S9",
     stepping: "C1",
-    partNumbers: ["BX80532PC2400D","RK80532PC056512"],
+    partNumbers: ["BX80532PC2400D", "RK80532PC056512"],
   },
   {
     name: "Pentium 4 2.4",
@@ -688,7 +690,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6PM",
     stepping: "D1",
-    partNumbers: ["BX80532PC2400D","RK80532PC056512"],
+    partNumbers: ["BX80532PC2400D", "RK80532PC056512"],
   },
   {
     name: "Pentium 4 2.5",
@@ -704,7 +706,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6SB",
     stepping: "C1",
-    partNumbers: ["BX80532PC2600D","RK80532PC064512"],
+    partNumbers: ["BX80532PC2600D", "RK80532PC064512"],
   },
   {
     name: "Pentium 4 2.6",
@@ -712,7 +714,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6PP",
     stepping: "D1",
-    partNumbers: ["BX80532PC2600D","RK80532PC064512"],
+    partNumbers: ["BX80532PC2600D", "RK80532PC064512"],
   },
   {
     name: "Pentium 4 2.8",
@@ -728,7 +730,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6YH",
     stepping: "C1",
-    partNumbers: ["RK80532PC080512","RK80532NC080512"],
+    partNumbers: ["RK80532PC080512", "RK80532NC080512"],
   },
   {
     name: "Pentium 4 3.0",
@@ -736,7 +738,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL74Q",
     stepping: "D1",
-    partNumbers: ["RK80532PC080512","RK80532NC080512"],
+    partNumbers: ["RK80532PC080512", "RK80532NC080512"],
   },
   {
     name: "Pentium 4 2.26",
@@ -751,7 +753,7 @@ const northwood: IntelCpu[] = [
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL6D6",
-    stepping: "B0&nbsp;Shrink",
+    stepping: "B0",
     partNumbers: ["RK80532PE051512"],
   },
   {
@@ -784,23 +786,23 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL67Z",
     stepping: "B0",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL6D7",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    stepping: "B0",
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL6EU",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    stepping: "B0",
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -808,7 +810,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6DV",
     stepping: "C1",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -816,7 +818,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6EF",
     stepping: "C1",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -824,7 +826,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6SH",
     stepping: "C1",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -832,7 +834,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6RZ",
     stepping: "C1",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -840,7 +842,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6PC",
     stepping: "D1",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -848,7 +850,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6Q8",
     stepping: "D1",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.4B",
@@ -856,7 +858,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL79B",
     stepping: "M0",
-    partNumbers: ["BX80532PE2400D","RK80532PE056512"],
+    partNumbers: ["BX80532PE2400D", "RK80532PE056512"],
   },
   {
     name: "Pentium 4 2.53",
@@ -864,7 +866,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL682",
     stepping: "B0",
-    partNumbers: ["RK80532PE061512","BX80532PE2533D"],
+    partNumbers: ["RK80532PE061512", "BX80532PE2533D"],
   },
   {
     name: "Pentium 4 2.53",
@@ -872,15 +874,15 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6D8",
     stepping: "B0",
-    partNumbers: ["RK80532PE061512","BX80532PE2533D"],
+    partNumbers: ["RK80532PE061512", "BX80532PE2533D"],
   },
   {
     name: "Pentium 4 2.53",
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL6EV",
-    stepping: "B0&nbsp;Shrink",
-    partNumbers: ["RK80532PE061512","BX80532PE2533D"],
+    stepping: "B0",
+    partNumbers: ["RK80532PE061512", "BX80532PE2533D"],
   },
   {
     name: "Pentium 4 2.53",
@@ -888,7 +890,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6EG",
     stepping: "C1",
-    partNumbers: ["RK80532PE061512","BX80532PE2533D"],
+    partNumbers: ["RK80532PE061512", "BX80532PE2533D"],
   },
   {
     name: "Pentium 4 2.53",
@@ -896,7 +898,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6DW",
     stepping: "C1",
-    partNumbers: ["RK80532PE061512","BX80532PE2533D"],
+    partNumbers: ["RK80532PE061512", "BX80532PE2533D"],
   },
   {
     name: "Pentium 4 2.53",
@@ -904,7 +906,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6S2",
     stepping: "C1",
-    partNumbers: ["RK80532PE061512","BX80532PE2533D"],
+    partNumbers: ["RK80532PE061512", "BX80532PE2533D"],
   },
   {
     name: "Pentium 4 2.66",
@@ -944,7 +946,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6HL",
     stepping: "C1",
-    partNumbers: ["BX80532PE2800D","RK80532PE072512"],
+    partNumbers: ["BX80532PE2800D", "RK80532PE072512"],
   },
   {
     name: "Pentium 4 2.8",
@@ -952,7 +954,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6K6",
     stepping: "C1",
-    partNumbers: ["BX80532PE2800D","RK80532PE072512"],
+    partNumbers: ["BX80532PE2800D", "RK80532PE072512"],
   },
   {
     name: "Pentium 4 2.8",
@@ -960,7 +962,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6PF",
     stepping: "D1",
-    partNumbers: ["BX80532PE2800D","RK80532PE072512"],
+    partNumbers: ["BX80532PE2800D", "RK80532PE072512"],
   },
   {
     name: "Pentium 4 2.8",
@@ -968,7 +970,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6QB",
     stepping: "D1",
-    partNumbers: ["BX80532PE2800D","RK80532PE072512"],
+    partNumbers: ["BX80532PE2800D", "RK80532PE072512"],
   },
   {
     name: "Pentium 4 2.8",
@@ -976,7 +978,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6S4",
     stepping: "C1",
-    partNumbers: ["BX80532PE2800D","RK80532PE072512"],
+    partNumbers: ["BX80532PE2800D", "RK80532PE072512"],
   },
   {
     name: "Pentium 4 SFF 1.6",
@@ -991,7 +993,7 @@ const northwood: IntelCpu[] = [
     socket: "Socket 478",
     codeName: "Northwood",
     sSpec: "SL6E3",
-    stepping: "B0&nbsp;Shrink",
+    stepping: "B0",
     partNumbers: ["RK80534PC025512"],
   },
   {
@@ -1048,7 +1050,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6WJ",
     stepping: "D1",
-    partNumbers: ["RK80532PG072512","RK80532RC052128"],
+    partNumbers: ["RK80532PG072512", "RK80532RC052128"],
   },
   {
     name: "Pentium 4 HT 2.8C",
@@ -1056,7 +1058,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6WT",
     stepping: "D1",
-    partNumbers: ["RK80532PG072512","RK80532RC052128"],
+    partNumbers: ["RK80532PG072512", "RK80532RC052128"],
   },
   {
     name: "Pentium 4 HT 2.8C",
@@ -1064,7 +1066,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL78Y",
     stepping: "D1",
-    partNumbers: ["RK80532PG072512","RK80532RC052128"],
+    partNumbers: ["RK80532PG072512", "RK80532RC052128"],
   },
   {
     name: "Pentium 4 HT 2.8C",
@@ -1072,7 +1074,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6Z5",
     stepping: "M0",
-    partNumbers: ["RK80532PG072512","RK80532RC052128"],
+    partNumbers: ["RK80532PG072512", "RK80532RC052128"],
   },
   {
     name: "Pentium 4 HT 3.0",
@@ -1104,7 +1106,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6K7",
     stepping: "C1",
-    partNumbers: ["BX80532PE3066D","RK80532PE083512"],
+    partNumbers: ["BX80532PE3066D", "RK80532PE083512"],
   },
   {
     name: "Pentium 4 HT 3.06",
@@ -1112,7 +1114,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6JJ",
     stepping: "C1",
-    partNumbers: ["BX80532PE3066D","RK80532PE083512"],
+    partNumbers: ["BX80532PE3066D", "RK80532PE083512"],
   },
   {
     name: "Pentium 4 HT 3.06",
@@ -1120,7 +1122,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6S5",
     stepping: "C1",
-    partNumbers: ["BX80532PE3066D","RK80532PE083512"],
+    partNumbers: ["BX80532PE3066D", "RK80532PE083512"],
   },
   {
     name: "Pentium 4 HT 3.06",
@@ -1128,7 +1130,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6SM",
     stepping: "C1",
-    partNumbers: ["BX80532PE3066D","RK80532PE083512"],
+    partNumbers: ["BX80532PE3066D", "RK80532PE083512"],
   },
   {
     name: "Pentium 4 HT 3.06",
@@ -1136,7 +1138,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6PG",
     stepping: "D1",
-    partNumbers: ["BX80532PE3066D","RK80532PE083512"],
+    partNumbers: ["BX80532PE3066D", "RK80532PE083512"],
   },
   {
     name: "Pentium 4 HT 3.06",
@@ -1144,7 +1146,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6QC",
     stepping: "D1",
-    partNumbers: ["BX80532PE3066D","RK80532PE083512"],
+    partNumbers: ["BX80532PE3066D", "RK80532PE083512"],
   },
   {
     name: "Pentium 4 HT 3.2",
@@ -1152,7 +1154,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL792",
     stepping: "D1",
-    partNumbers: ["RK80532PG088512","BX80532PG3200D"],
+    partNumbers: ["RK80532PG088512", "BX80532PG3200D"],
   },
   {
     name: "Pentium 4 HT 3.2",
@@ -1160,7 +1162,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6WG",
     stepping: "D1",
-    partNumbers: ["RK80532PG088512","BX80532PG3200D"],
+    partNumbers: ["RK80532PG088512", "BX80532PG3200D"],
   },
   {
     name: "Pentium 4 HT 3.2",
@@ -1168,7 +1170,7 @@ const northwood: IntelCpu[] = [
     codeName: "Northwood",
     sSpec: "SL6WE",
     stepping: "D1",
-    partNumbers: ["RK80532PG088512","BX80532PG3200D"],
+    partNumbers: ["RK80532PG088512", "BX80532PG3200D"],
   },
   {
     name: "Pentium 4 HT 3.4",
@@ -1187,7 +1189,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7FY",
     stepping: "C0",
-    partNumbers: ["B80546PE0561M","RK80546PG0561M"],
+    partNumbers: ["B80546PE0561M", "RK80546PG0561M"],
   },
   {
     name: "Pentium 4 2.40A",
@@ -1195,7 +1197,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E8",
     stepping: "C1",
-    partNumbers: ["B80546PE0561M","RK80546PG0561M"],
+    partNumbers: ["B80546PE0561M", "RK80546PG0561M"],
   },
   {
     name: "Pentium 4 2.40A",
@@ -1203,7 +1205,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7YP",
     stepping: "D1",
-    partNumbers: ["B80546PE0561M","RK80546PG0561M"],
+    partNumbers: ["B80546PE0561M", "RK80546PG0561M"],
   },
   {
     name: "Pentium 4 2.40A",
@@ -1211,7 +1213,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88F",
     stepping: "E0",
-    partNumbers: ["B80546PE0561M","RK80546PG0561M"],
+    partNumbers: ["B80546PE0561M", "RK80546PG0561M"],
   },
   {
     name: "Pentium 4 2.66A",
@@ -1219,7 +1221,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E9",
     stepping: "C0",
-    partNumbers: ["RK80546PE0671M","BX80546PE2667E"],
+    partNumbers: ["RK80546PE0671M", "BX80546PE2667E"],
   },
   {
     name: "Pentium 4 2.66A",
@@ -1227,7 +1229,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8B3",
     stepping: "E0",
-    partNumbers: ["RK80546PE0671M","BX80546PE2667E"],
+    partNumbers: ["RK80546PE0671M", "BX80546PE2667E"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1235,7 +1237,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7D8",
     stepping: "C1",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1243,7 +1245,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7J4",
     stepping: "D0",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1251,7 +1253,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7K9",
     stepping: "D0",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1259,7 +1261,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KA",
     stepping: "D0",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1267,7 +1269,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E2",
     stepping: "D1",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1275,7 +1277,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KH",
     stepping: "D2",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1283,7 +1285,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PK",
     stepping: "E0",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1291,7 +1293,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88G",
     stepping: "E0",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 2.80A",
@@ -1299,7 +1301,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8JX",
     stepping: "G1",
-    partNumbers: ["RK80546PE0721M","NE80546PE0721M"],
+    partNumbers: ["RK80546PE0721M", "NE80546PE0721M"],
   },
   {
     name: "Pentium 4 505",
@@ -1347,7 +1349,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8U5",
     stepping: "E0",
-    partNumbers: ["HH80547PE0721MN","JM80547PE0721MN"],
+    partNumbers: ["HH80547PE0721MN", "JM80547PE0721MN"],
   },
   {
     name: "Pentium 4 511",
@@ -1355,7 +1357,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL9CJ",
     stepping: "G1",
-    partNumbers: ["HH80547PE0721MN","JM80547PE0721MN"],
+    partNumbers: ["HH80547PE0721MN", "JM80547PE0721MN"],
   },
   {
     name: "Pentium 4 511",
@@ -1363,7 +1365,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8U4",
     stepping: "G1",
-    partNumbers: ["HH80547PE0721MN","JM80547PE0721MN"],
+    partNumbers: ["HH80547PE0721MN", "JM80547PE0721MN"],
   },
   {
     name: "Pentium 4 515",
@@ -1411,7 +1413,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8JA",
     stepping: "E0",
-    partNumbers: ["JM80547PE0831MN","HH80547PE0831MN"],
+    partNumbers: ["JM80547PE0831MN", "HH80547PE0831MN"],
   },
   {
     name: "Pentium 4 519K",
@@ -1419,7 +1421,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8PN",
     stepping: "G1",
-    partNumbers: ["JM80547PE0831MN","HH80547PE0831MN"],
+    partNumbers: ["JM80547PE0831MN", "HH80547PE0831MN"],
   },
   {
     name: "Pentium 4 HT 2.8E",
@@ -1427,7 +1429,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL79K",
     stepping: "C0",
-    partNumbers: ["RK80546PG0721M","BX80546PG2800E"],
+    partNumbers: ["RK80546PG0721M", "BX80546PG2800E"],
   },
   {
     name: "Pentium 4 HT 2.8E",
@@ -1435,7 +1437,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KA",
     stepping: "C0",
-    partNumbers: ["RK80546PG0721M","BX80546PG2800E"],
+    partNumbers: ["RK80546PG0721M", "BX80546PG2800E"],
   },
   {
     name: "Pentium 4 HT 2.8E",
@@ -1443,7 +1445,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E3",
     stepping: "D0",
-    partNumbers: ["RK80546PG0721M","BX80546PG2800E"],
+    partNumbers: ["RK80546PG0721M", "BX80546PG2800E"],
   },
   {
     name: "Pentium 4 HT 2.8E",
@@ -1451,7 +1453,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PL",
     stepping: "E0",
-    partNumbers: ["RK80546PG0721M","BX80546PG2800E"],
+    partNumbers: ["RK80546PG0721M", "BX80546PG2800E"],
   },
   {
     name: "Pentium 4 HT 2.8E",
@@ -1459,7 +1461,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88H",
     stepping: "E0",
-    partNumbers: ["RK80546PG0721M","BX80546PG2800E"],
+    partNumbers: ["RK80546PG0721M", "BX80546PG2800E"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1467,7 +1469,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8JZ",
     stepping: "G1",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1475,7 +1477,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7L4",
     stepping: "D0",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1483,7 +1485,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E4",
     stepping: "D0",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1491,7 +1493,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88J",
     stepping: "E0",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1499,7 +1501,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL79L",
     stepping: "C0",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1507,7 +1509,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KB",
     stepping: "D0",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.0E",
@@ -1515,7 +1517,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PM",
     stepping: "E0",
-    partNumbers: ["NE80546PG0801M","RK80546PG0801M"],
+    partNumbers: ["NE80546PG0801M", "RK80546PG0801M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1523,7 +1525,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL79M",
     stepping: "C0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1531,7 +1533,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7B8",
     stepping: "C0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1539,7 +1541,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E5",
     stepping: "D0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1547,7 +1549,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7L7",
     stepping: "D0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1555,7 +1557,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PN",
     stepping: "E0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1563,7 +1565,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7QB",
     stepping: "E0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1571,7 +1573,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KC",
     stepping: "C0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1579,7 +1581,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88K",
     stepping: "E0",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2E",
@@ -1587,7 +1589,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8K2",
     stepping: "G1",
-    partNumbers: ["BX80546PG3200E","RK80546PG0881M"],
+    partNumbers: ["BX80546PG3200E", "RK80546PG0881M"],
   },
   {
     name: "Pentium 4 HT 3.2F",
@@ -1603,7 +1605,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7B9",
     stepping: "C0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4E",
@@ -1611,7 +1613,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7AJ",
     stepping: "C0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4E",
@@ -1619,7 +1621,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7E6",
     stepping: "D0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4E",
@@ -1627,7 +1629,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7Q8",
     stepping: "E0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4E",
@@ -1635,7 +1637,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KD",
     stepping: "E0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4E",
@@ -1643,7 +1645,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PP",
     stepping: "E0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4E",
@@ -1651,7 +1653,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88L",
     stepping: "E0",
-    partNumbers: ["RK80546PG0961M\nNE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M\nNE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 3.4F",
@@ -1739,7 +1741,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8HX",
     stepping: "E0",
-    partNumbers: ["JM80547PG0721MM","HH80547PG0721MM"],
+    partNumbers: ["JM80547PG0721MM", "HH80547PG0721MM"],
   },
   {
     name: "Pentium 4 HT 521",
@@ -1747,7 +1749,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8PP",
     stepping: "G1",
-    partNumbers: ["JM80547PG0721MM","HH80547PG0721MM"],
+    partNumbers: ["JM80547PG0721MM", "HH80547PG0721MM"],
   },
   {
     name: "Pentium 4 HT 521",
@@ -1755,7 +1757,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL9CG",
     stepping: "G1",
-    partNumbers: ["JM80547PG0721MM","HH80547PG0721MM"],
+    partNumbers: ["JM80547PG0721MM", "HH80547PG0721MM"],
   },
   {
     name: "Pentium 4 HT 524",
@@ -1827,7 +1829,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8HZ",
     stepping: "E0",
-    partNumbers: ["JM80547PG0801M","HH80547PG0801M"],
+    partNumbers: ["JM80547PG0801M", "HH80547PG0801M"],
   },
   {
     name: "Pentium 4 HT 531",
@@ -1835,7 +1837,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8PQ",
     stepping: "G1",
-    partNumbers: ["JM80547PG0801M","HH80547PG0801M"],
+    partNumbers: ["JM80547PG0801M", "HH80547PG0801M"],
   },
   {
     name: "Pentium 4 HT 531",
@@ -1843,7 +1845,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL9CB",
     stepping: "G1",
-    partNumbers: ["JM80547PG0801M","HH80547PG0801M"],
+    partNumbers: ["JM80547PG0801M", "HH80547PG0801M"],
   },
   {
     name: "Pentium 4 HT 540",
@@ -1883,7 +1885,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL9C6",
     stepping: "G1",
-    partNumbers: ["JM80547PG0881MM","HH80547PG0881MM"],
+    partNumbers: ["JM80547PG0881MM", "HH80547PG0881MM"],
   },
   {
     name: "Pentium 4 HT 541",
@@ -1891,7 +1893,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8PR",
     stepping: "G1",
-    partNumbers: ["JM80547PG0881MM","HH80547PG0881MM"],
+    partNumbers: ["JM80547PG0881MM", "HH80547PG0881MM"],
   },
   {
     name: "Pentium 4 HT 541",
@@ -1899,7 +1901,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8J2",
     stepping: "E0",
-    partNumbers: ["JM80547PG0881MM","HH80547PG0881MM"],
+    partNumbers: ["JM80547PG0881MM", "HH80547PG0881MM"],
   },
   {
     name: "Pentium 4 HT 550",
@@ -1923,7 +1925,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PP",
     stepping: "E0",
-    partNumbers: ["BX80546PG0961M","RK80546PG0961M"],
+    partNumbers: ["BX80546PG0961M", "RK80546PG0961M"],
   },
   {
     name: "Pentium 4 HT 550",
@@ -1931,7 +1933,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL88L",
     stepping: "E0",
-    partNumbers: ["BX80546PG0961M","RK80546PG0961M"],
+    partNumbers: ["BX80546PG0961M", "RK80546PG0961M"],
   },
   {
     name: "Pentium 4 HT 550",
@@ -1939,7 +1941,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7KD",
     stepping: "E0",
-    partNumbers: ["BX80546PG0961M","RK80546PG0961M"],
+    partNumbers: ["BX80546PG0961M", "RK80546PG0961M"],
   },
   {
     name: "Pentium 4 HT 550",
@@ -1947,7 +1949,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8K4",
     stepping: "G1",
-    partNumbers: ["RK80546PG0961M","NE80546PG0961M","BX80546PG3400E"],
+    partNumbers: ["RK80546PG0961M", "NE80546PG0961M", "BX80546PG3400E"],
   },
   {
     name: "Pentium 4 HT 550J",
@@ -1971,7 +1973,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8PS",
     stepping: "E0",
-    partNumbers: ["JM80547PG0961MM","HH80547PG0961MM"],
+    partNumbers: ["JM80547PG0961MM", "HH80547PG0961MM"],
   },
   {
     name: "Pentium 4 HT 551",
@@ -1979,7 +1981,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL7PZ",
     stepping: "E0",
-    partNumbers: ["JM80547PG0961MM","HH80547PG0961MM"],
+    partNumbers: ["JM80547PG0961MM", "HH80547PG0961MM"],
   },
   {
     name: "Pentium 4 HT 551",
@@ -1987,7 +1989,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL9C5",
     stepping: "E0",
-    partNumbers: ["JM80547PG0961MM","HH80547PG0961MM"],
+    partNumbers: ["JM80547PG0961MM", "HH80547PG0961MM"],
   },
   {
     name: "Pentium 4 HT 551",
@@ -1995,7 +1997,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8J5",
     stepping: "D0",
-    partNumbers: ["JM80547PG0961MM","HH80547PG0961MM"],
+    partNumbers: ["JM80547PG0961MM", "HH80547PG0961MM"],
   },
   {
     name: "Pentium 4 HT 560",
@@ -2059,7 +2061,7 @@ const prescott: IntelCpu[] = [
     codeName: "Prescott",
     sSpec: "SL8J7",
     stepping: "E0",
-    partNumbers: ["JM80547PG1121MM","JM80547PG1121M"],
+    partNumbers: ["JM80547PG1121MM", "JM80547PG1121M"],
   },
   {
     name: "Pentium 4 HT 580[27]",
@@ -2076,7 +2078,7 @@ const prescott2M: IntelCpu[] = [
     codeName: "Prescott 2M",
     sSpec: "SL8AB",
     stepping: "N0",
-    partNumbers: ["JM80547PG0722MM","JM80547PH1072MM"],
+    partNumbers: ["JM80547PG0722MM", "JM80547PH1072MM"],
   },
   {
     name: "Pentium 4 HT 630",
@@ -2330,7 +2332,7 @@ const gallatin: IntelCpu[] = [
     codeName: "Gallatin",
     sSpec: "SL7AA",
     stepping: "M0",
-    partNumbers: ["BX80532PG3200F","RK80532PG0882M"],
+    partNumbers: ["BX80532PG3200F", "RK80532PG0882M"],
   },
   {
     name: "Pentium 4 Extreme Edition 3.4",
@@ -2338,7 +2340,7 @@ const gallatin: IntelCpu[] = [
     codeName: "Gallatin",
     sSpec: "SL7CH",
     stepping: "M0",
-    partNumbers: ["BX80532PG3400F","RK80532PG0962M"],
+    partNumbers: ["BX80532PG3400F", "RK80532PG0962M"],
   },
   {
     name: "Pentium 4 Extreme Edition 3.4",
@@ -2346,7 +2348,7 @@ const gallatin: IntelCpu[] = [
     codeName: "Gallatin",
     sSpec: "SL7GD",
     stepping: "M0",
-    partNumbers: ["BX80532PH3400FS","JM80532PG0962M"],
+    partNumbers: ["BX80532PH3400FS", "JM80532PG0962M"],
   },
   {
     name: "Pentium 4 Extreme Edition 3.4",
@@ -2354,7 +2356,7 @@ const gallatin: IntelCpu[] = [
     codeName: "Gallatin",
     sSpec: "SL7RR",
     stepping: "M0",
-    partNumbers: ["BX80532PH3400FS","B80532PG0962MS"],
+    partNumbers: ["BX80532PH3400FS", "B80532PG0962MS"],
   },
   {
     name: "Pentium 4 Extreme Edition 3.46",
@@ -2362,7 +2364,7 @@ const gallatin: IntelCpu[] = [
     codeName: "Gallatin",
     sSpec: "SL7NF",
     stepping: "M0",
-    partNumbers: ["BX80532PH3460FS","JM80532PH0992M"],
+    partNumbers: ["BX80532PH3460FS", "JM80532PH0992M"],
   },
   {
     name: "Pentium 4 Extreme Edition 3.46",
@@ -2370,7 +2372,7 @@ const gallatin: IntelCpu[] = [
     codeName: "Gallatin",
     sSpec: "SL7RT",
     stepping: "M0",
-    partNumbers: ["BX80532PH3460FS","B80532PH0992MS"],
+    partNumbers: ["BX80532PH3460FS", "B80532PH0992MS"],
   },
 ];
 
