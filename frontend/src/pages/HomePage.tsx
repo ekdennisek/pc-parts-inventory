@@ -268,6 +268,14 @@ export const HomePage: React.FC = () => {
                   <div className="part-type-badge" data-type={part.partType}>
                     {PART_TYPES[part.partType]}
                   </div>
+                  {part.condition && (
+                    <div
+                      className="part-condition-badge"
+                      data-condition={part.condition}
+                    >
+                      {part.condition === "working" ? "Working" : "Defective"}
+                    </div>
+                  )}
                   <PartCard part={part} />
                 </div>
               ))}

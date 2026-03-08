@@ -262,6 +262,14 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
           {part.releaseYear}
         </div>
       )}
+      {part.condition && (
+        <div
+          className="part-condition-badge"
+          data-condition={part.condition}
+        >
+          {part.condition === "working" ? "Working" : "Defective"}
+        </div>
+      )}
       <div className="detailed-part-card">
         <PartCard
           part={part}

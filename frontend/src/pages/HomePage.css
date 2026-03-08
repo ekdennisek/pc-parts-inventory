@@ -273,6 +273,30 @@
   --badge-color: #ec4899; /* Pink */
 }
 
+/* Condition badge */
+.part-condition-badge {
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.part-condition-badge[data-condition="working"] {
+  background-color: #10b981;
+}
+
+.part-condition-badge[data-condition="defective"] {
+  background-color: #ef4444;
+}
+
 .no-results {
   text-align: center;
   padding: 3rem;
