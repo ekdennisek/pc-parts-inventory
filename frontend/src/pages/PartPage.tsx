@@ -1,18 +1,23 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
-import { QuickFilters } from "../components/QuickFilters";
-import { ReleaseYearFilter } from "../components/ReleaseYearFilter";
+import { FilterDropdown } from "../components/FilterDropdown";
+import { FilterBar } from "../components/FilterBar";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
 import type { PartType, CPU, Motherboard, GraphicsCard, Case, Storage, CpuSocket, MotherboardFormFactor, StorageFormFactor } from "../types";
 import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor, motherboardFormFactors, storageFormFactors, storageInterfaces } from "../types";
+import type { FilterOption } from "../components/FilterDropdown";
 import "./PartPage.css";
 
 type SortOption = "standard";
 
-const conditionOptions = ["Working", "Defective", "Unknown"] as const;
+const conditionFilterOptions: FilterOption[] = [
+  { value: "Working", label: "Working", colorClass: "working" },
+  { value: "Defective", label: "Defective", colorClass: "defective" },
+  { value: "Unknown", label: "Unknown", colorClass: "unknown" },
+];
 
 export const PartPage: React.FC = () => {
   const { partType } = useParams<{ partType: PartType }>();
@@ -21,17 +26,16 @@ export const PartPage: React.FC = () => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedFormFactors, setSelectedFormFactors] = useState<string[]>([]);
   const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
-  const [yearRangeFilter, setYearRangeFilter] = useState<{
-    min: number | null;
-    max: number | null;
-  }>({ min: null, max: null });
+  const [yearFrom, setYearFrom] = useState<string | null>(null);
+  const [yearTo, setYearTo] = useState<string | null>(null);
 
   // Clear filters when switching between component pages
   useEffect(() => {
     setSelectedFilters([]);
     setSelectedFormFactors([]);
     setSelectedConditions([]);
-    setYearRangeFilter({ min: null, max: null });
+    setYearFrom(null);
+    setYearTo(null);
   }, [partType]);
 
   // Get parts for the current part type
@@ -42,54 +46,56 @@ export const PartPage: React.FC = () => {
     return allParts[partType];
   }, [partType]);
 
-  // Calculate min and max year from all parts of current type (with release years only)
-  const { minYear, maxYear } = useMemo(() => {
-    const partsWithYears = parts.filter((part) => part.releaseYear !== undefined);
-    if (partsWithYears.length === 0) {
-      return { minYear: new Date().getFullYear(), maxYear: new Date().getFullYear() };
-    }
-    const years = partsWithYears.map((part) => part.releaseYear!);
-    return {
-      minYear: Math.min(...years),
-      maxYear: Math.max(...years),
-    };
+  // Compute year options from parts data
+  const yearOptions = useMemo(() => {
+    const years = parts
+      .filter((p) => p.releaseYear !== undefined)
+      .map((p) => p.releaseYear!);
+    const unique = [...new Set(years)].sort((a, b) => a - b);
+    return unique.map((y) => ({ value: String(y), label: String(y) }));
   }, [parts]);
 
   // Helper function to get socket sort order
   const getSocketSortOrder = (socket: CpuSocket): number => {
-    // Intel sockets come first
     const intelIndex = (intelSockets as readonly string[]).indexOf(socket);
-    if (intelIndex !== -1) {
-      return intelIndex;
-    }
-
-    // AMD sockets come after Intel sockets
+    if (intelIndex !== -1) return intelIndex;
     const amdIndex = (amdSockets as readonly string[]).indexOf(socket);
-    if (amdIndex !== -1) {
-      return intelSockets.length + amdIndex;
-    }
-
-    // Unknown sockets at the end
+    if (amdIndex !== -1) return intelSockets.length + amdIndex;
     return intelSockets.length + amdSockets.length;
   };
 
-  // Get available filters based on part type
-  const availableFilters = useMemo(() => {
+  // Build filter options based on part type
+  const socketInterfaceOptions: FilterOption[] = useMemo(() => {
     if (partType === "cpu" || partType === "motherboard") {
-      return [...intelSockets, ...amdSockets];
+      return [...intelSockets, ...amdSockets].map((s) => {
+        const color = getSocketColor(s as CpuSocket);
+        return {
+          value: s,
+          label: s,
+          colorClass: color === "unknown" ? "default" : color,
+        } as FilterOption;
+      });
     } else if (partType === "graphicsCard") {
-      return [...gpuInterfaces];
+      return [...gpuInterfaces].map((i) => ({ value: i, label: i }));
     } else if (partType === "storage") {
-      return [...storageInterfaces];
+      return [...storageInterfaces].map((i) => ({ value: i, label: i }));
     }
     return [];
   }, [partType]);
 
-  // Filter parts based on search term, quick filters, condition, and year range
+  const formFactorOptions: FilterOption[] = useMemo(() => {
+    if (partType === "motherboard" || partType === "case") {
+      return [...motherboardFormFactors].map((f) => ({ value: f, label: f }));
+    } else if (partType === "storage") {
+      return [...storageFormFactors].map((f) => ({ value: f, label: f }));
+    }
+    return [];
+  }, [partType]);
+
+  // Filter parts
   const filteredParts = useMemo(() => {
     let filtered = [...parts];
 
-    // Apply search filter
     if (searchTerm.trim()) {
       const searchLower = searchTerm.toLowerCase();
       filtered = filtered.filter(
@@ -100,7 +106,6 @@ export const PartPage: React.FC = () => {
       );
     }
 
-    // Apply form factor filters for motherboards
     if (partType === "motherboard" && selectedFormFactors.length > 0) {
       filtered = filtered.filter((part) => {
         const p = part as Motherboard;
@@ -108,7 +113,6 @@ export const PartPage: React.FC = () => {
       });
     }
 
-    // Apply form factor filters for cases
     if (partType === "case" && selectedFormFactors.length > 0) {
       filtered = filtered.filter((part) => {
         const p = part as Case;
@@ -118,7 +122,6 @@ export const PartPage: React.FC = () => {
       });
     }
 
-    // Apply form factor filters for storage
     if (partType === "storage" && selectedFormFactors.length > 0) {
       filtered = filtered.filter((part) => {
         const p = part as Storage;
@@ -126,7 +129,6 @@ export const PartPage: React.FC = () => {
       });
     }
 
-    // Apply quick filters
     if (selectedFilters.length > 0) {
       if (partType === "cpu" || partType === "motherboard") {
         filtered = filtered.filter((part) => {
@@ -146,7 +148,6 @@ export const PartPage: React.FC = () => {
       }
     }
 
-    // Apply condition filter
     if (selectedConditions.length > 0) {
       filtered = filtered.filter((part) => {
         return selectedConditions.some((condition) => {
@@ -158,65 +159,41 @@ export const PartPage: React.FC = () => {
       });
     }
 
-    // Apply year range filter
-    const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+    const isYearFilterActive = yearFrom !== null || yearTo !== null;
     if (isYearFilterActive) {
       filtered = filtered.filter((part) => {
-        // Hide parts without release year when filter is active
-        if (part.releaseYear === undefined) {
-          return false;
-        }
-        const min = yearRangeFilter.min ?? minYear;
-        const max = yearRangeFilter.max ?? maxYear;
-        return part.releaseYear >= min && part.releaseYear <= max;
+        if (part.releaseYear === undefined) return false;
+        if (yearFrom !== null && part.releaseYear < parseInt(yearFrom)) return false;
+        if (yearTo !== null && part.releaseYear > parseInt(yearTo)) return false;
+        return true;
       });
     }
 
     return filtered;
-  }, [parts, searchTerm, selectedFilters, selectedFormFactors, selectedConditions, partType, yearRangeFilter, minYear, maxYear]);
+  }, [parts, searchTerm, selectedFilters, selectedFormFactors, selectedConditions, partType, yearFrom, yearTo]);
 
-  // Sort parts based on sort option
+  // Sort parts
   const sortedParts = useMemo(() => {
     if (
       sortOption === "standard" &&
       (partType === "motherboard" || partType === "cpu")
     ) {
-      // Sort by socket order for CPU and motherboard parts
       return [...filteredParts].sort((a, b) => {
         const partA = a as CPU | Motherboard;
         const partB = b as CPU | Motherboard;
-
         const socketOrderA = getSocketSortOrder(partA.socket);
         const socketOrderB = getSocketSortOrder(partB.socket);
-
-        if (socketOrderA !== socketOrderB) {
-          return socketOrderA - socketOrderB;
-        }
-
-        // If same socket, sort by name
+        if (socketOrderA !== socketOrderB) return socketOrderA - socketOrderB;
         return partA.name.localeCompare(partB.name);
       });
     }
-
-    // For other part types or sort options, return as is
     return filteredParts;
   }, [filteredParts, sortOption, partType]);
 
-  const handleYearRangeChange = (min: number, max: number) => {
-    setYearRangeFilter({ min, max });
-  };
+  const isYearFilterActive = yearFrom !== null || yearTo !== null;
+  const hasActiveFilters = searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0 || selectedConditions.length > 0 || isYearFilterActive;
 
-  const handleClearYearFilter = () => {
-    setYearRangeFilter({ min: null, max: null });
-  };
-
-  const getConditionColor = (condition: string): "working" | "defective" | "unknown" => {
-    if (condition === "Working") return "working";
-    if (condition === "Defective") return "defective";
-    return "unknown";
-  };
-
-  const isYearFilterActive = yearRangeFilter.min !== null || yearRangeFilter.max !== null;
+  const socketInterfaceLabel = partType === "graphicsCard" || partType === "storage" ? "Interface" : "Socket";
 
   // Handle invalid part type
   if (!partType || !allParts[partType]) {
@@ -263,60 +240,57 @@ export const PartPage: React.FC = () => {
           )}
         </div>
 
-        {(partType === "motherboard" || partType === "case") && (
-          <QuickFilters
-            filters={motherboardFormFactors}
-            selectedFilters={selectedFormFactors}
-            onFilterChange={setSelectedFormFactors}
-            filterType="formFactor"
+        <FilterBar>
+          {formFactorOptions.length > 0 && (
+            <FilterDropdown
+              label="Form Factor"
+              options={formFactorOptions}
+              mode="multi"
+              selectedValues={selectedFormFactors}
+              onChange={setSelectedFormFactors}
+            />
+          )}
+
+          {socketInterfaceOptions.length > 0 && (
+            <FilterDropdown
+              label={socketInterfaceLabel}
+              options={socketInterfaceOptions}
+              mode="multi"
+              selectedValues={selectedFilters}
+              onChange={setSelectedFilters}
+            />
+          )}
+
+          <FilterDropdown
+            label="Condition"
+            options={conditionFilterOptions}
+            mode="multi"
+            selectedValues={selectedConditions}
+            onChange={setSelectedConditions}
           />
-        )}
 
-        {partType === "storage" && (
-          <QuickFilters
-            filters={storageFormFactors}
-            selectedFilters={selectedFormFactors}
-            onFilterChange={setSelectedFormFactors}
-            filterType="formFactor"
-          />
-        )}
+          {yearOptions.length > 0 && (
+            <FilterDropdown
+              label="Year From"
+              options={yearOptions}
+              mode="single"
+              selectedValue={yearFrom}
+              onChange={setYearFrom}
+            />
+          )}
 
-        {availableFilters.length > 0 && (
-          <QuickFilters
-            filters={availableFilters}
-            selectedFilters={selectedFilters}
-            onFilterChange={setSelectedFilters}
-            filterType={partType === "graphicsCard" || partType === "storage" ? "interface" : "socket"}
-            getFilterColor={
-              partType === "cpu" || partType === "motherboard"
-                ? (filter: string) => {
-                    const color = getSocketColor(filter as CpuSocket);
-                    return color === "unknown" ? "default" : color;
-                  }
-                : undefined
-            }
-          />
-        )}
+          {yearOptions.length > 0 && (
+            <FilterDropdown
+              label="Year To"
+              options={yearOptions}
+              mode="single"
+              selectedValue={yearTo}
+              onChange={setYearTo}
+            />
+          )}
+        </FilterBar>
 
-        <QuickFilters
-          filters={conditionOptions}
-          selectedFilters={selectedConditions}
-          onFilterChange={setSelectedConditions}
-          filterType="condition"
-          getFilterColor={getConditionColor}
-        />
-
-        <ReleaseYearFilter
-          minYear={minYear}
-          maxYear={maxYear}
-          selectedMin={yearRangeFilter.min}
-          selectedMax={yearRangeFilter.max}
-          onRangeChange={handleYearRangeChange}
-          onClear={handleClearYearFilter}
-          isActive={isYearFilterActive}
-        />
-
-        {(searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0 || selectedConditions.length > 0 || isYearFilterActive) && (
+        {hasActiveFilters && (
           <p className="search-results-info">
             Found {filteredParts.length} {partTypeLabel.toLowerCase()}
             {searchTerm && ` matching "${searchTerm}"`}
@@ -333,24 +307,11 @@ export const PartPage: React.FC = () => {
               ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
             {selectedConditions.length > 0 && isYearFilterActive && " and"}
             {isYearFilterActive &&
-              ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 ? "" : "with "}release year ${yearRangeFilter.min ?? minYear}–${yearRangeFilter.max ?? maxYear}`}
+              ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
           </p>
         )}
 
-        {partType === "motherboard" && (
-          <div className="socket-legend">
-            <div className="legend-item">
-              <div className="legend-color intel-color"></div>
-              <span>Intel Sockets</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color amd-color"></div>
-              <span>AMD Sockets</span>
-            </div>
-          </div>
-        )}
-
-        {partType === "cpu" && (
+        {(partType === "motherboard" || partType === "cpu") && (
           <div className="socket-legend">
             <div className="legend-item">
               <div className="legend-color intel-color"></div>

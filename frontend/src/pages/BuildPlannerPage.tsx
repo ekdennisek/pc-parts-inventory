@@ -19,7 +19,7 @@ import { powerSupplies } from "../data/powerSupplies";
 import { graphicsCards } from "../data/gpus";
 import { motherboardFormFactors } from "../types";
 import { PartCard } from "../components/PartCard";
-import { QuickFilters } from "../components/QuickFilters";
+import { FilterDropdown } from "../components/FilterDropdown";
 import "./BuildPlannerPage.css";
 
 export const BuildPlannerPage: React.FC = () => {
@@ -550,13 +550,14 @@ export const BuildPlannerPage: React.FC = () => {
                 compatible form factors.
               </p>
 
-              <QuickFilters
-                filters={[...motherboardFormFactors]}
-                selectedFilters={selectedFormFactors}
-                onFilterChange={(filters) =>
-                  setSelectedFormFactors(filters as MotherboardFormFactor[])
+              <FilterDropdown
+                label="Form Factor"
+                options={[...motherboardFormFactors].map((f) => ({ value: f, label: f }))}
+                mode="multi"
+                selectedValues={selectedFormFactors}
+                onChange={(values) =>
+                  setSelectedFormFactors(values as MotherboardFormFactor[])
                 }
-                filterType="formFactor"
               />
 
               <div className="parts-grid">
