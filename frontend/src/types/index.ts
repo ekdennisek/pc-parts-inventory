@@ -1,53 +1,4 @@
-export const intelSockets = [
-  "PGA168",
-  "Socket 1",
-  "Socket 2",
-  "Socket 3",
-  "Socket 4",
-  "Socket 5",
-  "Socket 7",
-  "Socket 8",
-  "Slot 1",
-  "Socket 370",
-  "Socket 423",
-  "Socket 478",
-  "LGA 775",
-  "LGA 1366",
-  "LGA 1156",
-  "LGA 1155",
-  "LGA 2011",
-  "LGA 2011-3",
-  "LGA 2066",
-  "LGA 1150",
-  "LGA 1151-1",
-  "LGA 1151-2",
-  "LGA 1200",
-  "LGA 1700",
-  "LGA 1851",
-] as const;
-export type IntelSocket = (typeof intelSockets)[number];
-
-export const amdSockets = [
-  "Slot A",
-  "Socket A",
-  "Socket 754",
-  "Socket 940",
-  "Socket 939",
-  "Socket F",
-  "Socket AM2",
-  "Socket AM2+",
-  "Socket AM3",
-  "Socket FM1",
-  "Socket AM3+",
-  "Socket FM2",
-  "Socket FM2+",
-  "Socket AM1",
-  "Socket AM4",
-  "Socket AM5",
-] as const;
-export type AmdSocket = (typeof amdSockets)[number];
-
-export type CpuSocket = IntelSocket | AmdSocket;
+import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 
 export const motherboardFormFactors = ["ATX", "Micro ATX", "Mini ITX"] as const;
 export type MotherboardFormFactor = (typeof motherboardFormFactors)[number];
@@ -209,11 +160,11 @@ export interface SavedBuild {
 
 // Utility functions for socket detection
 export const isIntelSocket = (socket: CpuSocket): boolean => {
-  return intelSockets.includes(socket as IntelSocket);
+  return intelSockets.has(socket);
 };
 
 export const isAmdSocket = (socket: CpuSocket): boolean => {
-  return amdSockets.includes(socket as AmdSocket);
+  return amdSockets.has(socket);
 };
 
 export const getSocketColor = (

@@ -1,4 +1,4 @@
-import type { IntelSocket } from "../../types";
+import type { IntelSocket } from "../sockets";
 import { core2 } from "./intel/core2";
 import { pentium4 } from "./intel/pentium4";
 import { pentium } from "./intel/pentium";

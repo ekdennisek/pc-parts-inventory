@@ -6,10 +6,27 @@ import { FilterBar } from "../components/FilterBar";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
-import type { PartType, CPU, Motherboard, GraphicsCard, Case, Storage, CpuSocket, MotherboardFormFactor, StorageFormFactor } from "../types";
-import { PART_TYPES, intelSockets, amdSockets, gpuInterfaces, getSocketColor, motherboardFormFactors, storageFormFactors, storageInterfaces } from "../types";
+import type {
+  PartType,
+  CPU,
+  Motherboard,
+  GraphicsCard,
+  Case,
+  Storage,
+  MotherboardFormFactor,
+  StorageFormFactor,
+} from "../types";
+import {
+  PART_TYPES,
+  gpuInterfaces,
+  getSocketColor,
+  motherboardFormFactors,
+  storageFormFactors,
+  storageInterfaces,
+} from "../types";
 import type { FilterOption } from "../components/FilterDropdown";
 import "./PartPage.css";
+import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 
 type SortOption = "standard";
 
@@ -57,17 +74,17 @@ export const PartPage: React.FC = () => {
 
   // Helper function to get socket sort order
   const getSocketSortOrder = (socket: CpuSocket): number => {
-    const intelIndex = (intelSockets as readonly string[]).indexOf(socket);
-    if (intelIndex !== -1) return intelIndex;
-    const amdIndex = (amdSockets as readonly string[]).indexOf(socket);
-    if (amdIndex !== -1) return intelSockets.length + amdIndex;
-    return intelSockets.length + amdSockets.length;
+    const intel = intelSockets.get(socket);
+    if (intel) return intel.sorting;
+    const amd = amdSockets.get(socket);
+    if (amd) return intelSockets.size + amd.sorting;
+    return intelSockets.size + amdSockets.size;
   };
 
   // Build filter options based on part type
   const socketInterfaceOptions: FilterOption[] = useMemo(() => {
     if (partType === "cpu" || partType === "motherboard") {
-      return [...intelSockets, ...amdSockets].map((s) => {
+      return [...intelSockets.keys(), ...amdSockets.keys()].map((s) => {
         const color = getSocketColor(s as CpuSocket);
         return {
           value: s,
@@ -102,7 +119,7 @@ export const PartPage: React.FC = () => {
         (part) =>
           part.name.toLowerCase().includes(searchLower) ||
           part.brand.toLowerCase().includes(searchLower) ||
-          part.description.toLowerCase().includes(searchLower)
+          part.description.toLowerCase().includes(searchLower),
       );
     }
 
@@ -117,7 +134,7 @@ export const PartPage: React.FC = () => {
       filtered = filtered.filter((part) => {
         const p = part as Case;
         return selectedFormFactors.some((formFactor) =>
-          p.supportedFormFactors.includes(formFactor as MotherboardFormFactor)
+          p.supportedFormFactors.includes(formFactor as MotherboardFormFactor),
         );
       });
     }
@@ -163,14 +180,25 @@ export const PartPage: React.FC = () => {
     if (isYearFilterActive) {
       filtered = filtered.filter((part) => {
         if (part.releaseYear === undefined) return false;
-        if (yearFrom !== null && part.releaseYear < parseInt(yearFrom)) return false;
-        if (yearTo !== null && part.releaseYear > parseInt(yearTo)) return false;
+        if (yearFrom !== null && part.releaseYear < parseInt(yearFrom))
+          return false;
+        if (yearTo !== null && part.releaseYear > parseInt(yearTo))
+          return false;
         return true;
       });
     }
 
     return filtered;
-  }, [parts, searchTerm, selectedFilters, selectedFormFactors, selectedConditions, partType, yearFrom, yearTo]);
+  }, [
+    parts,
+    searchTerm,
+    selectedFilters,
+    selectedFormFactors,
+    selectedConditions,
+    partType,
+    yearFrom,
+    yearTo,
+  ]);
 
   // Sort parts
   const sortedParts = useMemo(() => {
@@ -191,9 +219,17 @@ export const PartPage: React.FC = () => {
   }, [filteredParts, sortOption, partType]);
 
   const isYearFilterActive = yearFrom !== null || yearTo !== null;
-  const hasActiveFilters = searchTerm || selectedFilters.length > 0 || selectedFormFactors.length > 0 || selectedConditions.length > 0 || isYearFilterActive;
+  const hasActiveFilters =
+    searchTerm ||
+    selectedFilters.length > 0 ||
+    selectedFormFactors.length > 0 ||
+    selectedConditions.length > 0 ||
+    isYearFilterActive;
 
-  const socketInterfaceLabel = partType === "graphicsCard" || partType === "storage" ? "Interface" : "Socket";
+  const socketInterfaceLabel =
+    partType === "graphicsCard" || partType === "storage"
+      ? "Interface"
+      : "Socket";
 
   // Handle invalid part type
   if (!partType || !allParts[partType]) {
@@ -294,15 +330,26 @@ export const PartPage: React.FC = () => {
           <p className="search-results-info">
             Found {filteredParts.length} {partTypeLabel.toLowerCase()}
             {searchTerm && ` matching "${searchTerm}"`}
-            {searchTerm && (selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 || isYearFilterActive) && " and"}
+            {searchTerm &&
+              (selectedFormFactors.length > 0 ||
+                selectedFilters.length > 0 ||
+                selectedConditions.length > 0 ||
+                isYearFilterActive) &&
+              " and"}
             {selectedFormFactors.length > 0 &&
               ` filtered by ${selectedFormFactors.length} form factor${selectedFormFactors.length > 1 ? "s" : ""}`}
-            {selectedFormFactors.length > 0 && (selectedFilters.length > 0 || selectedConditions.length > 0 || isYearFilterActive) && " and"}
+            {selectedFormFactors.length > 0 &&
+              (selectedFilters.length > 0 ||
+                selectedConditions.length > 0 ||
+                isYearFilterActive) &&
+              " and"}
             {selectedFilters.length > 0 &&
               ` ${selectedFormFactors.length > 0 ? "" : "filtered by "}${selectedFilters.length} ${
                 partType === "graphicsCard" ? "interface" : "socket"
               }${selectedFilters.length > 1 ? "s" : ""}`}
-            {selectedFilters.length > 0 && (selectedConditions.length > 0 || isYearFilterActive) && " and"}
+            {selectedFilters.length > 0 &&
+              (selectedConditions.length > 0 || isYearFilterActive) &&
+              " and"}
             {selectedConditions.length > 0 &&
               ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
             {selectedConditions.length > 0 && isYearFilterActive && " and"}

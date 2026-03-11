@@ -1,7 +1,8 @@
 import React from "react";
-import type { PCPart, CpuSocket } from "../types";
+import type { PCPart } from "../types";
 import { getSocketColor } from "../types";
 import "./PartCard.css";
+import type { CpuSocket } from "../data/sockets";
 
 interface PartCardProps {
   part: PCPart;

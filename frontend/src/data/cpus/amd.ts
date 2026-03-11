@@ -1,4 +1,4 @@
-import type { AmdSocket } from "../../types";
+import type { AmdSocket } from "../sockets";
 import { athlon } from "./amd/athlon";
 import { athlon64 } from "./amd/athlon64";
 import { athlonIi } from "./amd/athlonIi";

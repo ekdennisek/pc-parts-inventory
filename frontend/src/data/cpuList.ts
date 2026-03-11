@@ -1,6 +1,6 @@
-import type { CpuSocket } from "../types";
 import { amdCpus } from "./cpus/amd";
 import { intelCpus } from "./cpus/intel";
+import type { CpuSocket } from "./sockets";
 
 export interface MasterdataCpu {
   name: string;
@@ -18,9 +18,7 @@ export interface CpuGroup {
   cpus: MasterdataCpu[];
 }
 
-function groupAmdByCodename(
-  entries: typeof amdCpus,
-): CpuGroup[] {
+function groupAmdByCodename(entries: typeof amdCpus): CpuGroup[] {
   const groups: CpuGroup[] = [];
   const seen = new Map<string, CpuGroup>();
 
@@ -48,9 +46,7 @@ function groupAmdByCodename(
   return groups;
 }
 
-function groupIntelByCodename(
-  entries: typeof intelCpus,
-): CpuGroup[] {
+function groupIntelByCodename(entries: typeof intelCpus): CpuGroup[] {
   const groups: CpuGroup[] = [];
   const seen = new Map<string, CpuGroup>();
 
