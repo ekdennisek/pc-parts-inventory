@@ -1,55 +1,109 @@
-.detailed-part-card-wrapper {
-  position: relative;
-  margin-bottom: 2rem;
-}
-
 .detailed-part-card {
-  /* removed margin-bottom as it's now on the wrapper */
+  position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.specifications {
-  margin-top: 1rem;
-  background-color: #f8f9fa;
-  padding: 1rem;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
+.detailed-part-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.spec-item {
+/* Socket color coding */
+.detailed-part-card.socket-intel {
+  border-left: 4px solid #2563eb;
+  background: linear-gradient(to right, rgba(37, 99, 235, 0.05), #fff);
+}
+
+.detailed-part-card.socket-amd {
+  border-left: 4px solid #dc2626;
+  background: linear-gradient(to right, rgba(220, 38, 38, 0.05), #fff);
+}
+
+/* Header */
+.detailed-part-card .part-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.detailed-part-card .part-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.detailed-part-card .part-brand {
+  background-color: #f0f0f0;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.detailed-part-card .part-description {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+/* Specifications */
+.detailed-part-card .specifications {
+  margin-top: auto;
+  border-top: 1px solid #e9ecef;
+  padding-top: 0.75rem;
+}
+
+.detailed-part-card .spec-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e9ecef;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.spec-item:last-child {
+.detailed-part-card .spec-item:last-child {
   border-bottom: none;
 }
 
-.spec-label {
-  font-weight: 600;
-  color: #495057;
-  font-size: 0.9rem;
+.detailed-part-card .spec-label {
+  font-weight: 500;
+  color: #6c757d;
+  font-size: 0.8rem;
 }
 
-.spec-value {
-  font-weight: 500;
+.detailed-part-card .spec-value {
+  font-weight: 600;
   color: #212529;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: right;
 }
 
-/* Release year badge styling (same as home page type badges) */
+/* Release year badge */
 .part-year-badge {
   position: absolute;
   top: -0.5rem;
   right: -0.5rem;
   background-color: var(--badge-color, #007acc);
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -57,29 +111,32 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Part type badge colors (matching home page) */
 .part-year-badge[data-type="cpu"] {
-  --badge-color: #3b82f6; /* Blue */
+  --badge-color: #3b82f6;
 }
 
 .part-year-badge[data-type="motherboard"] {
-  --badge-color: #10b981; /* Emerald */
+  --badge-color: #10b981;
 }
 
 .part-year-badge[data-type="powerSupply"] {
-  --badge-color: #f59e0b; /* Amber */
+  --badge-color: #f59e0b;
 }
 
 .part-year-badge[data-type="graphicsCard"] {
-  --badge-color: #ef4444; /* Red */
+  --badge-color: #ef4444;
 }
 
 .part-year-badge[data-type="ram"] {
-  --badge-color: #ec4899; /* Pink */
+  --badge-color: #ec4899;
 }
 
 .part-year-badge[data-type="case"] {
-  --badge-color: #8b5cf6; /* Purple */
+  --badge-color: #8b5cf6;
+}
+
+.part-year-badge[data-type="storage"] {
+  --badge-color: #6366f1;
 }
 
 /* Condition badge */
@@ -88,9 +145,9 @@
   top: -0.5rem;
   left: -0.5rem;
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
