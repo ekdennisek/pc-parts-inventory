@@ -567,7 +567,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectCase(pcCase)}
                     className="clickable"
                   >
-                    <PartCard part={pcCase} />
+                    <PartCard part={pcCase} partType="case" />
                   </div>
                 ))}
               </div>
@@ -599,7 +599,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectMotherboard(motherboard)}
                     className="clickable"
                   >
-                    <PartCard part={motherboard} socket={motherboard.socket} />
+                    <PartCard part={motherboard} socket={motherboard.socket} partType="motherboard" />
                   </div>
                 ))}
               </div>
@@ -630,7 +630,7 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => selectCPU(cpu)}
                       className="clickable"
                     >
-                      <PartCard part={cpu} />
+                      <PartCard part={cpu} partType="cpu" />
                     </div>
                   ))}
                 </div>
@@ -676,7 +676,7 @@ export const BuildPlannerPage: React.FC = () => {
                             isSelected ? "selected" : ""
                           } ${!canSelect ? "disabled" : ""}`}
                         >
-                          <PartCard part={ramModule} />
+                          <PartCard part={ramModule} partType="ram" />
                           {isSelected && (
                             <div className="selected-indicator">Selected</div>
                           )}
@@ -712,7 +712,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectPowerSupply(psu)}
                     className="clickable"
                   >
-                    <PartCard part={psu} />
+                    <PartCard part={psu} partType="powerSupply" />
                   </div>
                 ))}
               </div>
@@ -735,7 +735,7 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => toggleGraphicsCard(gpu)}
                       className={`clickable ${isSelected ? "selected" : ""}`}
                     >
-                      <PartCard part={gpu} />
+                      <PartCard part={gpu} partType="graphicsCard" />
                       {isSelected && (
                         <div className="selected-indicator">Selected</div>
                       )}
