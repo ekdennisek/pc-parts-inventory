@@ -13,6 +13,8 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2006,
     codename: "Conroe",
+    sSpec: "SL9ZL",
+    condition: "working",
   },
   {
     id: "cpu-2",
@@ -235,6 +237,8 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2010,
     codename: "Wolfdale",
+    sSpec: "SLGTJ",
+    condition: "defective",
   },
   {
     id: "cpu-18",
@@ -291,6 +295,8 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2008,
     codename: "Wolfdale",
+    sSpec: "SLB9K",
+    condition: "working",
   },
   {
     id: "cpu-22",
@@ -360,6 +366,8 @@ export const cpus: CPU[] = [
     tdp: 95,
     releaseYear: 2007,
     codename: "Kentsfield",
+    condition: "working",
+    sSpec: "SLACR",
   },
   {
     id: "cpu-27",
@@ -613,6 +621,8 @@ export const cpus: CPU[] = [
     tdp: 95,
     releaseYear: 2008,
     codename: "Yorkfield",
+    sSpec: "SLGUR",
+    condition: "defective",
   },
   {
     id: "cpu-45",
