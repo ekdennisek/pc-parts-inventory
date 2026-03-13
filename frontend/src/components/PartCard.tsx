@@ -15,6 +15,11 @@ export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType }) =>
 
   return (
     <div className={`part-card ${socketColorClass}`}>
+      {part.condition && (
+        <div className="part-condition-badge" data-condition={part.condition}>
+          {part.condition}
+        </div>
+      )}
       {part.releaseYear && (
         <div className="part-year-badge" data-type={partType}>
           {part.releaseYear}
