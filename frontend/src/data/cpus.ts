@@ -598,6 +598,8 @@ export const cpus: CPU[] = [
     tdp: 95,
     releaseYear: 2007,
     codename: "Kentsfield",
+    condition: "working",
+    sSpec: "SLACR",
   },
   {
     id: "cpu-44",
