@@ -7,7 +7,7 @@ export const cases: Case[] = [
     brand: "Hyrican",
     description:
       "mATX case, probably from 2015 (see https://web.archive.org/web/20150917052923/http://www.hyrican.de/index.php/produkte/gaming/cyber-gamer/)",
-    supportedFormFactors: ["Micro ATX"], // TODO mini ITX?
+    supportedFormFactors: ["Micro ATX", "Mini ITX"],
     external525Drives: 2,
     external35Drives: 1,
     glassPanel: false,
@@ -32,7 +32,7 @@ export const cases: Case[] = [
     name: "Lian Li PC-7B Plus II",
     brand: "Lian Li",
     description: "ATX case with aluminum body",
-    supportedFormFactors: ["ATX", "Micro ATX"], // TODO mini ITX?
+    supportedFormFactors: ["ATX", "Micro ATX", "Mini ITX"],
     external525Drives: 4,
     external35Drives: 2,
     glassPanel: false,
@@ -44,7 +44,7 @@ export const cases: Case[] = [
     name: "Eagle Tech BAX-4638",
     brand: "Eagle Tech",
     description: "ATX case with alumin body",
-    supportedFormFactors: ["ATX"], // TODO more?
+    supportedFormFactors: ["ATX", "Micro ATX", "Mini ITX"],
     external525Drives: 4,
     external35Drives: 2,
     glassPanel: false,
