@@ -350,9 +350,9 @@ export const cpus: CPU[] = [
   },
   {
     id: "cpu-26",
-    name: "Intel Q6600",
+    name: "Intel Core 2 Quad Q6600",
     brand: "Intel",
-    description: "Quad core LGA775 Kentsfield processor",
+    description: "Quad core LGA 775 Kentsfield processor",
     cores: 4,
     threads: 4,
     baseClock: 2.4,
