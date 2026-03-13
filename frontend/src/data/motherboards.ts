@@ -15,6 +15,7 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 1,
     releaseYear: 2014,
     datasheet: "FM2A78M-ITX+.pdf",
+    condition: "working",
   },
   {
     id: "mb-2",
@@ -74,6 +75,7 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR2"],
     pcieSlots: 2,
     releaseYear: 2006,
+    condition: "defective",
   },
   {
     id: "mb-6",
