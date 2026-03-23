@@ -26,6 +26,7 @@ export const graphicsCards: GraphicsCard[] = [
     powerConsumption: 106,
     interface: "PCIe 2.0",
     releaseYear: 2007,
+    condition: "working",
   },
   {
     id: "gpu-3",

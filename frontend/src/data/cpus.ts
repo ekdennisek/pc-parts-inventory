@@ -29,6 +29,7 @@ export const cpus: CPU[] = [
     tdp: 65,
     releaseYear: 2012,
     codename: "Trinity",
+    partNumber: "AD5500OKA44HJ",
   },
   {
     id: "cpu-3",
