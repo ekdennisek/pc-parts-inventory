@@ -46,8 +46,9 @@ export const PartPage: React.FC = () => {
   const [yearFrom, setYearFrom] = useState<string | null>(null);
   const [yearTo, setYearTo] = useState<string | null>(null);
 
-  // Clear filters when switching between component pages
+  // Clear search and filters when switching between component pages
   useEffect(() => {
+    setSearchTerm("");
     setSelectedFilters([]);
     setSelectedFormFactors([]);
     setSelectedConditions([]);
