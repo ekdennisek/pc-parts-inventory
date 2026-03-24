@@ -248,7 +248,7 @@ export const cpus: CPU[] = [
     description: "Slot 1 Deschutes processor",
     cores: 1,
     threads: 1,
-    baseClock: 0.267,
+    baseClock: 0.266,
     socket: "Slot 1",
     tdp: 16.8,
     releaseYear: 1998,
@@ -392,7 +392,7 @@ export const cpus: CPU[] = [
     description: "PGA168 A80486SX-33 processor, L4280761 (W28 1994)",
     cores: 1,
     threads: 1,
-    baseClock: 0.032226562, // 33MHz
+    baseClock: 0.33,
     socket: "PGA168",
     tdp: 0,
     releaseYear: 1992,
@@ -405,7 +405,7 @@ export const cpus: CPU[] = [
     description: "PGA168 A80486SX-33 processor, L4252476 (W25 1994)",
     cores: 1,
     threads: 1,
-    baseClock: 0.032226562, // 33MHz
+    baseClock: 0.33,
     socket: "PGA168",
     tdp: 0,
     releaseYear: 1992,
@@ -517,7 +517,7 @@ export const cpus: CPU[] = [
     description: "Socket 370 Coppermine processor",
     cores: 1,
     threads: 1,
-    baseClock: 0.886,
+    baseClock: 0.866,
     socket: "Socket 370",
     tdp: 0,
     releaseYear: 2000,
@@ -561,7 +561,7 @@ export const cpus: CPU[] = [
     description: "Slot 1 Klamath processor",
     cores: 1,
     threads: 1,
-    baseClock: 0.227539063, // 233 MHz
+    baseClock: 0.233,
     socket: "Slot 1",
     tdp: 0,
     releaseYear: 1997,
@@ -575,7 +575,7 @@ export const cpus: CPU[] = [
     description: "Socket 7 processor",
     cores: 1,
     threads: 1,
-    baseClock: 0.129882813, // 133 MHz
+    baseClock: 0.133,
     socket: "Socket 7",
     tdp: 0,
     releaseYear: 1995,
