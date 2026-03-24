@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { cpus } from "../data/cpus";
 import { cpuList } from "../data/cpuList";
 import type { MasterdataCpu } from "../data/cpuList";
+import { getSocketSortOrder } from "../utils/socketSortOrder";
 import "./CpuCollectionsPage.css";
 
 type Brand = "Intel" | "AMD";
@@ -11,7 +12,13 @@ export const CpuCollectionsPage: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const filteredGroups = useMemo(() => {
-    return cpuList.filter((group) => group.brand === activeTab);
+    return cpuList
+      .filter((group) => group.brand === activeTab)
+      .sort((a, b) => {
+        const socketDiff = getSocketSortOrder(a.socket) - getSocketSortOrder(b.socket);
+        if (socketDiff !== 0) return socketDiff;
+        return a.codename.localeCompare(b.codename);
+      });
   }, [activeTab]);
 
   const isCollected = (entry: MasterdataCpu): boolean => {

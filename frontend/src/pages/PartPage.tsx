@@ -28,6 +28,7 @@ import type { FilterOption } from "../components/FilterDropdown";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./PartPage.css";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
+import { getSocketSortOrder } from "../utils/socketSortOrder";
 
 type SortOption = "standard";
 
@@ -137,14 +138,6 @@ export const PartPage: React.FC = () => {
     return unique.map((y) => ({ value: String(y), label: String(y) }));
   }, [parts]);
 
-  // Helper function to get socket sort order
-  const getSocketSortOrder = (socket: CpuSocket): number => {
-    const intel = intelSockets.get(socket);
-    if (intel) return intel.sorting;
-    const amd = amdSockets.get(socket);
-    if (amd) return intelSockets.size + amd.sorting;
-    return intelSockets.size + amdSockets.size;
-  };
 
   // Build filter options based on part type
   const socketInterfaceOptions: FilterOption[] = useMemo(() => {
