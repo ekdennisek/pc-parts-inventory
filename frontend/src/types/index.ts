@@ -41,6 +41,7 @@ export interface PCPart {
   releaseYear?: number;
   datasheet?: string;
   condition?: "working" | "defective";
+  box?: boolean;
 }
 
 export interface CPU extends PCPart {
@@ -63,6 +64,7 @@ export interface Motherboard extends PCPart {
   memoryTypes: MemoryType[];
   maxMemory: number; // GB
   pcieSlots: number;
+  ioShield?: boolean;
 }
 
 export interface PowerSupply extends PCPart {

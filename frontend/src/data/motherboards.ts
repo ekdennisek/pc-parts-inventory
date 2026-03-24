@@ -16,6 +16,8 @@ export const motherboards: Motherboard[] = [
     releaseYear: 2014,
     datasheet: "FM2A78M-ITX+.pdf",
     condition: "working",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-2",
@@ -31,6 +33,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 3,
     releaseYear: 2008,
     datasheet: "e4481_P6T SE.pdf",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-3",
@@ -61,6 +65,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 0,
     releaseYear: 2002,
     condition: "working",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-5",
@@ -76,6 +82,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 2,
     releaseYear: 2006,
     condition: "defective",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-6",
@@ -91,6 +99,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 2,
     releaseYear: 2013,
     condition: "working",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-7",
@@ -106,6 +116,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 1,
     releaseYear: 2008,
     condition: "working",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-8",
@@ -120,6 +132,8 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR3"],
     pcieSlots: 2,
     releaseYear: 2012,
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-9",
@@ -134,6 +148,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 1,
     memoryTypes: ["DDR2"],
     releaseYear: 2008,
+    ioShield: true,
+    box: true,
   },
   {
     id: "mb-10",
@@ -164,6 +180,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 2,
     releaseYear: 2010,
     condition: "working",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-12",
@@ -179,6 +197,8 @@ export const motherboards: Motherboard[] = [
     pcieSlots: 1,
     releaseYear: 2008,
     condition: "working",
+    ioShield: true,
+    box: false,
   },
   {
     id: "mb-13",
@@ -193,5 +213,7 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["DDR"],
     pcieSlots: 2,
     releaseYear: 2006,
+    ioShield: true,
+    box: true,
   },
 ];
