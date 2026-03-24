@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import React, { useCallback, useMemo } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { PartCard } from "../components/PartCard";
 import { FilterDropdown } from "../components/FilterDropdown";
@@ -7,6 +7,7 @@ import { FilterBar } from "../components/FilterBar";
 import { allParts } from "../data/parts";
 import type { PCPart, PartType } from "../types";
 import { PART_TYPES } from "../types";
+import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./HomePage.css";
 import { ScrollToTop } from "../components/ScrollToTop";
 import type { FilterOption } from "../components/FilterDropdown";
@@ -20,11 +21,57 @@ const conditionFilterOptions: FilterOption[] = [
 ];
 
 export const HomePage: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortOption, setSortOption] = useState<SortOption>("releaseYear");
-  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
-  const [yearFrom, setYearFrom] = useState<string | null>(null);
-  const [yearTo, setYearTo] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchTerm = searchParams.get("search") ?? "";
+  const sortOption = (searchParams.get("sort") ?? "releaseYear") as SortOption;
+  const selectedConditions = getArrayParam(searchParams, "condition");
+  const yearFrom = searchParams.get("yearFrom") ?? null;
+  const yearTo = searchParams.get("yearTo") ?? null;
+
+  const setSearchTerm = useCallback(
+    (value: string) =>
+      setSearchParams((prev) => setParam(prev, "search", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
+
+  const setSortOption = useCallback(
+    (value: SortOption) =>
+      setSearchParams(
+        (prev) =>
+          setParam(prev, "sort", value === "releaseYear" ? null : value),
+        { replace: true },
+      ),
+    [setSearchParams],
+  );
+
+  const setSelectedConditions = useCallback(
+    (values: string[]) =>
+      setSearchParams(
+        (prev) =>
+          setParam(prev, "condition", values.length > 0 ? values : null),
+        { replace: true },
+      ),
+    [setSearchParams],
+  );
+
+  const setYearFrom = useCallback(
+    (value: string | null) =>
+      setSearchParams((prev) => setParam(prev, "yearFrom", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
+
+  const setYearTo = useCallback(
+    (value: string | null) =>
+      setSearchParams((prev) => setParam(prev, "yearTo", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
 
   // Flatten all parts into a single array with part type information
   const allPartsFlat = useMemo(() => {

@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useCallback, useMemo, useEffect, useRef } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { FilterDropdown } from "../components/FilterDropdown";
 import { FilterBar } from "../components/FilterBar";
@@ -25,6 +25,7 @@ import {
   storageInterfaces,
 } from "../types";
 import type { FilterOption } from "../components/FilterDropdown";
+import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./PartPage.css";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 
@@ -38,23 +39,86 @@ const conditionFilterOptions: FilterOption[] = [
 
 export const PartPage: React.FC = () => {
   const { partType } = useParams<{ partType: PartType }>();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortOption, setSortOption] = useState<SortOption>("standard");
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [selectedFormFactors, setSelectedFormFactors] = useState<string[]>([]);
-  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
-  const [yearFrom, setYearFrom] = useState<string | null>(null);
-  const [yearTo, setYearTo] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // Clear search and filters when switching between component pages
+  // Clear query params when switching between part types (but not on initial mount)
+  const prevPartTypeRef = useRef(partType);
   useEffect(() => {
-    setSearchTerm("");
-    setSelectedFilters([]);
-    setSelectedFormFactors([]);
-    setSelectedConditions([]);
-    setYearFrom(null);
-    setYearTo(null);
-  }, [partType]);
+    if (prevPartTypeRef.current !== partType) {
+      prevPartTypeRef.current = partType;
+      setSearchParams({}, { replace: true });
+    }
+  }, [partType, setSearchParams]);
+
+  const searchTerm = searchParams.get("search") ?? "";
+  const sortOption = (searchParams.get("sort") ?? "standard") as SortOption;
+  const selectedFilters = getArrayParam(searchParams, "filter");
+  const selectedFormFactors = getArrayParam(searchParams, "formFactor");
+  const selectedConditions = getArrayParam(searchParams, "condition");
+  const yearFrom = searchParams.get("yearFrom") ?? null;
+  const yearTo = searchParams.get("yearTo") ?? null;
+
+  const setSearchTerm = useCallback(
+    (value: string) =>
+      setSearchParams((prev) => setParam(prev, "search", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
+
+  const setSortOption = useCallback(
+    (value: SortOption) =>
+      setSearchParams(
+        (prev) => setParam(prev, "sort", value === "standard" ? null : value),
+        { replace: true },
+      ),
+    [setSearchParams],
+  );
+
+  const setSelectedFilters = useCallback(
+    (values: string[]) =>
+      setSearchParams(
+        (prev) => setParam(prev, "filter", values.length > 0 ? values : null),
+        { replace: true },
+      ),
+    [setSearchParams],
+  );
+
+  const setSelectedFormFactors = useCallback(
+    (values: string[]) =>
+      setSearchParams(
+        (prev) =>
+          setParam(prev, "formFactor", values.length > 0 ? values : null),
+        { replace: true },
+      ),
+    [setSearchParams],
+  );
+
+  const setSelectedConditions = useCallback(
+    (values: string[]) =>
+      setSearchParams(
+        (prev) =>
+          setParam(prev, "condition", values.length > 0 ? values : null),
+        { replace: true },
+      ),
+    [setSearchParams],
+  );
+
+  const setYearFrom = useCallback(
+    (value: string | null) =>
+      setSearchParams((prev) => setParam(prev, "yearFrom", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
+
+  const setYearTo = useCallback(
+    (value: string | null) =>
+      setSearchParams((prev) => setParam(prev, "yearTo", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
 
   // Get parts for the current part type
   const parts = useMemo(() => {
