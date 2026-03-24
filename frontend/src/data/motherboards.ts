@@ -180,4 +180,18 @@ export const motherboards: Motherboard[] = [
     releaseYear: 2008,
     condition: "working",
   },
+  {
+    id: "mb-13",
+    name: "ASUS M2N32-SLI Deluxe",
+    brand: "ASUS",
+    description: "AM2 ATX motherboard",
+    socket: "Socket AM2",
+    formFactor: "ATX",
+    chipset: "Nvidia nForce 590 SLI",
+    memorySlots: 4,
+    maxMemory: 8,
+    memoryTypes: ["DDR"],
+    pcieSlots: 2,
+    releaseYear: 2006,
+  },
 ];
