@@ -12,7 +12,9 @@ export const motherboards: Motherboard[] = [
     memorySlots: 2,
     maxMemory: 32,
     memoryTypes: ["DDR3"],
-    pcieSlots: 1,
+    expansionSlots: {
+      "PCIe 3.0 x16": 1,
+    },
     releaseYear: 2014,
     datasheet: "FM2A78M-ITX+.pdf",
     condition: "working",
@@ -30,7 +32,12 @@ export const motherboards: Motherboard[] = [
     memorySlots: 6,
     memoryTypes: ["DDR3"],
     maxMemory: 24,
-    pcieSlots: 3,
+    expansionSlots: {
+      "PCIe 2.0 x16": 2,
+      "PCIe 2.0 x16@x4": 1,
+      "PCIe 1.0 x1": 1,
+      "PCI 2.2": 2,
+    },
     releaseYear: 2008,
     datasheet: "e4481_P6T SE.pdf",
     ioShield: true,
@@ -47,7 +54,11 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 8,
     memoryTypes: ["DDR2"],
-    pcieSlots: 1,
+    expansionSlots: {
+      "PCIe 1.0 x16": 1,
+      "PCIe 1.0 x1": 1,
+      "PCI 2.2": 2,
+    },
     releaseYear: 2006,
     condition: "working",
   },
@@ -62,7 +73,10 @@ export const motherboards: Motherboard[] = [
     memorySlots: 2,
     maxMemory: 2,
     memoryTypes: ["DDR"],
-    pcieSlots: 0,
+    expansionSlots: {
+      "AGP 1.5": 1,
+      "PCI 2.2": 6,
+    },
     releaseYear: 2002,
     condition: "working",
     ioShield: true,
@@ -79,7 +93,12 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 8,
     memoryTypes: ["DDR2"],
-    pcieSlots: 2,
+    expansionSlots: {
+      "PCIe 1.0 x16": 1,
+      "PCIe 1.0 x16@x4": 1,
+      "PCIe 1.0 x1": 2,
+      "PCI 2.2": 3,
+    },
     releaseYear: 2006,
     condition: "defective",
     ioShield: true,
@@ -96,7 +115,12 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 32,
     memoryTypes: ["DDR3"],
-    pcieSlots: 2,
+    expansionSlots: {
+      "PCIe 2.0 x16": 1,
+      "PCIe 2.0 x16@x4": 1,
+      "PCIe 2.0 x1": 3,
+      "PCI 2.2": 2,
+    },
     releaseYear: 2013,
     condition: "working",
     ioShield: true,
@@ -113,7 +137,10 @@ export const motherboards: Motherboard[] = [
     memorySlots: 2,
     maxMemory: 4,
     memoryTypes: ["DDR2"],
-    pcieSlots: 1,
+    expansionSlots: {
+      "PCIe 1.0 x16": 1,
+      "PCI 2.2": 2, // TODO Verify
+    },
     releaseYear: 2008,
     condition: "working",
     ioShield: true,
@@ -130,7 +157,11 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 32,
     memoryTypes: ["DDR3"],
-    pcieSlots: 2,
+    expansionSlots: {
+      "PCIe 2.0 x16": 1,
+      "PCIe 2.0 x16@x4": 1,
+      "PCI 2.2": 2, // TODO Verify
+    },
     releaseYear: 2012,
     ioShield: true,
     box: false,
@@ -145,7 +176,11 @@ export const motherboards: Motherboard[] = [
     chipset: "VIA P4M900",
     memorySlots: 2,
     maxMemory: 4,
-    pcieSlots: 1,
+    expansionSlots: {
+      "PCIe 1.0 x16": 1,
+      "PCIe 1.0 x1": 1,
+      "PCI 2.2": 2, // TODO Verify
+    },
     memoryTypes: ["DDR2"],
     releaseYear: 2008,
     ioShield: true,
@@ -161,7 +196,11 @@ export const motherboards: Motherboard[] = [
     chipset: "VIA VT82C694X (Apollo Pro 133A)",
     memorySlots: 2,
     maxMemory: 2,
-    pcieSlots: 0,
+    expansionSlots: {
+      "AGP 3.3": 1, // TODO Verify
+      "PCI 2.2": 2, // TODO Verify
+      // TODO One AMR (Audio Modem Riser) too
+    },
     memoryTypes: ["SDR"],
     releaseYear: 2000,
     condition: "working",
@@ -177,7 +216,11 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 16,
     memoryTypes: ["DDR3"],
-    pcieSlots: 2,
+    expansionSlots: {
+      "PCIe 2.0 x16": 1,
+      "PCIe 2.0 x16@x4": 1,
+      "PCI 2.2": 2, // TODO Verify
+    },
     releaseYear: 2010,
     condition: "working",
     ioShield: true,
@@ -194,7 +237,11 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 8,
     memoryTypes: ["DDR2"],
-    pcieSlots: 1,
+    expansionSlots: {
+      "PCIe 1.0 x16": 1, // TODO Verify version
+      "PCIe 1.0 x1": 2, // TODO Verify version
+      "PCI 2.2": 2, // TODO Verify
+    },
     releaseYear: 2008,
     condition: "working",
     ioShield: true,
@@ -211,7 +258,12 @@ export const motherboards: Motherboard[] = [
     memorySlots: 4,
     maxMemory: 8,
     memoryTypes: ["DDR"],
-    pcieSlots: 2,
+    expansionSlots: {
+      "PCIe 1.0 x16": 2,
+      "PCIe 1.0 x4": 1,
+      "PCIe 1.0 x1": 1,
+      "PCI 2.2": 2,
+    },
     releaseYear: 2006,
     ioShield: true,
     box: true,

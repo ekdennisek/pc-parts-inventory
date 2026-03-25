@@ -87,10 +87,6 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
               <span className="spec-label">Max Memory</span>
               <span className="spec-value">{mb.maxMemory} GB</span>
             </div>
-            <div className="spec-item">
-              <span className="spec-label">PCIe Slots</span>
-              <span className="spec-value">{mb.pcieSlots}</span>
-            </div>
           </>
         );
       }
@@ -271,10 +267,7 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
         </div>
       )}
       {part.condition && (
-        <div
-          className="part-condition-badge"
-          data-condition={part.condition}
-        >
+        <div className="part-condition-badge" data-condition={part.condition}>
           {part.condition === "working" ? "Working" : "Defective"}
         </div>
       )}

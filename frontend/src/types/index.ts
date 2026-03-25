@@ -56,6 +56,27 @@ export interface CPU extends PCPart {
   sSpec?: string;
 }
 
+type PciVersion = "1.0" | "2.0" | "2.1" | "2.2" | "2.3" | "3.0";
+type PciSlot = `PCI ${PciVersion}`;
+
+type AgpVoltage = 3.3 | 1.5 | 0.8;
+type AgpSlot = `AGP ${AgpVoltage}`;
+
+type PciExpressVersion = "1.0" | "2.0" | "3.0" | "4.0" | "5.0";
+type PciExpressLaneQuantity =
+  | "x16"
+  | "x16@x8"
+  | "x16@x4"
+  | "x8"
+  | "x4"
+  | "x2"
+  | "x1";
+type PcieExpressSlot = `PCIe ${PciExpressVersion} ${PciExpressLaneQuantity}`;
+
+type ExpansionSlots = Partial<
+  Record<PciSlot | AgpSlot | PcieExpressSlot, number>
+>;
+
 export interface Motherboard extends PCPart {
   socket: CpuSocket;
   formFactor: MotherboardFormFactor;
@@ -63,7 +84,7 @@ export interface Motherboard extends PCPart {
   memorySlots: number;
   memoryTypes: MemoryType[];
   maxMemory: number; // GB
-  pcieSlots: number;
+  expansionSlots: ExpansionSlots;
   ioShield?: boolean;
 }
 
