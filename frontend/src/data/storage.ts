@@ -35,5 +35,6 @@ export const storage: Storage[] = [
     type: "SSD",
     formFactor: "M.2",
     interface: "SATA III",
+    condition: "working",
   },
 ];
