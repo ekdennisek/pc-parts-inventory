@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { PartCard } from "../components/PartCard";
 import { FilterDropdown } from "../components/FilterDropdown";
@@ -198,16 +198,6 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="home-page">
-      <div className="hero-section">
-        <h1>PC Parts Inventory</h1>
-        <p>My PC parts inventory and the builds they're in</p>
-        <div className="hero-actions">
-          <Link to="/build-planner" className="cta-button">
-            🔧 Plan a PC Build
-          </Link>
-        </div>
-      </div>
-
       <div className="summary-section">
         <h2>Inventory Summary</h2>
         <div className="summary-grid">
