@@ -13,9 +13,10 @@ interface PartCardProps {
 
 export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType, inBuild }) => {
   const socketColorClass = socket ? `socket-${getSocketColor(socket)}` : "";
+  const typeClass = partType ? `type-${partType}` : "";
 
   return (
-    <div className={`part-card ${socketColorClass}${inBuild ? " in-build" : ""}`}>
+    <div className={`part-card ${socketColorClass} ${typeClass}${inBuild ? " in-build" : ""}`}>
       {part.condition && (
         <div className="part-condition-badge" data-condition={part.condition}>
           {part.condition}

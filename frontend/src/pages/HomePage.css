@@ -190,67 +190,6 @@
   position: relative;
 }
 
-.part-type-badge {
-  position: absolute;
-  top: -0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--badge-color, #007acc);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Part type badge colors */
-.part-type-badge[data-type="cpu"] {
-  --badge-color: #3b82f6; /* Blue */
-}
-
-.part-type-badge[data-type="motherboard"] {
-  --badge-color: #10b981; /* Emerald */
-}
-
-.part-type-badge[data-type="powerSupply"] {
-  --badge-color: #f59e0b; /* Amber */
-}
-
-.part-type-badge[data-type="graphicsCard"] {
-  --badge-color: #ef4444; /* Red */
-}
-
-.part-type-badge[data-type="ram"] {
-  --badge-color: #ec4899; /* Pink */
-}
-
-/* Condition badge */
-.part-condition-badge {
-  position: absolute;
-  top: -0.5rem;
-  left: -0.5rem;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.part-condition-badge[data-condition="working"] {
-  background-color: #10b981;
-}
-
-.part-condition-badge[data-condition="defective"] {
-  background-color: #ef4444;
-}
 
 .no-results {
   text-align: center;
