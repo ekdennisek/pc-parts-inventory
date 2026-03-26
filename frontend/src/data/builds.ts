@@ -12,3 +12,14 @@ export const builds: SavedBuild[] = [
     graphicsCardIds: ["gpu-2"],
   },
 ];
+
+export const usedPartIds: Set<string> = new Set(
+  builds.flatMap((build) => [
+    build.caseId,
+    build.motherboardId,
+    build.powerSupplyId,
+    ...build.cpuIds,
+    ...build.ramIds,
+    ...(build.graphicsCardIds ?? []),
+  ]).filter((id): id is string => id !== undefined)
+);

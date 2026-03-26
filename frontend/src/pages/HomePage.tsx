@@ -5,6 +5,7 @@ import { PartCard } from "../components/PartCard";
 import { FilterDropdown } from "../components/FilterDropdown";
 import { FilterBar } from "../components/FilterBar";
 import { allParts } from "../data/parts";
+import { usedPartIds } from "../data/builds";
 import type { PCPart, PartType } from "../types";
 import { PART_TYPES } from "../types";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
@@ -313,7 +314,7 @@ export const HomePage: React.FC = () => {
                       {part.condition === "working" ? "Working" : "Defective"}
                     </div>
                   )}
-                  <PartCard part={part} />
+                  <PartCard part={part} inBuild={usedPartIds.has(part.id)} />
                 </div>
               ))}
             </div>

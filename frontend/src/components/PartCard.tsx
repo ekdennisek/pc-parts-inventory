@@ -8,13 +8,14 @@ interface PartCardProps {
   part: PCPart;
   socket?: CpuSocket;
   partType?: string;
+  inBuild?: boolean;
 }
 
-export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType }) => {
+export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType, inBuild }) => {
   const socketColorClass = socket ? `socket-${getSocketColor(socket)}` : "";
 
   return (
-    <div className={`part-card ${socketColorClass}`}>
+    <div className={`part-card ${socketColorClass}${inBuild ? " in-build" : ""}`}>
       {part.condition && (
         <div className="part-condition-badge" data-condition={part.condition}>
           {part.condition}

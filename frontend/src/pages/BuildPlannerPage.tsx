@@ -19,6 +19,7 @@ import { powerSupplies } from "../data/powerSupplies";
 import { graphicsCards } from "../data/gpus";
 import { motherboardFormFactors } from "../types";
 import { PartCard } from "../components/PartCard";
+import { usedPartIds } from "../data/builds";
 import { FilterDropdown } from "../components/FilterDropdown";
 import "./BuildPlannerPage.css";
 
@@ -567,7 +568,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectCase(pcCase)}
                     className="clickable"
                   >
-                    <PartCard part={pcCase} partType="case" />
+                    <PartCard part={pcCase} partType="case" inBuild={usedPartIds.has(pcCase.id)} />
                   </div>
                 ))}
               </div>
@@ -599,7 +600,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectMotherboard(motherboard)}
                     className="clickable"
                   >
-                    <PartCard part={motherboard} socket={motherboard.socket} partType="motherboard" />
+                    <PartCard part={motherboard} socket={motherboard.socket} partType="motherboard" inBuild={usedPartIds.has(motherboard.id)} />
                   </div>
                 ))}
               </div>
@@ -630,7 +631,7 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => selectCPU(cpu)}
                       className="clickable"
                     >
-                      <PartCard part={cpu} partType="cpu" />
+                      <PartCard part={cpu} partType="cpu" inBuild={usedPartIds.has(cpu.id)} />
                     </div>
                   ))}
                 </div>
@@ -676,7 +677,7 @@ export const BuildPlannerPage: React.FC = () => {
                             isSelected ? "selected" : ""
                           } ${!canSelect ? "disabled" : ""}`}
                         >
-                          <PartCard part={ramModule} partType="ram" />
+                          <PartCard part={ramModule} partType="ram" inBuild={usedPartIds.has(ramModule.id)} />
                           {isSelected && (
                             <div className="selected-indicator">Selected</div>
                           )}
@@ -712,7 +713,7 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectPowerSupply(psu)}
                     className="clickable"
                   >
-                    <PartCard part={psu} partType="powerSupply" />
+                    <PartCard part={psu} partType="powerSupply" inBuild={usedPartIds.has(psu.id)} />
                   </div>
                 ))}
               </div>
@@ -735,7 +736,7 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => toggleGraphicsCard(gpu)}
                       className={`clickable ${isSelected ? "selected" : ""}`}
                     >
-                      <PartCard part={gpu} partType="graphicsCard" />
+                      <PartCard part={gpu} partType="graphicsCard" inBuild={usedPartIds.has(gpu.id)} />
                       {isSelected && (
                         <div className="selected-indicator">Selected</div>
                       )}

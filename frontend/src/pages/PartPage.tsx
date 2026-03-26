@@ -6,6 +6,7 @@ import { FilterBar } from "../components/FilterBar";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
+import { usedPartIds } from "../data/builds";
 import type {
   PartType,
   CPU,
@@ -432,7 +433,7 @@ export const PartPage: React.FC = () => {
 
       <div className="parts-list">
         {sortedParts.map((part) => (
-          <DetailedPartCard key={part.id} part={part} partType={partType} />
+          <DetailedPartCard key={part.id} part={part} partType={partType} inBuild={usedPartIds.has(part.id)} />
         ))}
       </div>
 

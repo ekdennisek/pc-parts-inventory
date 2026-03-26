@@ -15,11 +15,13 @@ import "./DetailedPartCard.css";
 interface DetailedPartCardProps {
   part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case | Storage;
   partType: PartType;
+  inBuild?: boolean;
 }
 
 export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
   part,
   partType,
+  inBuild,
 }) => {
   const socket =
     partType === "cpu"
@@ -260,7 +262,7 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
   };
 
   return (
-    <div className={`detailed-part-card ${socketColorClass}`}>
+    <div className={`detailed-part-card ${socketColorClass}${inBuild ? " in-build" : ""}`}>
       {part.releaseYear && (
         <div className="part-year-badge" data-type={partType}>
           {part.releaseYear}
