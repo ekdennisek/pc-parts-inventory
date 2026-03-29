@@ -3,7 +3,7 @@ import type { SavedBuild } from "../types";
 export const builds: SavedBuild[] = [
   {
     id: "build-1773939455715",
-    name: "År 2007",
+    name: "År 2006",
     caseId: "case-3",
     motherboardId: "mb-3",
     cpuIds: ["cpu-19"],
@@ -14,12 +14,14 @@ export const builds: SavedBuild[] = [
 ];
 
 export const usedPartIds: Set<string> = new Set(
-  builds.flatMap((build) => [
-    build.caseId,
-    build.motherboardId,
-    build.powerSupplyId,
-    ...build.cpuIds,
-    ...build.ramIds,
-    ...(build.graphicsCardIds ?? []),
-  ]).filter((id): id is string => id !== undefined)
+  builds
+    .flatMap((build) => [
+      build.caseId,
+      build.motherboardId,
+      build.powerSupplyId,
+      ...build.cpuIds,
+      ...build.ramIds,
+      ...(build.graphicsCardIds ?? []),
+    ])
+    .filter((id): id is string => id !== undefined),
 );
