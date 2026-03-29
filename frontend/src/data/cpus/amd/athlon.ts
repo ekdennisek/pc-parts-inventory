@@ -561,7 +561,7 @@ const godavari: AmdCpu[] = [
     socket: "Socket FM2+",
     codeName: "Godavari",
     stepping: "GV-A1",
-    partNumber: "AD835XACI43KA",
+    partNumber: "AD850XYBI44JC",
   },
   {
     name: "Athlon X4 870K",
