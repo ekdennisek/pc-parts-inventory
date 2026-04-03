@@ -102,6 +102,7 @@ export interface GraphicsCard extends PCPart {
   boostClock: number; // MHz
   powerConsumption: number; // Watts
   interface: GpuInterface; // PCIe 4.0, etc.
+  pciId?: string; // Vendor ID, device ID, subsystem vendor ID, subsystem ID
 }
 
 export interface RAM extends PCPart {
