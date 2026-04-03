@@ -93,6 +93,10 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
               <span className="spec-label">Max Memory</span>
               <span className="spec-value">{mb.maxMemory} GB</span>
             </div>
+            <div className="spec-item">
+              <span className="spec-label">I/O Shield</span>
+              <span className="spec-value">{mb.ioShield ? "Yes" : "No"}</span>
+            </div>
           </>
         );
       }

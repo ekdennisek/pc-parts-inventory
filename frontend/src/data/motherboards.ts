@@ -61,6 +61,7 @@ export const motherboards: Motherboard[] = [
     },
     releaseYear: 2006,
     condition: "working",
+    ioShield: true,
   },
   {
     id: "mb-4",
@@ -204,6 +205,7 @@ export const motherboards: Motherboard[] = [
     memoryTypes: ["SDR"],
     releaseYear: 2000,
     condition: "working",
+    ioShield: false,
   },
   {
     id: "mb-11",

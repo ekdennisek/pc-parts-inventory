@@ -3,7 +3,14 @@ import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 export const motherboardFormFactors = ["ATX", "Micro ATX", "Mini ITX"] as const;
 export type MotherboardFormFactor = (typeof motherboardFormFactors)[number];
 
-export const memoryTypes = ["SDR", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"] as const;
+export const memoryTypes = [
+  "SDR",
+  "DDR",
+  "DDR2",
+  "DDR3",
+  "DDR4",
+  "DDR5",
+] as const;
 export type MemoryType = (typeof memoryTypes)[number];
 
 type MemoryFormFactor = "DIMM" | "SO-DIMM";
@@ -86,7 +93,7 @@ export interface Motherboard extends PCPart {
   memoryTypes: MemoryType[];
   maxMemory: number; // GB
   expansionSlots: ExpansionSlots;
-  ioShield?: boolean;
+  ioShield: boolean;
 }
 
 export interface PowerSupply extends PCPart {
