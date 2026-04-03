@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useEffect, useRef } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigationType } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { FilterDropdown } from "../components/FilterDropdown";
 import { FilterBar } from "../components/FilterBar";
@@ -44,15 +44,19 @@ const conditionFilterOptions: FilterOption[] = [
 export const PartPage: React.FC = () => {
   const { partType } = useParams<{ partType: PartType }>();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigationType = useNavigationType();
 
-  // Clear query params when switching between part types (but not on initial mount)
+  // Clear query params when switching between part types via forward navigation,
+  // but preserve them on browser back/forward (POP) since the browser restores the correct URL.
   const prevPartTypeRef = useRef(partType);
   useEffect(() => {
     if (prevPartTypeRef.current !== partType) {
       prevPartTypeRef.current = partType;
-      setSearchParams({}, { replace: true });
+      if (navigationType !== "POP") {
+        setSearchParams({}, { replace: true });
+      }
     }
-  }, [partType, setSearchParams]);
+  }, [partType, setSearchParams, navigationType]);
 
   const searchTerm = searchParams.get("search") ?? "";
   const sortOption = (searchParams.get("sort") ?? "standard") as SortOption;
