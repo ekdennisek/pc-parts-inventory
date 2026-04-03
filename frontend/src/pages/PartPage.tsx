@@ -14,6 +14,7 @@ import type {
   GraphicsCard,
   Case,
   Storage,
+  RAM,
   MotherboardFormFactor,
   StorageFormFactor,
 } from "../types";
@@ -24,6 +25,7 @@ import {
   motherboardFormFactors,
   storageFormFactors,
   storageInterfaces,
+  memoryTypes,
 } from "../types";
 import type { FilterOption } from "../components/FilterDropdown";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
@@ -155,6 +157,8 @@ export const PartPage: React.FC = () => {
       return [...gpuInterfaces].map((i) => ({ value: i, label: i }));
     } else if (partType === "storage") {
       return [...storageInterfaces].map((i) => ({ value: i, label: i }));
+    } else if (partType === "ram") {
+      return [...memoryTypes].map((t) => ({ value: t, label: t }));
     }
     return [];
   }, [partType]);
@@ -220,6 +224,11 @@ export const PartPage: React.FC = () => {
         filtered = filtered.filter((part) => {
           const p = part as Storage;
           return selectedFilters.includes(p.interface);
+        });
+      } else if (partType === "ram") {
+        filtered = filtered.filter((part) => {
+          const p = part as RAM;
+          return selectedFilters.includes(p.type);
         });
       }
     }
@@ -288,7 +297,9 @@ export const PartPage: React.FC = () => {
   const socketInterfaceLabel =
     partType === "graphicsCard" || partType === "storage"
       ? "Interface"
-      : "Socket";
+      : partType === "ram"
+        ? "Memory Type"
+        : "Socket";
 
   // Handle invalid part type
   if (!partType || !allParts[partType]) {

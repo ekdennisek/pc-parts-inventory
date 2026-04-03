@@ -3,7 +3,8 @@ import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 export const motherboardFormFactors = ["ATX", "Micro ATX", "Mini ITX"] as const;
 export type MotherboardFormFactor = (typeof motherboardFormFactors)[number];
 
-type MemoryType = "SDR" | "DDR" | "DDR2" | "DDR3" | "DDR4" | "DDR5";
+export const memoryTypes = ["SDR", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"] as const;
+export type MemoryType = (typeof memoryTypes)[number];
 
 type MemoryFormFactor = "DIMM" | "SO-DIMM";
 
