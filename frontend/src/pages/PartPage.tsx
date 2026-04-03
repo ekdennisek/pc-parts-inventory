@@ -59,6 +59,7 @@ export const PartPage: React.FC = () => {
   const selectedFilters = getArrayParam(searchParams, "filter");
   const selectedFormFactors = getArrayParam(searchParams, "formFactor");
   const selectedConditions = getArrayParam(searchParams, "condition");
+  const selectedMemoryType = searchParams.get("memoryType") ?? null;
   const yearFrom = searchParams.get("yearFrom") ?? null;
   const yearTo = searchParams.get("yearTo") ?? null;
 
@@ -116,6 +117,14 @@ export const PartPage: React.FC = () => {
     [setSearchParams],
   );
 
+  const setSelectedMemoryType = useCallback(
+    (value: string | null) =>
+      setSearchParams((prev) => setParam(prev, "memoryType", value), {
+        replace: true,
+      }),
+    [setSearchParams],
+  );
+
   const setYearTo = useCallback(
     (value: string | null) =>
       setSearchParams((prev) => setParam(prev, "yearTo", value), {
@@ -158,6 +167,13 @@ export const PartPage: React.FC = () => {
     } else if (partType === "storage") {
       return [...storageInterfaces].map((i) => ({ value: i, label: i }));
     } else if (partType === "ram") {
+      return [...memoryTypes].map((t) => ({ value: t, label: t }));
+    }
+    return [];
+  }, [partType]);
+
+  const memoryTypeOptions: FilterOption[] = useMemo(() => {
+    if (partType === "motherboard") {
       return [...memoryTypes].map((t) => ({ value: t, label: t }));
     }
     return [];
@@ -233,6 +249,13 @@ export const PartPage: React.FC = () => {
       }
     }
 
+    if (partType === "motherboard" && selectedMemoryType) {
+      filtered = filtered.filter((part) => {
+        const p = part as Motherboard;
+        return p.memoryTypes.includes(selectedMemoryType as any);
+      });
+    }
+
     if (selectedConditions.length > 0) {
       filtered = filtered.filter((part) => {
         return selectedConditions.some((condition) => {
@@ -262,6 +285,7 @@ export const PartPage: React.FC = () => {
     searchTerm,
     selectedFilters,
     selectedFormFactors,
+    selectedMemoryType,
     selectedConditions,
     partType,
     yearFrom,
@@ -291,6 +315,7 @@ export const PartPage: React.FC = () => {
     searchTerm ||
     selectedFilters.length > 0 ||
     selectedFormFactors.length > 0 ||
+    selectedMemoryType !== null ||
     selectedConditions.length > 0 ||
     isYearFilterActive;
 
@@ -364,6 +389,16 @@ export const PartPage: React.FC = () => {
               mode="multi"
               selectedValues={selectedFilters}
               onChange={setSelectedFilters}
+            />
+          )}
+
+          {memoryTypeOptions.length > 0 && (
+            <FilterDropdown
+              label="Memory Type"
+              options={memoryTypeOptions}
+              mode="single"
+              selectedValue={selectedMemoryType}
+              onChange={setSelectedMemoryType}
             />
           )}
 

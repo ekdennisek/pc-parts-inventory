@@ -86,6 +86,10 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
               <span className="spec-value">{mb.memorySlots}</span>
             </div>
             <div className="spec-item">
+              <span className="spec-label">Memory Type</span>
+              <span className="spec-value">{mb.memoryTypes.join(" / ")}</span>
+            </div>
+            <div className="spec-item">
               <span className="spec-label">Max Memory</span>
               <span className="spec-value">{mb.maxMemory} GB</span>
             </div>
