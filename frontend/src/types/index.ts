@@ -139,6 +139,17 @@ export interface Storage extends PCPart {
   rpm?: number; // RPM for HDDs
 }
 
+export const peripheralFormFactors = ['3.5"', '5.25"'] as const;
+export type PeripheralFormFactor = (typeof peripheralFormFactors)[number];
+
+export const peripheralInterfaces = ["ATA", "SATA I", "SATA II", "SATA III"] as const;
+export type PeripheralInterface = (typeof peripheralInterfaces)[number];
+
+export interface Peripheral extends PCPart {
+  formFactor: PeripheralFormFactor;
+  interface: PeripheralInterface;
+}
+
 export type PartType =
   | "cpu"
   | "motherboard"
@@ -146,7 +157,8 @@ export type PartType =
   | "graphicsCard"
   | "ram"
   | "case"
-  | "storage";
+  | "storage"
+  | "peripheral";
 
 export const PART_TYPES: Record<PartType, string> = {
   cpu: "CPUs",
@@ -156,6 +168,7 @@ export const PART_TYPES: Record<PartType, string> = {
   ram: "RAM",
   case: "Cases",
   storage: "Storage",
+  peripheral: "Peripherals",
 };
 
 export interface PCBuild {

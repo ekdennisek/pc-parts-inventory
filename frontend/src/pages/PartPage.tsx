@@ -15,6 +15,7 @@ import type {
   Case,
   Storage,
   RAM,
+  Peripheral,
   MotherboardFormFactor,
   StorageFormFactor,
 } from "../types";
@@ -26,6 +27,8 @@ import {
   storageFormFactors,
   storageInterfaces,
   memoryTypes,
+  peripheralFormFactors,
+  peripheralInterfaces,
 } from "../types";
 import type { FilterOption } from "../components/FilterDropdown";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
@@ -170,6 +173,8 @@ export const PartPage: React.FC = () => {
       return [...gpuInterfaces].map((i) => ({ value: i, label: i }));
     } else if (partType === "storage") {
       return [...storageInterfaces].map((i) => ({ value: i, label: i }));
+    } else if (partType === "peripheral") {
+      return [...peripheralInterfaces].map((i) => ({ value: i, label: i }));
     } else if (partType === "ram") {
       return [...memoryTypes].map((t) => ({ value: t, label: t }));
     }
@@ -188,6 +193,8 @@ export const PartPage: React.FC = () => {
       return [...motherboardFormFactors].map((f) => ({ value: f, label: f }));
     } else if (partType === "storage") {
       return [...storageFormFactors].map((f) => ({ value: f, label: f }));
+    } else if (partType === "peripheral") {
+      return [...peripheralFormFactors].map((f) => ({ value: f, label: f }));
     }
     return [];
   }, [partType]);
@@ -229,6 +236,13 @@ export const PartPage: React.FC = () => {
       });
     }
 
+    if (partType === "peripheral" && selectedFormFactors.length > 0) {
+      filtered = filtered.filter((part) => {
+        const p = part as Peripheral;
+        return selectedFormFactors.includes(p.formFactor);
+      });
+    }
+
     if (selectedFilters.length > 0) {
       if (partType === "cpu" || partType === "motherboard") {
         filtered = filtered.filter((part) => {
@@ -243,6 +257,11 @@ export const PartPage: React.FC = () => {
       } else if (partType === "storage") {
         filtered = filtered.filter((part) => {
           const p = part as Storage;
+          return selectedFilters.includes(p.interface);
+        });
+      } else if (partType === "peripheral") {
+        filtered = filtered.filter((part) => {
+          const p = part as Peripheral;
           return selectedFilters.includes(p.interface);
         });
       } else if (partType === "ram") {
@@ -324,7 +343,7 @@ export const PartPage: React.FC = () => {
     isYearFilterActive;
 
   const socketInterfaceLabel =
-    partType === "graphicsCard" || partType === "storage"
+    partType === "graphicsCard" || partType === "storage" || partType === "peripheral"
       ? "Interface"
       : partType === "ram"
         ? "Memory Type"

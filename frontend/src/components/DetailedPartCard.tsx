@@ -7,13 +7,14 @@ import type {
   RAM,
   Case,
   Storage,
+  Peripheral,
   PartType,
 } from "../types";
 import { getSocketColor } from "../types";
 import "./DetailedPartCard.css";
 
 interface DetailedPartCardProps {
-  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case | Storage;
+  part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case | Storage | Peripheral;
   partType: PartType;
   inBuild?: boolean;
 }
@@ -263,6 +264,22 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
                 <span className="spec-value">{storageDevice.rpm}</span>
               </div>
             )}
+          </>
+        );
+      }
+
+      case "peripheral": {
+        const peripheral = part as Peripheral;
+        return (
+          <>
+            <div className="spec-item">
+              <span className="spec-label">Form Factor</span>
+              <span className="spec-value">{peripheral.formFactor}</span>
+            </div>
+            <div className="spec-item">
+              <span className="spec-label">Interface</span>
+              <span className="spec-value">{peripheral.interface}</span>
+            </div>
           </>
         );
       }

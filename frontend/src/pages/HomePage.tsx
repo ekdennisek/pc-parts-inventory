@@ -185,6 +185,7 @@ export const HomePage: React.FC = () => {
       ram: { total: 0 },
       case: { total: 0 },
       storage: { total: 0 },
+      peripheral: { total: 0 },
     };
 
     Object.entries(allParts).forEach(([partType, parts]) => {

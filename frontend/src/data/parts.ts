@@ -5,6 +5,7 @@ import { powerSupplies } from "./powerSupplies";
 import { ram } from "./ram";
 import { cases } from "./cases";
 import { storage } from "./storage";
+import { peripherals } from "./peripherals";
 
 export const allParts = {
   cpu: cpus,
@@ -14,4 +15,5 @@ export const allParts = {
   ram: ram,
   case: cases,
   storage: storage,
+  peripheral: peripherals,
 };
