@@ -181,6 +181,8 @@ export interface PCBuild {
   ram: RAM[];
   powerSupply?: PowerSupply;
   graphicsCard?: GraphicsCard;
+  storage: Storage[];
+  peripherals: Peripheral[];
 }
 
 export type BuildStep =
@@ -190,6 +192,8 @@ export type BuildStep =
   | "ram"
   | "powerSupply"
   | "graphicsCard"
+  | "storage"
+  | "peripheral"
   | "complete";
 
 export interface SavedBuild {
@@ -202,6 +206,8 @@ export interface SavedBuild {
   ramIds: string[];
   powerSupplyId: string;
   graphicsCardIds?: string[];
+  storageIds?: string[];
+  peripheralIds?: string[];
 }
 
 // Utility functions for socket detection

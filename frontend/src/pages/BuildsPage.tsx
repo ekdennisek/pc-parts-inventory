@@ -7,7 +7,9 @@ import { cpus } from "../data/cpus";
 import { ram } from "../data/ram";
 import { powerSupplies } from "../data/powerSupplies";
 import { graphicsCards } from "../data/gpus";
-import type { Case, Motherboard, CPU, RAM, PowerSupply, GraphicsCard } from "../types";
+import { storage } from "../data/storage";
+import { peripherals } from "../data/peripherals";
+import type { Case, Motherboard, CPU, RAM, PowerSupply, GraphicsCard, Storage, Peripheral } from "../types";
 import { ScrollToTop } from "../components/ScrollToTop";
 import "./BuildsPage.css";
 
@@ -21,6 +23,8 @@ interface ResolvedBuild {
   ram: RAM[];
   powerSupply?: PowerSupply;
   graphicsCards: GraphicsCard[];
+  storage: Storage[];
+  peripherals: Peripheral[];
 }
 
 export const BuildsPage: React.FC = () => {
@@ -32,6 +36,8 @@ export const BuildsPage: React.FC = () => {
       ram: new Map(ram.map((r) => [r.id, r])),
       powerSupplies: new Map(powerSupplies.map((p) => [p.id, p])),
       graphicsCards: new Map(graphicsCards.map((g) => [g.id, g])),
+      storage: new Map(storage.map((s) => [s.id, s])),
+      peripherals: new Map(peripherals.map((p) => [p.id, p])),
     }),
     []
   );
@@ -54,6 +60,12 @@ export const BuildsPage: React.FC = () => {
         graphicsCards: (build.graphicsCardIds || [])
           .map((id) => componentMaps.graphicsCards.get(id))
           .filter((g): g is GraphicsCard => g !== undefined),
+        storage: (build.storageIds || [])
+          .map((id) => componentMaps.storage.get(id))
+          .filter((s): s is Storage => s !== undefined),
+        peripherals: (build.peripheralIds || [])
+          .map((id) => componentMaps.peripherals.get(id))
+          .filter((p): p is Peripheral => p !== undefined),
       })
     );
   }, [componentMaps]);
@@ -168,6 +180,38 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                 <span className="component-value">{gpu.name}</span>
                 <span className="component-detail">
                   {gpu.memory}GB {gpu.memoryType}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {build.storage.length > 0 && (
+          <div className="build-component">
+            <span className="component-label">
+              Storage
+            </span>
+            {build.storage.map((s) => (
+              <div key={s.id}>
+                <span className="component-value">{s.name}</span>
+                <span className="component-detail">
+                  {s.capacity}GB {s.type} | {s.interface}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {build.peripherals.length > 0 && (
+          <div className="build-component">
+            <span className="component-label">
+              Peripheral{build.peripherals.length > 1 ? "s" : ""}
+            </span>
+            {build.peripherals.map((p) => (
+              <div key={p.id}>
+                <span className="component-value">{p.name}</span>
+                <span className="component-detail">
+                  {p.formFactor} | {p.interface}
                 </span>
               </div>
             ))}

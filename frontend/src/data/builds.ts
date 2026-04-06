@@ -10,6 +10,8 @@ export const builds: SavedBuild[] = [
     ramIds: ["ram-20", "ram-21"],
     powerSupplyId: "psu-5",
     graphicsCardIds: ["gpu-2"],
+    storageIds: ["storage-4"],
+    peripheralIds: ["p-1"],
   },
 ];
 
@@ -22,6 +24,8 @@ export const usedPartIds: Set<string> = new Set(
       ...build.cpuIds,
       ...build.ramIds,
       ...(build.graphicsCardIds ?? []),
+      ...(build.storageIds ?? []),
+      ...(build.peripheralIds ?? []),
     ])
     .filter((id): id is string => id !== undefined),
 );

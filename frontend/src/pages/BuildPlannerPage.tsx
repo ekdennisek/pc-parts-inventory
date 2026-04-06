@@ -8,6 +8,8 @@ import type {
   Case,
   PowerSupply,
   GraphicsCard,
+  Storage,
+  Peripheral,
   MotherboardFormFactor,
   SavedBuild,
 } from "../types";
@@ -17,6 +19,8 @@ import { ram } from "../data/ram";
 import { cases } from "../data/cases";
 import { powerSupplies } from "../data/powerSupplies";
 import { graphicsCards } from "../data/gpus";
+import { storage } from "../data/storage";
+import { peripherals } from "../data/peripherals";
 import { motherboardFormFactors } from "../types";
 import { PartCard } from "../components/PartCard";
 import { usedPartIds } from "../data/builds";
@@ -28,6 +32,8 @@ export const BuildPlannerPage: React.FC = () => {
     id: "build-1",
     name: "My PC Build",
     ram: [],
+    storage: [],
+    peripherals: [],
   });
 
   const [currentStep, setCurrentStep] = useState<BuildStep>("case");
@@ -126,6 +132,34 @@ export const BuildPlannerPage: React.FC = () => {
     });
   };
 
+  const proceedToStorage = () => {
+    setCurrentStep("storage");
+  };
+
+  const toggleStorage = (item: Storage) => {
+    setBuild((prev) => {
+      const isSelected = prev.storage.some((s) => s.id === item.id);
+      if (isSelected) {
+        return { ...prev, storage: prev.storage.filter((s) => s.id !== item.id) };
+      }
+      return { ...prev, storage: [...prev.storage, item] };
+    });
+  };
+
+  const proceedToPeripherals = () => {
+    setCurrentStep("peripheral");
+  };
+
+  const togglePeripheral = (item: Peripheral) => {
+    setBuild((prev) => {
+      const isSelected = prev.peripherals.some((p) => p.id === item.id);
+      if (isSelected) {
+        return { ...prev, peripherals: prev.peripherals.filter((p) => p.id !== item.id) };
+      }
+      return { ...prev, peripherals: [...prev.peripherals, item] };
+    });
+  };
+
   const finishBuild = () => {
     setCurrentStep("complete");
   };
@@ -135,6 +169,8 @@ export const BuildPlannerPage: React.FC = () => {
       id: "build-1",
       name: "My PC Build",
       ram: [],
+      storage: [],
+      peripherals: [],
     });
     setSelectedFormFactors([]);
     setCurrentStep("case");
@@ -171,6 +207,14 @@ export const BuildPlannerPage: React.FC = () => {
     setCurrentStep("graphicsCard");
   };
 
+  const changeStorage = () => {
+    setCurrentStep("storage");
+  };
+
+  const changePeripherals = () => {
+    setCurrentStep("peripheral");
+  };
+
   const goToStep = (step: BuildStep) => {
     if (step === "case") {
       setCurrentStep("case");
@@ -195,6 +239,10 @@ export const BuildPlannerPage: React.FC = () => {
       build.powerSupply
     ) {
       setCurrentStep("graphicsCard");
+    } else if (step === "storage" && build.powerSupply) {
+      setCurrentStep("storage");
+    } else if (step === "peripheral" && build.powerSupply) {
+      setCurrentStep("peripheral");
     }
   };
 
@@ -212,6 +260,8 @@ export const BuildPlannerPage: React.FC = () => {
       ramIds: build.ram.map((r) => r.id),
       powerSupplyId: build.powerSupply.id,
       ...(build.graphicsCard && { graphicsCardIds: [build.graphicsCard.id] }),
+      ...(build.storage.length > 0 && { storageIds: build.storage.map((s) => s.id) }),
+      ...(build.peripherals.length > 0 && { peripheralIds: build.peripherals.map((p) => p.id) }),
     };
 
     const jsonString = JSON.stringify(savedBuild, null, 2);
@@ -364,6 +414,36 @@ export const BuildPlannerPage: React.FC = () => {
           >
             <span className="step-number">6</span>
             <span className="step-label">GPU</span>
+          </div>
+          <div
+            className={`step ${
+              currentStep === "storage"
+                ? "active"
+                : build.storage.length > 0
+                ? "completed clickable"
+                : build.powerSupply
+                ? "available"
+                : ""
+            }`}
+            onClick={() => build.powerSupply && goToStep("storage")}
+          >
+            <span className="step-number">7</span>
+            <span className="step-label">Storage</span>
+          </div>
+          <div
+            className={`step ${
+              currentStep === "peripheral"
+                ? "active"
+                : build.peripherals.length > 0
+                ? "completed clickable"
+                : build.powerSupply
+                ? "available"
+                : ""
+            }`}
+            onClick={() => build.powerSupply && goToStep("peripheral")}
+          >
+            <span className="step-number">8</span>
+            <span className="step-label">Peripherals</span>
           </div>
         </div>
       </div>
@@ -528,6 +608,50 @@ export const BuildPlannerPage: React.FC = () => {
                   <span className="component-detail">
                     {build.graphicsCard.memory}GB {build.graphicsCard.memoryType}
                   </span>
+                </div>
+              </div>
+            )}
+
+            {build.storage.length > 0 && (
+              <div className="selected-component">
+                <div className="component-header">
+                  <h4>Storage ({build.storage.length})</h4>
+                  <button
+                    onClick={changeStorage}
+                    className="btn btn-change"
+                    title="Change storage"
+                  >
+                    Change
+                  </button>
+                </div>
+                <div className="component-info">
+                  {build.storage.map((s) => (
+                    <span key={s.id} className="component-detail">
+                      {s.name} — {s.capacity}GB {s.type}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {build.peripherals.length > 0 && (
+              <div className="selected-component">
+                <div className="component-header">
+                  <h4>Peripherals ({build.peripherals.length})</h4>
+                  <button
+                    onClick={changePeripherals}
+                    className="btn btn-change"
+                    title="Change peripherals"
+                  >
+                    Change
+                  </button>
+                </div>
+                <div className="component-info">
+                  {build.peripherals.map((p) => (
+                    <span key={p.id} className="component-detail">
+                      {p.name} — {p.formFactor}
+                    </span>
+                  ))}
                 </div>
               </div>
             )}
@@ -745,8 +869,76 @@ export const BuildPlannerPage: React.FC = () => {
                 })}
               </div>
               <div className="step-actions">
+                <button onClick={proceedToStorage} className="btn btn-primary">
+                  Continue to Storage
+                </button>
+              </div>
+            </div>
+          )}
+
+          {currentStep === "storage" && (
+            <div className="step-content">
+              <h2>Step 7: Select Storage (Optional)</h2>
+              <p>
+                Choose storage drives for your build. You can select multiple
+                drives, or skip this step.
+              </p>
+              <div className="parts-grid">
+                {storage.map((item) => {
+                  const isSelected = build.storage.some(
+                    (s) => s.id === item.id
+                  );
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => toggleStorage(item)}
+                      className={`clickable ${isSelected ? "selected" : ""}`}
+                    >
+                      <PartCard part={item} partType="storage" inBuild={usedPartIds.has(item.id)} />
+                      {isSelected && (
+                        <div className="selected-indicator">Selected</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="step-actions">
+                <button onClick={proceedToPeripherals} className="btn btn-primary">
+                  Continue to Peripherals
+                </button>
+              </div>
+            </div>
+          )}
+
+          {currentStep === "peripheral" && (
+            <div className="step-content">
+              <h2>Step 8: Select Peripherals (Optional)</h2>
+              <p>
+                Choose peripherals for your build (e.g. optical drives). You can
+                select multiple, or skip this step.
+              </p>
+              <div className="parts-grid">
+                {peripherals.map((item) => {
+                  const isSelected = build.peripherals.some(
+                    (p) => p.id === item.id
+                  );
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => togglePeripheral(item)}
+                      className={`clickable ${isSelected ? "selected" : ""}`}
+                    >
+                      <PartCard part={item} partType="peripheral" inBuild={usedPartIds.has(item.id)} />
+                      {isSelected && (
+                        <div className="selected-indicator">Selected</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="step-actions">
                 <button onClick={finishBuild} className="btn btn-primary">
-                  {build.graphicsCard ? "Finish Build" : "Finish Without GPU"}
+                  Finish Build
                 </button>
               </div>
             </div>
@@ -781,6 +973,18 @@ export const BuildPlannerPage: React.FC = () => {
                   {build.graphicsCard && (
                     <li>
                       <strong>GPU:</strong> {build.graphicsCard.name}
+                    </li>
+                  )}
+                  {build.storage.length > 0 && (
+                    <li>
+                      <strong>Storage:</strong> {build.storage.length} drive
+                      {build.storage.length > 1 ? "s" : ""}
+                    </li>
+                  )}
+                  {build.peripherals.length > 0 && (
+                    <li>
+                      <strong>Peripherals:</strong> {build.peripherals.length} device
+                      {build.peripherals.length > 1 ? "s" : ""}
                     </li>
                   )}
                 </ul>
