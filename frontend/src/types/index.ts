@@ -33,6 +33,7 @@ export type StorageFormFactor = (typeof storageFormFactors)[number];
 
 export const storageInterfaces = [
   "IDE",
+  "SATA I",
   "SATA II",
   "SATA III",
   "NVMe",
