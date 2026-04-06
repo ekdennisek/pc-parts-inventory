@@ -37,4 +37,16 @@ export const storage: Storage[] = [
     interface: "SATA III",
     condition: "working",
   },
+  {
+    id: "storage-4",
+    name: "Kingston UV400 240 GB",
+    brand: "Kingston",
+    description: "240GB SATA III SSD",
+    releaseYear: 2016,
+    capacity: 240,
+    type: "SSD",
+    formFactor: '2.5"',
+    interface: "SATA III",
+    condition: "working",
+  },
 ];
