@@ -6,6 +6,7 @@ import "./Navigation.css";
 export const Navigation: React.FC = () => {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isComponentsOpen, setIsComponentsOpen] = useState(true);
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
     const menuRef = useRef<HTMLUListElement>(null);
@@ -76,6 +77,10 @@ export const Navigation: React.FC = () => {
             document.body.style.overflow = "unset";
         };
     }, [isMenuOpen]);
+
+    const isComponentsActive = Object.keys(PART_TYPES).some(
+        (key) => location.pathname === `/${key}`
+    );
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -148,16 +153,28 @@ export const Navigation: React.FC = () => {
                                 CPU Collections
                             </Link>
                         </li>
-                        {Object.entries(PART_TYPES).map(([key, label]) => (
-                            <li key={key}>
-                                <Link
-                                    to={`/${key}`}
-                                    className={location.pathname === `/${key}` ? "active" : ""}
-                                >
-                                    {label}
-                                </Link>
-                            </li>
-                        ))}
+                        <li className="nav-components-group">
+                            <button
+                                className={`nav-components-trigger${isComponentsActive ? " active" : ""}`}
+                                onClick={() => setIsComponentsOpen((prev) => !prev)}
+                                aria-expanded={isComponentsOpen}
+                            >
+                                Components
+                                <span className="nav-components-arrow" aria-hidden="true" />
+                            </button>
+                            <ul className={`nav-components-menu${isComponentsOpen ? " open" : ""}`}>
+                                {Object.entries(PART_TYPES).map(([key, label]) => (
+                                    <li key={key}>
+                                        <Link
+                                            to={`/${key}`}
+                                            className={location.pathname === `/${key}` ? "active" : ""}
+                                        >
+                                            {label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </nav>

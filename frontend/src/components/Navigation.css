@@ -131,6 +131,72 @@
     background-color: rgba(52, 152, 219, 0.1);
 }
 
+/* Components dropdown group */
+.nav-components-group {
+    position: relative;
+}
+
+.nav-components-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #bdc3c7;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-components-trigger:hover,
+.nav-components-group:hover .nav-components-trigger {
+    color: #ecf0f1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-components-trigger.active {
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.nav-components-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.nav-components-menu {
+    list-style: none;
+    padding: 0.25rem 0;
+    margin: 0;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    min-width: 170px;
+    z-index: 100;
+}
+
+.nav-components-group:hover .nav-components-menu {
+    display: block;
+}
+
+.nav-components-menu li {
+    margin: 0;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
     .nav-container {
@@ -194,5 +260,63 @@
 
     .nav-brand a {
         font-size: 1.2rem;
+    }
+
+    .nav-components-group {
+        position: static;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-components-group:hover .nav-components-menu {
+        display: none;
+    }
+
+    .nav-components-trigger {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        font-size: 1.1rem;
+        justify-content: space-between;
+    }
+
+    .nav-components-trigger:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-components-trigger.active {
+        background-color: rgba(52, 152, 219, 0.2);
+        border-left: 4px solid #3498db;
+        padding-left: calc(1.5rem - 4px);
+    }
+
+    .nav-components-trigger[aria-expanded="false"] .nav-components-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .nav-components-menu {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background: transparent;
+        min-width: unset;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .nav-components-menu.open {
+        display: block;
+    }
+
+    .nav-components-menu li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-components-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-components-menu a {
+        padding-left: 2.5rem;
+        font-size: 1rem;
     }
 }
