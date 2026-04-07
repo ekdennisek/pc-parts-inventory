@@ -303,7 +303,7 @@
         padding: 0;
     }
 
-    .nav-components-menu.open {
+    .nav-components-group .nav-components-menu.open {
         display: block;
     }
 
