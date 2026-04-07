@@ -20,33 +20,33 @@ import { coreI13thGen } from "./intel/coreI13thGen";
 import { coreI14thGen } from "./intel/coreI14thGen";
 
 export type IntelCpu = {
-  name: string;
-  socket: IntelSocket;
-  codeName: string;
-  sSpec?: string;
-  stepping?: string;
-  partNumbers?: string[];
-  note?: string;
+    name: string;
+    socket: IntelSocket;
+    codeName: string;
+    sSpec?: string;
+    stepping?: string;
+    partNumbers?: string[];
+    note?: string;
 };
 
 export const intelCpus: IntelCpu[] = [
-  ...core2,
-  ...coreI1stGen,
-  ...coreI2ndGen,
-  ...coreI3rdGen,
-  ...coreI4thGen,
-  ...coreI5thGen,
-  ...coreI6thGen,
-  ...coreI7thGen,
-  ...coreI8thGen,
-  ...coreI9thGen,
-  ...coreI10thGen,
-  ...coreI11thGen,
-  ...coreI12thGen,
-  ...coreI13thGen,
-  ...coreI14thGen,
-  ...pentium4,
-  ...pentiumIi,
-  ...pentium,
-  ...pentiumIii,
+    ...core2,
+    ...coreI1stGen,
+    ...coreI2ndGen,
+    ...coreI3rdGen,
+    ...coreI4thGen,
+    ...coreI5thGen,
+    ...coreI6thGen,
+    ...coreI7thGen,
+    ...coreI8thGen,
+    ...coreI9thGen,
+    ...coreI10thGen,
+    ...coreI11thGen,
+    ...coreI12thGen,
+    ...coreI13thGen,
+    ...coreI14thGen,
+    ...pentium4,
+    ...pentiumIi,
+    ...pentium,
+    ...pentiumIii,
 ];

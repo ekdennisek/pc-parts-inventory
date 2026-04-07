@@ -30,15 +30,15 @@ A React-based PC parts inventory application built with Vite and TypeScript. Bro
 1. Clone the repository
 2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 3. Start the development server:
 
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
 
 4. Open [http://localhost:5173](http://localhost:5173) to view it in the browser
 

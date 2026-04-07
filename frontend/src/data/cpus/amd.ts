@@ -9,21 +9,21 @@ import { igpu } from "./amd/igpu";
 import { phenom } from "./amd/phenom";
 
 export type AmdCpu = {
-  name: string;
-  socket: AmdSocket;
-  codeName: string;
-  stepping?: string;
-  partNumber: string;
-  note?: string;
+    name: string;
+    socket: AmdSocket;
+    codeName: string;
+    stepping?: string;
+    partNumber: string;
+    note?: string;
 };
 
 export const amdCpus: AmdCpu[] = [
-  ...athlon,
-  ...athlon64,
-  ...phenom,
-  ...athlonIi,
-  ...fx,
-  ...igpu,
-  ...athlonX2,
-  ...athlonXp,
+    ...athlon,
+    ...athlon64,
+    ...phenom,
+    ...athlonIi,
+    ...fx,
+    ...igpu,
+    ...athlonX2,
+    ...athlonXp,
 ];

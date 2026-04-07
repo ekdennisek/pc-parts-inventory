@@ -8,22 +8,22 @@ import { CpuCollectionsPage } from "./pages/CpuCollectionsPage";
 import "./App.css";
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Navigation />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/build-planner" element={<BuildPlannerPage />} />
-            <Route path="/builds" element={<BuildsPage />} />
-            <Route path="/cpu-collections" element={<CpuCollectionsPage />} />
-            <Route path="/:partType" element={<PartPage />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Navigation />
+                <main className="main-content">
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/build-planner" element={<BuildPlannerPage />} />
+                        <Route path="/builds" element={<BuildsPage />} />
+                        <Route path="/cpu-collections" element={<CpuCollectionsPage />} />
+                        <Route path="/:partType" element={<PartPage />} />
+                    </Routes>
+                </main>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

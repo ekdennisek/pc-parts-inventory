@@ -8,12 +8,12 @@ import { storage } from "./storage";
 import { peripherals } from "./peripherals";
 
 export const allParts = {
-  cpu: cpus,
-  motherboard: motherboards,
-  powerSupply: powerSupplies,
-  graphicsCard: graphicsCards,
-  ram: ram,
-  case: cases,
-  storage: storage,
-  peripheral: peripherals,
+    cpu: cpus,
+    motherboard: motherboards,
+    powerSupply: powerSupplies,
+    graphicsCard: graphicsCards,
+    ram: ram,
+    case: cases,
+    storage: storage,
+    peripheral: peripherals,
 };

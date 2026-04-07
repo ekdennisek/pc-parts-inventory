@@ -1,183 +1,183 @@
 .part-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 .page-header {
-  margin-bottom: 2rem;
-  text-align: center;
-  padding: 1.5rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
 }
 
 .page-header h1 {
-  margin: 0 0 1rem 0;
-  color: #333;
-  font-size: 2.2rem;
-  font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 2.2rem;
+    font-weight: 700;
 }
 
 .page-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .total-parts {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  background-color: #e9ecef;
-  color: #495057;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background-color: #e9ecef;
+    color: #495057;
 }
 
 .search-section {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .search-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .sort-dropdown {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .sort-dropdown label {
-  font-weight: 600;
-  color: #495057;
-  font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
 }
 
 .sort-dropdown select {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: white;
-  font-size: 0.9rem;
-  color: #495057;
-  cursor: pointer;
-  min-width: 140px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 0.9rem;
+    color: #495057;
+    cursor: pointer;
+    min-width: 140px;
 }
 
 .sort-dropdown select:focus {
-  outline: none;
-  border-color: #007acc;
-  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+    outline: none;
+    border-color: #007acc;
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
 }
 
 .socket-legend {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
 }
 
 .legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #495057;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #495057;
+    font-weight: 500;
 }
 
 .legend-color {
-  width: 20px;
-  height: 12px;
-  border-radius: 2px;
+    width: 20px;
+    height: 12px;
+    border-radius: 2px;
 }
 
 .intel-color {
-  background-color: #2563eb;
+    background-color: #2563eb;
 }
 
 .amd-color {
-  background-color: #dc2626;
+    background-color: #dc2626;
 }
 
 .search-results-info {
-  color: #6c757d;
-  font-style: italic;
-  margin-top: 0.5rem;
-  text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
 .parts-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
 .no-results {
-  text-align: center;
-  padding: 3rem;
-  color: #6c757d;
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
 }
 
 .no-results p {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
 }
 
 .error-message {
-  text-align: center;
-  padding: 3rem;
+    text-align: center;
+    padding: 3rem;
 }
 
 .error-message h1 {
-  color: #dc3545;
-  margin-bottom: 1rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
 }
 
 .error-message p {
-  color: #6c757d;
-  font-size: 1.1rem;
+    color: #6c757d;
+    font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .page-stats {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
 
-  .search-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .page-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-  .sort-dropdown {
-    align-self: stretch;
-  }
+    .search-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  .sort-dropdown select {
-    flex: 1;
-  }
+    .sort-dropdown {
+        align-self: stretch;
+    }
 
-  .socket-legend {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-  }
+    .sort-dropdown select {
+        flex: 1;
+    }
+
+    .socket-legend {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
 }

@@ -4,163 +4,163 @@ import { PART_TYPES } from "../types";
 import "./Navigation.css";
 
 export const Navigation: React.FC = () => {
-  const location = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const menuRef = useRef<HTMLUListElement>(null);
+    const location = useLocation();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const menuRef = useRef<HTMLUListElement>(null);
 
-  // Minimum swipe distance (in px) to trigger menu open/close
-  const minSwipeDistance = 50;
+    // Minimum swipe distance (in px) to trigger menu open/close
+    const minSwipeDistance = 50;
 
-  // Close menu when route changes
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
-
-  // Handle swipe gestures
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    // Swipe right from left edge to open
-    if (isRightSwipe && touchStart < 50) {
-      setIsMenuOpen(true);
-    }
-
-    // Swipe left to close when menu is open
-    if (isLeftSwipe && isMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        isMenuOpen &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        !(event.target as HTMLElement).closest(".hamburger-button")
-      ) {
+    // Close menu when route changes
+    useEffect(() => {
         setIsMenuOpen(false);
-      }
+    }, [location.pathname]);
+
+    // Handle swipe gestures
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
     };
-  }, [isMenuOpen]);
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        // Swipe right from left edge to open
+        if (isRightSwipe && touchStart < 50) {
+            setIsMenuOpen(true);
+        }
+
+        // Swipe left to close when menu is open
+        if (isLeftSwipe && isMenuOpen) {
+            setIsMenuOpen(false);
+        }
     };
-  }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                isMenuOpen &&
+                menuRef.current &&
+                !menuRef.current.contains(event.target as Node) &&
+                !(event.target as HTMLElement).closest(".hamburger-button")
+            ) {
+                setIsMenuOpen(false);
+            }
+        };
 
-  return (
-    <>
-      {/* Swipe edge area for opening menu from left edge */}
-      <div
-        className={`swipe-edge ${isMenuOpen ? "hidden" : ""}`}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      />
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isMenuOpen]);
 
-      <nav className="navigation">
-        <div className="nav-container">
-          <button
-            className="hamburger-button"
-            onClick={toggleMenu}
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMenuOpen}
-          >
-            <span className={`hamburger-icon ${isMenuOpen ? "open" : ""}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isMenuOpen]);
 
-          <div className="nav-brand">
-            <Link to="/">PC Parts Inventory</Link>
-          </div>
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
-          <div className={`nav-overlay ${isMenuOpen ? "visible" : ""}`} />
+    return (
+        <>
+            {/* Swipe edge area for opening menu from left edge */}
+            <div
+                className={`swipe-edge ${isMenuOpen ? "hidden" : ""}`}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+            />
 
-          <ul
-            ref={menuRef}
-            className={`nav-links ${isMenuOpen ? "open" : ""}`}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-          <li>
-            <Link to="/" className={location.pathname === "/" ? "active" : ""}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/build-planner"
-              className={location.pathname === "/build-planner" ? "active" : ""}
-            >
-              Build Planner
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/builds"
-              className={location.pathname === "/builds" ? "active" : ""}
-            >
-              PC Builds
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/cpu-collections"
-              className={location.pathname === "/cpu-collections" ? "active" : ""}
-            >
-              CPU Collections
-            </Link>
-          </li>
-          {Object.entries(PART_TYPES).map(([key, label]) => (
-            <li key={key}>
-              <Link
-                to={`/${key}`}
-                className={location.pathname === `/${key}` ? "active" : ""}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
-    </>
-  );
+            <nav className="navigation">
+                <div className="nav-container">
+                    <button
+                        className="hamburger-button"
+                        onClick={toggleMenu}
+                        aria-label="Toggle navigation menu"
+                        aria-expanded={isMenuOpen}
+                    >
+                        <span className={`hamburger-icon ${isMenuOpen ? "open" : ""}`}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+
+                    <div className="nav-brand">
+                        <Link to="/">PC Parts Inventory</Link>
+                    </div>
+
+                    <div className={`nav-overlay ${isMenuOpen ? "visible" : ""}`} />
+
+                    <ul
+                        ref={menuRef}
+                        className={`nav-links ${isMenuOpen ? "open" : ""}`}
+                        onTouchStart={onTouchStart}
+                        onTouchMove={onTouchMove}
+                        onTouchEnd={onTouchEnd}
+                    >
+                        <li>
+                            <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/build-planner"
+                                className={location.pathname === "/build-planner" ? "active" : ""}
+                            >
+                                Build Planner
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/builds"
+                                className={location.pathname === "/builds" ? "active" : ""}
+                            >
+                                PC Builds
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/cpu-collections"
+                                className={location.pathname === "/cpu-collections" ? "active" : ""}
+                            >
+                                CPU Collections
+                            </Link>
+                        </li>
+                        {Object.entries(PART_TYPES).map(([key, label]) => (
+                            <li key={key}>
+                                <Link
+                                    to={`/${key}`}
+                                    className={location.pathname === `/${key}` ? "active" : ""}
+                                >
+                                    {label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </nav>
+        </>
+    );
 };
