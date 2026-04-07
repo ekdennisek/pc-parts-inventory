@@ -26,6 +26,7 @@ import { PartCard } from "../components/PartCard";
 import { usedPartIds } from "../data/builds";
 import { FilterDropdown } from "../components/FilterDropdown";
 import "./BuildPlannerPage.css";
+import { FilterBar } from "../components/FilterBar";
 
 export const BuildPlannerPage: React.FC = () => {
   const [build, setBuild] = useState<PCBuild>({
@@ -140,7 +141,10 @@ export const BuildPlannerPage: React.FC = () => {
     setBuild((prev) => {
       const isSelected = prev.storage.some((s) => s.id === item.id);
       if (isSelected) {
-        return { ...prev, storage: prev.storage.filter((s) => s.id !== item.id) };
+        return {
+          ...prev,
+          storage: prev.storage.filter((s) => s.id !== item.id),
+        };
       }
       return { ...prev, storage: [...prev.storage, item] };
     });
@@ -154,7 +158,10 @@ export const BuildPlannerPage: React.FC = () => {
     setBuild((prev) => {
       const isSelected = prev.peripherals.some((p) => p.id === item.id);
       if (isSelected) {
-        return { ...prev, peripherals: prev.peripherals.filter((p) => p.id !== item.id) };
+        return {
+          ...prev,
+          peripherals: prev.peripherals.filter((p) => p.id !== item.id),
+        };
       }
       return { ...prev, peripherals: [...prev.peripherals, item] };
     });
@@ -260,8 +267,12 @@ export const BuildPlannerPage: React.FC = () => {
       ramIds: build.ram.map((r) => r.id),
       powerSupplyId: build.powerSupply.id,
       ...(build.graphicsCard && { graphicsCardIds: [build.graphicsCard.id] }),
-      ...(build.storage.length > 0 && { storageIds: build.storage.map((s) => s.id) }),
-      ...(build.peripherals.length > 0 && { peripheralIds: build.peripherals.map((p) => p.id) }),
+      ...(build.storage.length > 0 && {
+        storageIds: build.storage.map((s) => s.id),
+      }),
+      ...(build.peripherals.length > 0 && {
+        peripheralIds: build.peripherals.map((p) => p.id),
+      }),
     };
 
     const jsonString = JSON.stringify(savedBuild, null, 2);
@@ -282,8 +293,8 @@ export const BuildPlannerPage: React.FC = () => {
     }
     return cases.filter((pcCase) =>
       selectedFormFactors.some((formFactor) =>
-        pcCase.supportedFormFactors.includes(formFactor)
-      )
+        pcCase.supportedFormFactors.includes(formFactor),
+      ),
     );
   }, [selectedFormFactors]);
 
@@ -293,7 +304,7 @@ export const BuildPlannerPage: React.FC = () => {
       return motherboards;
     }
     return motherboards.filter((mb) =>
-      build.case!.supportedFormFactors.includes(mb.formFactor)
+      build.case!.supportedFormFactors.includes(mb.formFactor),
     );
   }, [build.case]);
 
@@ -307,13 +318,13 @@ export const BuildPlannerPage: React.FC = () => {
   const compatibleRAM = useMemo(() => {
     if (!build.motherboard) return [];
     return ram.filter((ramModule) =>
-      build.motherboard!.memoryTypes.includes(ramModule.type)
+      build.motherboard!.memoryTypes.includes(ramModule.type),
     );
   }, [build.motherboard]);
 
   const totalRAMCapacity = build.ram.reduce(
     (total, ramModule) => total + ramModule.capacity,
-    0
+    0,
   );
   const slotsUsed = build.ram.length;
   const maxSlots = build.motherboard?.memorySlots || 0;
@@ -332,8 +343,8 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "case"
                 ? "active"
                 : build.case
-                ? "completed clickable"
-                : ""
+                  ? "completed clickable"
+                  : ""
             }`}
             onClick={() => goToStep("case")}
           >
@@ -345,10 +356,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "motherboard"
                 ? "active"
                 : build.motherboard
-                ? "completed clickable"
-                : build.case
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.case
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.case && goToStep("motherboard")}
           >
@@ -360,10 +371,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "cpu"
                 ? "active"
                 : build.cpu
-                ? "completed clickable"
-                : build.motherboard
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.motherboard
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.motherboard && goToStep("cpu")}
           >
@@ -375,10 +386,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "ram"
                 ? "active"
                 : build.ram.length > 0
-                ? "completed clickable"
-                : build.motherboard && build.cpu
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.motherboard && build.cpu
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.motherboard && build.cpu && goToStep("ram")}
           >
@@ -390,10 +401,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "powerSupply"
                 ? "active"
                 : build.powerSupply
-                ? "completed clickable"
-                : build.ram.length > 0
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.ram.length > 0
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.ram.length > 0 && goToStep("powerSupply")}
           >
@@ -405,10 +416,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "graphicsCard"
                 ? "active"
                 : build.graphicsCard
-                ? "completed clickable"
-                : build.powerSupply
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.powerSupply
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.powerSupply && goToStep("graphicsCard")}
           >
@@ -420,10 +431,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "storage"
                 ? "active"
                 : build.storage.length > 0
-                ? "completed clickable"
-                : build.powerSupply
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.powerSupply
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.powerSupply && goToStep("storage")}
           >
@@ -435,10 +446,10 @@ export const BuildPlannerPage: React.FC = () => {
               currentStep === "peripheral"
                 ? "active"
                 : build.peripherals.length > 0
-                ? "completed clickable"
-                : build.powerSupply
-                ? "available"
-                : ""
+                  ? "completed clickable"
+                  : build.powerSupply
+                    ? "available"
+                    : ""
             }`}
             onClick={() => build.powerSupply && goToStep("peripheral")}
           >
@@ -606,7 +617,8 @@ export const BuildPlannerPage: React.FC = () => {
                     {build.graphicsCard.name}
                   </span>
                   <span className="component-detail">
-                    {build.graphicsCard.memory}GB {build.graphicsCard.memoryType}
+                    {build.graphicsCard.memory}GB{" "}
+                    {build.graphicsCard.memoryType}
                   </span>
                 </div>
               </div>
@@ -675,15 +687,20 @@ export const BuildPlannerPage: React.FC = () => {
                 compatible form factors.
               </p>
 
-              <FilterDropdown
-                label="Form Factor"
-                options={[...motherboardFormFactors].map((f) => ({ value: f, label: f }))}
-                mode="multi"
-                selectedValues={selectedFormFactors}
-                onChange={(values) =>
-                  setSelectedFormFactors(values as MotherboardFormFactor[])
-                }
-              />
+              <FilterBar>
+                <FilterDropdown
+                  label="Form Factor"
+                  options={[...motherboardFormFactors].map((f) => ({
+                    value: f,
+                    label: f,
+                  }))}
+                  mode="multi"
+                  selectedValues={selectedFormFactors}
+                  onChange={(values) =>
+                    setSelectedFormFactors(values as MotherboardFormFactor[])
+                  }
+                />
+              </FilterBar>
 
               <div className="parts-grid">
                 {filteredCases.map((pcCase) => (
@@ -692,7 +709,11 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectCase(pcCase)}
                     className="clickable"
                   >
-                    <PartCard part={pcCase} partType="case" inBuild={usedPartIds.has(pcCase.id)} />
+                    <PartCard
+                      part={pcCase}
+                      partType="case"
+                      inBuild={usedPartIds.has(pcCase.id)}
+                    />
                   </div>
                 ))}
               </div>
@@ -724,7 +745,12 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectMotherboard(motherboard)}
                     className="clickable"
                   >
-                    <PartCard part={motherboard} socket={motherboard.socket} partType="motherboard" inBuild={usedPartIds.has(motherboard.id)} />
+                    <PartCard
+                      part={motherboard}
+                      socket={motherboard.socket}
+                      partType="motherboard"
+                      inBuild={usedPartIds.has(motherboard.id)}
+                    />
                   </div>
                 ))}
               </div>
@@ -755,7 +781,11 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => selectCPU(cpu)}
                       className="clickable"
                     >
-                      <PartCard part={cpu} partType="cpu" inBuild={usedPartIds.has(cpu.id)} />
+                      <PartCard
+                        part={cpu}
+                        partType="cpu"
+                        inBuild={usedPartIds.has(cpu.id)}
+                      />
                     </div>
                   ))}
                 </div>
@@ -789,7 +819,7 @@ export const BuildPlannerPage: React.FC = () => {
                   <div className="parts-grid">
                     {compatibleRAM.map((ramModule) => {
                       const isSelected = build.ram.some(
-                        (r) => r.id === ramModule.id
+                        (r) => r.id === ramModule.id,
                       );
                       const canSelect = slotsUsed < maxSlots || isSelected;
 
@@ -801,7 +831,11 @@ export const BuildPlannerPage: React.FC = () => {
                             isSelected ? "selected" : ""
                           } ${!canSelect ? "disabled" : ""}`}
                         >
-                          <PartCard part={ramModule} partType="ram" inBuild={usedPartIds.has(ramModule.id)} />
+                          <PartCard
+                            part={ramModule}
+                            partType="ram"
+                            inBuild={usedPartIds.has(ramModule.id)}
+                          />
                           {isSelected && (
                             <div className="selected-indicator">Selected</div>
                           )}
@@ -816,7 +850,10 @@ export const BuildPlannerPage: React.FC = () => {
                   </div>
                   {build.ram.length > 0 && (
                     <div className="step-actions">
-                      <button onClick={proceedToPSU} className="btn btn-primary">
+                      <button
+                        onClick={proceedToPSU}
+                        className="btn btn-primary"
+                      >
                         Continue to PSU
                       </button>
                     </div>
@@ -837,7 +874,11 @@ export const BuildPlannerPage: React.FC = () => {
                     onClick={() => selectPowerSupply(psu)}
                     className="clickable"
                   >
-                    <PartCard part={psu} partType="powerSupply" inBuild={usedPartIds.has(psu.id)} />
+                    <PartCard
+                      part={psu}
+                      partType="powerSupply"
+                      inBuild={usedPartIds.has(psu.id)}
+                    />
                   </div>
                 ))}
               </div>
@@ -860,7 +901,11 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => toggleGraphicsCard(gpu)}
                       className={`clickable ${isSelected ? "selected" : ""}`}
                     >
-                      <PartCard part={gpu} partType="graphicsCard" inBuild={usedPartIds.has(gpu.id)} />
+                      <PartCard
+                        part={gpu}
+                        partType="graphicsCard"
+                        inBuild={usedPartIds.has(gpu.id)}
+                      />
                       {isSelected && (
                         <div className="selected-indicator">Selected</div>
                       )}
@@ -886,7 +931,7 @@ export const BuildPlannerPage: React.FC = () => {
               <div className="parts-grid">
                 {storage.map((item) => {
                   const isSelected = build.storage.some(
-                    (s) => s.id === item.id
+                    (s) => s.id === item.id,
                   );
                   return (
                     <div
@@ -894,7 +939,11 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => toggleStorage(item)}
                       className={`clickable ${isSelected ? "selected" : ""}`}
                     >
-                      <PartCard part={item} partType="storage" inBuild={usedPartIds.has(item.id)} />
+                      <PartCard
+                        part={item}
+                        partType="storage"
+                        inBuild={usedPartIds.has(item.id)}
+                      />
                       {isSelected && (
                         <div className="selected-indicator">Selected</div>
                       )}
@@ -903,7 +952,10 @@ export const BuildPlannerPage: React.FC = () => {
                 })}
               </div>
               <div className="step-actions">
-                <button onClick={proceedToPeripherals} className="btn btn-primary">
+                <button
+                  onClick={proceedToPeripherals}
+                  className="btn btn-primary"
+                >
                   Continue to Peripherals
                 </button>
               </div>
@@ -920,7 +972,7 @@ export const BuildPlannerPage: React.FC = () => {
               <div className="parts-grid">
                 {peripherals.map((item) => {
                   const isSelected = build.peripherals.some(
-                    (p) => p.id === item.id
+                    (p) => p.id === item.id,
                   );
                   return (
                     <div
@@ -928,7 +980,11 @@ export const BuildPlannerPage: React.FC = () => {
                       onClick={() => togglePeripheral(item)}
                       className={`clickable ${isSelected ? "selected" : ""}`}
                     >
-                      <PartCard part={item} partType="peripheral" inBuild={usedPartIds.has(item.id)} />
+                      <PartCard
+                        part={item}
+                        partType="peripheral"
+                        inBuild={usedPartIds.has(item.id)}
+                      />
                       {isSelected && (
                         <div className="selected-indicator">Selected</div>
                       )}
@@ -983,7 +1039,8 @@ export const BuildPlannerPage: React.FC = () => {
                   )}
                   {build.peripherals.length > 0 && (
                     <li>
-                      <strong>Peripherals:</strong> {build.peripherals.length} device
+                      <strong>Peripherals:</strong> {build.peripherals.length}{" "}
+                      device
                       {build.peripherals.length > 1 ? "s" : ""}
                     </li>
                   )}
