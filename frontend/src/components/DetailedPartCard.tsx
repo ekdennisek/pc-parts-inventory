@@ -278,6 +278,7 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({ part, partTy
 
     return (
         <div className={`detailed-part-card ${socketColorClass}${inBuild ? " in-build" : ""}`}>
+            {inBuild && <div className="in-build-watermark" />}
             {part.releaseYear && (
                 <div className="part-year-badge" data-type={partType}>
                     {part.releaseYear}

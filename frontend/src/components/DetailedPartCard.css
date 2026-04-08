@@ -166,11 +166,16 @@
 }
 
 /* In-build watermark */
-.detailed-part-card.in-build {
+.in-build-watermark {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: inherit;
 }
 
-.detailed-part-card.in-build::after {
+.in-build-watermark::after {
     content: "IN BUILD";
     position: absolute;
     top: 50%;
@@ -182,5 +187,4 @@
     letter-spacing: 2px;
     white-space: nowrap;
     pointer-events: none;
-    z-index: 2;
 }

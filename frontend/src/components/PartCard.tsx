@@ -17,6 +17,7 @@ export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType, inBu
 
     return (
         <div className={`part-card ${socketColorClass} ${typeClass}${inBuild ? " in-build" : ""}`}>
+            {inBuild && <div className="in-build-watermark" />}
             {part.condition && (
                 <div className="part-condition-badge" data-condition={part.condition}>
                     {part.condition}
