@@ -183,7 +183,7 @@ export const motherboards: Motherboard[] = [
             "PCI 2.2": 2, // TODO Verify
         },
         memoryTypes: ["DDR2"],
-        releaseYear: 2008,
+        releaseYear: 2007,
         ioShield: true,
         box: true,
     },
