@@ -737,7 +737,6 @@ export const BuildPlannerPage: React.FC = () => {
                                         <PartCard
                                             part={motherboard}
                                             socket={motherboard.socket}
-                                            partType="motherboard"
                                             inBuild={usedPartIds.has(motherboard.id)}
                                         />
                                     </div>
