@@ -56,7 +56,7 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({ part, partTy
                         </div>
                         <div className="spec-item">
                             <span className="spec-label">TDP</span>
-                            <span className="spec-value">{cpu.tdp}W</span>
+                            <span className="spec-value">{cpu.tdp ? `${cpu.tdp} W` : "-"}</span>
                         </div>
                     </>
                 );

@@ -46,7 +46,7 @@ export interface CPU extends PCPart {
     baseClock: number; // GHz
     boostClock?: number; // GHz
     socket: CpuSocket;
-    tdp: number; // Watts
+    tdp?: number; // Watts
     codename?: string;
     partNumber?: string;
     sSpec?: string;
