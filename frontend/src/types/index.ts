@@ -139,6 +139,16 @@ export type PartType =
     | "storage"
     | "peripheral";
 
+export type AnyPart =
+    | CPU
+    | Motherboard
+    | PowerSupply
+    | GraphicsCard
+    | RAM
+    | Case
+    | Storage
+    | Peripheral;
+
 export const PART_TYPES: Record<PartType, string> = {
     cpu: "CPUs",
     motherboard: "Motherboards",

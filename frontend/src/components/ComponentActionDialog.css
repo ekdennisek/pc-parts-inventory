@@ -1,0 +1,42 @@
+.action-dialog-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.action-dialog-buttons .btn-select {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    transition: background 0.15s ease;
+}
+
+.action-dialog-buttons .btn-select:hover:not(:disabled) {
+    background: #0069d9;
+}
+
+.action-dialog-buttons .btn-select:disabled {
+    background: #b0c4d8;
+    cursor: not-allowed;
+}
+
+.action-dialog-buttons .btn-details {
+    padding: 0.6rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: white;
+    color: #333;
+    transition: background 0.15s ease;
+}
+
+.action-dialog-buttons .btn-details:hover {
+    background: #f8f9fa;
+}

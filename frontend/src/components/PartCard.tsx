@@ -9,6 +9,9 @@ interface PartCardProps {
     socket?: CpuSocket;
     partType?: string;
     inBuild?: boolean;
+    onClick?: () => void;
+    isSelected?: boolean;
+    isDisabled?: boolean;
 }
 
 const CheckIcon = () => (
@@ -44,12 +47,32 @@ const XIcon = () => (
     </svg>
 );
 
-export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType, inBuild }) => {
+export const PartCard: React.FC<PartCardProps> = ({
+    part,
+    socket,
+    partType,
+    inBuild,
+    onClick,
+    isSelected,
+    isDisabled,
+}) => {
     const socketColorClass = socket ? `socket-${getSocketColor(socket)}` : "";
     const typeClass = partType ? `type-${partType}` : "";
 
+    const classes = [
+        "part-card",
+        socketColorClass,
+        typeClass,
+        inBuild ? "in-build" : "",
+        onClick ? "clickable" : "",
+        isSelected ? "selected" : "",
+        isDisabled ? "disabled" : "",
+    ]
+        .filter(Boolean)
+        .join(" ");
+
     return (
-        <div className={`part-card ${socketColorClass} ${typeClass}${inBuild ? " in-build" : ""}`}>
+        <div className={classes} onClick={isDisabled ? undefined : onClick}>
             {inBuild && <div className="in-build-watermark" />}
             {part.releaseYear && (
                 <div className="part-year-badge" data-type={partType}>
@@ -74,6 +97,10 @@ export const PartCard: React.FC<PartCardProps> = ({ part, socket, partType, inBu
                 </div>
             )}
             <div className="part-description">{part.description}</div>
+            {isSelected && <div className="selected-indicator">Selected</div>}
+            {isDisabled && !isSelected && (
+                <div className="disabled-indicator">No slots available</div>
+            )}
         </div>
     );
 };

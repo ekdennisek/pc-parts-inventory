@@ -1,0 +1,50 @@
+.component-specs {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-row .spec-label {
+    font-weight: 500;
+    color: #6c757d;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.spec-row .spec-value {
+    font-weight: 600;
+    color: #212529;
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+.spec-row .spec-value.spec-value-normal {
+    font-weight: 400;
+}
+
+
+.spec-section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #adb5bd;
+    margin: 1rem 0 0.25rem;
+}
+
+.spec-section-title:first-child {
+    margin-top: 0;
+}

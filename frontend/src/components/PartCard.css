@@ -82,6 +82,48 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.part-card.clickable {
+    cursor: pointer;
+}
+
+.part-card.selected {
+    box-shadow: 0 0 0 3px #007bff40;
+}
+
+.part-card.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.part-card.disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected-indicator {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #28a745;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.disabled-indicator {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #dc3545;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
 .part-header {
     display: flex;
     justify-content: space-between;

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { PartCard } from "../components/PartCard";
@@ -6,10 +6,11 @@ import { FilterDropdown } from "../components/FilterDropdown";
 import { FilterBar } from "../components/FilterBar";
 import { allParts } from "../data/parts";
 import { usedPartIds } from "../data/builds";
-import type { PCPart, PartType } from "../types";
+import type { PCPart, PartType, AnyPart } from "../types";
 import { PART_TYPES } from "../types";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./HomePage.css";
+import { ComponentDetailModal } from "../components/ComponentDetailModal";
 import { ScrollToTop } from "../components/ScrollToTop";
 import type { FilterOption } from "../components/FilterDropdown";
 
@@ -23,6 +24,9 @@ const conditionFilterOptions: FilterOption[] = [
 
 export const HomePage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [detailModal, setDetailModal] = useState<{ part: AnyPart; partType: PartType } | null>(
+        null,
+    );
 
     const searchTerm = searchParams.get("search") ?? "";
     const sortOption = (searchParams.get("sort") ?? "releaseYear") as SortOption;
@@ -295,6 +299,12 @@ export const HomePage: React.FC = () => {
                                         part={part}
                                         partType={part.partType}
                                         inBuild={usedPartIds.has(part.id)}
+                                        onClick={() =>
+                                            setDetailModal({
+                                                part: part as unknown as AnyPart,
+                                                partType: part.partType,
+                                            })
+                                        }
                                     />
                                 </div>
                             ))}
@@ -311,6 +321,15 @@ export const HomePage: React.FC = () => {
             )}
 
             <ScrollToTop />
+
+            {detailModal && (
+                <ComponentDetailModal
+                    part={detailModal.part}
+                    partType={detailModal.partType}
+                    inBuild={usedPartIds.has(detailModal.part.id)}
+                    onClose={() => setDetailModal(null)}
+                />
+            )}
         </div>
     );
 };

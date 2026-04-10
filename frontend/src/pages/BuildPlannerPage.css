@@ -251,52 +251,6 @@
     margin-bottom: 2rem;
 }
 
-.clickable {
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease;
-}
-
-.clickable:hover {
-    transform: translateY(-2px);
-}
-
-.clickable.selected {
-    box-shadow: 0 0 0 3px #007bff40;
-}
-
-.clickable.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.clickable.disabled:hover {
-    transform: none;
-}
-
-.selected-indicator {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: #28a745;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.disabled-indicator {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: #dc3545;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
 
 .ram-info {
     background: #e3f2fd;

@@ -50,9 +50,15 @@ interface DetailedPartCardProps {
     part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case | Storage | Peripheral;
     partType: PartType;
     inBuild?: boolean;
+    onClick?: () => void;
 }
 
-export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({ part, partType, inBuild }) => {
+export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
+    part,
+    partType,
+    inBuild,
+    onClick,
+}) => {
     const socket =
         partType === "cpu"
             ? (part as CPU).socket
@@ -310,7 +316,10 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({ part, partTy
     };
 
     return (
-        <div className={`detailed-part-card ${socketColorClass}${inBuild ? " in-build" : ""}`}>
+        <div
+            className={`detailed-part-card ${socketColorClass}${inBuild ? " in-build" : ""}${onClick ? " clickable" : ""}`}
+            onClick={onClick}
+        >
             {inBuild && <div className="in-build-watermark" />}
             {part.releaseYear && (
                 <div className="part-year-badge" data-type={partType}>

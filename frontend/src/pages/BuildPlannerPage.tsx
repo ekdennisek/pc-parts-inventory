@@ -12,6 +12,8 @@ import type {
     Peripheral,
     MotherboardFormFactor,
     SavedBuild,
+    PartType,
+    AnyPart,
 } from "../types";
 import { motherboards } from "../data/motherboards";
 import { cpus } from "../data/cpus";
@@ -25,8 +27,19 @@ import { motherboardFormFactors } from "../types";
 import { PartCard } from "../components/PartCard";
 import { usedPartIds } from "../data/builds";
 import { FilterDropdown } from "../components/FilterDropdown";
+import { ComponentDetailModal } from "../components/ComponentDetailModal";
+import { ComponentActionDialog } from "../components/ComponentActionDialog";
 import "./BuildPlannerPage.css";
 import { FilterBar } from "../components/FilterBar";
+
+type DetailModal = { part: AnyPart; partType: PartType };
+type ActionDialog = {
+    part: AnyPart;
+    partType: PartType;
+    onSelect: () => void;
+    isSelected: boolean;
+    canSelect: boolean;
+};
 
 export const BuildPlannerPage: React.FC = () => {
     const [build, setBuild] = useState<PCBuild>({
@@ -40,6 +53,8 @@ export const BuildPlannerPage: React.FC = () => {
     const [currentStep, setCurrentStep] = useState<BuildStep>("case");
     const [selectedFormFactors, setSelectedFormFactors] = useState<MotherboardFormFactor[]>([]);
     const [copySuccess, setCopySuccess] = useState(false);
+    const [detailModal, setDetailModal] = useState<DetailModal | null>(null);
+    const [actionDialog, setActionDialog] = useState<ActionDialog | null>(null);
 
     const selectCase = (pcCase: Case) => {
         setBuild((prev) => ({
@@ -693,17 +708,22 @@ export const BuildPlannerPage: React.FC = () => {
 
                             <div className="parts-grid">
                                 {filteredCases.map((pcCase) => (
-                                    <div
+                                    <PartCard
                                         key={pcCase.id}
-                                        onClick={() => selectCase(pcCase)}
-                                        className="clickable"
-                                    >
-                                        <PartCard
-                                            part={pcCase}
-                                            partType="case"
-                                            inBuild={usedPartIds.has(pcCase.id)}
-                                        />
-                                    </div>
+                                        part={pcCase}
+                                        partType="case"
+                                        inBuild={usedPartIds.has(pcCase.id)}
+                                        isSelected={build.case?.id === pcCase.id}
+                                        onClick={() =>
+                                            setActionDialog({
+                                                part: pcCase,
+                                                partType: "case",
+                                                onSelect: () => selectCase(pcCase),
+                                                isSelected: build.case?.id === pcCase.id,
+                                                canSelect: true,
+                                            })
+                                        }
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -729,17 +749,23 @@ export const BuildPlannerPage: React.FC = () => {
                             </div>
                             <div className="parts-grid">
                                 {availableMotherboards.map((motherboard) => (
-                                    <div
+                                    <PartCard
                                         key={motherboard.id}
-                                        onClick={() => selectMotherboard(motherboard)}
-                                        className="clickable"
-                                    >
-                                        <PartCard
-                                            part={motherboard}
-                                            socket={motherboard.socket}
-                                            inBuild={usedPartIds.has(motherboard.id)}
-                                        />
-                                    </div>
+                                        part={motherboard}
+                                        socket={motherboard.socket}
+                                        inBuild={usedPartIds.has(motherboard.id)}
+                                        isSelected={build.motherboard?.id === motherboard.id}
+                                        onClick={() =>
+                                            setActionDialog({
+                                                part: motherboard,
+                                                partType: "motherboard",
+                                                onSelect: () => selectMotherboard(motherboard),
+                                                isSelected:
+                                                    build.motherboard?.id === motherboard.id,
+                                                canSelect: true,
+                                            })
+                                        }
+                                    />
                                 ))}
                             </div>
                             {build.case && availableMotherboards.length === 0 && (
@@ -764,17 +790,22 @@ export const BuildPlannerPage: React.FC = () => {
                             ) : (
                                 <div className="parts-grid">
                                     {compatibleCPUs.map((cpu) => (
-                                        <div
+                                        <PartCard
                                             key={cpu.id}
-                                            onClick={() => selectCPU(cpu)}
-                                            className="clickable"
-                                        >
-                                            <PartCard
-                                                part={cpu}
-                                                partType="cpu"
-                                                inBuild={usedPartIds.has(cpu.id)}
-                                            />
-                                        </div>
+                                            part={cpu}
+                                            partType="cpu"
+                                            inBuild={usedPartIds.has(cpu.id)}
+                                            isSelected={build.cpu?.id === cpu.id}
+                                            onClick={() =>
+                                                setActionDialog({
+                                                    part: cpu,
+                                                    partType: "cpu",
+                                                    onSelect: () => selectCPU(cpu),
+                                                    isSelected: build.cpu?.id === cpu.id,
+                                                    canSelect: true,
+                                                })
+                                            }
+                                        />
                                     ))}
                                 </div>
                             )}
@@ -812,31 +843,23 @@ export const BuildPlannerPage: React.FC = () => {
                                             const canSelect = slotsUsed < maxSlots || isSelected;
 
                                             return (
-                                                <div
+                                                <PartCard
                                                     key={ramModule.id}
+                                                    part={ramModule}
+                                                    partType="ram"
+                                                    inBuild={usedPartIds.has(ramModule.id)}
+                                                    isSelected={isSelected}
+                                                    isDisabled={!canSelect}
                                                     onClick={() =>
-                                                        canSelect && toggleRAM(ramModule)
+                                                        setActionDialog({
+                                                            part: ramModule,
+                                                            partType: "ram",
+                                                            onSelect: () => toggleRAM(ramModule),
+                                                            isSelected,
+                                                            canSelect,
+                                                        })
                                                     }
-                                                    className={`clickable ${
-                                                        isSelected ? "selected" : ""
-                                                    } ${!canSelect ? "disabled" : ""}`}
-                                                >
-                                                    <PartCard
-                                                        part={ramModule}
-                                                        partType="ram"
-                                                        inBuild={usedPartIds.has(ramModule.id)}
-                                                    />
-                                                    {isSelected && (
-                                                        <div className="selected-indicator">
-                                                            Selected
-                                                        </div>
-                                                    )}
-                                                    {!canSelect && (
-                                                        <div className="disabled-indicator">
-                                                            No slots available
-                                                        </div>
-                                                    )}
-                                                </div>
+                                                />
                                             );
                                         })}
                                     </div>
@@ -861,17 +884,22 @@ export const BuildPlannerPage: React.FC = () => {
                             <p>Choose a power supply for your build.</p>
                             <div className="parts-grid">
                                 {powerSupplies.map((psu) => (
-                                    <div
+                                    <PartCard
                                         key={psu.id}
-                                        onClick={() => selectPowerSupply(psu)}
-                                        className="clickable"
-                                    >
-                                        <PartCard
-                                            part={psu}
-                                            partType="powerSupply"
-                                            inBuild={usedPartIds.has(psu.id)}
-                                        />
-                                    </div>
+                                        part={psu}
+                                        partType="powerSupply"
+                                        inBuild={usedPartIds.has(psu.id)}
+                                        isSelected={build.powerSupply?.id === psu.id}
+                                        onClick={() =>
+                                            setActionDialog({
+                                                part: psu,
+                                                partType: "powerSupply",
+                                                onSelect: () => selectPowerSupply(psu),
+                                                isSelected: build.powerSupply?.id === psu.id,
+                                                canSelect: true,
+                                            })
+                                        }
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -888,20 +916,22 @@ export const BuildPlannerPage: React.FC = () => {
                                 {graphicsCards.map((gpu) => {
                                     const isSelected = build.graphicsCard?.id === gpu.id;
                                     return (
-                                        <div
+                                        <PartCard
                                             key={gpu.id}
-                                            onClick={() => toggleGraphicsCard(gpu)}
-                                            className={`clickable ${isSelected ? "selected" : ""}`}
-                                        >
-                                            <PartCard
-                                                part={gpu}
-                                                partType="graphicsCard"
-                                                inBuild={usedPartIds.has(gpu.id)}
-                                            />
-                                            {isSelected && (
-                                                <div className="selected-indicator">Selected</div>
-                                            )}
-                                        </div>
+                                            part={gpu}
+                                            partType="graphicsCard"
+                                            inBuild={usedPartIds.has(gpu.id)}
+                                            isSelected={isSelected}
+                                            onClick={() =>
+                                                setActionDialog({
+                                                    part: gpu,
+                                                    partType: "graphicsCard",
+                                                    onSelect: () => toggleGraphicsCard(gpu),
+                                                    isSelected,
+                                                    canSelect: true,
+                                                })
+                                            }
+                                        />
                                     );
                                 })}
                             </div>
@@ -924,20 +954,22 @@ export const BuildPlannerPage: React.FC = () => {
                                 {storage.map((item) => {
                                     const isSelected = build.storage.some((s) => s.id === item.id);
                                     return (
-                                        <div
+                                        <PartCard
                                             key={item.id}
-                                            onClick={() => toggleStorage(item)}
-                                            className={`clickable ${isSelected ? "selected" : ""}`}
-                                        >
-                                            <PartCard
-                                                part={item}
-                                                partType="storage"
-                                                inBuild={usedPartIds.has(item.id)}
-                                            />
-                                            {isSelected && (
-                                                <div className="selected-indicator">Selected</div>
-                                            )}
-                                        </div>
+                                            part={item}
+                                            partType="storage"
+                                            inBuild={usedPartIds.has(item.id)}
+                                            isSelected={isSelected}
+                                            onClick={() =>
+                                                setActionDialog({
+                                                    part: item,
+                                                    partType: "storage",
+                                                    onSelect: () => toggleStorage(item),
+                                                    isSelected,
+                                                    canSelect: true,
+                                                })
+                                            }
+                                        />
                                     );
                                 })}
                             </div>
@@ -962,20 +994,22 @@ export const BuildPlannerPage: React.FC = () => {
                                         (p) => p.id === item.id,
                                     );
                                     return (
-                                        <div
+                                        <PartCard
                                             key={item.id}
-                                            onClick={() => togglePeripheral(item)}
-                                            className={`clickable ${isSelected ? "selected" : ""}`}
-                                        >
-                                            <PartCard
-                                                part={item}
-                                                partType="peripheral"
-                                                inBuild={usedPartIds.has(item.id)}
-                                            />
-                                            {isSelected && (
-                                                <div className="selected-indicator">Selected</div>
-                                            )}
-                                        </div>
+                                            part={item}
+                                            partType="peripheral"
+                                            inBuild={usedPartIds.has(item.id)}
+                                            isSelected={isSelected}
+                                            onClick={() =>
+                                                setActionDialog({
+                                                    part: item,
+                                                    partType: "peripheral",
+                                                    onSelect: () => togglePeripheral(item),
+                                                    isSelected,
+                                                    canSelect: true,
+                                                })
+                                            }
+                                        />
                                     );
                                 })}
                             </div>
@@ -1045,6 +1079,35 @@ export const BuildPlannerPage: React.FC = () => {
                     )}
                 </div>
             </div>
+
+            {actionDialog && (
+                <ComponentActionDialog
+                    part={actionDialog.part}
+                    isSelected={actionDialog.isSelected}
+                    canSelect={actionDialog.canSelect}
+                    onSelect={() => {
+                        actionDialog.onSelect();
+                        setActionDialog(null);
+                    }}
+                    onViewDetails={() => {
+                        setDetailModal({
+                            part: actionDialog.part,
+                            partType: actionDialog.partType,
+                        });
+                        setActionDialog(null);
+                    }}
+                    onClose={() => setActionDialog(null)}
+                />
+            )}
+
+            {detailModal && (
+                <ComponentDetailModal
+                    part={detailModal.part}
+                    partType={detailModal.partType}
+                    inBuild={usedPartIds.has(detailModal.part.id)}
+                    onClose={() => setDetailModal(null)}
+                />
+            )}
         </div>
     );
 };

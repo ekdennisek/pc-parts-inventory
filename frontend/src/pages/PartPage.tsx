@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useRef } from "react";
+import React, { useCallback, useMemo, useEffect, useRef, useState } from "react";
 import { useParams, useSearchParams, useNavigationType } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { FilterDropdown } from "../components/FilterDropdown";
@@ -9,6 +9,7 @@ import { allParts } from "../data/parts";
 import { usedPartIds } from "../data/builds";
 import type {
     PartType,
+    AnyPart,
     CPU,
     Motherboard,
     GraphicsCard,
@@ -33,6 +34,7 @@ import {
 import type { FilterOption } from "../components/FilterDropdown";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./PartPage.css";
+import { ComponentDetailModal } from "../components/ComponentDetailModal";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
 
@@ -48,6 +50,9 @@ export const PartPage: React.FC = () => {
     const { partType } = useParams<{ partType: PartType }>();
     const [searchParams, setSearchParams] = useSearchParams();
     const navigationType = useNavigationType();
+    const [detailModal, setDetailModal] = useState<{ part: AnyPart; partType: PartType } | null>(
+        null,
+    );
 
     // Clear query params when switching between part types via forward navigation,
     // but preserve them on browser back/forward (POP) since the browser restores the correct URL.
@@ -495,6 +500,7 @@ export const PartPage: React.FC = () => {
                         part={part}
                         partType={partType}
                         inBuild={usedPartIds.has(part.id)}
+                        onClick={() => setDetailModal({ part, partType })}
                     />
                 ))}
             </div>
@@ -513,6 +519,15 @@ export const PartPage: React.FC = () => {
             )}
 
             <ScrollToTop />
+
+            {detailModal && (
+                <ComponentDetailModal
+                    part={detailModal.part}
+                    partType={detailModal.partType}
+                    inBuild={usedPartIds.has(detailModal.part.id)}
+                    onClose={() => setDetailModal(null)}
+                />
+            )}
         </div>
     );
 };
