@@ -79,7 +79,7 @@ export const Navigation: React.FC = () => {
     }, [isMenuOpen]);
 
     const isComponentsActive = Object.keys(PART_TYPES).some(
-        (key) => location.pathname === `/${key}`
+        (key) => location.pathname === `/${key}`,
     );
 
     const toggleMenu = () => {
@@ -167,7 +167,9 @@ export const Navigation: React.FC = () => {
                                     <li key={key}>
                                         <Link
                                             to={`/${key}`}
-                                            className={location.pathname === `/${key}` ? "active" : ""}
+                                            className={
+                                                location.pathname === `/${key}` ? "active" : ""
+                                            }
                                         >
                                             {label}
                                         </Link>
