@@ -270,4 +270,23 @@ export const motherboards: Motherboard[] = [
         ioShield: true,
         box: true,
     },
+    {
+        id: "mb-14",
+        name: "Gigabyte GA-8IPE1000-G",
+        brand: "Gigabyte",
+        description: "Socket 478 ATX motherboard",
+        socket: "Socket 478",
+        formFactor: "ATX",
+        chipset: "Intel 865PE",
+        memorySlots: 4,
+        maxMemory: 4,
+        memoryTypes: ["DDR"],
+        expansionSlots: {
+            "AGP 1.5": 1, // X8/X4 mode only, no X2
+            "PCI 2.3": 5,
+        },
+        releaseYear: 2004,
+        ioShield: true,
+        box: false,
+    },
 ];
