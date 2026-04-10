@@ -19,6 +19,7 @@ import type {
     Peripheral,
     MotherboardFormFactor,
     StorageFormFactor,
+    MemoryType,
 } from "../types";
 import {
     PART_TYPES,
@@ -71,9 +72,9 @@ export const PartPage: React.FC = () => {
     const selectedFilters = getArrayParam(searchParams, "filter");
     const selectedFormFactors = getArrayParam(searchParams, "formFactor");
     const selectedConditions = getArrayParam(searchParams, "condition");
-    const selectedMemoryType = searchParams.get("memoryType") ?? null;
-    const yearFrom = searchParams.get("yearFrom") ?? null;
-    const yearTo = searchParams.get("yearTo") ?? null;
+    const selectedMemoryType = searchParams.get("memoryType") as MemoryType;
+    const yearFrom = searchParams.get("yearFrom");
+    const yearTo = searchParams.get("yearTo");
 
     const setSearchTerm = useCallback(
         (value: string) =>
@@ -273,7 +274,7 @@ export const PartPage: React.FC = () => {
         if (partType === "motherboard" && selectedMemoryType) {
             filtered = filtered.filter((part) => {
                 const p = part as Motherboard;
-                return p.memoryTypes.includes(selectedMemoryType as any);
+                return p.memoryTypes.includes(selectedMemoryType);
             });
         }
 
