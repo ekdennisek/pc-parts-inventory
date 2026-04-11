@@ -288,5 +288,6 @@ export const motherboards: Motherboard[] = [
         releaseYear: 2004,
         ioShield: true,
         box: false,
+        condition: "working",
     },
 ];
