@@ -17,7 +17,7 @@ export const builds: SavedBuild[] = [
         id: "build-1778776230325",
         name: "År 2004",
         caseId: "case-4",
-        motherboardId: "mb-14",
+        motherboardId: "mb-15",
         cpuIds: ["cpu-47"],
         ramIds: ["ram-49", "ram-50", "ram-51"],
         powerSupplyId: "psu-1",

@@ -291,7 +291,7 @@ export const motherboards: Motherboard[] = [
         condition: "working",
     },
     {
-        id: "mb-14",
+        id: "mb-15",
         name: "ASUS A7N8X-X",
         brand: "ASUS",
         description: "Socket A ATX motherboard (rev. 2.00)",
