@@ -13,6 +13,18 @@ export const builds: SavedBuild[] = [
         storageIds: ["storage-4"],
         peripheralIds: ["p-1"],
     },
+    {
+        id: "build-1778776230325",
+        name: "År 2004",
+        caseId: "case-4",
+        motherboardId: "mb-14",
+        cpuIds: ["cpu-47"],
+        ramIds: ["ram-49", "ram-50", "ram-51"],
+        powerSupplyId: "psu-1",
+        graphicsCardIds: ["gpu-7"],
+        storageIds: ["storage-5"],
+        // TODO DVD writer + floppy disk drive + fan controller
+    },
 ];
 
 export const usedPartIds: Set<string> = new Set(

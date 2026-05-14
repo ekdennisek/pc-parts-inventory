@@ -649,4 +649,17 @@ export const cpus: CPU[] = [
         codename: "Skylake",
         sSpec: "SR2L4",
     },
+    {
+        id: "cpu-47",
+        name: "AMD Athlon XP 2500+",
+        brand: "AMD",
+        description: "Socket A processor",
+        cores: 1,
+        threads: 1,
+        baseClock: 1.833,
+        socket: "Socket A",
+        releaseYear: 2003,
+        codename: "Barton",
+        partNumber: "AXDA2500DKV4D",
+    },
 ];

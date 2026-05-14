@@ -49,4 +49,15 @@ export const storage: Storage[] = [
         interface: "SATA III",
         condition: "working",
     },
+    {
+        id: "storage-5",
+        name: "Seagate 9CZ012-505",
+        brand: "Seagate",
+        description: "OEM 160GB ATA HDD",
+        capacity: 160,
+        type: "HDD",
+        formFactor: '3.5"',
+        interface: "IDE",
+        condition: "working",
+    },
 ];
