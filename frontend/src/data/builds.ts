@@ -20,7 +20,7 @@ export const builds: SavedBuild[] = [
         motherboardId: "mb-15",
         cpuIds: ["cpu-47"],
         ramIds: ["ram-49", "ram-50", "ram-51"],
-        powerSupplyId: "psu-1",
+        powerSupplyId: "psu-6",
         graphicsCardIds: ["gpu-7"],
         storageIds: ["storage-5"],
         // TODO DVD writer + floppy disk drive + fan controller

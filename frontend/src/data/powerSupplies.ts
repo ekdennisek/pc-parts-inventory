@@ -59,4 +59,17 @@ export const powerSupplies: PowerSupply[] = [
         releaseYear: 2018,
         condition: "working",
     },
+    {
+        id: "psu-6",
+        name: "Seasonic Super Tornado",
+        brand: "Seasonic",
+        description: "400W ATX v1.3 power supply",
+        wattage: 400,
+        efficiency: "",
+        modular: false,
+        formFactor: "ATX",
+        releaseYear: 2004,
+        condition: "working",
+        box: true,
+    },
 ];
