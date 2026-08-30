@@ -84,7 +84,7 @@ export const GamesPage: React.FC = () => {
 
         if (selectedTags.length > 0) {
             filtered = filtered.filter((game) =>
-                selectedTags.every((tag) => game.tags.includes(tag)),
+                selectedTags.every((tag) => game.tags.some((t) => t === tag)),
             );
         }
 
