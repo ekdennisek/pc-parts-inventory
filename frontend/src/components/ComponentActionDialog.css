@@ -5,38 +5,38 @@
 }
 
 .action-dialog-buttons .btn-select {
-    padding: 0.6rem 1rem;
+    padding: 0.7rem 1rem;
     border: none;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.8125rem;
+    font-weight: 600;
     cursor: pointer;
-    background: #007bff;
-    color: white;
+    background: var(--accent);
+    color: var(--on-accent);
     transition: background 0.15s ease;
 }
 
 .action-dialog-buttons .btn-select:hover:not(:disabled) {
-    background: #0069d9;
+    background: var(--accent-hover);
 }
 
 .action-dialog-buttons .btn-select:disabled {
-    background: #b0c4d8;
+    background: var(--border-subtle);
+    color: var(--text-muted);
     cursor: not-allowed;
 }
 
 .action-dialog-buttons .btn-details {
-    padding: 0.6rem 1rem;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border-subtle);
+    font-size: 0.8125rem;
     font-weight: 500;
     cursor: pointer;
-    background: white;
-    color: #333;
-    transition: background 0.15s ease;
+    background: transparent;
+    color: var(--text-label);
+    transition: all 0.15s ease;
 }
 
 .action-dialog-buttons .btn-details:hover {
-    background: #f8f9fa;
+    border-color: var(--text-muted);
+    color: var(--text-bright);
 }

@@ -1,20 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor" role="img" aria-label="Retro desktop computer tower with monitor">
-  <title>Retro desktop computer tower with monitor</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="PC Parts Inventory logo">
+  <title>PC Parts Inventory logo</title>
 
-  <!-- Monitor -->
-  <rect x="2" y="16" width="28" height="20" rx="3"/>
-  <rect x="6" y="20" width="20" height="12" fill="white"/>
+  <!-- Charcoal tile -->
+  <rect width="32" height="32" fill="#141210"/>
 
-  <!-- Monitor stand (thick + visible at small sizes) -->
-  <rect x="12" y="36" width="8" height="4"/>
-  <rect x="9" y="40" width="14" height="4"/>
+  <!-- Amber frame (3px) -->
+  <rect x="4" y="4" width="24" height="24" fill="#f0a532"/>
+  <rect x="7" y="7" width="18" height="18" fill="#141210"/>
 
-  <!-- Tower -->
-  <rect x="34" y="12" width="28" height="32" rx="2"/>
-
-  <!-- Drive bay (high-contrast cutout) -->
-  <rect x="38" y="16" width="20" height="4" fill="white"/>
-
-  <!-- Power button (scaled for visibility) -->
-  <circle cx="48" cy="36" r="3" fill="white"/>
+  <!-- 2x2 cell grid: amber top-left / bottom-right, muted top-right / bottom-left -->
+  <rect x="10" y="10" width="5" height="5" fill="#f0a532"/>
+  <rect x="17" y="10" width="5" height="5" fill="#4a443c"/>
+  <rect x="10" y="17" width="5" height="5" fill="#4a443c"/>
+  <rect x="17" y="17" width="5" height="5" fill="#f0a532"/>
 </svg>

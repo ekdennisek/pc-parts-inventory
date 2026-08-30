@@ -2,17 +2,16 @@
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: #007acc;
-    color: white;
+    width: 52px;
+    height: 52px;
+    background-color: var(--accent);
+    color: var(--on-accent);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
     opacity: 0;
     visibility: hidden;
@@ -27,19 +26,17 @@
 }
 
 .scroll-to-top:hover {
-    background-color: #005a9e;
+    background-color: var(--accent-hover);
     transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 122, 204, 0.5);
 }
 
 .scroll-to-top:active {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
 }
 
 .scroll-to-top:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.3);
+    box-shadow: 0 0 0 3px rgba(240, 165, 50, 0.3);
 }
 
 .scroll-to-top svg {

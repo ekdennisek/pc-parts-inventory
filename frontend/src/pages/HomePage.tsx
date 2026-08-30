@@ -5,7 +5,7 @@ import { PartCard } from "../components/PartCard";
 import { FilterDropdown } from "../components/FilterDropdown";
 import { FilterBar } from "../components/FilterBar";
 import { allParts } from "../data/parts";
-import { usedPartIds } from "../data/builds";
+import { builds, usedPartIds } from "../data/builds";
 import type { PCPart, PartType, AnyPart } from "../types";
 import { PART_TYPES } from "../types";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
@@ -191,32 +191,43 @@ export const HomePage: React.FC = () => {
 
     const isYearFilterActive = yearFrom !== null || yearTo !== null;
 
+    const yearSpan = useMemo(() => {
+        if (yearOptions.length === 0) return null;
+        return `${yearOptions[0].label}–${yearOptions[yearOptions.length - 1].label}`;
+    }, [yearOptions]);
+
     return (
         <div className="home-page">
-            <div className="summary-section">
-                <h2>Inventory Summary</h2>
-                <div className="summary-grid">
-                    {Object.entries(PART_TYPES).map(([key, label]) => {
-                        const partType = key as PartType;
-                        const { total } = partsSummary[partType];
-                        return (
-                            <div key={key} className="summary-card" data-type={partType}>
-                                <h3>{label}</h3>
-                                <div className="summary-stats">
-                                    <div className="stat">
-                                        <span className="stat-number">{total}</span>
-                                        <span className="stat-label">Total Parts</span>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+            <div className="home-header">
+                <div className="home-header-title">
+                    <div className="wb-eyebrow">Hardware Archive</div>
+                    <h1>The Collection</h1>
                 </div>
+                <div className="home-header-stats wb-mono">
+                    {allPartsFlat.length} parts &middot; {Object.keys(PART_TYPES).length} categories
+                    &middot; {builds.length} build{builds.length !== 1 ? "s" : ""}
+                    {yearSpan && <> &middot; {yearSpan}</>}
+                </div>
+            </div>
+
+            <div className="summary-strip">
+                {Object.entries(PART_TYPES)
+                    .map(([key, label]) => ({
+                        key: key as PartType,
+                        label,
+                        total: partsSummary[key as PartType].total,
+                    }))
+                    .sort((a, b) => b.total - a.total)
+                    .map(({ key, label, total }) => (
+                        <div key={key} className="summary-cell">
+                            <div className="summary-count wb-mono">{total}</div>
+                            <div className="summary-label">{label}</div>
+                        </div>
+                    ))}
             </div>
 
             <div className="search-section">
                 <div className="search-header">
-                    <h2>Search All Parts</h2>
                     <div className="sort-dropdown">
                         <label htmlFor="sort-select">Sort by:</label>
                         <select
@@ -285,9 +296,9 @@ export const HomePage: React.FC = () => {
                 {sortedAndGroupedParts.map(({ year, parts }) => (
                     <div key={year} className="parts-group">
                         {year !== "all" && (
-                            <div className="year-header">
-                                <h3>{year === "unknown" ? "Unknown Release Year" : year}</h3>
-                                <span className="part-count">
+                            <div className="year-rail">
+                                <h3 className="wb-mono">{year === "unknown" ? "?" : year}</h3>
+                                <span className="part-count wb-mono">
                                     {parts.length} part{parts.length !== 1 ? "s" : ""}
                                 </span>
                             </div>

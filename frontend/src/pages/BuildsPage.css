@@ -1,81 +1,69 @@
 .builds-page {
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .builds-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2rem;
 }
 
 .builds-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: #333;
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
 }
 
 .builds-header p {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
 }
 
 .no-builds {
     text-align: center;
     padding: 3rem;
-    background: #f8f9fa;
-    border-radius: 12px;
-    border: 1px solid #e9ecef;
+    background: var(--panel);
+    border: 1px solid var(--border);
 }
 
 .no-builds p {
     margin: 0.5rem 0;
-    color: #666;
-}
-
-.no-builds a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.no-builds a:hover {
-    text-decoration: underline;
+    color: var(--text-muted);
 }
 
 .builds-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .build-card {
-    background: #f8f9fa;
-    border-radius: 12px;
+    background: var(--panel);
     padding: 1.5rem;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border);
 }
 
 .build-card h2 {
     margin: 0 0 0.5rem 0;
-    color: #333;
-    font-size: 1.3rem;
+    font-size: 1.125rem;
 }
 
 .build-description {
-    color: #666;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
     margin: 0 0 1rem 0;
-    font-style: italic;
 }
 
 .build-components {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0;
 }
 
 .build-component {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e9ecef;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--border);
 }
 
 .build-component:last-child {
@@ -83,26 +71,35 @@
 }
 
 .component-label {
-    font-weight: 600;
-    color: #495057;
+    font-size: 0.6563rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
     display: block;
-    font-size: 0.9rem;
     margin-bottom: 0.25rem;
 }
 
 .component-value {
-    color: #333;
+    color: var(--text-bright);
+    font-size: 0.875rem;
+    font-weight: 600;
     display: block;
 }
 
 .component-detail {
-    font-size: 0.85rem;
-    color: #666;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
     display: block;
     margin-top: 0.125rem;
 }
 
 @media (max-width: 768px) {
+    .builds-page {
+        padding: 1.5rem 1rem;
+    }
+
     .builds-grid {
         grid-template-columns: 1fr;
     }

@@ -1,7 +1,7 @@
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,9 +10,9 @@
 }
 
 .modal-panel {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -31,16 +31,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #e9ecef;
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px solid var(--border);
     flex-shrink: 0;
     gap: 1rem;
 }
 
 .modal-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-bright);
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -54,19 +54,17 @@
     font-size: 1.4rem;
     line-height: 1;
     cursor: pointer;
-    color: #666;
+    color: var(--text-muted);
     padding: 0.25rem 0.4rem;
-    border-radius: 4px;
     flex-shrink: 0;
 }
 
 .modal-close:hover {
-    background: #f0f0f0;
-    color: #333;
+    color: var(--text-bright);
 }
 
 .modal-content {
-    padding: 1.5rem;
+    padding: 1.5rem 1.75rem;
     overflow-y: auto;
     flex: 1;
 }

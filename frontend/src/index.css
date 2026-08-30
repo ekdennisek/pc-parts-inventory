@@ -1,11 +1,47 @@
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    /* Workbench palette */
+    --bg: #141210;
+    --panel: #191713;
+    --panel-raised: #1f1c17;
+    --border: #2c2824;
+    --border-strong: #35302a;
+    --border-subtle: #4a443c;
+
+    --text: #e8e4dc;
+    --text-bright: #f2efe9;
+    --text-body: #b5aea3;
+    --text-label: #cfc9bf;
+    --text-muted: #9a938a;
+    --text-faint: #6f6960;
+
+    --accent: #f0a532;
+    --accent-hover: #ffbd57;
+    --on-accent: #141210;
+
+    --ok: #5db35f;
+    --bad: #e05d5d;
+    --unknown: #9a938a;
+
+    /* Per-category label hues */
+    --type-cpu: #e0c060;
+    --type-motherboard: #7ba7d9;
+    --type-powerSupply: #8bc9b0;
+    --type-graphicsCard: #d98b7b;
+    --type-ram: #c98bc9;
+    --type-case: #a99bd9;
+    --type-storage: #7bc0c9;
+    --type-peripheral: #c9b28b;
+
+    --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+    font-family: var(--font-sans);
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light;
-    color: #213547;
-    background-color: #ffffff;
+    color-scheme: dark;
+    color: var(--text);
+    background-color: var(--bg);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -19,10 +55,9 @@
 
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    background-color: var(--bg);
 }
 
 #root {
@@ -32,14 +67,29 @@ body {
 
 a {
     font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
+    color: var(--accent);
+    text-decoration: none;
 }
 a:hover {
-    color: #535bf2;
+    color: var(--accent-hover);
 }
 
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-bright);
+}
+
+/* Shared Workbench primitives */
+.wb-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.wb-mono {
+    font-family: var(--font-mono);
 }

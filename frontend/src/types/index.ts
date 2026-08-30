@@ -160,6 +160,18 @@ export const PART_TYPES: Record<PartType, string> = {
     peripheral: "Peripherals",
 };
 
+/* Singular labels used as card eyebrows in the Workbench design */
+export const PART_TYPE_LABELS: Record<PartType, string> = {
+    cpu: "CPU",
+    motherboard: "Motherboard",
+    powerSupply: "Power Supply",
+    graphicsCard: "Graphics Card",
+    ram: "RAM",
+    case: "Case",
+    storage: "Storage",
+    peripheral: "Peripheral",
+};
+
 export interface PCBuild {
     id: string;
     name: string;
@@ -196,6 +208,20 @@ export interface SavedBuild {
     graphicsCardIds?: string[];
     storageIds?: string[];
     peripheralIds?: string[];
+}
+
+export type GameStatus = "owned" | "wishlist";
+
+type GameGenreTag = "city-builder" | "fps" | "rts";
+type GameTag = GameGenreTag | "lan" | "single-player";
+
+export interface Game {
+    id: string;
+    name: string;
+    releaseYear?: number;
+    status: GameStatus;
+    tags: GameTag[];
+    notes?: string;
 }
 
 // Utility functions for socket detection

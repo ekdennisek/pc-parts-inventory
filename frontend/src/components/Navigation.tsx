@@ -112,7 +112,15 @@ export const Navigation: React.FC = () => {
                     </button>
 
                     <div className="nav-brand">
-                        <Link to="/">PC Parts Inventory</Link>
+                        <Link to="/">
+                            <span className="nav-brand-glyph" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            PC Parts Inventory
+                        </Link>
                     </div>
 
                     <div className={`nav-overlay ${isMenuOpen ? "visible" : ""}`} />
@@ -151,6 +159,14 @@ export const Navigation: React.FC = () => {
                                 className={location.pathname === "/cpu-collections" ? "active" : ""}
                             >
                                 CPU Collections
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/games"
+                                className={location.pathname === "/games" ? "active" : ""}
+                            >
+                                Games
                             </Link>
                         </li>
                         <li className="nav-components-group">

@@ -1,23 +1,23 @@
 .build-planner {
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .build-planner-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2rem;
 }
 
 .build-planner-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: #333;
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
 }
 
 .build-planner-header p {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
 }
 
 .build-progress {
@@ -26,8 +26,9 @@
 
 .progress-steps {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1.25rem;
     margin-bottom: 2rem;
 }
 
@@ -40,75 +41,73 @@
 }
 
 .step-number {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    background-color: #e0e0e0;
-    color: #666;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    background-color: var(--panel);
+    border: 1px solid var(--border-strong);
+    color: var(--text-faint);
     transition: all 0.3s ease;
 }
 
 .step.active .step-number {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
 }
 
 .step.completed .step-number {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--panel);
+    border-color: var(--ok);
+    color: var(--ok);
 }
 
 .step.available .step-number {
-    background-color: #ffc107;
-    color: #212529;
+    border-color: var(--border-subtle);
+    color: var(--text-label);
 }
 
 .step.clickable {
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.step.clickable:hover {
-    transform: translateY(-2px);
 }
 
 .step.clickable:hover .step-number {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent);
 }
 
 .step-label {
-    font-size: 0.9rem;
-    color: #666;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
     transition: all 0.3s ease;
 }
 
-.step.active .step-label,
+.step.active .step-label {
+    color: var(--accent);
+}
+
 .step.completed .step-label {
-    color: #333;
-    font-weight: 500;
+    color: var(--text-label);
 }
 
 .step.available .step-label {
-    color: #856404;
-    font-weight: 500;
-}
-
-.step.clickable .step-label {
-    color: #007bff;
+    color: var(--text-muted);
 }
 
 .step.clickable:hover .step-label {
-    color: #0056b3;
+    color: var(--text-bright);
 }
 
 .build-content {
     display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 2rem;
+    grid-template-columns: 380px 1fr;
+    gap: 1.5rem;
     align-items: start;
 }
 
@@ -117,48 +116,54 @@
     top: 2rem;
 }
 
+/* Current build: the slot list */
 .current-build {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid #e9ecef;
+    background: var(--panel);
+    padding: 0;
+    border: 1px solid var(--border);
 }
 
 .current-build h3 {
-    margin: 0 0 1rem 0;
-    color: #333;
-    font-size: 1.2rem;
+    margin: 0;
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
 
 .selected-component {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--ok);
 }
 
 .selected-component:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
     border-bottom: none;
 }
 
 .selected-component h4 {
-    margin: 0 0 0.5rem 0;
-    color: #495057;
-    font-size: 1rem;
+    margin: 0 0 0.375rem 0;
+    font-size: 0.6563rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
 }
 
 .component-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
 }
 
 .component-header h4 {
     margin: 0;
-    color: #495057;
-    font-size: 1rem;
 }
 
 .component-info {
@@ -169,30 +174,32 @@
 
 .component-name {
     font-weight: 600;
-    color: #333;
-    font-size: 0.95rem;
+    color: var(--text-bright);
+    font-size: 0.875rem;
 }
 
 .component-detail {
-    font-size: 0.85rem;
-    color: #666;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
 }
 
 .ram-module {
-    font-size: 0.85rem;
-    color: #666;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
     padding: 0.25rem 0.5rem;
-    background: #e9ecef;
-    border-radius: 4px;
+    background: var(--panel-raised);
+    border: 1px solid var(--border);
     margin: 0.125rem 0;
     display: inline-block;
     width: 100%;
 }
 
 .build-actions {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e9ecef;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+    border-left: 3px solid transparent;
 }
 
 .build-main {
@@ -201,47 +208,48 @@
 
 .step-content h2 {
     margin: 0 0 0.5rem 0;
-    color: #333;
+    font-size: 1.125rem;
 }
 
 .step-content p {
     margin: 0 0 1.5rem 0;
-    color: #666;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
     line-height: 1.5;
 }
 
 .socket-legend {
     display: flex;
     gap: 2rem;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
+    padding: 0.875rem 1.125rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
 }
 
 .legend-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
-    color: #495057;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
 
 .legend-color {
-    width: 20px;
-    height: 12px;
-    border-radius: 2px;
+    width: 16px;
+    height: 8px;
 }
 
 .intel-color {
-    background-color: #2563eb;
+    background-color: var(--type-motherboard);
 }
 
 .amd-color {
-    background-color: #dc2626;
+    background-color: var(--type-graphicsCard);
 }
 
 .parts-grid {
@@ -251,17 +259,18 @@
     margin-bottom: 2rem;
 }
 
-
 .ram-info {
-    background: #e3f2fd;
-    padding: 1rem;
-    border-radius: 8px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 0.875rem 1.125rem;
     margin-bottom: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    font-size: 0.9rem;
-    color: #1565c0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-label);
 }
 
 .ram-info span {
@@ -269,88 +278,85 @@
 }
 
 .no-compatible {
-    background: #fff3cd;
-    color: #856404;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ffeaa7;
+    background: var(--panel);
+    color: var(--text-muted);
+    padding: 1.25rem;
+    border: 1px solid var(--border-strong);
     text-align: center;
-    font-style: italic;
+    font-size: 0.875rem;
 }
 
 .step-actions {
-    text-align: center;
+    text-align: left;
     margin-top: 2rem;
 }
 
 .btn {
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.8125rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
     text-decoration: none;
     display: inline-block;
 }
 
 .btn-primary {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent);
+    color: var(--on-accent);
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-1px);
+    background-color: var(--accent-hover);
 }
 
 .btn-secondary {
-    background-color: #6c757d;
-    color: white;
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-label);
 }
 
 .btn-secondary:hover {
-    background-color: #545b62;
-    transform: translateY(-1px);
+    border-color: var(--text-muted);
+    color: var(--text-bright);
 }
 
 .btn-success {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--accent);
+    color: var(--on-accent);
 }
 
 .btn-success:hover {
-    background-color: #218838;
-    transform: translateY(-1px);
+    background-color: var(--accent-hover);
 }
 
 .btn-change {
-    background-color: #6c757d;
-    color: white;
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
     padding: 0.25rem 0.75rem;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    border: none;
+    font-size: 0.6875rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn-change:hover {
-    background-color: #545b62;
-    transform: translateY(-1px);
+    border-color: var(--text-muted);
+    color: var(--text-bright);
 }
 
 .build-summary {
-    background: #f8f9fa;
+    background: var(--panel);
     padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border);
 }
 
 .build-summary h3 {
     margin: 0 0 1rem 0;
-    color: #333;
 }
 
 .build-summary ul {
@@ -361,7 +367,9 @@
 
 .build-summary li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+    color: var(--text-body);
 }
 
 .build-summary li:last-child {
@@ -369,6 +377,10 @@
 }
 
 @media (max-width: 768px) {
+    .build-planner {
+        padding: 1.5rem 1rem;
+    }
+
     .build-content {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -380,17 +392,17 @@
     }
 
     .progress-steps {
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     .step-number {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
+        width: 34px;
+        height: 34px;
+        font-size: 0.8125rem;
     }
 
     .step-label {
-        font-size: 0.8rem;
+        font-size: 0.625rem;
     }
 
     .parts-grid {
@@ -401,6 +413,6 @@
     .socket-legend {
         flex-direction: column;
         gap: 0.75rem;
-        align-items: center;
+        align-items: flex-start;
     }
 }

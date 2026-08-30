@@ -1,179 +1,187 @@
 .part-card {
     position: relative;
     overflow: visible;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    margin-bottom: 1rem;
-}
-
-/* Condition status */
-.part-condition-status {
     display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.part-condition-status[data-condition="working"] {
-    color: #10b981;
-}
-
-.part-condition-status[data-condition="defective"] {
-    color: #ef4444;
-}
-
-/* Socket color coding for motherboards */
-.part-card.socket-intel {
-    border-left: 4px solid #2563eb;
-    background: linear-gradient(to right, rgba(37, 99, 235, 0.05), #fff);
-}
-
-.part-card.socket-amd {
-    border-left: 4px solid #dc2626;
-    background: linear-gradient(to right, rgba(220, 38, 38, 0.05), #fff);
-}
-
-/* Part type color coding */
-.part-card.type-cpu {
-    border-left: 4px solid #3b82f6;
-    background: linear-gradient(to right, rgba(59, 130, 246, 0.05), #fff);
-}
-
-.part-card.type-motherboard {
-    border-left: 4px solid #10b981;
-    background: linear-gradient(to right, rgba(16, 185, 129, 0.05), #fff);
-}
-
-.part-card.type-powerSupply {
-    border-left: 4px solid #f59e0b;
-    background: linear-gradient(to right, rgba(245, 158, 11, 0.05), #fff);
-}
-
-.part-card.type-graphicsCard {
-    border-left: 4px solid #ef4444;
-    background: linear-gradient(to right, rgba(239, 68, 68, 0.05), #fff);
-}
-
-.part-card.type-ram {
-    border-left: 4px solid #ec4899;
-    background: linear-gradient(to right, rgba(236, 72, 153, 0.05), #fff);
-}
-
-.part-card.type-case {
-    border-left: 4px solid #8b5cf6;
-    background: linear-gradient(to right, rgba(139, 92, 246, 0.05), #fff);
-}
-
-.part-card.type-storage {
-    border-left: 4px solid #14b8a6;
-    background: linear-gradient(to right, rgba(20, 184, 166, 0.05), #fff);
-}
-
-.part-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    gap: 0.625rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.125rem;
+    transition: border-color 0.2s ease;
+    height: 100%;
 }
 
 .part-card.clickable {
     cursor: pointer;
 }
 
+.part-card.clickable:hover {
+    border-color: var(--border-subtle);
+}
+
 .part-card.selected {
-    box-shadow: 0 0 0 3px #007bff40;
+    background: var(--panel-raised);
+    border-color: var(--accent);
 }
 
 .part-card.disabled {
-    opacity: 0.6;
+    opacity: 0.45;
     cursor: not-allowed;
 }
 
-.part-card.disabled:hover {
-    transform: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Socket color coding (kept from the old design, as subtle left borders) */
+.part-card.socket-intel {
+    border-left: 3px solid var(--type-motherboard);
 }
 
-.selected-indicator {
+.part-card.socket-amd {
+    border-left: 3px solid var(--type-graphicsCard);
+}
+
+/* Eyebrow row: category label + condition */
+.part-eyebrow-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.part-type-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.part-type-label[data-type="cpu"] {
+    color: var(--type-cpu);
+}
+.part-type-label[data-type="motherboard"] {
+    color: var(--type-motherboard);
+}
+.part-type-label[data-type="powerSupply"] {
+    color: var(--type-powerSupply);
+}
+.part-type-label[data-type="graphicsCard"] {
+    color: var(--type-graphicsCard);
+}
+.part-type-label[data-type="ram"] {
+    color: var(--type-ram);
+}
+.part-type-label[data-type="case"] {
+    color: var(--type-case);
+}
+.part-type-label[data-type="storage"] {
+    color: var(--type-storage);
+}
+.part-type-label[data-type="peripheral"] {
+    color: var(--type-peripheral);
+}
+
+/* Condition status: LED dot + mono label */
+.part-condition-status {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--unknown);
+}
+
+/* Keep clear of the corner badge */
+.part-condition-status.has-badge {
+    margin-right: 78px;
+}
+
+.part-condition-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--unknown);
+    flex-shrink: 0;
+}
+
+.part-condition-status[data-condition="working"] {
+    color: var(--ok);
+}
+
+.part-condition-status[data-condition="working"] .part-condition-dot {
+    background: var(--ok);
+}
+
+.part-condition-status[data-condition="defective"] {
+    color: var(--bad);
+}
+
+.part-condition-status[data-condition="defective"] .part-condition-dot {
+    background: var(--bad);
+}
+
+/* Corner badge (IN BUILD / SELECTED) */
+.part-corner-badge {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: #28a745;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
+    top: 0;
+    right: 0;
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--on-accent);
+    background: var(--accent);
+    padding: 4px 8px;
+    z-index: 1;
 }
 
 .disabled-indicator {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: #dc3545;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
 }
 
+/* Name + brand */
 .part-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 2px;
     align-items: flex-start;
-    margin-bottom: 0.75rem;
 }
 
 .part-name {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-bright);
     line-height: 1.3;
 }
 
 .part-brand {
-    background-color: #f0f0f0;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    color: #666;
-    font-weight: 500;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
 }
 
 .part-description {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.4;
+    color: var(--text-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
 }
 
-/* In-build watermark */
-.in-build-watermark {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 2;
-    border-radius: inherit;
+/* Footer meta row */
+.part-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
 }
 
-.in-build-watermark::after {
-    content: "IN BUILD";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.25);
-    letter-spacing: 2px;
-    white-space: nowrap;
-    pointer-events: none;
+.part-meta {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-faint);
 }

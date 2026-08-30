@@ -5,6 +5,7 @@ import { PartPage } from "./pages/PartPage";
 import { BuildPlannerPage } from "./pages/BuildPlannerPage";
 import { BuildsPage } from "./pages/BuildsPage";
 import { CpuCollectionsPage } from "./pages/CpuCollectionsPage";
+import { GamesPage } from "./pages/GamesPage";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                         <Route path="/build-planner" element={<BuildPlannerPage />} />
                         <Route path="/builds" element={<BuildsPage />} />
                         <Route path="/cpu-collections" element={<CpuCollectionsPage />} />
+                        <Route path="/games" element={<GamesPage />} />
                         <Route path="/:partType" element={<PartPage />} />
                     </Routes>
                 </main>

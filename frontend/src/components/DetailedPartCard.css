@@ -1,13 +1,9 @@
 .detailed-part-card {
     position: relative;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.25rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.125rem;
+    transition: border-color 0.2s ease;
     display: flex;
     flex-direction: column;
 }
@@ -16,20 +12,17 @@
     cursor: pointer;
 }
 
-.detailed-part-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.detailed-part-card.clickable:hover {
+    border-color: var(--border-subtle);
 }
 
 /* Socket color coding */
 .detailed-part-card.socket-intel {
-    border-left: 4px solid #2563eb;
-    background: linear-gradient(to right, rgba(37, 99, 235, 0.05), #fff);
+    border-left: 3px solid var(--type-motherboard);
 }
 
 .detailed-part-card.socket-amd {
-    border-left: 4px solid #dc2626;
-    background: linear-gradient(to right, rgba(220, 38, 38, 0.05), #fff);
+    border-left: 3px solid var(--type-graphicsCard);
 }
 
 /* Header */
@@ -43,35 +36,33 @@
 
 .detailed-part-card .part-name {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-bright);
     line-height: 1.3;
     word-break: break-word;
 }
 
 .detailed-part-card .part-brand {
-    background-color: #f0f0f0;
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    color: #666;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    font-weight: 400;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .detailed-part-card .part-description {
-    color: #666;
-    font-size: 0.85rem;
-    line-height: 1.4;
+    color: var(--text-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
     margin-bottom: 0.75rem;
 }
 
 /* Specifications */
 .detailed-part-card .specifications {
     margin-top: auto;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid var(--border);
     padding-top: 0.75rem;
 }
 
@@ -80,7 +71,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.3rem 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border);
 }
 
 .detailed-part-card .spec-item:last-child {
@@ -88,101 +79,79 @@
 }
 
 .detailed-part-card .spec-label {
-    font-weight: 500;
-    color: #6c757d;
-    font-size: 0.8rem;
+    font-size: 0.6563rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
 }
 
 .detailed-part-card .spec-value {
-    font-weight: 600;
-    color: #212529;
-    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-weight: 400;
+    color: var(--text-bright);
+    font-size: 0.75rem;
     text-align: right;
 }
 
 /* Release year badge */
 .part-year-badge {
     position: absolute;
-    top: -0.5rem;
-    right: -0.5rem;
-    background-color: var(--badge-color, #007acc);
-    color: white;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    padding: 0.375rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 400;
     z-index: 1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.part-year-badge[data-type="cpu"] {
-    --badge-color: #3b82f6;
-}
-
-.part-year-badge[data-type="motherboard"] {
-    --badge-color: #10b981;
-}
-
-.part-year-badge[data-type="powerSupply"] {
-    --badge-color: #f59e0b;
-}
-
-.part-year-badge[data-type="graphicsCard"] {
-    --badge-color: #ef4444;
-}
-
-.part-year-badge[data-type="ram"] {
-    --badge-color: #ec4899;
-}
-
-.part-year-badge[data-type="case"] {
-    --badge-color: #8b5cf6;
-}
-
-.part-year-badge[data-type="storage"] {
-    --badge-color: #6366f1;
+/* Make room for the IN BUILD corner tag */
+.detailed-part-card.in-build .part-year-badge {
+    right: 78px;
 }
 
 /* Condition status */
 .part-condition-status {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
-    font-size: 0.8rem;
-    font-weight: 600;
+    gap: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 400;
     margin-bottom: 0.4rem;
+    color: var(--unknown);
 }
 
 .part-condition-status[data-condition="working"] {
-    color: #10b981;
+    color: var(--ok);
 }
 
 .part-condition-status[data-condition="defective"] {
-    color: #ef4444;
+    color: var(--bad);
 }
 
-/* In-build watermark */
+/* In-build corner tag (replaces the old diagonal watermark) */
 .in-build-watermark {
     position: absolute;
-    inset: 0;
-    overflow: hidden;
+    top: 0;
+    right: 0;
     pointer-events: none;
     z-index: 2;
-    border-radius: inherit;
 }
 
 .in-build-watermark::after {
     content: "IN BUILD";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.25);
-    letter-spacing: 2px;
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    color: var(--on-accent);
+    background: var(--accent);
+    letter-spacing: 1.5px;
+    padding: 4px 8px;
     white-space: nowrap;
-    pointer-events: none;
 }
