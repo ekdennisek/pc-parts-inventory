@@ -212,15 +212,24 @@ export interface SavedBuild {
 
 export type GameStatus = "owned" | "wishlist";
 
-type GameGenreTag = "city-builder" | "fps" | "rts";
+type GameGenreTag =
+    | "action"
+    | "city-builder"
+    | "fantasy"
+    | "fps"
+    | "racing"
+    | "rpg"
+    | "rts"
+    | "simulation";
 type GameTag = GameGenreTag | "lan" | "single-player";
 
 export interface Game {
     id: string;
     name: string;
-    releaseYear?: number;
+    releaseYear: number;
     status: GameStatus;
     tags: GameTag[];
+    case: "jewel-case" | "keep-case";
     notes?: string;
 }
 
