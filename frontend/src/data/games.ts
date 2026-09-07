@@ -42,4 +42,13 @@ export const games: Game[] = [
         tags: ["action"],
         case: "keep-case",
     },
+    {
+        id: "3348542195936",
+        name: "SWAT 4",
+        releaseYear: 2005,
+        status: "owned",
+        tags: ["action"],
+        case: "keep-case",
+        notes: "Fractured keep case",
+    },
 ];
