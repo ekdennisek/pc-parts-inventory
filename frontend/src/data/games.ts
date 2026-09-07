@@ -58,6 +58,7 @@ export const games: Game[] = [
         status: "owned",
         tags: ["action"],
         case: "jewel-case",
+        notes: "Sealed.",
     },
     {
         id: "5030945034063",
