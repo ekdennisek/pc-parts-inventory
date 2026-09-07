@@ -213,6 +213,7 @@ export interface SavedBuild {
 export type GameStatus = "owned" | "wishlist";
 
 type GameGenreTag =
+    | "3ps"
     | "action"
     | "city-builder"
     | "fantasy"
@@ -220,7 +221,8 @@ type GameGenreTag =
     | "racing"
     | "rpg"
     | "rts"
-    | "simulation";
+    | "simulation"
+    | "turn-based-strategy";
 type GameTag = GameGenreTag | "lan" | "single-player";
 
 export interface Game {
