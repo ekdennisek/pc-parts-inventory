@@ -79,8 +79,18 @@
     color: var(--type-peripheral);
 }
 
+/* Status group: condition + original box */
+.part-status-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+}
+
 /* Condition status: LED dot + mono label */
-.part-condition-status {
+.part-condition-status,
+.part-box-status {
     display: flex;
     align-items: center;
     gap: 0.375rem;
@@ -92,7 +102,7 @@
 }
 
 /* Keep clear of the corner badge */
-.part-condition-status.has-badge {
+.part-status-group.has-badge {
     margin-right: 78px;
 }
 
@@ -101,6 +111,18 @@
     height: 7px;
     border-radius: 50%;
     background: var(--unknown);
+    flex-shrink: 0;
+}
+
+/* Original box: square marker instead of the round LED */
+.part-box-status {
+    color: var(--ok);
+}
+
+.part-box-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--ok);
     flex-shrink: 0;
 }
 

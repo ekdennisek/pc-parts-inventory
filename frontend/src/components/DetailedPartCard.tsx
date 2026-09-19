@@ -46,6 +46,23 @@ const XIcon = () => (
     </svg>
 );
 
+const BoxIcon = () => (
+    <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M21 8 12 3 3 8v8l9 5 9-5V8z" />
+        <polyline points="3 8 12 13 21 8" />
+        <line x1="12" y1="13" x2="12" y2="21" />
+    </svg>
+);
+
 interface DetailedPartCardProps {
     part: CPU | Motherboard | PowerSupply | GraphicsCard | RAM | Case | Storage | Peripheral;
     partType: PartType;
@@ -330,16 +347,25 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
                 <h3 className="part-name">{part.name}</h3>
                 <span className="part-brand">{part.brand}</span>
             </div>
-            {part.condition && (
-                <div className="part-condition-status" data-condition={part.condition}>
-                    {part.condition === "working" ? (
-                        <>
-                            <CheckIcon /> Working
-                        </>
-                    ) : (
-                        <>
-                            <XIcon /> Defective
-                        </>
+            {(part.condition || part.box) && (
+                <div className="part-status-row">
+                    {part.condition && (
+                        <div className="part-condition-status" data-condition={part.condition}>
+                            {part.condition === "working" ? (
+                                <>
+                                    <CheckIcon /> Working
+                                </>
+                            ) : (
+                                <>
+                                    <XIcon /> Defective
+                                </>
+                            )}
+                        </div>
+                    )}
+                    {part.box && (
+                        <div className="part-box-status">
+                            <BoxIcon /> Original box
+                        </div>
                     )}
                 </div>
             )}

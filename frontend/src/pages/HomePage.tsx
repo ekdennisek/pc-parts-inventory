@@ -22,6 +22,12 @@ const conditionFilterOptions: FilterOption[] = [
     { value: "Unknown", label: "Unknown", colorClass: "unknown" },
 ];
 
+const boxFilterOptions: FilterOption[] = [
+    { value: "Yes", label: "With box", colorClass: "box" },
+    { value: "No", label: "Without box", colorClass: "no-box" },
+    { value: "Unknown", label: "Unknown", colorClass: "unknown" },
+];
+
 export const HomePage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [detailModal, setDetailModal] = useState<{ part: AnyPart; partType: PartType } | null>(
@@ -31,6 +37,7 @@ export const HomePage: React.FC = () => {
     const searchTerm = searchParams.get("search") ?? "";
     const sortOption = (searchParams.get("sort") ?? "releaseYear") as SortOption;
     const selectedConditions = getArrayParam(searchParams, "condition");
+    const selectedBoxes = getArrayParam(searchParams, "box");
     const yearFrom = searchParams.get("yearFrom") ?? null;
     const yearTo = searchParams.get("yearTo") ?? null;
 
@@ -57,6 +64,14 @@ export const HomePage: React.FC = () => {
                 (prev) => setParam(prev, "condition", values.length > 0 ? values : null),
                 { replace: true },
             ),
+        [setSearchParams],
+    );
+
+    const setSelectedBoxes = useCallback(
+        (values: string[]) =>
+            setSearchParams((prev) => setParam(prev, "box", values.length > 0 ? values : null), {
+                replace: true,
+            }),
         [setSearchParams],
     );
 
@@ -96,7 +111,7 @@ export const HomePage: React.FC = () => {
         return unique.map((y) => ({ value: String(y), label: String(y) }));
     }, [allPartsFlat]);
 
-    // Filter parts based on search term, condition, and year range
+    // Filter parts based on search term, condition, original box, and year range
     const filteredParts = useMemo(() => {
         let filtered = allPartsFlat;
 
@@ -121,6 +136,17 @@ export const HomePage: React.FC = () => {
             });
         }
 
+        if (selectedBoxes.length > 0) {
+            filtered = filtered.filter((part) => {
+                return selectedBoxes.some((box) => {
+                    if (box === "Yes") return part.box === true;
+                    if (box === "No") return part.box === false;
+                    if (box === "Unknown") return part.box === undefined;
+                    return false;
+                });
+            });
+        }
+
         const isYearFilterActive = yearFrom !== null || yearTo !== null;
         if (isYearFilterActive) {
             filtered = filtered.filter((part) => {
@@ -132,7 +158,7 @@ export const HomePage: React.FC = () => {
         }
 
         return filtered;
-    }, [allPartsFlat, searchTerm, selectedConditions, yearFrom, yearTo]);
+    }, [allPartsFlat, searchTerm, selectedConditions, selectedBoxes, yearFrom, yearTo]);
 
     // Sort and group parts based on sort option
     const sortedAndGroupedParts = useMemo(() => {
@@ -254,6 +280,14 @@ export const HomePage: React.FC = () => {
                         onChange={setSelectedConditions}
                     />
 
+                    <FilterDropdown
+                        label="Original Box"
+                        options={boxFilterOptions}
+                        mode="multi"
+                        selectedValues={selectedBoxes}
+                        onChange={setSelectedBoxes}
+                    />
+
                     {yearOptions.length > 0 && (
                         <FilterDropdown
                             label="Year From"
@@ -275,19 +309,29 @@ export const HomePage: React.FC = () => {
                     )}
                 </FilterBar>
 
-                {(searchTerm || selectedConditions.length > 0 || isYearFilterActive) && (
+                {(searchTerm ||
+                    selectedConditions.length > 0 ||
+                    selectedBoxes.length > 0 ||
+                    isYearFilterActive) && (
                     <p className="search-results-info">
                         Found {filteredParts.length} part
                         {filteredParts.length !== 1 ? "s" : ""}
                         {searchTerm && ` matching "${searchTerm}"`}
                         {searchTerm &&
-                            (selectedConditions.length > 0 || isYearFilterActive) &&
+                            (selectedConditions.length > 0 ||
+                                selectedBoxes.length > 0 ||
+                                isYearFilterActive) &&
                             " and"}
                         {selectedConditions.length > 0 &&
                             ` ${searchTerm ? "" : "with "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
-                        {selectedConditions.length > 0 && isYearFilterActive && " and"}
+                        {selectedConditions.length > 0 &&
+                            (selectedBoxes.length > 0 || isYearFilterActive) &&
+                            " and"}
+                        {selectedBoxes.length > 0 &&
+                            ` ${searchTerm || selectedConditions.length > 0 ? "" : "with "}${selectedBoxes.length} box status${selectedBoxes.length > 1 ? "es" : ""}`}
+                        {selectedBoxes.length > 0 && isYearFilterActive && " and"}
                         {isYearFilterActive &&
-                            ` ${searchTerm || selectedConditions.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
+                            ` ${searchTerm || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
                     </p>
                 )}
             </div>

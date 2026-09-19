@@ -4,7 +4,15 @@ import "./FilterDropdown.css";
 export interface FilterOption {
     value: string;
     label: string;
-    colorClass?: "intel" | "amd" | "default" | "working" | "defective" | "unknown";
+    colorClass?:
+        | "intel"
+        | "amd"
+        | "default"
+        | "working"
+        | "defective"
+        | "unknown"
+        | "box"
+        | "no-box";
 }
 
 interface FilterDropdownBaseProps {

@@ -57,12 +57,17 @@ export const PartCard: React.FC<PartCardProps> = ({
                         {typeLabel}
                     </div>
                 )}
-                <div
-                    className={`part-condition-status${inBuild || isSelected ? " has-badge" : ""}`}
-                    data-condition={conditionKey}
-                >
-                    <span className="part-condition-dot" />
-                    {conditionLabel}
+                <div className={`part-status-group${inBuild || isSelected ? " has-badge" : ""}`}>
+                    <div className="part-condition-status" data-condition={conditionKey}>
+                        <span className="part-condition-dot" />
+                        {conditionLabel}
+                    </div>
+                    {part.box && (
+                        <div className="part-box-status" title="Original box">
+                            <span className="part-box-dot" />
+                            Box
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="part-header">

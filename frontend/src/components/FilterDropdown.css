@@ -149,6 +149,14 @@
     background: var(--unknown);
 }
 
+.dot-box {
+    background: var(--ok);
+}
+
+.dot-no-box {
+    background: var(--accent);
+}
+
 /* Responsive */
 @media (max-width: 480px) {
     .filter-dropdown-trigger {

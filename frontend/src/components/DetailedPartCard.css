@@ -112,8 +112,17 @@
     right: 78px;
 }
 
-/* Condition status */
-.part-condition-status {
+/* Status row: condition + original box */
+.part-status-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.875rem;
+    margin-bottom: 0.4rem;
+}
+
+.part-condition-status,
+.part-box-status {
     display: flex;
     align-items: center;
     gap: 0.375rem;
@@ -122,8 +131,11 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 400;
-    margin-bottom: 0.4rem;
     color: var(--unknown);
+}
+
+.part-box-status {
+    color: var(--ok);
 }
 
 .part-condition-status[data-condition="working"] {
