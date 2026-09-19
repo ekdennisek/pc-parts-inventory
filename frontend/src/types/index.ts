@@ -215,9 +215,11 @@ export type GameStatus = "owned" | "wishlist";
 type GameGenreTag =
     | "3ps"
     | "action"
+    | "adventure"
     | "city-builder"
     | "fantasy"
     | "fps"
+    | "puzzle"
     | "racing"
     | "rpg"
     | "rts"
@@ -231,7 +233,7 @@ export interface Game {
     releaseYear: number;
     status: GameStatus;
     tags: GameTag[];
-    case: "jewel-case" | "keep-case";
+    case: "big-box" | "jewel-case" | "keep-case";
     notes?: string;
 }
 
