@@ -310,4 +310,24 @@ export const motherboards: Motherboard[] = [
         box: true,
         condition: "working",
     },
+    {
+        id: "mb-16",
+        name: "MSI 970A-G43",
+        brand: "MSI",
+        description: "Socket AM3+ ATX motherboard (ver. 3.1)",
+        socket: "Socket AM3+",
+        formFactor: "ATX",
+        chipset: "AMD 970",
+        memorySlots: 4,
+        maxMemory: 32,
+        memoryTypes: ["DDR3"],
+        expansionSlots: {
+            "PCIe 2.0 x16": 2,
+            "PCIe 2.0 x1": 2,
+            "PCI 2.2": 2, // TODO Verify
+        },
+        releaseYear: 2012,
+        ioShield: true,
+        box: true,
+    },
 ];
