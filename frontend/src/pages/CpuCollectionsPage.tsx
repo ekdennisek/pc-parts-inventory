@@ -57,6 +57,12 @@ const ChevronIcon = ({ expanded }: { expanded: boolean }) => (
     </svg>
 );
 
+// Whole-model match, so "Core i5-6600K" doesn't count as "Core i5-6600"
+const nameMatches = (ownedName: string, entryName: string): boolean => {
+    const index = ownedName.indexOf(entryName);
+    return index >= 0 && !/[A-Za-z0-9]/.test(ownedName[index + entryName.length] ?? "");
+};
+
 export const CpuCollectionsPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<Brand>("Intel");
     const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
@@ -79,10 +85,10 @@ export const CpuCollectionsPage: React.FC = () => {
                     entry.partNumbers?.includes(cpu.partNumber)
                 );
             }
-            if (cpu.sSpec) {
+            if (cpu.sSpec && entry.sSpec) {
                 return cpu.sSpec === entry.sSpec;
             }
-            return cpu.name.includes(entry.name);
+            return nameMatches(cpu.name, entry.name);
         });
     };
 
