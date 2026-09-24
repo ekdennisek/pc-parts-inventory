@@ -1,17 +1,27 @@
 .search-bar {
+    position: relative;
     margin: 0 0 0.875rem 0;
     width: 100%;
 }
 
 .search-input {
     width: 100%;
-    padding: 0.875rem 1.25rem;
+    padding: 0.875rem 2.75rem 0.875rem 1.25rem;
     font-family: var(--font-mono);
     font-size: 0.875rem;
     border: 1px solid var(--border-strong);
+    border-radius: 0;
     background-color: var(--panel);
     color: var(--text);
     transition: border-color 0.2s ease;
+    appearance: none;
+}
+
+/* Native clear button replaced by .search-clear */
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .search-input:focus {
@@ -21,4 +31,32 @@
 
 .search-input::placeholder {
     color: var(--text-faint);
+}
+
+.search-clear {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.search-clear:hover {
+    color: var(--text-bright);
+}
+
+/* 16px avoids iOS Safari zooming in on focus */
+@media (max-width: 768px) {
+    .search-input {
+        font-size: 1rem;
+    }
 }

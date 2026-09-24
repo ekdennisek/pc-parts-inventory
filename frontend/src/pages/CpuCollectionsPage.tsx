@@ -1,8 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import { cpus } from "../data/cpus";
 import { cpuList } from "../data/cpuList";
 import type { MasterdataCpu } from "../data/cpuList";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
+import { setParam } from "../hooks/useFilterParams";
+import { SearchBar } from "../components/SearchBar";
 import "./CpuCollectionsPage.css";
 
 type Brand = "Intel" | "AMD";
@@ -63,9 +66,50 @@ const nameMatches = (ownedName: string, entryName: string): boolean => {
     return index >= 0 && !/[A-Za-z0-9]/.test(ownedName[index + entryName.length] ?? "");
 };
 
+// Ignores case, spaces and hyphens, so "i5 2500k" finds "Core i5-2500K"
+const normalize = (s: string): string => s.toLowerCase().replace(/[\s-]/g, "");
+
+const entryMatches = (entry: MasterdataCpu, query: string): boolean =>
+    [entry.name, entry.sSpec, entry.partNumber, ...(entry.partNumbers ?? [])].some(
+        (field) => field !== undefined && normalize(field).includes(query),
+    );
+
+const countMatches = (query: string): Record<Brand, number> => {
+    const counts: Record<Brand, number> = { Intel: 0, AMD: 0 };
+    if (!query) return counts;
+    for (const group of cpuList) {
+        counts[group.brand] += group.cpus.filter((entry) => entryMatches(entry, query)).length;
+    }
+    return counts;
+};
+
+// Jump to the other brand when only it has matches
+const pickTab = (current: Brand, query: string): Brand => {
+    const other: Brand = current === "Intel" ? "AMD" : "Intel";
+    const counts = countMatches(query);
+    return counts[current] === 0 && counts[other] > 0 ? other : current;
+};
+
 export const CpuCollectionsPage: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<Brand>("Intel");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get("search") ?? "";
+    const query = normalize(searchTerm.trim());
+
+    const [activeTab, setActiveTab] = useState<Brand>(() => pickTab("Intel", query));
     const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+    // Groups collapsed by hand while searching; matching groups start expanded
+    const [collapsedDuringSearch, setCollapsedDuringSearch] = useState<Set<string>>(new Set());
+
+    const setSearchTerm = useCallback(
+        (value: string) => {
+            setSearchParams((prev) => setParam(prev, "search", value || null), { replace: true });
+            setCollapsedDuringSearch(new Set());
+            setActiveTab((current) => pickTab(current, normalize(value.trim())));
+        },
+        [setSearchParams],
+    );
+
+    const matchCounts = useMemo(() => countMatches(query), [query]);
 
     const filteredGroups = useMemo(() => {
         return cpuList
@@ -92,8 +136,16 @@ export const CpuCollectionsPage: React.FC = () => {
         });
     };
 
+    const visibleCpus = useMemo(
+        () =>
+            filteredGroups.map((group) =>
+                query ? group.cpus.filter((entry) => entryMatches(entry, query)) : group.cpus,
+            ),
+        [filteredGroups, query],
+    );
+
     const toggleRow = (key: string) => {
-        setExpandedRows((prev) => {
+        (query ? setCollapsedDuringSearch : setExpandedRows)((prev) => {
             const next = new Set(prev);
             if (next.has(key)) {
                 next.delete(key);
@@ -131,30 +183,46 @@ export const CpuCollectionsPage: React.FC = () => {
                         </div>
                         <div className="meter-blocks">
                             {groupStates.map((state, i) => (
-                                <span key={i} className={`meter-block ${state}`} />
+                                <span
+                                    key={i}
+                                    className={`meter-block ${state}${query && visibleCpus[i].length === 0 ? " dimmed" : ""}`}
+                                />
                             ))}
                         </div>
                     </div>
                 )}
             </div>
 
-            <div className="brand-tabs">
-                <button
-                    className={`brand-tab ${activeTab === "Intel" ? "active" : ""}`}
-                    onClick={() => setActiveTab("Intel")}
-                >
-                    Intel
-                </button>
-                <button
-                    className={`brand-tab ${activeTab === "AMD" ? "active" : ""}`}
-                    onClick={() => setActiveTab("AMD")}
-                >
-                    AMD
-                </button>
+            <div className="collections-toolbar">
+                <div className="brand-tabs">
+                    {(["Intel", "AMD"] as const).map((brand) => (
+                        <button
+                            key={brand}
+                            className={`brand-tab ${activeTab === brand ? "active" : ""}`}
+                            onClick={() => setActiveTab(brand)}
+                        >
+                            {brand}
+                            {query && <span className="brand-tab-count">{matchCounts[brand]}</span>}
+                        </button>
+                    ))}
+                </div>
+                <SearchBar
+                    searchTerm={searchTerm}
+                    onSearchChange={setSearchTerm}
+                    placeholder="Name, sSpec or part no."
+                    focusShortcut
+                />
             </div>
 
             {filteredGroups.length === 0 ? (
                 <div className="empty-state">No {activeTab} CPU groups defined yet.</div>
+            ) : query && matchCounts[activeTab] === 0 ? (
+                <div className="empty-state">
+                    No CPUs match "{searchTerm.trim()}".{" "}
+                    <button className="empty-state-clear" onClick={() => setSearchTerm("")}>
+                        Clear search
+                    </button>
+                </div>
             ) : (
                 <>
                     <div className="collections-table">
@@ -166,9 +234,14 @@ export const CpuCollectionsPage: React.FC = () => {
                             <div className="col-collected">Collected</div>
                         </div>
                         {filteredGroups.map((group, index) => {
-                            const key = `${group.socket}|${group.codename}|${index}`;
+                            const groupCpus = visibleCpus[index];
+                            if (groupCpus.length === 0) return null;
+
+                            const key = `${group.socket}|${group.codename}`;
                             const { total, collected } = getGroupStats(group);
-                            const isExpanded = expandedRows.has(key);
+                            const isExpanded = query
+                                ? !collapsedDuringSearch.has(key)
+                                : expandedRows.has(key);
                             const state = groupStates[index];
 
                             return (
@@ -200,7 +273,7 @@ export const CpuCollectionsPage: React.FC = () => {
                                     </div>
                                     {isExpanded && (
                                         <div className="cpu-detail-list">
-                                            {group.cpus.map((entry) => {
+                                            {groupCpus.map((entry) => {
                                                 const matched = isCollected(entry);
                                                 return (
                                                     <div
