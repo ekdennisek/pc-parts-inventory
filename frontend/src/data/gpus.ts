@@ -229,4 +229,18 @@ export const graphicsCards: GraphicsCard[] = [
         box: true,
         releaseYear: 2014,
     },
+    {
+        id: "gpu-18",
+        name: "Gigabyte GeForce 8400 GS",
+        brand: "Gigabyte",
+        description: "GV-NX84S256HE",
+        memory: 0.25,
+        memoryType: "GDDR2",
+        coreClock: 520, // TODO Verify
+        boostClock: 0, // TODO
+        powerConsumption: 0, // TODO
+        interface: "PCIe 2.0",
+        box: true,
+        releaseYear: 2010,
+    },
 ];
