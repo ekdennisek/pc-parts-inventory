@@ -36,6 +36,8 @@ import type { FilterOption } from "../components/FilterDropdown";
 import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./PartPage.css";
 import { ComponentDetailModal } from "../components/ComponentDetailModal";
+import { RamSummary } from "../components/RamSummary";
+import { getRamSpecKey, getRamSpecLabel } from "../utils/ramSpec";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
 
@@ -53,6 +55,16 @@ const boxFilterOptions: FilterOption[] = [
     { value: "Unknown", label: "Unknown", colorClass: "unknown" },
 ];
 
+const RAM_SUMMARY_STORAGE_KEY = "ramSummaryOpen";
+
+function readRamSummaryOpen(): boolean {
+    try {
+        return localStorage.getItem(RAM_SUMMARY_STORAGE_KEY) === "true";
+    } catch {
+        return false;
+    }
+}
+
 export const PartPage: React.FC = () => {
     const { partType } = useParams<{ partType: PartType }>();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -60,6 +72,19 @@ export const PartPage: React.FC = () => {
     const [detailModal, setDetailModal] = useState<{ part: AnyPart; partType: PartType } | null>(
         null,
     );
+    const [isRamSummaryOpen, setIsRamSummaryOpen] = useState(readRamSummaryOpen);
+
+    const toggleRamSummary = useCallback(() => {
+        setIsRamSummaryOpen((prev) => {
+            const next = !prev;
+            try {
+                localStorage.setItem(RAM_SUMMARY_STORAGE_KEY, String(next));
+            } catch {
+                // Storage unavailable; the panel just won't remember its state
+            }
+            return next;
+        });
+    }, []);
 
     // Clear query params when switching between part types via forward navigation,
     // but preserve them on browser back/forward (POP) since the browser restores the correct URL.
@@ -82,6 +107,7 @@ export const PartPage: React.FC = () => {
     const selectedMemoryType = searchParams.get("memoryType") as MemoryType;
     const yearFrom = searchParams.get("yearFrom");
     const yearTo = searchParams.get("yearTo");
+    const selectedRamSpec = partType === "ram" ? searchParams.get("spec") : null;
 
     const setSearchTerm = useCallback(
         (value: string) =>
@@ -144,6 +170,14 @@ export const PartPage: React.FC = () => {
     const setSelectedMemoryType = useCallback(
         (value: string | null) =>
             setSearchParams((prev) => setParam(prev, "memoryType", value), {
+                replace: true,
+            }),
+        [setSearchParams],
+    );
+
+    const setSelectedRamSpec = useCallback(
+        (value: string | null) =>
+            setSearchParams((prev) => setParam(prev, "spec", value), {
                 replace: true,
             }),
         [setSearchParams],
@@ -223,7 +257,8 @@ export const PartPage: React.FC = () => {
                 (part) =>
                     part.name.toLowerCase().includes(searchLower) ||
                     part.brand.toLowerCase().includes(searchLower) ||
-                    part.description.toLowerCase().includes(searchLower),
+                    part.description.toLowerCase().includes(searchLower) ||
+                    ("partNumber" in part && part.partNumber?.toLowerCase().includes(searchLower)),
             );
         }
 
@@ -339,10 +374,16 @@ export const PartPage: React.FC = () => {
         yearTo,
     ]);
 
+    // The RAM summary reflects all other filters, so its own spec selection is applied last
+    const displayedParts = useMemo(() => {
+        if (!selectedRamSpec) return filteredParts;
+        return filteredParts.filter((part) => getRamSpecKey(part as RAM) === selectedRamSpec);
+    }, [filteredParts, selectedRamSpec]);
+
     // Sort parts
     const sortedParts = useMemo(() => {
         if (sortOption === "standard" && (partType === "motherboard" || partType === "cpu")) {
-            return [...filteredParts].sort((a, b) => {
+            return [...displayedParts].sort((a, b) => {
                 const partA = a as CPU | Motherboard;
                 const partB = b as CPU | Motherboard;
                 const socketOrderA = getSocketSortOrder(partA.socket);
@@ -351,8 +392,8 @@ export const PartPage: React.FC = () => {
                 return partA.name.localeCompare(partB.name);
             });
         }
-        return filteredParts;
-    }, [filteredParts, sortOption, partType]);
+        return displayedParts;
+    }, [displayedParts, sortOption, partType]);
 
     const isYearFilterActive = yearFrom !== null || yearTo !== null;
     const hasActiveFilters =
@@ -362,7 +403,8 @@ export const PartPage: React.FC = () => {
         selectedMemoryType !== null ||
         selectedConditions.length > 0 ||
         selectedBoxes.length > 0 ||
-        isYearFilterActive;
+        isYearFilterActive ||
+        selectedRamSpec !== null;
 
     const socketInterfaceLabel =
         partType === "graphicsCard" || partType === "storage" || partType === "peripheral"
@@ -482,11 +524,52 @@ export const PartPage: React.FC = () => {
                             onChange={setYearTo}
                         />
                     )}
+
+                    {partType === "ram" && (
+                        <button
+                            type="button"
+                            className={`ram-summary-toggle ${selectedRamSpec ? "has-selection" : ""}`}
+                            aria-expanded={isRamSummaryOpen}
+                            onClick={toggleRamSummary}
+                        >
+                            <span>
+                                Summary
+                                {selectedRamSpec && `: ${getRamSpecLabel(selectedRamSpec)}`}
+                            </span>
+                            {selectedRamSpec && (
+                                <span
+                                    className="filter-dropdown-clear"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedRamSpec(null);
+                                    }}
+                                    role="button"
+                                    aria-label="Clear spec filter"
+                                >
+                                    &times;
+                                </span>
+                            )}
+                            <span
+                                className={`filter-dropdown-chevron ${isRamSummaryOpen ? "open" : ""}`}
+                            >
+                                &#9662;
+                            </span>
+                        </button>
+                    )}
                 </FilterBar>
+
+                {partType === "ram" && isRamSummaryOpen && (
+                    <RamSummary
+                        parts={filteredParts as RAM[]}
+                        usedPartIds={usedPartIds}
+                        selectedSpec={selectedRamSpec}
+                        onSelectSpec={setSelectedRamSpec}
+                    />
+                )}
 
                 {hasActiveFilters && (
                     <p className="search-results-info">
-                        Found {filteredParts.length} {partTypeLabel.toLowerCase()}
+                        Found {displayedParts.length} {partTypeLabel.toLowerCase()}
                         {searchTerm && ` matching "${searchTerm}"`}
                         {searchTerm &&
                             (selectedFormFactors.length > 0 ||
@@ -522,6 +605,8 @@ export const PartPage: React.FC = () => {
                         {selectedBoxes.length > 0 && isYearFilterActive && " and"}
                         {isYearFilterActive &&
                             ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
+                        {selectedRamSpec &&
+                            `${searchTerm || selectedFilters.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || isYearFilterActive ? " and" : ""} with spec ${getRamSpecLabel(selectedRamSpec)}`}
                     </p>
                 )}
 
@@ -551,7 +636,7 @@ export const PartPage: React.FC = () => {
                 ))}
             </div>
 
-            {filteredParts.length === 0 && searchTerm && (
+            {displayedParts.length === 0 && searchTerm && (
                 <div className="no-results">
                     <p>No {partTypeLabel.toLowerCase()} found matching your search.</p>
                     <p>Try different keywords or clear your search to see all parts.</p>
