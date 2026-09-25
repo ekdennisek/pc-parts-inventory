@@ -284,7 +284,7 @@ export const ram: RAM[] = [
         partNumber: "HX316C10FK2/8",
     },
     {
-        id: "ram-27 ",
+        id: "ram-27",
         name: "Kingston HyperX FURY Blue HX316C10FK2/8",
         brand: "Kingston",
         description: "4GB DDR3 1600MHz CL10",
