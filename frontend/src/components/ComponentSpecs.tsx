@@ -114,7 +114,7 @@ export const ComponentSpecs: React.FC<Props> = ({ part, partType }) => {
                     <>
                         <SpecRow label="Capacity" value={`${memory.capacity} GB`} />
                         <SpecRow label="Type" value={memory.type} />
-                        <SpecRow label="Speed" value={`${memory.speed} MHz`} />
+                        <SpecRow label="Speed" value={`${memory.speed} MT/s`} />
                         <SpecRow label="Timings" value={memory.timings ?? "-"} />
                         <SpecRow
                             label="Voltage"

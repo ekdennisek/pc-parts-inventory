@@ -91,7 +91,7 @@ export const RamSummary: React.FC<RamSummaryProps> = ({
                                         onClick={() => onSelectSpec(isSelected ? null : row.key)}
                                     >
                                         <span className="ram-summary-spec">
-                                            {row.capacity} GB · {row.speed} MHz
+                                            {row.capacity} GB · {row.speed} MT/s
                                             {row.formFactor !== "DIMM" && ` · ${row.formFactor}`}
                                         </span>
                                         {notes.length > 0 && (

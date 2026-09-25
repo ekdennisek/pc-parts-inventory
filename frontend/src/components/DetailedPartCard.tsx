@@ -222,7 +222,7 @@ export const DetailedPartCard: React.FC<DetailedPartCardProps> = ({
                         </div>
                         <div className="spec-item">
                             <span className="spec-label">Speed</span>
-                            <span className="spec-value">{memory.speed} MHz</span>
+                            <span className="spec-value">{memory.speed} MT/s</span>
                         </div>
                         <div className="spec-item">
                             <span className="spec-label">Timings</span>

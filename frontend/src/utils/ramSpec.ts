@@ -8,5 +8,5 @@ export function getRamSpecKey(ram: RAM): string {
 export function getRamSpecLabel(specKey: string): string {
     const [type, formFactor, capacity, speed] = specKey.split("|");
     const formFactorLabel = formFactor === "DIMM" ? "" : ` ${formFactor}`;
-    return `${type}${formFactorLabel} ${capacity} GB ${speed} MHz`;
+    return `${type}${formFactorLabel} ${capacity} GB ${speed} MT/s`;
 }

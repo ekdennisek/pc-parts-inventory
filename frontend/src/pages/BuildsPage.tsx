@@ -161,7 +161,7 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                         </span>
                         {build.ram.map((r) => (
                             <span key={r.id} className="component-detail">
-                                {r.capacity}GB {r.type} @ {r.speed}MHz
+                                {r.capacity}GB {r.type} @ {r.speed} MT/s
                             </span>
                         ))}
                     </div>

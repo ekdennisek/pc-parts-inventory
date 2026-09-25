@@ -95,7 +95,7 @@ export interface GraphicsCard extends PCPart {
 export interface RAM extends PCPart {
     capacity: number; // GB
     type: MemoryType; // DDR3, DDR4, DDR5, etc.
-    speed: number; // MHz
+    speed: number; // MT/s
     timings?: string; // CL16-18-18-38
     voltage?: number; // V
     formFactor: MemoryFormFactor; // DIMM, SO-DIMM

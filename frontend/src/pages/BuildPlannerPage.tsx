@@ -575,7 +575,7 @@ export const BuildPlannerPage: React.FC = () => {
                                     {build.ram.map((ramModule) => (
                                         <span key={ramModule.id} className="ram-module">
                                             {ramModule.capacity}GB {ramModule.type} @{" "}
-                                            {ramModule.speed}MHz
+                                            {ramModule.speed} MT/s
                                         </span>
                                     ))}
                                 </div>
