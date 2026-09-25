@@ -66,8 +66,9 @@ const nameMatches = (ownedName: string, entryName: string): boolean => {
     return index >= 0 && !/[A-Za-z0-9]/.test(ownedName[index + entryName.length] ?? "");
 };
 
-// Ignores case, spaces and hyphens, so "i5 2500k" finds "Core i5-2500K"
-const normalize = (s: string): string => s.toLowerCase().replace(/[\s-]/g, "");
+// Ignores case and treats hyphens as spaces, so "i5 2500k" finds "Core i5-2500K"
+// (spaces are kept so "i7" doesn't match "Pentium III 700")
+const normalize = (s: string): string => s.toLowerCase().replace(/[\s-]+/g, " ");
 
 const entryMatches = (entry: MasterdataCpu, query: string): boolean =>
     [entry.name, entry.sSpec, entry.partNumber, ...(entry.partNumbers ?? [])].some(
