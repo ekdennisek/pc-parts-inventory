@@ -14,6 +14,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2012,
         datasheet: "KHX16C10B1RK216X.pdf",
+        partNumber: "KHX16C10B1RK2/16X",
     },
     {
         id: "ram-2",
@@ -28,6 +29,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2012,
         datasheet: "KHX16C10B1RK216X.pdf",
+        partNumber: "KHX16C10B1RK2/16X",
     },
     {
         id: "ram-3",
@@ -42,6 +44,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2012,
         datasheet: "CML16GX3M2A1600C10.pdf",
+        partNumber: "CML16GX3M2A1600C10",
     },
     {
         id: "ram-4",
@@ -56,6 +59,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2012,
         datasheet: "CML16GX3M2A1600C10.pdf",
+        partNumber: "CML16GX3M2A1600C10",
     },
     {
         id: "ram-6",
@@ -69,6 +73,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         releaseYear: 2015,
+        partNumber: "EBJ21UE8BDF0-DJ-F",
     },
     {
         id: "ram-7",
@@ -82,6 +87,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         releaseYear: 2015,
+        partNumber: "EBJ21UE8BDF0-DJ-F",
     },
     {
         id: "ram-8",
@@ -95,6 +101,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         releaseYear: 2015,
+        partNumber: "EBJ21UE8BDF0-DJ-F",
     },
     {
         id: "ram-10",
@@ -108,6 +115,7 @@ export const ram: RAM[] = [
         voltage: 1.8,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "CT25664AA667.M16FM",
     },
     {
         id: "ram-15",
@@ -120,6 +128,7 @@ export const ram: RAM[] = [
         timings: "CL9",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "M378B2873EH1-CH9",
     },
     {
         id: "ram-16",
@@ -132,6 +141,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "HYMP125U64CP8-S6",
     },
     {
         id: "ram-17",
@@ -144,6 +154,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "HYMP125U64CP8-S6",
     },
     {
         id: "ram-18",
@@ -156,6 +167,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "HYMP125U64CP8-S6",
     },
     {
         id: "ram-19",
@@ -168,6 +180,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "HYMP125U64CP8-S6",
     },
     {
         id: "ram-20",
@@ -182,6 +195,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2006,
         condition: "working",
+        partNumber: "VS1GB667D2",
     },
     {
         id: "ram-21",
@@ -196,6 +210,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2006,
         condition: "working",
+        partNumber: "VS1GB667D2",
     },
     {
         id: "ram-22",
@@ -209,6 +224,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         releaseYear: 2012,
+        partNumber: "CT51264BA1339.M16FMR",
     },
     {
         id: "ram-23",
@@ -222,6 +238,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         releaseYear: 2012,
+        partNumber: "CT51264BA1339.M16FMR",
     },
     {
         id: "ram-24",
@@ -248,6 +265,7 @@ export const ram: RAM[] = [
         voltage: 2.5,
         formFactor: "DIMM",
         condition: "defective",
+        partNumber: "M2U25664DS88A0G-75B",
     },
     {
         id: "ram-26",
@@ -263,6 +281,7 @@ export const ram: RAM[] = [
         releaseYear: 2014,
         datasheet: "hx316c10fk2_8.pdf",
         condition: "working",
+        partNumber: "HX316C10FK2/8",
     },
     {
         id: "ram-27 ",
@@ -278,6 +297,7 @@ export const ram: RAM[] = [
         releaseYear: 2014,
         datasheet: "hx316c10fk2_8.pdf",
         condition: "working",
+        partNumber: "HX316C10FK2/8",
     },
     {
         id: "ram-28",
@@ -292,6 +312,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2008,
         condition: "working",
+        partNumber: "CM2X2048-6400C4DHX",
     },
     {
         id: "ram-29",
@@ -306,6 +327,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2008,
         condition: "working",
+        partNumber: "CM2X2048-6400C4DHX",
     },
     {
         id: "ram-30",
@@ -320,6 +342,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2008,
         condition: "working",
+        partNumber: "CM2X2048-6400C4DHX",
     },
     {
         id: "ram-31",
@@ -334,6 +357,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2008,
         condition: "working",
+        partNumber: "CM2X2048-6400C4DHX",
     },
     {
         id: "ram-32",
@@ -348,6 +372,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2008,
         condition: "working",
+        partNumber: "CM2X2048-6400C4DHX",
     },
     {
         id: "ram-33",
@@ -362,6 +387,7 @@ export const ram: RAM[] = [
         formFactor: "DIMM",
         releaseYear: 2008,
         condition: "working",
+        partNumber: "CM2X2048-6400C4DHX",
     },
     {
         id: "ram-34",
@@ -374,6 +400,7 @@ export const ram: RAM[] = [
         timings: "CL9-9-9",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "KHX1333C9D3B1K2/8G",
     },
     {
         id: "ram-35",
@@ -386,6 +413,7 @@ export const ram: RAM[] = [
         timings: "CL9-9-9",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "KHX1333C9D3B1K2/8G",
     },
     {
         id: "ram-36",
@@ -398,6 +426,7 @@ export const ram: RAM[] = [
         timings: "CL9-9-9-24",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "CMX8GX3M2A1600C9",
     },
     {
         id: "ram-37",
@@ -410,6 +439,7 @@ export const ram: RAM[] = [
         timings: "CL9-9-9-24",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "CMX8GX3M2A1600C9",
     },
     {
         id: "ram-38",
@@ -422,6 +452,7 @@ export const ram: RAM[] = [
         timings: "CL9-9-9-24",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "CMX8GX3M2A1600C9",
     },
     {
         id: "ram-39",
@@ -434,6 +465,7 @@ export const ram: RAM[] = [
         timings: "CL9-9-9-24",
         voltage: 1.5,
         formFactor: "DIMM",
+        partNumber: "CMX8GX3M2A1600C9",
     },
     {
         id: "ram-40",
@@ -447,6 +479,7 @@ export const ram: RAM[] = [
         voltage: 1.8,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "CM2X2048-6400C5C",
     },
     {
         id: "ram-41",
@@ -460,6 +493,7 @@ export const ram: RAM[] = [
         voltage: 1.8,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "CM2X2048-6400C5C",
     },
     {
         id: "ram-42",
@@ -473,6 +507,7 @@ export const ram: RAM[] = [
         voltage: 3.3,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "MTBLSDT1664AG-133E1",
     },
     {
         id: "ram-43",
@@ -486,6 +521,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "CMD8GX3M2A1600C8",
     },
     {
         id: "ram-44",
@@ -499,6 +535,7 @@ export const ram: RAM[] = [
         voltage: 1.5,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "CMD8GX3M2A1600C8",
     },
     {
         id: "ram-45",
@@ -511,6 +548,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "AU02GE800C6NBGC",
     },
     {
         id: "ram-46",
@@ -523,6 +561,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "EBE21UE8AEFA-8G-E",
     },
     {
         id: "ram-47",
@@ -535,6 +574,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "EBE21UE8AEFA-8G-E",
     },
     {
         id: "ram-48",
@@ -547,6 +587,7 @@ export const ram: RAM[] = [
         timings: "CL6",
         voltage: 1.8,
         formFactor: "DIMM",
+        partNumber: "EBE21UE8AEFA-8G-E",
     },
     {
         id: "ram-49",
@@ -560,6 +601,7 @@ export const ram: RAM[] = [
         voltage: 2.5,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "VS512MB400C3",
     },
     {
         id: "ram-50",
@@ -573,6 +615,7 @@ export const ram: RAM[] = [
         voltage: 2.5,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "VS512MB400C3",
     },
     {
         id: "ram-51",
@@ -586,6 +629,7 @@ export const ram: RAM[] = [
         voltage: 2.5,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "VS512MB400C3",
     },
     {
         id: "ram-52",
@@ -599,6 +643,7 @@ export const ram: RAM[] = [
         voltage: 2.5,
         formFactor: "DIMM",
         condition: "working",
+        partNumber: "VS512MB400C3",
     },
     {
         id: "ram-53",
@@ -611,6 +656,7 @@ export const ram: RAM[] = [
         timings: "CL16-18-18-38",
         voltage: 1.2,
         formFactor: "DIMM",
+        partNumber: "BLS4G4D26BFSE",
     },
     {
         id: "ram-54",
@@ -623,6 +669,7 @@ export const ram: RAM[] = [
         timings: "CL16-18-18-38",
         voltage: 1.2,
         formFactor: "DIMM",
+        partNumber: "BLS4G4D26BFSE",
     },
     {
         id: "ram-55",
@@ -635,6 +682,7 @@ export const ram: RAM[] = [
         timings: "CL16-18-18-38",
         voltage: 1.2,
         formFactor: "DIMM",
+        partNumber: "BLS4G4D26BFSE",
     },
     {
         id: "ram-56",
@@ -647,5 +695,6 @@ export const ram: RAM[] = [
         timings: "CL16-18-18-38",
         voltage: 1.2,
         formFactor: "DIMM",
+        partNumber: "BLS4G4D26BFSE",
     },
 ];

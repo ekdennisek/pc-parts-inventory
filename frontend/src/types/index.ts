@@ -99,6 +99,7 @@ export interface RAM extends PCPart {
     timings?: string; // CL16-18-18-38
     voltage?: number; // V
     formFactor: MemoryFormFactor; // DIMM, SO-DIMM
+    partNumber?: string;
 }
 
 export interface Case extends PCPart {
