@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { cpus } from "../data/cpus";
 import { cpuList } from "../data/cpuList";
@@ -111,6 +111,25 @@ export const CpuCollectionsPage: React.FC = () => {
     );
 
     const matchCounts = useMemo(() => countMatches(query), [query]);
+
+    // Group to scroll to once the search is cleared and the full list has rendered
+    const [scrollTarget, setScrollTarget] = useState<string | null>(null);
+
+    // The router applies the cleared search in a transition, so wait until the
+    // unfiltered list has actually rendered before scrolling
+    useEffect(() => {
+        if (!scrollTarget || query) return;
+        document
+            .querySelector(`[data-group-key="${CSS.escape(scrollTarget)}"]`)
+            ?.scrollIntoView({ block: "start" });
+        setScrollTarget(null);
+    }, [scrollTarget, query]);
+
+    const showGroup = (key: string) => {
+        setSearchTerm("");
+        setExpandedRows(new Set([key]));
+        setScrollTarget(key);
+    };
 
     const filteredGroups = useMemo(() => {
         return cpuList
@@ -249,13 +268,29 @@ export const CpuCollectionsPage: React.FC = () => {
                                 <React.Fragment key={key}>
                                     <div
                                         className={`group-row ${state}${isExpanded ? " expanded" : ""}`}
+                                        data-group-key={key}
                                         onClick={() => toggleRow(key)}
                                     >
                                         <div className="expand-cell">
                                             <ChevronIcon expanded={isExpanded} />
                                         </div>
                                         <div className="socket-cell wb-mono">{group.socket}</div>
-                                        <div className="codename-cell">{group.codename}</div>
+                                        <div className="codename-cell">
+                                            {group.codename}
+                                            {query && (
+                                                <button
+                                                    type="button"
+                                                    className="show-group-button wb-mono"
+                                                    title="Clear search and show this whole group"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        showGroup(key);
+                                                    }}
+                                                >
+                                                    Show group
+                                                </button>
+                                            )}
+                                        </div>
                                         <div className="progress-cell">
                                             <div className="progress-track">
                                                 {total > 0 && collected > 0 && (

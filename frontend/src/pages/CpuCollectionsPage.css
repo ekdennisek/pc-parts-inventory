@@ -207,9 +207,35 @@
 }
 
 .codename-cell {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-bright);
+}
+
+.show-group-button {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: none;
+    border: 1px solid var(--border-strong);
+    padding: 0.25rem 0.625rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+}
+
+.show-group-button:hover {
+    border-color: var(--accent);
+}
+
+/* Keep scrolled-to groups clear of the sticky toolbar */
+.group-row {
+    scroll-margin-top: 5rem;
 }
 
 .group-row.none .codename-cell {
@@ -373,6 +399,10 @@
 
     .collections-toolbar .search-bar {
         width: 100%;
+    }
+
+    .group-row {
+        scroll-margin-top: 8rem;
     }
 
     .brand-tab {
