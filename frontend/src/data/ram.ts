@@ -497,7 +497,7 @@ export const ram: RAM[] = [
     },
     {
         id: "ram-42",
-        name: "Micron MTBLSDT1664AG-133E1",
+        name: "Micron MT8LSDT1664AG-133E1",
         brand: "Micron",
         description: "128MB SDR 133MHz CL3",
         capacity: 0.125,
@@ -507,7 +507,7 @@ export const ram: RAM[] = [
         voltage: 3.3,
         formFactor: "DIMM",
         condition: "working",
-        partNumber: "MTBLSDT1664AG-133E1",
+        partNumber: "MT8LSDT1664AG-133E1",
     },
     {
         id: "ram-43",
