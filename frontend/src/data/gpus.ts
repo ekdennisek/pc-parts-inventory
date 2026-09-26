@@ -243,4 +243,17 @@ export const graphicsCards: GraphicsCard[] = [
         box: true,
         releaseYear: 2010,
     },
+    {
+        id: "gpu-19",
+        name: "ASUS GeForce EN8500GT Silent",
+        brand: "ASUS",
+        description: "EN8500GT SILENT/HTD/256M/A",
+        memory: 0.25,
+        memoryType: "GDDR2",
+        coreClock: 459,
+        boostClock: 0, // TODO
+        powerConsumption: 0, // TODO
+        interface: "PCIe 1.0",
+        releaseYear: 2007,
+    },
 ];

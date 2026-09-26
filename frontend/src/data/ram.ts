@@ -792,4 +792,29 @@ export const ram: RAM[] = [
         formFactor: "SO-DIMM",
         partNumber: "KVR667D2S5/1G",
     },
+    {
+        id: "ram-64",
+        name: "Apacer 71.63323.565",
+        brand: "Apacer",
+        description: "64MB UNB PC100 CL2 71.63323.565",
+        capacity: 0.0625,
+        type: "SDR",
+        speed: 100,
+        timings: "CL2",
+        voltage: 3.3, // TODO Verify
+        formFactor: "DIMM",
+        partNumber: "71.63323.565",
+    },
+    {
+        id: "ram-65",
+        name: "PC100 128MB 8M*8 SDRAM",
+        brand: "???",
+        description: "PC100 128MB 8M*8 SDRAM",
+        capacity: 0.125,
+        type: "SDR",
+        speed: 100,
+        timings: "", // TODO
+        voltage: 3.3, // TODO Verify
+        formFactor: "DIMM",
+    },
 ];

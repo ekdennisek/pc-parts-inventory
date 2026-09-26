@@ -330,4 +330,21 @@ export const motherboards: Motherboard[] = [
         ioShield: true,
         box: true,
     },
+    {
+        id: "mb-17",
+        name: "ASUS A7V-VM",
+        brand: "ASUS",
+        description: "Socket A mATX motherboard (rev. 2.02) HP OEM",
+        socket: "Socket A",
+        formFactor: "Micro ATX",
+        chipset: "VIA KM133A",
+        memorySlots: 2,
+        maxMemory: 1,
+        memoryTypes: ["SDR"],
+        expansionSlots: {
+            "AGP 1.5": 1,
+            "PCI 2.2": 3, // TODO Verify version
+        },
+        ioShield: true,
+    },
 ];

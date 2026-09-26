@@ -662,4 +662,17 @@ export const cpus: CPU[] = [
         codename: "Barton",
         partNumber: "AXDA2500DKV4D",
     },
+    {
+        id: "cpu-48",
+        name: "Athlon 1400C",
+        brand: "AMD",
+        description: "Socket A processor",
+        cores: 1,
+        threads: 1,
+        baseClock: 1.4,
+        socket: "Socket A",
+        releaseYear: 2001,
+        codename: "Thunderbird",
+        partNumber: "A1400AMS3C",
+    },
 ];
