@@ -234,7 +234,7 @@ export interface Game {
     releaseYear: number;
     status: GameStatus;
     tags: GameTag[];
-    case: "big-box" | "jewel-case" | "keep-case";
+    case: "big-box" | "jewel-case" | "keep-case" | "none";
     notes?: string;
 }
 

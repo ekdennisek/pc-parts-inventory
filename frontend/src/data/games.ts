@@ -411,4 +411,20 @@ export const games: Game[] = [
         tags: ["action", "fps"],
         case: "keep-case",
     },
+    {
+        id: "the-jungle-book",
+        name: "Djungelboken",
+        releaseYear: 1994,
+        status: "owned",
+        tags: ["adventure"],
+        case: "none",
+    },
+    {
+        id: "the-lion-king",
+        name: "Lejonkungen",
+        releaseYear: 1994,
+        status: "owned",
+        tags: ["adventure"],
+        case: "none",
+    },
 ];
