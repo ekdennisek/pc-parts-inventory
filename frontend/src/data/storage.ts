@@ -60,4 +60,15 @@ export const storage: Storage[] = [
         interface: "IDE",
         condition: "working",
     },
+    {
+        id: "storage-6",
+        name: "Western Digital Caviar 12100",
+        brand: "Western Digital",
+        description: "2111.8MB ATA HDD",
+        capacity: 2.1,
+        type: "HDD",
+        formFactor: '3.5"',
+        interface: "IDE",
+        releaseYear: 1997,
+    },
 ];
