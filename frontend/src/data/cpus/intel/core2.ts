@@ -238,7 +238,7 @@ const conroeXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme X6800",
         socket: "LGA 775",
-        codeName: "Conroe XE",
+        codeName: "Conroe",
         sSpec: "SL9S5",
         stepping: "B2",
         partNumbers: ["HH80557PH0677M", "BX80557X6800"],
@@ -246,7 +246,7 @@ const conroeXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme X6800",
         socket: "LGA 775",
-        codeName: "Conroe XE",
+        codeName: "Conroe",
         sSpec: "QPHV",
         stepping: "B1",
         partNumbers: ["HH80557PH0677M", "BX80557X6800"],
@@ -254,7 +254,7 @@ const conroeXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme X6900",
         socket: "LGA 775",
-        codeName: "Conroe XE",
+        codeName: "Conroe",
         sSpec: "QTOM",
         stepping: "B2",
         partNumbers: ["HH80557PH0884M"],
@@ -262,7 +262,7 @@ const conroeXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme X6900",
         socket: "LGA 775",
-        codeName: "Conroe XE",
+        codeName: "Conroe",
         sSpec: "SL9S4",
         stepping: "B2",
         partNumbers: ["HH80557PH0884M"],
@@ -308,7 +308,7 @@ const kentsfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX6700",
         socket: "LGA 775",
-        codeName: "Kentsfield XE",
+        codeName: "Kentsfield",
         sSpec: "SL9UL",
         stepping: "B3",
         partNumbers: ["HH80562PH0678M"],
@@ -316,7 +316,7 @@ const kentsfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX6800",
         socket: "LGA 775",
-        codeName: "Kentsfield XE",
+        codeName: "Kentsfield",
         sSpec: "SL9UK",
         stepping: "B3",
         partNumbers: ["HH80562PH0778M", "HH80562XH0778M"],
@@ -324,7 +324,7 @@ const kentsfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX6800",
         socket: "LGA 775",
-        codeName: "Kentsfield XE",
+        codeName: "Kentsfield",
         sSpec: "SLACP",
         stepping: "G0",
         partNumbers: ["HH80562PH0778M", "HH80562XH0778M"],
@@ -332,7 +332,7 @@ const kentsfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX6850",
         socket: "LGA 775",
-        codeName: "Kentsfield XE",
+        codeName: "Kentsfield",
         sSpec: "SLAFN",
         stepping: "G0",
         partNumbers: ["HH80562XJ0808M"],
@@ -705,7 +705,7 @@ const yorkfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX9650",
         socket: "LGA 775",
-        codeName: "Yorkfield XE",
+        codeName: "Yorkfield",
         sSpec: "SLAN3",
         stepping: "C0",
         partNumbers: ["EU80569XJ080NL", "BX80569QX9650"],
@@ -713,7 +713,7 @@ const yorkfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX9650",
         socket: "LGA 775",
-        codeName: "Yorkfield XE",
+        codeName: "Yorkfield",
         sSpec: "SLAWN",
         stepping: "C1",
         partNumbers: ["EU80569XJ080NL", "BX80569QX9650"],
@@ -721,7 +721,7 @@ const yorkfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX9750",
         socket: "LGA 775",
-        codeName: "Yorkfield XE",
+        codeName: "Yorkfield",
         sSpec: "QJEE",
         stepping: "E0",
         partNumbers: ["AT80569XL087NL"],
@@ -729,7 +729,7 @@ const yorkfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX9750",
         socket: "LGA 775",
-        codeName: "Yorkfield XE",
+        codeName: "Yorkfield",
         sSpec: "SLBBU",
         stepping: "E0",
         partNumbers: ["AT80569XL087NL"],
@@ -737,7 +737,7 @@ const yorkfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX9770",
         socket: "LGA 775",
-        codeName: "Yorkfield XE",
+        codeName: "Yorkfield",
         sSpec: "SLAN2",
         stepping: "C0",
         partNumbers: ["EU80569XL088NL", "BX80569QX9770"],
@@ -745,7 +745,7 @@ const yorkfieldXe: IntelCpu[] = [
     {
         name: "Core 2 Extreme QX9770",
         socket: "LGA 775",
-        codeName: "Yorkfield XE",
+        codeName: "Yorkfield",
         sSpec: "SLAWM",
         stepping: "C1",
         partNumbers: ["EU80569XL088NL", "BX80569QX9770"],
