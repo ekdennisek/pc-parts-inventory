@@ -1,3 +1,4 @@
+import { getFirstRelease, type YearMonth } from "./codenames";
 import { amdCpus } from "./cpus/amd";
 import { intelCpus } from "./cpus/intel";
 import type { CpuSocket } from "./sockets";
@@ -15,6 +16,8 @@ export interface CpuGroup {
     brand: "Intel" | "AMD";
     socket: CpuSocket;
     codename: string;
+    // Undefined when the codename table has no entry for this socket and codename
+    firstRelease?: YearMonth;
     cpus: MasterdataCpu[];
 }
 
@@ -30,6 +33,7 @@ function groupAmdByCodename(entries: typeof amdCpus): CpuGroup[] {
                 brand: "AMD",
                 socket: entry.socket,
                 codename: entry.codeName,
+                firstRelease: getFirstRelease(entry.socket, entry.codeName),
                 cpus: [],
             };
             seen.set(key, group);
@@ -58,6 +62,7 @@ function groupIntelByCodename(entries: typeof intelCpus): CpuGroup[] {
                 brand: "Intel",
                 socket: entry.socket,
                 codename: entry.codeName,
+                firstRelease: getFirstRelease(entry.socket, entry.codeName),
                 cpus: [],
             };
             seen.set(key, group);

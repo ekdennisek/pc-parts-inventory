@@ -135,6 +135,12 @@ export const CpuCollectionsPage: React.FC = () => {
         return cpuList
             .filter((group) => group.brand === activeTab)
             .sort((a, b) => {
+                if (a.firstRelease !== b.firstRelease) {
+                    // Groups missing from the codename table go last
+                    if (!a.firstRelease) return 1;
+                    if (!b.firstRelease) return -1;
+                    return a.firstRelease.localeCompare(b.firstRelease);
+                }
                 const socketDiff = getSocketSortOrder(a.socket) - getSocketSortOrder(b.socket);
                 if (socketDiff !== 0) return socketDiff;
                 return a.codename.localeCompare(b.codename);
