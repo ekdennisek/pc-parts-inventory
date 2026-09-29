@@ -537,13 +537,6 @@ const kaveri: AmdCpu[] = [
         socket: "Socket FM2+",
         codeName: "Kaveri",
         stepping: "KV-A1",
-        partNumber: "AD860KWOHLBOX",
-    },
-    {
-        name: "Athlon X4 860K",
-        socket: "Socket FM2+",
-        codeName: "Kaveri",
-        stepping: "KV-A1",
         partNumber: "AD860KXBJASBX",
     },
     {

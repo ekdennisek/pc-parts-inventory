@@ -481,14 +481,14 @@ const richland: AmdCpu[] = [
         socket: "Socket FM2",
         codeName: "Richland",
         stepping: "RL-A1",
-        partNumber: "AD679KWOA44HL",
+        partNumber: "AD679BWOA44HL",
     },
     {
         name: "A10-6790K",
         socket: "Socket FM2",
         codeName: "Richland",
         stepping: "RL-A1",
-        partNumber: "AD679BWOA44HL",
+        partNumber: "AD679KWOA44HL",
     },
     {
         name: "A10-6800K",

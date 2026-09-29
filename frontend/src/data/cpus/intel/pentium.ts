@@ -1925,11 +1925,11 @@ const ivyBridge: IntelCpu[] = [
     },
 ];
 
-const haswellDT: IntelCpu[] = [
+const haswell: IntelCpu[] = [
     {
         name: "Pentium G3220",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1CG",
         stepping: "C0",
         partNumbers: ["CM8064601482519", "CM8064601562017", "BX80646G3220", "BXC80646G3220"],
@@ -1937,7 +1937,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3220",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1RK",
         stepping: "C0",
         partNumbers: ["CM8064601482519", "CM8064601562017", "BX80646G3220", "BXC80646G3220"],
@@ -1945,7 +1945,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3240",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1K6",
         stepping: "C0",
         partNumbers: ["CM8064601482507", "CM8064601562018", "BX80646G3240", "BXC80646G3240"],
@@ -1953,7 +1953,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3240",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1RL",
         stepping: "C0",
         partNumbers: ["CM8064601482507", "CM8064601562018", "BX80646G3240", "BXC80646G3240"],
@@ -1961,7 +1961,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3250",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1K7",
         stepping: "C0",
         partNumbers: ["CM8064601482514", "BX80646G3250", "BXC80646G3250"],
@@ -1969,7 +1969,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3258",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1V0",
         stepping: "C0",
         partNumbers: ["CM8064601482573", "BX80646G3258", "BXC80646G3258"],
@@ -1977,7 +1977,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3260",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1K8",
         stepping: "C0",
         partNumbers: ["CM8064601482506", "BX80646G3260", "BXC80646G3260"],
@@ -1985,7 +1985,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3420",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1NB",
         stepping: "C0",
         partNumbers: ["CM8064601482522", "BX80646G3420", "BXC80646G3420"],
@@ -1993,7 +1993,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3430",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1CE",
         stepping: "C0",
         partNumbers: ["CM8064601482518", "BX80646G3430", "BXC80646G3430"],
@@ -2001,7 +2001,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3440",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1P9",
         stepping: "C0",
         partNumbers: ["CM8064601482563", "BX80646G3440"],
@@ -2009,7 +2009,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3450",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1K2",
         stepping: "C0",
         partNumbers: ["CM8064601482505", "BX80646G3450"],
@@ -2017,7 +2017,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3460",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1K3",
         stepping: "C0",
         partNumbers: ["CM8064601482508", "BX80646G3460"],
@@ -2025,7 +2025,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3470",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1K4",
         stepping: "C0",
         partNumbers: ["CM8064601482520", "BX80646G3470"],
@@ -2033,7 +2033,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3220T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1CL",
         stepping: "C0",
         partNumbers: ["CM8064601483713"],
@@ -2041,7 +2041,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3240T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1KU",
         stepping: "C0",
         partNumbers: ["CM8064601483722"],
@@ -2049,7 +2049,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3250T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1KV",
         stepping: "C0",
         partNumbers: ["CM8064601483718"],
@@ -2057,7 +2057,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3260T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1KW",
         stepping: "C0",
         partNumbers: ["CM8064601483744"],
@@ -2065,7 +2065,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3420T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1CK",
         stepping: "C0",
         partNumbers: ["CM8064601483712"],
@@ -2073,7 +2073,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3440T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1KS",
         stepping: "C0",
         partNumbers: ["CM8064601483717"],
@@ -2081,7 +2081,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3450T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1KT",
         stepping: "C0",
         partNumbers: ["CM8064601483714"],
@@ -2089,7 +2089,7 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3460T",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR1TD",
         stepping: "C0",
         partNumbers: ["CM8064601483760"],
@@ -2097,18 +2097,18 @@ const haswellDT: IntelCpu[] = [
     {
         name: "Pentium G3320TE",
         socket: "LGA 1150",
-        codeName: "Haswell-DT",
+        codeName: "Haswell",
         sSpec: "SR181",
         stepping: "C0",
         partNumbers: ["CM8064601484501"],
     },
 ];
 
-const skylakeS: IntelCpu[] = [
+const skylake: IntelCpu[] = [
     {
         name: "Pentium G4400",
         socket: "LGA 1151-1",
-        codeName: "Skylake-S",
+        codeName: "Skylake",
         sSpec: "SR2DC",
         stepping: "R0",
         partNumbers: ["BX80662G4400", "BXC80662G4400", "CM8066201927306"],
@@ -2116,7 +2116,7 @@ const skylakeS: IntelCpu[] = [
     {
         name: "Pentium G4500",
         socket: "LGA 1151-1",
-        codeName: "Skylake-S",
+        codeName: "Skylake",
         sSpec: "SR2HJ",
         stepping: "S0",
         partNumbers: ["BX80662G4500", "BXC80662G4500", "CM8066201927319"],
@@ -2124,7 +2124,7 @@ const skylakeS: IntelCpu[] = [
     {
         name: "Pentium G4520",
         socket: "LGA 1151-1",
-        codeName: "Skylake-S",
+        codeName: "Skylake",
         sSpec: "SR2HM",
         stepping: "S0",
         partNumbers: ["BX80662G4520", "CM8066201927407"],
@@ -2132,7 +2132,7 @@ const skylakeS: IntelCpu[] = [
     {
         name: "Pentium G4400T",
         socket: "LGA 1151-1",
-        codeName: "Skylake-S",
+        codeName: "Skylake",
         sSpec: "SR2HQ",
         stepping: "S0",
         partNumbers: ["CM8066201927506"],
@@ -2140,7 +2140,7 @@ const skylakeS: IntelCpu[] = [
     {
         name: "Pentium G4500T",
         socket: "LGA 1151-1",
-        codeName: "Skylake-S",
+        codeName: "Skylake",
         sSpec: "SR2HS",
         stepping: "S0",
         partNumbers: ["CM8066201927512"],
@@ -2148,18 +2148,18 @@ const skylakeS: IntelCpu[] = [
     {
         name: "Pentium G4400TE",
         socket: "LGA 1151-1",
-        codeName: "Skylake-S",
+        codeName: "Skylake",
         sSpec: "SR2LT",
         stepping: "R0",
         partNumbers: ["CM8066201938702"],
     },
 ];
 
-const kabyLakeS: IntelCpu[] = [
+const kabyLake: IntelCpu[] = [
     {
         name: "Pentium G4560",
         socket: "LGA 1151-1",
-        codeName: "Kaby Lake-S",
+        codeName: "Kaby Lake",
         sSpec: "SR32Y",
         stepping: "B0",
         partNumbers: ["BX80677G4560", "BXC80677G4560"],
@@ -2167,7 +2167,7 @@ const kabyLakeS: IntelCpu[] = [
     {
         name: "Pentium G4600",
         socket: "LGA 1151-1",
-        codeName: "Kaby Lake-S",
+        codeName: "Kaby Lake",
         sSpec: "SR35F",
         stepping: "S0",
         partNumbers: ["BX80677G4600", "BXC80677G4600"],
@@ -2175,7 +2175,7 @@ const kabyLakeS: IntelCpu[] = [
     {
         name: "Pentium G4620",
         socket: "LGA 1151-1",
-        codeName: "Kaby Lake-S",
+        codeName: "Kaby Lake",
         sSpec: "SR35E",
         stepping: "S0",
         partNumbers: ["BX80677G4620"],
@@ -2183,7 +2183,7 @@ const kabyLakeS: IntelCpu[] = [
     {
         name: "Pentium G4560T",
         socket: "LGA 1151-1",
-        codeName: "Kaby Lake-S",
+        codeName: "Kaby Lake",
         sSpec: "SR35T",
         stepping: "S0",
         partNumbers: ["CM8067703016117"],
@@ -2191,18 +2191,18 @@ const kabyLakeS: IntelCpu[] = [
     {
         name: "Pentium G4600T",
         socket: "LGA 1151-1",
-        codeName: "Kaby Lake-S",
+        codeName: "Kaby Lake",
         sSpec: "SR35R",
         stepping: "S0",
         partNumbers: ["CM8067703016014"],
     },
 ];
 
-const coffeeLakeS: IntelCpu[] = [
+const coffeeLake: IntelCpu[] = [
     {
         name: "Pentium Gold G5400",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3X9",
         stepping: "U0",
         partNumbers: ["CM8068403360112", "BX80684G5400"],
@@ -2210,7 +2210,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5420",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3YH",
         stepping: "B0",
         partNumbers: ["CM8068403360113", "BX80684G5420"],
@@ -2218,7 +2218,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5420",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3XA",
         stepping: "U0",
         partNumbers: ["CM8068403360113", "BX80684G5420"],
@@ -2226,7 +2226,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5500",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3YD",
         stepping: "B0",
         partNumbers: ["CM8068403377611", "BX80684G5500"],
@@ -2234,7 +2234,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5600",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3YB",
         stepping: "B0",
         partNumbers: ["CM8068403377513", "BX80684G5600"],
@@ -2242,7 +2242,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5620",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3YC",
         stepping: "B0",
         partNumbers: ["BX80684G5620", "BXC80684G5620"],
@@ -2250,7 +2250,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5400T",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3XB",
         stepping: "U0",
         partNumbers: ["CM8068403360212"],
@@ -2258,7 +2258,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5420T",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3XC",
         stepping: "U0",
         partNumbers: ["CM8068403360213"],
@@ -2266,7 +2266,7 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5500T",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3YE",
         stepping: "B0",
         partNumbers: ["CM8068403377713"],
@@ -2274,18 +2274,18 @@ const coffeeLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G5600T",
         socket: "LGA 1151-2",
-        codeName: "Coffee Lake-S",
+        codeName: "Coffee Lake",
         sSpec: "SR3YF",
         stepping: "B0",
         partNumbers: ["CM8068403377714"],
     },
 ];
 
-const cometLakeS: IntelCpu[] = [
+const cometLake: IntelCpu[] = [
     {
         name: "Pentium Gold G6400",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3Y",
         stepping: "G1",
         partNumbers: ["CM8070104291810", "BX80701G6400", "BXC80701G6400"],
@@ -2293,7 +2293,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6405",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3Z",
         stepping: "G1",
         partNumbers: ["CM8070104291811", "BX80701G6405"],
@@ -2301,7 +2301,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6500",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3U",
         stepping: "G1",
         partNumbers: ["CM8070104291610", "BX80701G6500", "BXC80701G6500"],
@@ -2309,7 +2309,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6505",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3V",
         stepping: "G1",
         partNumbers: ["CM8070104291611"],
@@ -2317,7 +2317,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6600",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3S",
         stepping: "G1",
         partNumbers: ["CM8070104291510", "BX80701G6600", "BXC80701G6600"],
@@ -2325,7 +2325,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6605",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3T",
         stepping: "G1",
         partNumbers: ["CM8070104291511", "BX80701G6605"],
@@ -2333,7 +2333,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6400E",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH6G",
         stepping: "G1",
         partNumbers: ["CM8070104423809"],
@@ -2341,7 +2341,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6400T",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH40",
         stepping: "G1",
         partNumbers: ["CM8070104291907"],
@@ -2349,7 +2349,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6405T",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH41",
         stepping: "G1",
         partNumbers: ["CM8070104291909"],
@@ -2357,7 +2357,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6500T",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3W",
         stepping: "G1",
         partNumbers: ["CM8070104291707"],
@@ -2365,7 +2365,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6505T",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH3X",
         stepping: "G1",
         partNumbers: ["CM8070104291709"],
@@ -2373,7 +2373,7 @@ const cometLakeS: IntelCpu[] = [
     {
         name: "Pentium Gold G6400TE",
         socket: "LGA 1200",
-        codeName: "Comet Lake-S",
+        codeName: "Comet Lake",
         sSpec: "SRH6H",
         stepping: "G1",
         partNumbers: ["CM8070104423912"],
@@ -2426,10 +2426,10 @@ export const pentium: IntelCpu[] = [
     ...clarkdale,
     ...sandyBridge,
     ...ivyBridge,
-    ...haswellDT,
-    ...skylakeS,
-    ...kabyLakeS,
-    ...coffeeLakeS,
-    ...cometLakeS,
+    ...haswell,
+    ...skylake,
+    ...kabyLake,
+    ...coffeeLake,
+    ...cometLake,
     ...alderLake,
 ];

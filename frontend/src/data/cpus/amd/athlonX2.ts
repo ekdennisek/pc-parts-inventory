@@ -171,21 +171,24 @@ const kuma: AmdCpu[] = [
     },
 ];
 
-const regorDeneb: AmdCpu[] = [
+const deneb: AmdCpu[] = [
     {
         name: "Athlon X2 5000+",
         socket: "Socket AM2+",
-        codeName: "Regor/Deneb",
+        codeName: "Deneb",
         stepping: "C2",
         partNumber: "AD5000OGJ22GI",
     },
+];
+
+const regor: AmdCpu[] = [
     {
         name: "Athlon X2 5200+",
-        socket: "Socket AM2+",
-        codeName: "Regor/Deneb",
-        stepping: "C2",
+        socket: "Socket AM3",
+        codeName: "Regor",
+        stepping: "C3",
         partNumber: "AD5200OCK22GM",
     },
 ];
 
-export const athlonX2 = [...brisbane, ...kuma, ...regorDeneb];
+export const athlonX2 = [...brisbane, ...kuma, ...deneb, ...regor];

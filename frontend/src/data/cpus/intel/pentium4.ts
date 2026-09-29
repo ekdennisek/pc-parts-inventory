@@ -2064,7 +2064,7 @@ const prescott: IntelCpu[] = [
         partNumbers: ["JM80547PG1121MM", "JM80547PG1121M"],
     },
     {
-        name: "Pentium 4 HT 580[27]",
+        name: "Pentium 4 HT 580",
         socket: "LGA 775",
         codeName: "Prescott",
         sSpec: "?",
@@ -2073,7 +2073,7 @@ const prescott: IntelCpu[] = [
 
 const prescott2M: IntelCpu[] = [
     {
-        name: "Pentium 4 HT 620[28][29]",
+        name: "Pentium 4 HT 620",
         socket: "LGA 775",
         codeName: "Prescott 2M",
         sSpec: "SL8AB",

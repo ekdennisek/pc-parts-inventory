@@ -216,12 +216,6 @@ const thoroughbred: AmdCpu[] = [
         partNumber: "AXDA2800DKV3D",
     },
     {
-        name: "Athlon XP 3100+",
-        socket: "Socket A",
-        codeName: "Thoroughbred",
-        partNumber: "AXDC3100DKV3E",
-    },
-    {
         name: "Athlon XP SFF 1500+",
         socket: "Socket A",
         codeName: "Thoroughbred",
