@@ -30,7 +30,6 @@ export const codenames: Codename[] = [
     { brand: "Intel", socket: "Socket 370", codename: "Mendocino", firstRelease: "1999-01" },
     { brand: "Intel", socket: "Socket 370", codename: "Coppermine", firstRelease: "1999-10" },
     { brand: "Intel", socket: "Socket 370", codename: "Coppermine-128", firstRelease: "2000-03" },
-    { brand: "Intel", socket: "Socket 370", codename: "Coppermine T", firstRelease: "2001-06" },
     { brand: "Intel", socket: "Socket 370", codename: "Tualatin", firstRelease: "2001-07" },
     { brand: "Intel", socket: "Socket 370", codename: "Tualatin-256", firstRelease: "2001-10" },
     { brand: "Intel", socket: "Socket 423", codename: "Willamette", firstRelease: "2000-11" },
