@@ -102,6 +102,7 @@ export const PartPage: React.FC = () => {
     const sortOption = (searchParams.get("sort") ?? "standard") as SortOption;
     const selectedFilters = getArrayParam(searchParams, "filter");
     const selectedFormFactors = getArrayParam(searchParams, "formFactor");
+    const selectedChipsets = getArrayParam(searchParams, "chipset");
     const selectedConditions = getArrayParam(searchParams, "condition");
     const selectedBoxes = getArrayParam(searchParams, "box");
     const selectedMemoryType = searchParams.get("memoryType") as MemoryType;
@@ -137,6 +138,15 @@ export const PartPage: React.FC = () => {
         (values: string[]) =>
             setSearchParams(
                 (prev) => setParam(prev, "formFactor", values.length > 0 ? values : null),
+                { replace: true },
+            ),
+        [setSearchParams],
+    );
+
+    const setSelectedChipsets = useCallback(
+        (values: string[]) =>
+            setSearchParams(
+                (prev) => setParam(prev, "chipset", values.length > 0 ? values : null),
                 { replace: true },
             ),
         [setSearchParams],
@@ -228,6 +238,16 @@ export const PartPage: React.FC = () => {
         }
         return [];
     }, [partType]);
+
+    const chipsetOptions: FilterOption[] = useMemo(() => {
+        if (partType === "motherboard") {
+            const chipsets = new Set((parts as Motherboard[]).map((p) => p.chipset));
+            return [...chipsets]
+                .sort((a, b) => a.localeCompare(b))
+                .map((c) => ({ value: c, label: c }));
+        }
+        return [];
+    }, [partType, parts]);
 
     const memoryTypeOptions: FilterOption[] = useMemo(() => {
         if (partType === "motherboard") {
@@ -321,6 +341,13 @@ export const PartPage: React.FC = () => {
             }
         }
 
+        if (partType === "motherboard" && selectedChipsets.length > 0) {
+            filtered = filtered.filter((part) => {
+                const p = part as Motherboard;
+                return selectedChipsets.includes(p.chipset);
+            });
+        }
+
         if (partType === "motherboard" && selectedMemoryType) {
             filtered = filtered.filter((part) => {
                 const p = part as Motherboard;
@@ -366,6 +393,7 @@ export const PartPage: React.FC = () => {
         searchTerm,
         selectedFilters,
         selectedFormFactors,
+        selectedChipsets,
         selectedMemoryType,
         selectedConditions,
         selectedBoxes,
@@ -400,6 +428,7 @@ export const PartPage: React.FC = () => {
         searchTerm ||
         selectedFilters.length > 0 ||
         selectedFormFactors.length > 0 ||
+        selectedChipsets.length > 0 ||
         selectedMemoryType !== null ||
         selectedConditions.length > 0 ||
         selectedBoxes.length > 0 ||
@@ -476,6 +505,16 @@ export const PartPage: React.FC = () => {
                             mode="multi"
                             selectedValues={selectedFilters}
                             onChange={setSelectedFilters}
+                        />
+                    )}
+
+                    {chipsetOptions.length > 0 && (
+                        <FilterDropdown
+                            label="Chipset"
+                            options={chipsetOptions}
+                            mode="multi"
+                            selectedValues={selectedChipsets}
+                            onChange={setSelectedChipsets}
                         />
                     )}
 
@@ -574,6 +613,7 @@ export const PartPage: React.FC = () => {
                         {searchTerm &&
                             (selectedFormFactors.length > 0 ||
                                 selectedFilters.length > 0 ||
+                                selectedChipsets.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 isYearFilterActive) &&
@@ -582,6 +622,7 @@ export const PartPage: React.FC = () => {
                             ` filtered by ${selectedFormFactors.length} form factor${selectedFormFactors.length > 1 ? "s" : ""}`}
                         {selectedFormFactors.length > 0 &&
                             (selectedFilters.length > 0 ||
+                                selectedChipsets.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 isYearFilterActive) &&
@@ -591,20 +632,28 @@ export const PartPage: React.FC = () => {
                                 partType === "graphicsCard" ? "interface" : "socket"
                             }${selectedFilters.length > 1 ? "s" : ""}`}
                         {selectedFilters.length > 0 &&
+                            (selectedChipsets.length > 0 ||
+                                selectedConditions.length > 0 ||
+                                selectedBoxes.length > 0 ||
+                                isYearFilterActive) &&
+                            " and"}
+                        {selectedChipsets.length > 0 &&
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "filtered by "}${selectedChipsets.length} chipset${selectedChipsets.length > 1 ? "s" : ""}`}
+                        {selectedChipsets.length > 0 &&
                             (selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedConditions.length > 0 &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
                         {selectedConditions.length > 0 &&
                             (selectedBoxes.length > 0 || isYearFilterActive) &&
                             " and"}
                         {selectedBoxes.length > 0 &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 ? "" : "filtered by "}${selectedBoxes.length} box status${selectedBoxes.length > 1 ? "es" : ""}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 ? "" : "filtered by "}${selectedBoxes.length} box status${selectedBoxes.length > 1 ? "es" : ""}`}
                         {selectedBoxes.length > 0 && isYearFilterActive && " and"}
                         {isYearFilterActive &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
                         {selectedRamSpec &&
                             `${searchTerm || selectedFilters.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || isYearFilterActive ? " and" : ""} with spec ${getRamSpecLabel(selectedRamSpec)}`}
                     </p>
