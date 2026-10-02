@@ -23,6 +23,8 @@ export type IntelCpu = {
     name: string;
     socket: IntelSocket;
     codeName: string;
+    // More specific name when grouped under a broader codename, e.g. "Conroe XE" under "Conroe"
+    codeNameVariant?: string;
     sSpec?: string;
     stepping?: string;
     partNumbers?: string[];
