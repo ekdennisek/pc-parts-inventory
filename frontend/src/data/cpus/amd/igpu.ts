@@ -9,55 +9,6 @@ const llano: AmdCpu[] = [
         partNumber: "SD198XOJZ22GX",
     },
     {
-        name: "Athlon II X2 221",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD221XOJZ22GX",
-    },
-    {
-        name: "Athlon II X4 631",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD631XOJZ43GX",
-    },
-    {
-        name: "Athlon II X4 631",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD631XWNZ43GX",
-    },
-    {
-        name: "Athlon II X4 638",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD638XOJZ43GX",
-    },
-    {
-        name: "Athlon II X4 641",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD641XWNZ43GX",
-    },
-    {
-        name: "Athlon II X4 651",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD651XWNZ43GX",
-    },
-    {
-        name: "Athlon II X4 651K",
-        socket: "Socket FM1",
-        codeName: "Llano",
-        stepping: "LN-B0",
-        partNumber: "AD651KWNZ43GX",
-    },
-    {
         name: "E2-3200",
         socket: "Socket FM1",
         codeName: "Llano",
@@ -180,34 +131,6 @@ const trinity: AmdCpu[] = [
         partNumber: "SD240XOKA23HJ",
     },
     {
-        name: "Athlon X2 340",
-        socket: "Socket FM2",
-        codeName: "Trinity",
-        stepping: "TN-A1",
-        partNumber: "AD340XOKA23HJ",
-    },
-    {
-        name: "Athlon X4 730",
-        socket: "Socket FM2",
-        codeName: "Trinity",
-        stepping: "TN-A1",
-        partNumber: "AD730XOKA44HJ",
-    },
-    {
-        name: "Athlon X4 740",
-        socket: "Socket FM2",
-        codeName: "Trinity",
-        stepping: "TN-A1",
-        partNumber: "AD740XOKA44HJ",
-    },
-    {
-        name: "Athlon X4 750K",
-        socket: "Socket FM2",
-        codeName: "Trinity",
-        stepping: "TN-A1",
-        partNumber: "AD750KWOA44HJ",
-    },
-    {
         name: "FirePro A300",
         socket: "Socket FM2",
         codeName: "Trinity",
@@ -291,20 +214,6 @@ const trinity: AmdCpu[] = [
         stepping: "TN-A1",
         partNumber: "AD580BWOA44HJ",
     },
-    {
-        name: "Athlon X4 740",
-        socket: "Socket FM2",
-        codeName: "Trinity",
-        stepping: "TN-A1",
-        partNumber: "AD740XOKHJBOX",
-    },
-    {
-        name: "Athlon X4 740",
-        socket: "Socket FM2",
-        codeName: "Trinity",
-        stepping: "TN-A1",
-        partNumber: "AD740XOKA44HJ",
-    },
 ];
 
 const richland: AmdCpu[] = [
@@ -314,34 +223,6 @@ const richland: AmdCpu[] = [
         codeName: "Richland",
         stepping: "RL-A1",
         partNumber: "SD250XOKA23HL",
-    },
-    {
-        name: "Athlon X2 350",
-        socket: "Socket FM2",
-        codeName: "Richland",
-        stepping: "RL-A1",
-        partNumber: "AD350XOKA23HL",
-    },
-    {
-        name: "Athlon X2 370K",
-        socket: "Socket FM2",
-        codeName: "Richland",
-        stepping: "RL-A1",
-        partNumber: "AD370KOKA23HL",
-    },
-    {
-        name: "Athlon X4 750",
-        socket: "Socket FM2",
-        codeName: "Richland",
-        stepping: "RL-A1",
-        partNumber: "AD750XOKA44HL",
-    },
-    {
-        name: "Athlon X4 760K",
-        socket: "Socket FM2",
-        codeName: "Richland",
-        stepping: "RL-A1",
-        partNumber: "AD760KWOA44HL",
     },
     {
         name: "FX-670K",
@@ -508,20 +389,6 @@ const richland: AmdCpu[] = [
 
 const kabini: AmdCpu[] = [
     {
-        name: "Athlon X4 530",
-        socket: "Socket AM1",
-        codeName: "Kabini",
-        stepping: "KB-A1",
-        partNumber: "AD530XJAH44HM",
-    },
-    {
-        name: "Athlon X4 550",
-        socket: "Socket AM1",
-        codeName: "Kabini",
-        stepping: "KB-A1",
-        partNumber: "AD550XJAH44HM",
-    },
-    {
         name: "Sempron 2650",
         socket: "Socket AM1",
         codeName: "Kabini",
@@ -535,72 +402,9 @@ const kabini: AmdCpu[] = [
         stepping: "KB-A1",
         partNumber: "SD3850JAH44HM",
     },
-    {
-        name: "Athlon 5150",
-        socket: "Socket AM1",
-        codeName: "Kabini",
-        stepping: "KB-A1",
-        partNumber: "AD5150JAH44HM",
-    },
-    {
-        name: "Athlon 5350",
-        socket: "Socket AM1",
-        codeName: "Kabini",
-        stepping: "KB-A1",
-        partNumber: "AD5350JAH44HM",
-    },
-    {
-        name: "Athlon 5370",
-        socket: "Socket AM1",
-        codeName: "Kabini",
-        stepping: "KB-A1",
-        partNumber: "AD5370JAH44HM",
-    },
 ];
 
 const kaveriGodavari: AmdCpu[] = [
-    {
-        name: "Athlon X2 450",
-        socket: "Socket FM2+",
-        codeName: "Kaveri",
-        stepping: "KV-A1",
-        partNumber: "AD450XYBI23JA",
-    },
-    {
-        name: "Athlon X4 830",
-        socket: "Socket FM2+",
-        codeName: "Kaveri",
-        stepping: "KV-A1",
-        partNumber: "AD830XYBI44JA",
-    },
-    {
-        name: "Athlon X4 840",
-        socket: "Socket FM2+",
-        codeName: "Kaveri",
-        stepping: "KV-A1",
-        partNumber: "AD840XYBI44JA",
-    },
-    {
-        name: "Athlon X4 850",
-        socket: "Socket FM2+",
-        codeName: "Godavari",
-        stepping: "GV-A1",
-        partNumber: "AD850XYBI44JC",
-    },
-    {
-        name: "Athlon X4 860K",
-        socket: "Socket FM2+",
-        codeName: "Kaveri",
-        stepping: "KV-A1",
-        partNumber: "AD860KXBI44JA",
-    },
-    {
-        name: "Athlon X4 870K",
-        socket: "Socket FM2+",
-        codeName: "Godavari",
-        stepping: "GV-A1",
-        partNumber: "AD870KXBI44JC",
-    },
     {
         name: "FX-770K",
         socket: "Socket FM2+",
@@ -766,20 +570,6 @@ const kaveriGodavari: AmdCpu[] = [
 
 const carrizo: AmdCpu[] = [
     {
-        name: "Athlon X4 835",
-        socket: "Socket FM2+",
-        codeName: "Carrizo",
-        stepping: "CZ-A1",
-        partNumber: "AD835XACI43KA",
-    },
-    {
-        name: "Athlon X4 845",
-        socket: "Socket FM2+",
-        codeName: "Carrizo",
-        stepping: "CZ-A1",
-        partNumber: "AD845XACI43KA",
-    },
-    {
         name: "A6-7480",
         socket: "Socket FM2+",
         codeName: "Carrizo",
@@ -838,27 +628,6 @@ const carrizo: AmdCpu[] = [
 ];
 
 const bristolRidge: AmdCpu[] = [
-    {
-        name: "Athlon X4 940",
-        socket: "Socket AM4",
-        codeName: "Bristol Ridge",
-        stepping: "BR-A1",
-        partNumber: "AD940XAGM44AB",
-    },
-    {
-        name: "Athlon X4 950",
-        socket: "Socket AM4",
-        codeName: "Bristol Ridge",
-        stepping: "BR-A1",
-        partNumber: "AD950XAGM44AB",
-    },
-    {
-        name: "Athlon X4 970",
-        socket: "Socket AM4",
-        codeName: "Bristol Ridge",
-        stepping: "BR-A1",
-        partNumber: "AD970XAUM44AB",
-    },
     {
         name: "A6-9400",
         socket: "Socket AM4",
@@ -948,7 +717,7 @@ const bristolRidge: AmdCpu[] = [
         socket: "Socket AM4",
         codeName: "Bristol Ridge",
         stepping: "BR-A1",
-        partNumber: "AD9800AUM44AB",
+        partNumber: "AD9800AHM44AB",
     },
     {
         name: "Pro A12-9800E",
