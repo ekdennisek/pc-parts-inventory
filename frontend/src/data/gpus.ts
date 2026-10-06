@@ -256,4 +256,17 @@ export const graphicsCards: GraphicsCard[] = [
         interface: "PCIe 1.0",
         releaseYear: 2007,
     },
+    {
+        id: "gpu-20",
+        name: "XFX ATI Radeon HD 5850",
+        brand: "XFX",
+        description: "HD-585X-ZNFV V3.3",
+        memory: 1,
+        memoryType: "GDDR5",
+        coreClock: 765, // Verify this isn't for the Black Edition
+        boostClock: 0, // TODO
+        powerConsumption: 151, // TODO Verify this isn't for the Black Edition
+        interface: "PCIe 2.0",
+        releaseYear: 2010, // TODO Verify this isn't for the Black Edition
+    },
 ];
