@@ -784,4 +784,17 @@ export const cpus: CPU[] = [
         codename: "Lynnfield",
         sSpec: "SLBJG",
     },
+    {
+        id: "cpu-57",
+        name: "Intel Pentium G4400",
+        brand: "Intel",
+        description: "Dual core LGA 1151 processor",
+        cores: 2,
+        threads: 2,
+        baseClock: 3.3,
+        socket: "LGA 1151-1",
+        releaseYear: 2015,
+        codename: "Skylake",
+        sSpec: "SR2DC",
+    },
 ];

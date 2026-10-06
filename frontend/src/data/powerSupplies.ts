@@ -72,4 +72,16 @@ export const powerSupplies: PowerSupply[] = [
         condition: "working",
         box: true,
     },
+    {
+        id: "psu-7",
+        name: "NZXT S650",
+        brand: "NZXT",
+        description: "650W modular SFX power supply. Came with the NZXT H1 case.",
+        wattage: 650,
+        efficiency: "80+ Gold",
+        modular: true,
+        formFactor: "SFX",
+        releaseYear: 2019,
+        condition: "working",
+    },
 ];
