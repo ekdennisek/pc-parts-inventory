@@ -11,6 +11,8 @@ export interface MasterdataCpu {
     partNumbers?: string[];
     stepping?: string;
     note?: string;
+    // e.g. "Yorkfield XE" for a CPU grouped under "Yorkfield"
+    codeNameVariant?: string;
 }
 
 export interface CpuGroup {
@@ -77,6 +79,7 @@ function groupIntelByCodename(entries: typeof intelCpus): GroupedCpus[] {
             name: entry.name,
             sSpec: entry.sSpec,
             partNumbers: entry.partNumbers,
+            codeNameVariant: entry.codeNameVariant,
             stepping: entry.stepping,
             note: entry.note,
         });

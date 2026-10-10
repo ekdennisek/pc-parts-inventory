@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { cpus } from "../data/cpus";
 import { cpuList } from "../data/cpuList";
-import type { MasterdataCpu } from "../data/cpuList";
+import type { CpuGroup, MasterdataCpu } from "../data/cpuList";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
 import { setParam } from "../hooks/useFilterParams";
 import { SearchBar } from "../components/SearchBar";
@@ -71,15 +71,25 @@ const nameMatches = (ownedName: string, entryName: string): boolean => {
 const normalize = (s: string): string => s.toLowerCase().replace(/[\s-]+/g, " ");
 
 const entryMatches = (entry: MasterdataCpu, query: string): boolean =>
-    [entry.name, entry.sSpec, entry.partNumber, ...(entry.partNumbers ?? [])].some(
-        (field) => field !== undefined && normalize(field).includes(query),
-    );
+    [
+        entry.name,
+        entry.sSpec,
+        entry.partNumber,
+        ...(entry.partNumbers ?? []),
+        entry.codeNameVariant,
+    ].some((field) => field !== undefined && normalize(field).includes(query));
+
+// The whole group when its codename matches, otherwise the CPUs that match on their own
+const matchingCpus = (group: CpuGroup, query: string): MasterdataCpu[] =>
+    normalize(group.codename).includes(query)
+        ? group.cpus
+        : group.cpus.filter((entry) => entryMatches(entry, query));
 
 const countMatches = (query: string): Record<Brand, number> => {
     const counts: Record<Brand, number> = { Intel: 0, AMD: 0 };
     if (!query) return counts;
     for (const group of cpuList) {
-        counts[group.brand] += group.cpus.filter((entry) => entryMatches(entry, query)).length;
+        counts[group.brand] += matchingCpus(group, query).length;
     }
     return counts;
 };
@@ -163,10 +173,7 @@ export const CpuCollectionsPage: React.FC = () => {
     };
 
     const visibleCpus = useMemo(
-        () =>
-            filteredGroups.map((group) =>
-                query ? group.cpus.filter((entry) => entryMatches(entry, query)) : group.cpus,
-            ),
+        () => filteredGroups.map((group) => (query ? matchingCpus(group, query) : group.cpus)),
         [filteredGroups, query],
     );
 
@@ -182,7 +189,7 @@ export const CpuCollectionsPage: React.FC = () => {
         });
     };
 
-    const getGroupStats = (group: (typeof cpuList)[number]) => {
+    const getGroupStats = (group: CpuGroup) => {
         const total = group.cpus.length;
         const collected = group.cpus.filter(isCollected).length;
         return { total, collected };
@@ -235,7 +242,7 @@ export const CpuCollectionsPage: React.FC = () => {
                 <SearchBar
                     searchTerm={searchTerm}
                     onSearchChange={setSearchTerm}
-                    placeholder="Name, sSpec or part no."
+                    placeholder="Name, codename, sSpec or part no."
                     focusShortcut
                     blurOnEnter
                 />
