@@ -354,7 +354,7 @@ export const motherboards: Motherboard[] = [
         description: "LGA 1156 ATX motherboard",
         socket: "LGA 1156",
         formFactor: "ATX",
-        chipset: "P55",
+        chipset: "Intel P55",
         memorySlots: 4,
         maxMemory: 16,
         memoryTypes: ["DDR3"],
