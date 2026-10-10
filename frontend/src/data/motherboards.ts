@@ -386,4 +386,25 @@ export const motherboards: Motherboard[] = [
         ioShield: true,
         box: true,
     },
+    {
+        id: "mb-20",
+        name: "Gigabyte P55-USB3 (rev. 2.0)",
+        brand: "Gigabyte",
+        description: "LGA 1156 ATX motherboard",
+        socket: "LGA 1156",
+        formFactor: "ATX",
+        chipset: "Intel P55",
+        memorySlots: 4,
+        maxMemory: 16,
+        memoryTypes: ["DDR3"],
+        expansionSlots: {
+            "PCIe 2.0 x16": 1,
+            "PCIe 2.0 x16@x4": 1,
+            "PCIe 2.0 x1": 2,
+            "PCI 2.2": 3, // TODO Verfiy version
+        },
+        releaseYear: 2010,
+        ioShield: true,
+        box: true,
+    },
 ];
