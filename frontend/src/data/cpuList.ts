@@ -1,6 +1,7 @@
 import { getFirstRelease, type YearMonth } from "./codenames";
 import { amdCpus } from "./cpus/amd";
 import { intelCpus } from "./cpus/intel";
+import { getProductLines } from "./productLines";
 import type { CpuSocket } from "./sockets";
 
 export interface MasterdataCpu {
@@ -19,11 +20,15 @@ export interface CpuGroup {
     // Undefined when the codename table has no entry for this socket and codename
     firstRelease?: YearMonth;
     cpus: MasterdataCpu[];
+    // Derived from the CPU names, e.g. ["Athlon 64 X2", "Athlon 64"]
+    productLines: string[];
 }
 
-function groupAmdByCodename(entries: typeof amdCpus): CpuGroup[] {
-    const groups: CpuGroup[] = [];
-    const seen = new Map<string, CpuGroup>();
+type GroupedCpus = Omit<CpuGroup, "productLines">;
+
+function groupAmdByCodename(entries: typeof amdCpus): GroupedCpus[] {
+    const groups: GroupedCpus[] = [];
+    const seen = new Map<string, GroupedCpus>();
 
     for (const entry of entries) {
         const key = `${entry.socket}|${entry.codeName}`;
@@ -50,9 +55,9 @@ function groupAmdByCodename(entries: typeof amdCpus): CpuGroup[] {
     return groups;
 }
 
-function groupIntelByCodename(entries: typeof intelCpus): CpuGroup[] {
-    const groups: CpuGroup[] = [];
-    const seen = new Map<string, CpuGroup>();
+function groupIntelByCodename(entries: typeof intelCpus): GroupedCpus[] {
+    const groups: GroupedCpus[] = [];
+    const seen = new Map<string, GroupedCpus>();
 
     for (const entry of entries) {
         const key = `${entry.socket}|${entry.codeName}`;
@@ -83,4 +88,7 @@ function groupIntelByCodename(entries: typeof intelCpus): CpuGroup[] {
 const amdGroups = groupAmdByCodename(amdCpus);
 const intelGroups = groupIntelByCodename(intelCpus);
 
-export const cpuList: CpuGroup[] = [...amdGroups, ...intelGroups];
+export const cpuList: CpuGroup[] = [...amdGroups, ...intelGroups].map((group) => ({
+    ...group,
+    productLines: getProductLines(group.cpus.map((entry) => entry.name)),
+}));

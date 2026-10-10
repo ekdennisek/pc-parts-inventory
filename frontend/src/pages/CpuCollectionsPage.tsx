@@ -283,6 +283,11 @@ export const CpuCollectionsPage: React.FC = () => {
                                         <div className="socket-cell wb-mono">{group.socket}</div>
                                         <div className="codename-cell">
                                             {group.codename}
+                                            {group.productLines.length > 0 && (
+                                                <span className="product-lines">
+                                                    {group.productLines.join(" · ")}
+                                                </span>
+                                            )}
                                             {query && (
                                                 <button
                                                     type="button"

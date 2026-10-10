@@ -216,6 +216,12 @@
     color: var(--text-bright);
 }
 
+.product-lines {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
 .show-group-button {
     font-size: 0.6875rem;
     font-weight: 500;
