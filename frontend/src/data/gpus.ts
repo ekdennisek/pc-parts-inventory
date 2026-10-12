@@ -269,4 +269,30 @@ export const graphicsCards: GraphicsCard[] = [
         interface: "PCIe 2.0",
         releaseYear: 2010, // TODO Verify this isn't for the Black Edition
     },
+    {
+        id: "gpu-21",
+        name: "ASUS ATI Radeon HD 7770",
+        brand: "ASUS",
+        description: "HD7770-DC-1GD5-V2",
+        memory: 1,
+        memoryType: "GDDR5",
+        coreClock: 1020,
+        boostClock: 0, // TODO
+        powerConsumption: 80,
+        interface: "PCIe 3.0",
+        releaseYear: 2012,
+    },
+    {
+        id: "gpu-22",
+        name: "Gigabyte GeForce GTX 460 1GB OC",
+        brand: "Gigabyte",
+        description: "GV-N460OC-1GI",
+        memory: 1,
+        memoryType: "GDDR5",
+        coreClock: 715,
+        boostClock: 0, // TODO
+        powerConsumption: 160,
+        interface: "PCIe 2.0",
+        releaseYear: 2010,
+    },
 ];

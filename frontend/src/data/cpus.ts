@@ -927,4 +927,18 @@ export const cpus: CPU[] = [
         codename: "Deneb",
         partNumber: "HDZ955FBK4DGM",
     },
+    {
+        id: "cpu-68",
+        name: "Intel Core i5-4690K",
+        brand: "Intel",
+        description: "Quad core LGA 1150 processor",
+        cores: 4,
+        threads: 4,
+        baseClock: 3.5,
+        boostClock: 3.9,
+        socket: "LGA 1150",
+        releaseYear: 2014,
+        codename: "Haswell",
+        sSpec: "SR21A",
+    },
 ];
