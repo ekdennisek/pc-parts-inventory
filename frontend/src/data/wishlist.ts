@@ -13,15 +13,43 @@ export const cpuWishlist: WishlistCPU[] = [];
 
 export const motherboardWishlist: WishlistMotherboard[] = [
     {
+        socket: "LGA 1366",
+        chipset: "Intel X58",
+        ioShield: true,
+        box: true,
+    },
+    {
+        socket: "LGA 1156",
+        chipset: "Intel P55",
+        ioShield: true,
+        box: true,
+    },
+    {
+        socket: "LGA 1155",
+        chipset: "Intel X68",
+        ioShield: true,
+        box: true,
+    },
+    {
+        socket: "LGA 2011",
+        chipset: "Intel X79",
+        ioShield: true,
+        box: true,
+    },
+    {
+        socket: "LGA 2011",
+        chipset: "Intel X99",
+        ioShield: true,
+        box: true,
+    },
+    {
         socket: "LGA 1150",
-        formFactor: "ATX",
         chipset: "Intel Z87",
         ioShield: true,
         box: true,
     },
     {
         socket: "LGA 1150",
-        formFactor: "ATX",
         chipset: "Intel Z97",
         ioShield: true,
         box: true,
