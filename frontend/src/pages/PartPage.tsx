@@ -6,6 +6,7 @@ import { FilterBar } from "../components/FilterBar";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { DetailedPartCard } from "../components/DetailedPartCard";
 import { allParts } from "../data/parts";
+import { allWishlists } from "../data/wishlist";
 import { usedPartIds } from "../data/builds";
 import type {
     PartType,
@@ -37,6 +38,7 @@ import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./PartPage.css";
 import { ComponentDetailModal } from "../components/ComponentDetailModal";
 import { RamSummary } from "../components/RamSummary";
+import { Wishlist } from "../components/Wishlist";
 import { getRamSpecKey, getRamSpecLabel } from "../utils/ramSpec";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
@@ -55,14 +57,29 @@ const boxFilterOptions: FilterOption[] = [
     { value: "Unknown", label: "Unknown", colorClass: "unknown" },
 ];
 
-const RAM_SUMMARY_STORAGE_KEY = "ramSummaryOpen";
+/** Open/closed state for a filter bar panel, remembered across visits */
+function useRememberedToggle(storageKey: string): [boolean, () => void] {
+    const [isOpen, setIsOpen] = useState(() => {
+        try {
+            return localStorage.getItem(storageKey) === "true";
+        } catch {
+            return false;
+        }
+    });
 
-function readRamSummaryOpen(): boolean {
-    try {
-        return localStorage.getItem(RAM_SUMMARY_STORAGE_KEY) === "true";
-    } catch {
-        return false;
-    }
+    const toggle = useCallback(() => {
+        setIsOpen((prev) => {
+            const next = !prev;
+            try {
+                localStorage.setItem(storageKey, String(next));
+            } catch {
+                // Storage unavailable; the panel just won't remember its state
+            }
+            return next;
+        });
+    }, [storageKey]);
+
+    return [isOpen, toggle];
 }
 
 export const PartPage: React.FC = () => {
@@ -72,19 +89,8 @@ export const PartPage: React.FC = () => {
     const [detailModal, setDetailModal] = useState<{ part: AnyPart; partType: PartType } | null>(
         null,
     );
-    const [isRamSummaryOpen, setIsRamSummaryOpen] = useState(readRamSummaryOpen);
-
-    const toggleRamSummary = useCallback(() => {
-        setIsRamSummaryOpen((prev) => {
-            const next = !prev;
-            try {
-                localStorage.setItem(RAM_SUMMARY_STORAGE_KEY, String(next));
-            } catch {
-                // Storage unavailable; the panel just won't remember its state
-            }
-            return next;
-        });
-    }, []);
+    const [isRamSummaryOpen, toggleRamSummary] = useRememberedToggle("ramSummaryOpen");
+    const [isWishlistOpen, toggleWishlist] = useRememberedToggle("wishlistOpen");
 
     // Clear query params when switching between part types via forward navigation,
     // but preserve them on browser back/forward (POP) since the browser restores the correct URL.
@@ -208,6 +214,8 @@ export const PartPage: React.FC = () => {
         }
         return allParts[partType];
     }, [partType]);
+
+    const wishes = partType ? (allWishlists[partType] ?? []) : [];
 
     // Compute year options from parts data
     const yearOptions = useMemo(() => {
@@ -567,7 +575,7 @@ export const PartPage: React.FC = () => {
                     {partType === "ram" && (
                         <button
                             type="button"
-                            className={`ram-summary-toggle ${selectedRamSpec ? "has-selection" : ""}`}
+                            className={`filter-bar-toggle ${selectedRamSpec ? "has-selection" : ""}`}
                             aria-expanded={isRamSummaryOpen}
                             onClick={toggleRamSummary}
                         >
@@ -595,6 +603,23 @@ export const PartPage: React.FC = () => {
                             </span>
                         </button>
                     )}
+
+                    {wishes.length > 0 && (
+                        <button
+                            type="button"
+                            className="filter-bar-toggle"
+                            aria-expanded={isWishlistOpen}
+                            onClick={toggleWishlist}
+                        >
+                            <span>Wishlist</span>
+                            <span className="filter-bar-toggle-count">{wishes.length}</span>
+                            <span
+                                className={`filter-dropdown-chevron ${isWishlistOpen ? "open" : ""}`}
+                            >
+                                &#9662;
+                            </span>
+                        </button>
+                    )}
                 </FilterBar>
 
                 {partType === "ram" && isRamSummaryOpen && (
@@ -603,6 +628,16 @@ export const PartPage: React.FC = () => {
                         usedPartIds={usedPartIds}
                         selectedSpec={selectedRamSpec}
                         onSelectSpec={setSelectedRamSpec}
+                    />
+                )}
+
+                {wishes.length > 0 && isWishlistOpen && (
+                    <Wishlist
+                        partType={partType}
+                        wishes={wishes}
+                        parts={parts}
+                        usedPartIds={usedPartIds}
+                        onSelectPart={(part) => setDetailModal({ part, partType })}
                     />
                 )}
 

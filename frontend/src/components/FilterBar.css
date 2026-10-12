@@ -5,3 +5,39 @@
     margin-bottom: 0.5rem;
     align-items: flex-start;
 }
+
+/* A filter bar button that expands a panel below the bar */
+.filter-bar-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-label);
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-bar-toggle:hover {
+    border-color: var(--border-subtle);
+    color: var(--text-bright);
+}
+
+.filter-bar-toggle.has-selection {
+    border-color: var(--border-subtle);
+    color: var(--accent);
+    background: var(--panel-raised);
+}
+
+.filter-bar-toggle-count {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}

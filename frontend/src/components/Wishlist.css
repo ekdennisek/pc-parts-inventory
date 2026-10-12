@@ -1,0 +1,92 @@
+.wishlist {
+    margin-top: 0.5rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    /* Many wished-for fields make a wide table: scroll it rather than the page */
+    overflow-x: auto;
+}
+
+.wishlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+}
+
+.wishlist-table th {
+    padding: 0.75rem 1.125rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--text-faint);
+    border-bottom: 1px solid var(--border);
+}
+
+.wishlist-table td {
+    padding: 0.5rem 1.125rem;
+    vertical-align: top;
+    white-space: nowrap;
+    color: var(--text-label);
+}
+
+.wishlist-table tbody tr + tr td {
+    border-top: 1px solid var(--border);
+}
+
+.wishlist-any,
+.wishlist-none {
+    color: var(--text-faint);
+}
+
+.wishlist-table td.wishlist-stock {
+    width: 100%;
+    min-width: 14rem;
+    white-space: normal;
+}
+
+.wishlist-matches {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wishlist-matches li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.5rem;
+}
+
+.wishlist-match {
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    color: var(--ok);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.wishlist-match::before {
+    content: "● ";
+}
+
+.wishlist-match:hover {
+    color: var(--text-bright);
+}
+
+.wishlist-match-notes {
+    font-size: 0.6875rem;
+    color: var(--text-faint);
+}
+
+@media (max-width: 768px) {
+    .wishlist-table th,
+    .wishlist-table td {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}

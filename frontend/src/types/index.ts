@@ -150,6 +150,28 @@ export type AnyPart =
     | Storage
     | Peripheral;
 
+/* A wished-for part: any subset of the part's fields, matched against the parts in stock */
+type Wishlist<T extends PCPart> = Partial<Omit<T, "id" | "datasheet">>;
+
+export type WishlistCPU = Wishlist<CPU>;
+export type WishlistMotherboard = Wishlist<Motherboard>;
+export type WishlistPowerSupply = Wishlist<PowerSupply>;
+export type WishlistGraphicsCard = Wishlist<GraphicsCard>;
+export type WishlistRAM = Wishlist<RAM>;
+export type WishlistCase = Wishlist<Case>;
+export type WishlistStorage = Wishlist<Storage>;
+export type WishlistPeripheral = Wishlist<Peripheral>;
+
+export type AnyWishlistPart =
+    | WishlistCPU
+    | WishlistMotherboard
+    | WishlistPowerSupply
+    | WishlistGraphicsCard
+    | WishlistRAM
+    | WishlistCase
+    | WishlistStorage
+    | WishlistPeripheral;
+
 export const PART_TYPES: Record<PartType, string> = {
     cpu: "CPUs",
     motherboard: "Motherboards",
