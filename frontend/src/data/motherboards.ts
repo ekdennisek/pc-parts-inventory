@@ -62,6 +62,7 @@ export const motherboards: Motherboard[] = [
         releaseYear: 2006,
         condition: "working",
         ioShield: true,
+        box: false,
     },
     {
         id: "mb-4",
@@ -206,6 +207,7 @@ export const motherboards: Motherboard[] = [
         releaseYear: 2000,
         condition: "working",
         ioShield: false,
+        box: false,
     },
     {
         id: "mb-11",
@@ -288,7 +290,7 @@ export const motherboards: Motherboard[] = [
         releaseYear: 2004,
         ioShield: true,
         box: false,
-        condition: "working",
+        condition: "defective", // Needs new caps
     },
     {
         id: "mb-15",
@@ -346,6 +348,7 @@ export const motherboards: Motherboard[] = [
             "PCI 2.2": 3, // TODO Verify version
         },
         ioShield: true,
+        box: false,
     },
     {
         id: "mb-18",
@@ -364,6 +367,7 @@ export const motherboards: Motherboard[] = [
             "PCI 2.2": 2, // TODO Verify version
         },
         ioShield: false,
+        box: false,
     },
     {
         id: "mb-19",
@@ -406,5 +410,27 @@ export const motherboards: Motherboard[] = [
         releaseYear: 2010,
         ioShield: true,
         box: true,
+    },
+    {
+        id: "mb-21",
+        name: "MSI Z170A GAMING PRO CARBON",
+        brand: "MSI",
+        description: "LGA 1151 ATX motherboard",
+        socket: "LGA 1151-1",
+        formFactor: "ATX",
+        chipset: "Intel Z170",
+        memorySlots: 4,
+        maxMemory: 64,
+        memoryTypes: ["DDR4"],
+        expansionSlots: {
+            "PCIe 3.0 x16": 1,
+            "PCIe 3.0 x16@x8": 1,
+            "PCIe 3.0 x16@x4": 1,
+            "PCIe 3.0 x1": 4,
+        },
+        releaseYear: 2015,
+        ioShield: true,
+        box: true,
+        condition: "defective", // A lot of bent pins on the socket
     },
 ];
