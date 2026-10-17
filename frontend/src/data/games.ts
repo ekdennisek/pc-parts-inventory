@@ -467,4 +467,28 @@ export const games: Game[] = [
         tags: ["city-builder"],
         case: "keep-case",
     },
+    {
+        id: "5032921018340",
+        name: "Republic: The Revolution",
+        releaseYear: 2003,
+        status: "owned",
+        tags: ["simulation"],
+        case: "keep-case",
+    },
+    {
+        id: "5030945107989",
+        name: "The Sims 3: Katy Perry Sötsaker",
+        releaseYear: 2012,
+        status: "owned",
+        tags: ["simulation"],
+        case: "keep-case",
+    },
+    {
+        id: "5030943111636",
+        name: "The Sims 3: Semesterparadis",
+        releaseYear: 2013,
+        status: "owned",
+        tags: ["simulation"],
+        case: "keep-case",
+    },
 ];
