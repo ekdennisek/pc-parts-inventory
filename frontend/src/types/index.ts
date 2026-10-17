@@ -73,6 +73,7 @@ export interface Motherboard extends PCPart {
     maxMemory: number; // GB
     expansionSlots: ExpansionSlots;
     ioShield: boolean;
+    box: boolean;
 }
 
 export interface PowerSupply extends PCPart {

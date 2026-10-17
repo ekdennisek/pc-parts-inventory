@@ -38,6 +38,10 @@ import { getArrayParam, setParam } from "../hooks/useFilterParams";
 import "./PartPage.css";
 import { ComponentDetailModal } from "../components/ComponentDetailModal";
 import { RamSummary } from "../components/RamSummary";
+import {
+    MotherboardSummary,
+    type MotherboardSummarySelection,
+} from "../components/MotherboardSummary";
 import { Wishlist } from "../components/Wishlist";
 import { getRamSpecKey, getRamSpecLabel } from "../utils/ramSpec";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
@@ -95,6 +99,8 @@ export const PartPage: React.FC = () => {
         null,
     );
     const [isRamSummaryOpen, toggleRamSummary] = useRememberedToggle("ramSummaryOpen");
+    const [isMotherboardSummaryOpen, toggleMotherboardSummary] =
+        useRememberedToggle("motherboardSummaryOpen");
     const [isWishlistOpen, toggleWishlist] = useRememberedToggle("wishlistOpen");
 
     // Clear query params when switching between part types via forward navigation,
@@ -121,6 +127,15 @@ export const PartPage: React.FC = () => {
     const yearFrom = searchParams.get("yearFrom");
     const yearTo = searchParams.get("yearTo");
     const selectedRamSpec = partType === "ram" ? searchParams.get("spec") : null;
+
+    // A motherboard summary row is selected when the socket and box filters each hold just its value
+    const motherboardSummarySelection: MotherboardSummarySelection | null =
+        partType === "motherboard" &&
+        selectedFilters.length === 1 &&
+        selectedBoxes.length === 1 &&
+        (selectedBoxes[0] === "Yes" || selectedBoxes[0] === "No")
+            ? { socket: selectedFilters[0] as CpuSocket, box: selectedBoxes[0] === "Yes" }
+            : null;
 
     const setSearchTerm = useCallback(
         (value: string) =>
@@ -178,6 +193,21 @@ export const PartPage: React.FC = () => {
             setSearchParams((prev) => setParam(prev, "box", values.length > 0 ? values : null), {
                 replace: true,
             }),
+        [setSearchParams],
+    );
+
+    // Set both filters in one update, since separate updates in the same event overwrite each other
+    const setMotherboardSummarySelection = useCallback(
+        (selection: MotherboardSummarySelection | null) =>
+            setSearchParams(
+                (prev) =>
+                    setParam(
+                        setParam(prev, "filter", selection ? [selection.socket] : null),
+                        "box",
+                        selection ? [selection.box ? "Yes" : "No"] : null,
+                    ),
+                { replace: true },
+            ),
         [setSearchParams],
     );
 
@@ -638,6 +668,22 @@ export const PartPage: React.FC = () => {
                         </button>
                     )}
 
+                    {partType === "motherboard" && (
+                        <button
+                            type="button"
+                            className="filter-bar-toggle"
+                            aria-expanded={isMotherboardSummaryOpen}
+                            onClick={toggleMotherboardSummary}
+                        >
+                            <span>Summary</span>
+                            <span
+                                className={`filter-dropdown-chevron ${isMotherboardSummaryOpen ? "open" : ""}`}
+                            >
+                                &#9662;
+                            </span>
+                        </button>
+                    )}
+
                     {wishes.length > 0 && (
                         <button
                             type="button"
@@ -662,6 +708,14 @@ export const PartPage: React.FC = () => {
                         usedPartIds={usedPartIds}
                         selectedSpec={selectedRamSpec}
                         onSelectSpec={setSelectedRamSpec}
+                    />
+                )}
+
+                {partType === "motherboard" && isMotherboardSummaryOpen && (
+                    <MotherboardSummary
+                        parts={filteredParts as Motherboard[]}
+                        selected={motherboardSummarySelection}
+                        onSelect={setMotherboardSummarySelection}
                     />
                 )}
 
