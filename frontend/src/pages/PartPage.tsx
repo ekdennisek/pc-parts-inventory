@@ -57,6 +57,11 @@ const boxFilterOptions: FilterOption[] = [
     { value: "Unknown", label: "Unknown", colorClass: "unknown" },
 ];
 
+const ioShieldFilterOptions: FilterOption[] = [
+    { value: "Yes", label: "With I/O shield", colorClass: "box" },
+    { value: "No", label: "Without I/O shield", colorClass: "no-box" },
+];
+
 /** Open/closed state for a filter bar panel, remembered across visits */
 function useRememberedToggle(storageKey: string): [boolean, () => void] {
     const [isOpen, setIsOpen] = useState(() => {
@@ -111,6 +116,7 @@ export const PartPage: React.FC = () => {
     const selectedChipsets = getArrayParam(searchParams, "chipset");
     const selectedConditions = getArrayParam(searchParams, "condition");
     const selectedBoxes = getArrayParam(searchParams, "box");
+    const selectedIoShields = getArrayParam(searchParams, "ioShield");
     const selectedMemoryType = searchParams.get("memoryType") as MemoryType;
     const yearFrom = searchParams.get("yearFrom");
     const yearTo = searchParams.get("yearTo");
@@ -172,6 +178,15 @@ export const PartPage: React.FC = () => {
             setSearchParams((prev) => setParam(prev, "box", values.length > 0 ? values : null), {
                 replace: true,
             }),
+        [setSearchParams],
+    );
+
+    const setSelectedIoShields = useCallback(
+        (values: string[]) =>
+            setSearchParams(
+                (prev) => setParam(prev, "ioShield", values.length > 0 ? values : null),
+                { replace: true },
+            ),
         [setSearchParams],
     );
 
@@ -385,6 +400,13 @@ export const PartPage: React.FC = () => {
             });
         }
 
+        if (partType === "motherboard" && selectedIoShields.length > 0) {
+            filtered = filtered.filter((part) => {
+                const p = part as Motherboard;
+                return selectedIoShields.includes(p.ioShield ? "Yes" : "No");
+            });
+        }
+
         const isYearFilterActive = yearFrom !== null || yearTo !== null;
         if (isYearFilterActive) {
             filtered = filtered.filter((part) => {
@@ -405,6 +427,7 @@ export const PartPage: React.FC = () => {
         selectedMemoryType,
         selectedConditions,
         selectedBoxes,
+        selectedIoShields,
         partType,
         yearFrom,
         yearTo,
@@ -440,6 +463,7 @@ export const PartPage: React.FC = () => {
         selectedMemoryType !== null ||
         selectedConditions.length > 0 ||
         selectedBoxes.length > 0 ||
+        selectedIoShields.length > 0 ||
         isYearFilterActive ||
         selectedRamSpec !== null;
 
@@ -552,6 +576,16 @@ export const PartPage: React.FC = () => {
                         onChange={setSelectedBoxes}
                     />
 
+                    {partType === "motherboard" && (
+                        <FilterDropdown
+                            label="I/O Shield"
+                            options={ioShieldFilterOptions}
+                            mode="multi"
+                            selectedValues={selectedIoShields}
+                            onChange={setSelectedIoShields}
+                        />
+                    )}
+
                     {yearOptions.length > 0 && (
                         <FilterDropdown
                             label="Year From"
@@ -651,6 +685,7 @@ export const PartPage: React.FC = () => {
                                 selectedChipsets.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
+                                selectedIoShields.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedFormFactors.length > 0 &&
@@ -660,6 +695,7 @@ export const PartPage: React.FC = () => {
                                 selectedChipsets.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
+                                selectedIoShields.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedFilters.length > 0 &&
@@ -670,6 +706,7 @@ export const PartPage: React.FC = () => {
                             (selectedChipsets.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
+                                selectedIoShields.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedChipsets.length > 0 &&
@@ -677,18 +714,26 @@ export const PartPage: React.FC = () => {
                         {selectedChipsets.length > 0 &&
                             (selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
+                                selectedIoShields.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedConditions.length > 0 &&
                             ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
                         {selectedConditions.length > 0 &&
-                            (selectedBoxes.length > 0 || isYearFilterActive) &&
+                            (selectedBoxes.length > 0 ||
+                                selectedIoShields.length > 0 ||
+                                isYearFilterActive) &&
                             " and"}
                         {selectedBoxes.length > 0 &&
                             ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 ? "" : "filtered by "}${selectedBoxes.length} box status${selectedBoxes.length > 1 ? "es" : ""}`}
-                        {selectedBoxes.length > 0 && isYearFilterActive && " and"}
+                        {selectedBoxes.length > 0 &&
+                            (selectedIoShields.length > 0 || isYearFilterActive) &&
+                            " and"}
+                        {selectedIoShields.length > 0 &&
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "filtered by "}${selectedIoShields.length} I/O shield status${selectedIoShields.length > 1 ? "es" : ""}`}
+                        {selectedIoShields.length > 0 && isYearFilterActive && " and"}
                         {isYearFilterActive &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || selectedIoShields.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
                         {selectedRamSpec &&
                             `${searchTerm || selectedFilters.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || isYearFilterActive ? " and" : ""} with spec ${getRamSpecLabel(selectedRamSpec)}`}
                     </p>
