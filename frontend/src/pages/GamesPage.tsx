@@ -152,9 +152,9 @@ export const GamesPage: React.FC = () => {
             </div>
 
             <div className="games-grid">
-                {filteredGames.map((game) => (
+                {filteredGames.map((game, index) => (
                     <div
-                        key={game.id}
+                        key={`${game.id}-${index}`}
                         className={`game-card${game.status === "wishlist" ? " wishlist" : ""}`}
                     >
                         {game.status === "wishlist" && (
