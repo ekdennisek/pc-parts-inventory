@@ -244,6 +244,7 @@ type GameGenreTag =
     | "fantasy"
     | "fps"
     | "puzzle"
+    | "sport"
     | "racing"
     | "rpg"
     | "rts"
