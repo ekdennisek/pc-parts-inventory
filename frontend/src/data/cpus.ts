@@ -535,6 +535,7 @@ export const cpus: CPU[] = [
         releaseYear: 2010,
         condition: "working",
         codename: "Lynnfield",
+        sSpec: "SLBRP",
     },
     {
         id: "cpu-39",
