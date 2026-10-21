@@ -94,6 +94,7 @@ export const graphicsCards: GraphicsCard[] = [
         powerConsumption: 0,
         interface: "AGP 1.5V", // Maybe?
         releaseYear: 2004,
+        condition: "working",
     },
     {
         id: "gpu-8",

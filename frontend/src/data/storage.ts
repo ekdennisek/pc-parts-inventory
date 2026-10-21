@@ -70,5 +70,6 @@ export const storage: Storage[] = [
         formFactor: '3.5"',
         interface: "IDE",
         releaseYear: 1997,
+        condition: "working",
     },
 ];

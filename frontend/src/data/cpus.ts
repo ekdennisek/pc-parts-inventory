@@ -662,6 +662,7 @@ export const cpus: CPU[] = [
         releaseYear: 2003,
         codename: "Barton",
         partNumber: "AXDA2500DKV4D",
+        condition: "working",
     },
     {
         id: "cpu-48",
@@ -981,5 +982,6 @@ export const cpus: CPU[] = [
         releaseYear: 1998,
         codename: "Deschutes",
         sSpec: "SL2U3",
+        condition: "working",
     },
 ];

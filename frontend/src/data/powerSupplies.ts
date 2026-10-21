@@ -11,6 +11,7 @@ export const powerSupplies: PowerSupply[] = [
         modular: false,
         formFactor: "ATX",
         releaseYear: 2013,
+        condition: "working",
     },
     {
         id: "psu-2",
