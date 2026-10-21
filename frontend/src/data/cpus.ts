@@ -969,4 +969,17 @@ export const cpus: CPU[] = [
         codename: "Haswell-E",
         sSpec: "SR20S",
     },
+    {
+        id: "cpu-71",
+        name: "Intel Pentium II 350",
+        brand: "Intel",
+        description: "Slot 1 Deschutes processor",
+        cores: 1,
+        threads: 1,
+        baseClock: 0.35,
+        socket: "Slot 1",
+        releaseYear: 1998,
+        codename: "Deschutes",
+        sSpec: "SL2U3",
+    },
 ];

@@ -62,7 +62,7 @@ type PciExpressVersion = "1.0" | "2.0" | "3.0" | "4.0" | "5.0";
 type PciExpressLaneQuantity = "x16" | "x16@x8" | "x16@x4" | "x8" | "x4" | "x2" | "x1";
 type PcieExpressSlot = `PCIe ${PciExpressVersion} ${PciExpressLaneQuantity}`;
 
-type ExpansionSlots = Partial<Record<PciSlot | AgpSlot | PcieExpressSlot, number>>;
+type ExpansionSlots = Partial<Record<PciSlot | AgpSlot | PcieExpressSlot | "ISA", number>>;
 
 export interface Motherboard extends PCPart {
     socket: CpuSocket;

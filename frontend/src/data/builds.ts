@@ -25,6 +25,18 @@ export const builds: SavedBuild[] = [
         storageIds: ["storage-5"],
         // TODO DVD writer + floppy disk drive + fan controller
     },
+    {
+        id: "build-1792611298032",
+        name: "År 1998",
+        caseId: "case-5",
+        motherboardId: "mb-22",
+        cpuIds: ["cpu-71"],
+        ramIds: ["ram-66", "ram-67"],
+        powerSupplyId: "psu-1",
+        graphicsCardIds: ["gpu-12"],
+        storageIds: ["storage-6"],
+        // TODO CD writer + floppy disk drive
+    },
 ];
 
 export const usedPartIds: Set<string> = new Set(

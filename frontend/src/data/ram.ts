@@ -817,4 +817,32 @@ export const ram: RAM[] = [
         voltage: 3.3, // TODO Verify
         formFactor: "DIMM",
     },
+    {
+        id: "ram-66",
+        name: "Micron MT16LSDT1664AG-10CB2",
+        brand: "Micron",
+        description: "128MB SDRAM 100MT/s",
+        capacity: 0.125,
+        type: "SDR",
+        speed: 100,
+        timings: "CL2",
+        voltage: 3.3, // TODO Verify
+        formFactor: "DIMM",
+        partNumber: "MT16LSDT1664AG-10CB2",
+        condition: "working",
+    },
+    {
+        id: "ram-67",
+        name: "Samsung KMM366S823CTS-GLQ",
+        brand: "Samsung",
+        description: "64MB SDRAM 100MT/s",
+        capacity: 0.0625,
+        type: "SDR",
+        speed: 100,
+        timings: "CL2",
+        voltage: 3.3,
+        formFactor: "DIMM",
+        partNumber: "KMM366S823CTS-GLQ",
+        condition: "working",
+    },
 ];

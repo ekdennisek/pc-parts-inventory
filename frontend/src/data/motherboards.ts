@@ -433,4 +433,25 @@ export const motherboards: Motherboard[] = [
         box: true,
         condition: "defective", // A lot of bent pins on the socket
     },
+    {
+        id: "mb-22",
+        name: "ABit AB-BX6",
+        brand: "ABit",
+        description: "Slot 1 ATX motherboard",
+        socket: "Slot 1",
+        formFactor: "ATX",
+        chipset: "Intel 440BX",
+        memorySlots: 4,
+        maxMemory: 1,
+        memoryTypes: ["SDR"],
+        expansionSlots: {
+            "AGP 3.3": 1,
+            "PCI 2.1": 4, // TODO Verify version,
+            ISA: 3,
+        },
+        releaseYear: 1998,
+        ioShield: true,
+        box: false,
+        condition: "working",
+    },
 ];

@@ -51,4 +51,17 @@ export const cases: Case[] = [
         releaseYear: 2004,
         condition: "working",
     },
+    {
+        id: "case-5",
+        name: "Lintec",
+        brand: "Lintec",
+        description:
+            "ATX case. Unknown model, pictured here https://web.archive.org/web/20000307044415/http://www.lintec.de/prod/pd_r.html",
+        supportedFormFactors: ["ATX"], // TODO micro atx, mini itx?
+        external35Drives: 3,
+        external525Drives: 3,
+        glassPanel: false,
+        releaseYear: 1998, // Production year
+        condition: "working",
+    },
 ];
