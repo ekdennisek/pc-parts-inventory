@@ -33,7 +33,7 @@ export const motherboardWishlist: WishlistMotherboard[] = [
     },
     {
         socket: "LGA 1155",
-        chipset: "Intel X68",
+        chipset: "Intel Z68",
         ioShield: true,
         box: true,
     },
