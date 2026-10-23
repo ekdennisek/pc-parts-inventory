@@ -296,4 +296,18 @@ export const graphicsCards: GraphicsCard[] = [
         interface: "PCIe 2.0",
         releaseYear: 2010,
     },
+    {
+        id: "gpu-23",
+        name: "ASUS GTX 560 DirectCU II TOP",
+        brand: "ASUS",
+        description: "ENGTX560-Ti-DCII-TOP/2DI/1GD5",
+        memory: 1,
+        memoryType: "GDDR5",
+        coreClock: 925,
+        boostClock: 0, // TODO
+        powerConsumption: 150,
+        interface: "PCIe 2.0",
+        releaseYear: 2011,
+        box: true,
+    },
 ];
