@@ -269,6 +269,7 @@ export const graphicsCards: GraphicsCard[] = [
         powerConsumption: 151, // TODO Verify this isn't for the Black Edition
         interface: "PCIe 2.0",
         releaseYear: 2010, // TODO Verify this isn't for the Black Edition
+        box: true,
     },
     {
         id: "gpu-21",
@@ -282,6 +283,7 @@ export const graphicsCards: GraphicsCard[] = [
         powerConsumption: 80,
         interface: "PCIe 3.0",
         releaseYear: 2012,
+        box: true,
     },
     {
         id: "gpu-22",
@@ -295,6 +297,7 @@ export const graphicsCards: GraphicsCard[] = [
         powerConsumption: 160,
         interface: "PCIe 2.0",
         releaseYear: 2010,
+        box: true,
     },
     {
         id: "gpu-23",
