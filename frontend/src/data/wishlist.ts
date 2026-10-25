@@ -10,12 +10,12 @@ import type {
 } from "../types";
 
 export const cpuWishlist: WishlistCPU[] = [
-    { name: "Core i7-975 Extreme Edition", socket: "LGA 1366" },
-    { name: "Core i7-990X", socket: "LGA 1366" },
-    { name: "Core i7-880", socket: "LGA 1156" },
-    { name: "Core i5-680", socket: "LGA 1156" },
-    { name: "Core i7-2700K", socket: "LGA 1155" },
-    { name: "Core i7-3770K", socket: "LGA 1155" },
+    { name: "Intel Core i7-975 Extreme Edition", socket: "LGA 1366" },
+    { name: "Intel Core i7-990X", socket: "LGA 1366" },
+    { name: "Intel Core i7-880", socket: "LGA 1156" },
+    { name: "Intel Core i5-680", socket: "LGA 1156" },
+    { name: "Intel Core i7-2700K", socket: "LGA 1155" },
+    { name: "Intel Core i7-3770K", socket: "LGA 1155" },
 ];
 
 export const motherboardWishlist: WishlistMotherboard[] = [
