@@ -38,6 +38,12 @@ export const motherboardWishlist: WishlistMotherboard[] = [
         box: true,
     },
     {
+        socket: "LGA 1155",
+        chipset: "Intel Z77",
+        ioShield: true,
+        box: true,
+    },
+    {
         socket: "LGA 2011",
         chipset: "Intel X79",
         ioShield: true,
