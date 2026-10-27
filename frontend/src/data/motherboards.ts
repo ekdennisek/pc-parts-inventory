@@ -351,25 +351,6 @@ export const motherboards: Motherboard[] = [
         box: false,
     },
     {
-        id: "mb-18",
-        name: "ASUS P7P55D-E LX",
-        brand: "ASUS",
-        description: "LGA 1156 ATX motherboard",
-        socket: "LGA 1156",
-        formFactor: "ATX",
-        chipset: "Intel P55",
-        memorySlots: 4,
-        maxMemory: 16,
-        memoryTypes: ["DDR3"],
-        expansionSlots: {
-            "PCIe 2.0 x16": 1,
-            "PCIe 2.0 x1": 4,
-            "PCI 2.2": 2, // TODO Verify version
-        },
-        ioShield: false,
-        box: false,
-    },
-    {
         id: "mb-19",
         name: "ASUS Prime Z270-P",
         brand: "ASUS",
