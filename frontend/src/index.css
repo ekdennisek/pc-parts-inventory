@@ -32,6 +32,9 @@
     --type-storage: #7bc0c9;
     --type-peripheral: #c9b28b;
 
+    /* Vendor hues without a category hue to borrow */
+    --nvidia: #76b900;
+
     --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 

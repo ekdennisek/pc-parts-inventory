@@ -133,6 +133,10 @@
     background: var(--type-graphicsCard);
 }
 
+.dot-nvidia {
+    background: var(--nvidia);
+}
+
 .dot-default {
     background: var(--text-muted);
 }

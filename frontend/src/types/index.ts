@@ -1,3 +1,4 @@
+import type { GpuSeries } from "../data/gpuSeries";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 
 export const motherboardFormFactors = ["ATX", "Micro ATX", "Mini ITX"] as const;
@@ -84,6 +85,7 @@ export interface PowerSupply extends PCPart {
 }
 
 export interface GraphicsCard extends PCPart {
+    series?: GpuSeries; // GeForce 10, Radeon HD 3000, etc.
     memory: number; // GB
     memoryType: string; // GDDR6, etc.
     coreClock: number; // MHz

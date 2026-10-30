@@ -7,6 +7,7 @@ export interface FilterOption {
     colorClass?:
         | "intel"
         | "amd"
+        | "nvidia"
         | "default"
         | "working"
         | "defective"

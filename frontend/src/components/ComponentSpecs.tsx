@@ -98,6 +98,7 @@ export const ComponentSpecs: React.FC<Props> = ({ part, partType }) => {
                 const gpu = part as GraphicsCard;
                 return (
                     <>
+                        <SpecRow label="Series" value={gpu.series ?? "-"} />
                         <SpecRow label="Memory" value={`${gpu.memory} GB ${gpu.memoryType}`} />
                         <SpecRow label="Core Clock" value={`${gpu.coreClock} MHz`} />
                         <SpecRow label="Boost Clock" value={`${gpu.boostClock} MHz`} />

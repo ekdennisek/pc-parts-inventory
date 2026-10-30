@@ -45,6 +45,7 @@ import {
 import { Wishlist } from "../components/Wishlist";
 import { getRamSpecKey, getRamSpecLabel } from "../utils/ramSpec";
 import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
+import { amdGpuSeries, atiGpuSeries, matroxGpuSeries, nvidiaGpuSeries } from "../data/gpuSeries";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
 
 type SortOption = "standard";
@@ -64,6 +65,25 @@ const boxFilterOptions: FilterOption[] = [
 const ioShieldFilterOptions: FilterOption[] = [
     { value: "Yes", label: "With I/O shield", colorClass: "box" },
     { value: "No", label: "Without I/O shield", colorClass: "no-box" },
+];
+
+// Every GPU series in master data order, colored by vendor. ATI shares AMD's color as Radeon
+const gpuSeriesFilterOptions: FilterOption[] = [
+    ...[...nvidiaGpuSeries.keys()].map((s) => ({
+        value: s,
+        label: s,
+        colorClass: "nvidia" as const,
+    })),
+    ...[...atiGpuSeries.keys(), ...amdGpuSeries.keys()].map((s) => ({
+        value: s,
+        label: s,
+        colorClass: "amd" as const,
+    })),
+    ...[...matroxGpuSeries.keys()].map((s) => ({
+        value: s,
+        label: s,
+        colorClass: "default" as const,
+    })),
 ];
 
 /** Open/closed state for a filter bar panel, remembered across visits */
@@ -120,6 +140,7 @@ export const PartPage: React.FC = () => {
     const selectedFilters = getArrayParam(searchParams, "filter");
     const selectedFormFactors = getArrayParam(searchParams, "formFactor");
     const selectedChipsets = getArrayParam(searchParams, "chipset");
+    const selectedSeries = getArrayParam(searchParams, "series");
     const selectedConditions = getArrayParam(searchParams, "condition");
     const selectedBoxes = getArrayParam(searchParams, "box");
     const selectedIoShields = getArrayParam(searchParams, "ioShield");
@@ -176,6 +197,14 @@ export const PartPage: React.FC = () => {
                 (prev) => setParam(prev, "chipset", values.length > 0 ? values : null),
                 { replace: true },
             ),
+        [setSearchParams],
+    );
+
+    const setSelectedSeries = useCallback(
+        (values: string[]) =>
+            setSearchParams((prev) => setParam(prev, "series", values.length > 0 ? values : null), {
+                replace: true,
+            }),
         [setSearchParams],
     );
 
@@ -302,6 +331,17 @@ export const PartPage: React.FC = () => {
         return [];
     }, [partType, parts]);
 
+    // Only the series that have a card, so the list stays short
+    const seriesOptions: FilterOption[] = useMemo(() => {
+        if (partType === "graphicsCard") {
+            const series = new Set<string | undefined>(
+                (parts as GraphicsCard[]).map((p) => p.series),
+            );
+            return gpuSeriesFilterOptions.filter((option) => series.has(option.value));
+        }
+        return [];
+    }, [partType, parts]);
+
     const memoryTypeOptions: FilterOption[] = useMemo(() => {
         if (partType === "motherboard") {
             return [...memoryTypes].map((t) => ({ value: t, label: t }));
@@ -401,6 +441,13 @@ export const PartPage: React.FC = () => {
             });
         }
 
+        if (partType === "graphicsCard" && selectedSeries.length > 0) {
+            filtered = filtered.filter((part) => {
+                const p = part as GraphicsCard;
+                return p.series !== undefined && selectedSeries.includes(p.series);
+            });
+        }
+
         if (partType === "motherboard" && selectedMemoryType) {
             filtered = filtered.filter((part) => {
                 const p = part as Motherboard;
@@ -454,6 +501,7 @@ export const PartPage: React.FC = () => {
         selectedFilters,
         selectedFormFactors,
         selectedChipsets,
+        selectedSeries,
         selectedMemoryType,
         selectedConditions,
         selectedBoxes,
@@ -490,6 +538,7 @@ export const PartPage: React.FC = () => {
         selectedFilters.length > 0 ||
         selectedFormFactors.length > 0 ||
         selectedChipsets.length > 0 ||
+        selectedSeries.length > 0 ||
         selectedMemoryType !== null ||
         selectedConditions.length > 0 ||
         selectedBoxes.length > 0 ||
@@ -578,6 +627,16 @@ export const PartPage: React.FC = () => {
                             mode="multi"
                             selectedValues={selectedChipsets}
                             onChange={setSelectedChipsets}
+                        />
+                    )}
+
+                    {seriesOptions.length > 0 && (
+                        <FilterDropdown
+                            label="Series"
+                            options={seriesOptions}
+                            mode="multi"
+                            selectedValues={selectedSeries}
+                            onChange={setSelectedSeries}
                         />
                     )}
 
@@ -738,6 +797,7 @@ export const PartPage: React.FC = () => {
                             (selectedFormFactors.length > 0 ||
                                 selectedFilters.length > 0 ||
                                 selectedChipsets.length > 0 ||
+                                selectedSeries.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 selectedIoShields.length > 0 ||
@@ -748,6 +808,7 @@ export const PartPage: React.FC = () => {
                         {selectedFormFactors.length > 0 &&
                             (selectedFilters.length > 0 ||
                                 selectedChipsets.length > 0 ||
+                                selectedSeries.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 selectedIoShields.length > 0 ||
@@ -759,6 +820,7 @@ export const PartPage: React.FC = () => {
                             }${selectedFilters.length > 1 ? "s" : ""}`}
                         {selectedFilters.length > 0 &&
                             (selectedChipsets.length > 0 ||
+                                selectedSeries.length > 0 ||
                                 selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 selectedIoShields.length > 0 ||
@@ -767,28 +829,37 @@ export const PartPage: React.FC = () => {
                         {selectedChipsets.length > 0 &&
                             ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 ? "" : "filtered by "}${selectedChipsets.length} chipset${selectedChipsets.length > 1 ? "s" : ""}`}
                         {selectedChipsets.length > 0 &&
+                            (selectedSeries.length > 0 ||
+                                selectedConditions.length > 0 ||
+                                selectedBoxes.length > 0 ||
+                                selectedIoShields.length > 0 ||
+                                isYearFilterActive) &&
+                            " and"}
+                        {selectedSeries.length > 0 &&
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 ? "" : "filtered by "}${selectedSeries.length} series`}
+                        {selectedSeries.length > 0 &&
                             (selectedConditions.length > 0 ||
                                 selectedBoxes.length > 0 ||
                                 selectedIoShields.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedConditions.length > 0 &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedSeries.length > 0 ? "" : "filtered by "}${selectedConditions.length} condition${selectedConditions.length > 1 ? "s" : ""}`}
                         {selectedConditions.length > 0 &&
                             (selectedBoxes.length > 0 ||
                                 selectedIoShields.length > 0 ||
                                 isYearFilterActive) &&
                             " and"}
                         {selectedBoxes.length > 0 &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 ? "" : "filtered by "}${selectedBoxes.length} box status${selectedBoxes.length > 1 ? "es" : ""}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedSeries.length > 0 || selectedConditions.length > 0 ? "" : "filtered by "}${selectedBoxes.length} box status${selectedBoxes.length > 1 ? "es" : ""}`}
                         {selectedBoxes.length > 0 &&
                             (selectedIoShields.length > 0 || isYearFilterActive) &&
                             " and"}
                         {selectedIoShields.length > 0 &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "filtered by "}${selectedIoShields.length} I/O shield status${selectedIoShields.length > 1 ? "es" : ""}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedSeries.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 ? "" : "filtered by "}${selectedIoShields.length} I/O shield status${selectedIoShields.length > 1 ? "es" : ""}`}
                         {selectedIoShields.length > 0 && isYearFilterActive && " and"}
                         {isYearFilterActive &&
-                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || selectedIoShields.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
+                            ` ${selectedFormFactors.length > 0 || selectedFilters.length > 0 || selectedChipsets.length > 0 || selectedSeries.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || selectedIoShields.length > 0 ? "" : "with "}release year ${yearFrom ?? "start"}–${yearTo ?? "end"}`}
                         {selectedRamSpec &&
                             `${searchTerm || selectedFilters.length > 0 || selectedConditions.length > 0 || selectedBoxes.length > 0 || isYearFilterActive ? " and" : ""} with spec ${getRamSpecLabel(selectedRamSpec)}`}
                     </p>

@@ -29,6 +29,7 @@ const fieldLabels: Record<WishlistField, string> = {
     wattage: "Wattage",
     efficiency: "Efficiency",
     modular: "Modular",
+    series: "Series",
     memory: "Memory",
     memoryType: "Memory Type",
     coreClock: "Core Clock",
