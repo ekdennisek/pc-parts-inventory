@@ -7,8 +7,6 @@ interface SearchBarProps {
     placeholder?: string;
     // Focus the field when "/" is pressed outside other inputs
     focusShortcut?: boolean;
-    // Leave the field on Enter, which also closes the on-screen keyboard
-    blurOnEnter?: boolean;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -16,7 +14,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     onSearchChange,
     placeholder = "Search parts...",
     focusShortcut = false,
-    blurOnEnter = false,
 }) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -48,8 +45,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                             e.currentTarget.blur();
                         }
                     }
+                    // Leave the field on Enter, which also closes the on-screen keyboard.
                     // Skip the Enter that confirms an IME composition
-                    if (blurOnEnter && e.key === "Enter" && !e.nativeEvent.isComposing) {
+                    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
                         e.currentTarget.blur();
                     }
                 }}

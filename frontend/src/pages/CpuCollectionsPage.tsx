@@ -244,7 +244,6 @@ export const CpuCollectionsPage: React.FC = () => {
                     onSearchChange={setSearchTerm}
                     placeholder="Name, codename, sSpec or part no."
                     focusShortcut
-                    blurOnEnter
                 />
             </div>
 

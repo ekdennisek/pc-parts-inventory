@@ -582,7 +582,6 @@ export const PartPage: React.FC = () => {
                         searchTerm={searchTerm}
                         onSearchChange={setSearchTerm}
                         placeholder={`Search ${partTypeLabel.toLowerCase()}...`}
-                        blurOnEnter
                     />
 
                     {(partType === "motherboard" || partType === "cpu") && (
