@@ -107,6 +107,12 @@ export const graphicsCards: GraphicsCard[] = [
         interface: "AGP 1.5V", // Maybe?
         releaseYear: 2004,
         condition: "working",
+        pciId: {
+            vendorId: 0x1002,
+            deviceId: 0x5960,
+            subsystemVendorId: 0x174b,
+            subsystemId: 0x0260,
+        },
     },
     {
         id: "gpu-8",
@@ -178,6 +184,12 @@ export const graphicsCards: GraphicsCard[] = [
         powerConsumption: 0,
         interface: "AGP 3.3V",
         condition: "working",
+        pciId: {
+            vendorId: 0x8086,
+            deviceId: 0x7800,
+            subsystemVendorId: 0x10b0,
+            subsystemId: 0x0100,
+        },
     },
     {
         id: "gpu-13",
