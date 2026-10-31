@@ -29,7 +29,12 @@ export const graphicsCards: GraphicsCard[] = [
         interface: "PCIe 2.0",
         releaseYear: 2007,
         condition: "working",
-        pciId: "1002 9501 1787 2244",
+        pciId: {
+            vendorId: 0x1002,
+            deviceId: 0x9501,
+            subsystemVendorId: 0x1787,
+            subsystemId: 0x2244,
+        },
     },
     {
         id: "gpu-3",

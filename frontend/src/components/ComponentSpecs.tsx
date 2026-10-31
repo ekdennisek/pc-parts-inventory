@@ -11,6 +11,7 @@ import type {
     Storage,
     Peripheral,
 } from "../types";
+import { formatPciId } from "../utils/pciId";
 import "./ComponentSpecs.css";
 
 type Props = {
@@ -104,7 +105,7 @@ export const ComponentSpecs: React.FC<Props> = ({ part, partType }) => {
                         <SpecRow label="Boost Clock" value={`${gpu.boostClock} MHz`} />
                         <SpecRow label="Power" value={`${gpu.powerConsumption} W`} />
                         <SpecRow label="Interface" value={gpu.interface} />
-                        <SpecRow label="PCI ID" value={gpu.pciId ?? "-"} />
+                        <SpecRow label="PCI ID" value={gpu.pciId ? formatPciId(gpu.pciId) : "-"} />
                     </>
                 );
             }

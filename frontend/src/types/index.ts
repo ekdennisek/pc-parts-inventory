@@ -84,6 +84,14 @@ export interface PowerSupply extends PCPart {
     formFactor: string;
 }
 
+/** Identification registers from the PCI configuration space header */
+export interface PciId {
+    vendorId: number;
+    deviceId: number;
+    subsystemVendorId: number;
+    subsystemId: number;
+}
+
 export interface GraphicsCard extends PCPart {
     series?: GpuSeries; // GeForce 10, Radeon HD 3000, etc.
     memory: number; // GB
@@ -92,7 +100,7 @@ export interface GraphicsCard extends PCPart {
     boostClock: number; // MHz
     powerConsumption: number; // Watts
     interface: GpuInterface; // PCIe 4.0, etc.
-    pciId?: string; // Vendor ID, device ID, subsystem vendor ID, subsystem ID
+    pciId?: PciId;
 }
 
 export interface RAM extends PCPart {

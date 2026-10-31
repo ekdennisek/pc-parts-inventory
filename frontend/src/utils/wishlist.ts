@@ -1,4 +1,5 @@
-import type { AnyPart, AnyWishlistPart, PartType } from "../types";
+import type { AnyPart, AnyWishlistPart, PartType, PciId } from "../types";
+import { formatPciId } from "./pciId";
 
 type KeysOfUnion<T> = T extends unknown ? keyof T : never;
 export type WishlistField = KeysOfUnion<AnyWishlistPart>;
@@ -78,6 +79,10 @@ export function matchesWish(part: AnyPart, wish: AnyWishlistPart): boolean {
         if (Array.isArray(wanted)) {
             return Array.isArray(actual) && wanted.every((value) => actual.includes(value));
         }
+        if (field === "pciId") {
+            const actualId = (actual ?? {}) as Record<string, unknown>;
+            return Object.entries(wanted).every(([key, value]) => actualId[key] === value);
+        }
         if (typeof wanted === "object") {
             const counts = (actual ?? {}) as Record<string, number>;
             return Object.entries(wanted as Record<string, number>).every(
@@ -110,6 +115,7 @@ export function formatWishlistValue(
 ): string {
     if (typeof value === "boolean") return value ? "Yes" : "No";
     if (Array.isArray(value)) return value.join(", ");
+    if (field === "pciId") return formatPciId(value as PciId);
     if (typeof value === "object" && value !== null) {
         return Object.entries(value)
             .map(([slot, count]) => `${count}× ${slot}`)
