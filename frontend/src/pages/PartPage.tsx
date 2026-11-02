@@ -48,7 +48,7 @@ import { amdSockets, intelSockets, type CpuSocket } from "../data/sockets";
 import { amdGpuSeries, atiGpuSeries, matroxGpuSeries, nvidiaGpuSeries } from "../data/gpuSeries";
 import { getSocketSortOrder } from "../utils/socketSortOrder";
 
-type SortOption = "standard";
+type SortOption = "standard" | "releaseYear" | "name";
 
 const conditionFilterOptions: FilterOption[] = [
     { value: "Working", label: "Working", colorClass: "working" },
@@ -85,6 +85,26 @@ const gpuSeriesFilterOptions: FilterOption[] = [
         colorClass: "default" as const,
     })),
 ];
+
+// Same order as the series filter: NVIDIA, then ATI followed by AMD, then Matrox
+const gpuSeriesOrder = new Map(
+    gpuSeriesFilterOptions.map((option, index) => [option.value, index]),
+);
+
+/** Series in lineage order, cards without a series last */
+function compareGpuSeries(a: GraphicsCard, b: GraphicsCard): number {
+    const orderA = (a.series && gpuSeriesOrder.get(a.series)) ?? gpuSeriesOrder.size;
+    const orderB = (b.series && gpuSeriesOrder.get(b.series)) ?? gpuSeriesOrder.size;
+    return orderA - orderB;
+}
+
+/** Oldest first, parts without a release year last */
+function compareReleaseYear(a: AnyPart, b: AnyPart): number {
+    if (a.releaseYear === b.releaseYear) return 0;
+    if (a.releaseYear === undefined) return 1;
+    if (b.releaseYear === undefined) return -1;
+    return a.releaseYear - b.releaseYear;
+}
 
 /** Open/closed state for a filter bar panel, remembered across visits */
 function useRememberedToggle(storageKey: string): [boolean, () => void] {
@@ -519,7 +539,23 @@ export const PartPage: React.FC = () => {
 
     // Sort parts
     const sortedParts = useMemo(() => {
-        if (sortOption === "standard" && (partType === "motherboard" || partType === "cpu")) {
+        if (sortOption === "name") {
+            return [...displayedParts].sort((a, b) => a.name.localeCompare(b.name));
+        }
+        if (sortOption === "releaseYear") {
+            return [...displayedParts].sort(
+                (a, b) => compareReleaseYear(a, b) || a.name.localeCompare(b.name),
+            );
+        }
+        if (partType === "graphicsCard") {
+            return [...displayedParts].sort(
+                (a, b) =>
+                    compareGpuSeries(a as GraphicsCard, b as GraphicsCard) ||
+                    compareReleaseYear(a, b) ||
+                    a.name.localeCompare(b.name),
+            );
+        }
+        if (partType === "motherboard" || partType === "cpu") {
             return [...displayedParts].sort((a, b) => {
                 const partA = a as CPU | Motherboard;
                 const partB = b as CPU | Motherboard;
@@ -584,7 +620,9 @@ export const PartPage: React.FC = () => {
                         placeholder={`Search ${partTypeLabel.toLowerCase()}...`}
                     />
 
-                    {(partType === "motherboard" || partType === "cpu") && (
+                    {(partType === "motherboard" ||
+                        partType === "cpu" ||
+                        partType === "graphicsCard") && (
                         <div className="sort-dropdown">
                             <label htmlFor="sort-select">Sort by:</label>
                             <select
@@ -592,7 +630,15 @@ export const PartPage: React.FC = () => {
                                 value={sortOption}
                                 onChange={(e) => setSortOption(e.target.value as SortOption)}
                             >
-                                <option value="standard">Standard</option>
+                                <option value="standard">
+                                    {partType === "graphicsCard" ? "Series" : "Standard"}
+                                </option>
+                                {partType === "graphicsCard" && (
+                                    <>
+                                        <option value="releaseYear">Release Year</option>
+                                        <option value="name">Name</option>
+                                    </>
+                                )}
                             </select>
                         </div>
                     )}
