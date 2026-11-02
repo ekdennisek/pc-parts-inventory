@@ -16,6 +16,9 @@ export const cpuWishlist: WishlistCPU[] = [
     { name: "Intel Core i5-680", socket: "LGA 1156" },
     { name: "Intel Core i7-2700K", socket: "LGA 1155" },
     { name: "Intel Core i7-3770K", socket: "LGA 1155" },
+    { name: "Intel Core i7-4790K", socket: "LGA 1150" },
+    { name: "Intel Core i7-5775C", socket: "LGA 1150" },
+    { name: "Intel Core i7-6700K", socket: "LGA 1151-1" },
 ];
 
 export const motherboardWishlist: WishlistMotherboard[] = [
