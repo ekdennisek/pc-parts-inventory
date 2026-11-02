@@ -556,14 +556,15 @@ export const PartPage: React.FC = () => {
             );
         }
         if (partType === "motherboard" || partType === "cpu") {
-            return [...displayedParts].sort((a, b) => {
-                const partA = a as CPU | Motherboard;
-                const partB = b as CPU | Motherboard;
-                const socketOrderA = getSocketSortOrder(partA.socket);
-                const socketOrderB = getSocketSortOrder(partB.socket);
-                if (socketOrderA !== socketOrderB) return socketOrderA - socketOrderB;
-                return partA.name.localeCompare(partB.name);
-            });
+            // Motherboards have no CPU brand, so their shared sockets sort with Intel
+            const socketOrder = (part: CPU | Motherboard) =>
+                getSocketSortOrder(part.socket, partType === "cpu" ? part.brand : undefined);
+            return [...displayedParts].sort(
+                (a, b) =>
+                    socketOrder(a as CPU | Motherboard) - socketOrder(b as CPU | Motherboard) ||
+                    compareReleaseYear(a, b) ||
+                    a.name.localeCompare(b.name),
+            );
         }
         return displayedParts;
     }, [displayedParts, sortOption, partType]);
@@ -631,14 +632,10 @@ export const PartPage: React.FC = () => {
                                 onChange={(e) => setSortOption(e.target.value as SortOption)}
                             >
                                 <option value="standard">
-                                    {partType === "graphicsCard" ? "Series" : "Standard"}
+                                    {partType === "graphicsCard" ? "Series" : "Socket"}
                                 </option>
-                                {partType === "graphicsCard" && (
-                                    <>
-                                        <option value="releaseYear">Release Year</option>
-                                        <option value="name">Name</option>
-                                    </>
-                                )}
+                                <option value="releaseYear">Release Year</option>
+                                {partType === "graphicsCard" && <option value="name">Name</option>}
                             </select>
                         </div>
                     )}
