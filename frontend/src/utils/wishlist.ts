@@ -42,6 +42,7 @@ const fieldLabels: Record<WishlistField, string> = {
     speed: "Speed",
     timings: "Timings",
     voltage: "Voltage",
+    heatsink: "Heatsink",
     supportedFormFactors: "Form Factors",
     external525Drives: '5.25" Bays',
     external35Drives: '3.5" Bays',
