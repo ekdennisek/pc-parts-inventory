@@ -111,6 +111,7 @@ export interface RAM extends PCPart {
     voltage?: number; // V
     formFactor: MemoryFormFactor; // DIMM, SO-DIMM
     partNumber?: string;
+    heatsink?: boolean;
 }
 
 export interface Case extends PCPart {

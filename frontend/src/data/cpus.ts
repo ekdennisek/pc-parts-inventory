@@ -942,6 +942,7 @@ export const cpus: CPU[] = [
         releaseYear: 2014,
         codename: "Haswell",
         sSpec: "SR21A",
+        condition: "working",
     },
     {
         id: "cpu-69",
