@@ -381,4 +381,19 @@ export const graphicsCards: GraphicsCard[] = [
         releaseYear: 2012,
         box: true,
     },
+    {
+        id: "gpu-26",
+        name: "MSI MS-8808 TNT2 M64",
+        brand: "MSI",
+        description: "32MB AGP",
+        series: "RIVA TNT2",
+        memory: 0.03125,
+        memoryType: "?", // TODO
+        coreClock: 0, // TODO
+        boostClock: 0, // TODO
+        powerConsumption: 0, // TODO
+        interface: "AGP 1.5V",
+        releaseYear: 1999, // TODO Verify
+        box: true,
+    },
 ];
