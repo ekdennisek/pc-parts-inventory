@@ -64,4 +64,16 @@ export const cases: Case[] = [
         releaseYear: 1998, // Production year
         condition: "working",
     },
+    {
+        id: "case-6",
+        name: "Thermaltake Tsunami VA3000BWA",
+        brand: "Thermaltake",
+        description: "ATX case with side panel",
+        supportedFormFactors: ["ATX", "Micro ATX"],
+        external525Drives: 4,
+        external35Drives: 2,
+        glassPanel: true,
+        releaseYear: 2004,
+        condition: "working",
+    },
 ];
