@@ -1013,4 +1013,18 @@ export const cpus: CPU[] = [
         codename: "Sandy Bridge",
         sSpec: "SR0DG",
     },
+    {
+        id: "cpu-74",
+        name: "Intel Celeron 1.7",
+        brand: "Intel",
+        description: "Socket 478 Willamette-128 processor",
+        cores: 1,
+        threads: 1,
+        baseClock: 1.7,
+        boostClock: 0, // TODO
+        socket: "Socket 478",
+        releaseYear: 2002,
+        codename: "Willamette-128",
+        sSpec: "SL69Z",
+    },
 ];

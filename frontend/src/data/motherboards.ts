@@ -455,4 +455,23 @@ export const motherboards: Motherboard[] = [
         box: true,
         condition: "working",
     },
+    {
+        id: "mb-24",
+        name: "Gigabyte GA-8INXP",
+        brand: "Gigabyte",
+        description: "Socket 478 ATX motherboard",
+        socket: "Socket 478",
+        formFactor: "ATX",
+        chipset: "Intel E7205",
+        memorySlots: 4,
+        maxMemory: 4,
+        memoryTypes: ["DDR"],
+        expansionSlots: {
+            "AGP 1.5": 1,
+            "PCI 2.2": 5,
+        },
+        releaseYear: 2002,
+        ioShield: true,
+        box: false,
+    },
 ];
