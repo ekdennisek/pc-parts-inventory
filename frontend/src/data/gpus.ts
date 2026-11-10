@@ -396,4 +396,19 @@ export const graphicsCards: GraphicsCard[] = [
         releaseYear: 1999, // TODO Verify
         box: true,
     },
+    {
+        id: "gpu-27",
+        name: "XFX Radeon HD6870 Black Edition",
+        brand: "XFX",
+        description: "HD-687A-ZN HD-687A-ZNBC V1.1",
+        series: "Radeon HD 7000",
+        memory: 1,
+        memoryType: "GDDR5",
+        coreClock: 940,
+        boostClock: 0, // TODO
+        powerConsumption: 0, // TODO
+        interface: "PCIe 2.0",
+        releaseYear: 2010,
+        box: true,
+    },
 ];
