@@ -3,7 +3,7 @@ import type { RAM } from "../types";
 export const ram: RAM[] = [
     {
         id: "ram-1",
-        name: "Kingston HyperX Blu Red",
+        name: "Kingston HyperX Red",
         brand: "Kingston",
         description: "8GB DDR3 1600MT/s CL10 KHX16C10B1RK2/16X",
         capacity: 8,
@@ -20,7 +20,7 @@ export const ram: RAM[] = [
     },
     {
         id: "ram-2",
-        name: "Kingston HyperX Blu Red",
+        name: "Kingston HyperX Red",
         brand: "Kingston",
         description: "8GB DDR3 1600MT/s CL10 KHX16C10B1RK2/16X",
         capacity: 8,
