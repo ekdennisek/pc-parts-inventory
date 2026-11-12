@@ -395,7 +395,7 @@ export const ram: RAM[] = [
     },
     {
         id: "ram-34",
-        name: "Kingston HyperX KHX1333C9D3B1K2/8G",
+        name: "Kingston HyperX Blu KHX1333C9D3B1K2/8G",
         brand: "Kingston",
         description: "4GB DDR3 1333MT/s CL9",
         capacity: 4,
@@ -408,7 +408,7 @@ export const ram: RAM[] = [
     },
     {
         id: "ram-35",
-        name: "Kingston HyperX KHX1333C9D3B1K2/8G",
+        name: "Kingston HyperX Blu KHX1333C9D3B1K2/8G",
         brand: "Kingston",
         description: "4GB DDR3 1333MT/s CL9",
         capacity: 4,
