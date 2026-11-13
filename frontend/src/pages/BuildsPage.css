@@ -44,9 +44,23 @@
     border: 1px solid var(--border);
 }
 
+.build-card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
 .build-card h2 {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
     font-size: 1.125rem;
+}
+
+.build-year {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-label);
 }
 
 .build-description {
@@ -70,14 +84,32 @@
     border-bottom: none;
 }
 
+.component-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
 .component-label {
     font-size: 0.6563rem;
     font-weight: 500;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--text-faint);
-    display: block;
-    margin-bottom: 0.25rem;
+}
+
+.component-years {
+    display: flex;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-faint);
+}
+
+.component-years .year-mismatch {
+    color: var(--bad);
 }
 
 .component-value {

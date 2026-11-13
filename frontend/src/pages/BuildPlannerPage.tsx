@@ -14,6 +14,7 @@ import type {
     SavedBuild,
     PartType,
     AnyPart,
+    PCPart,
 } from "../types";
 import { motherboards } from "../data/motherboards";
 import { cpus } from "../data/cpus";
@@ -41,6 +42,33 @@ type ActionDialog = {
     canSelect: boolean;
 };
 
+type YearRange = { from: number; to: number };
+
+const formatYearRange = ({ from, to }: YearRange) => (from === to ? `${from}` : `${from}–${to}`);
+
+/* Keeps the parts released within the year range, plus the parts with an unknown release year */
+const releasedIn = <T extends PCPart>(parts: T[], years: YearRange | undefined): T[] =>
+    years === undefined
+        ? parts
+        : parts.filter(
+              (part) =>
+                  part.releaseYear === undefined ||
+                  (part.releaseYear >= years.from && part.releaseYear <= years.to),
+          );
+
+const NoParts: React.FC<{ parts: string; condition?: string; years?: YearRange }> = ({
+    parts,
+    condition = "",
+    years,
+}) => (
+    <p className="no-compatible">
+        No {parts}
+        {years && ` from ${formatYearRange(years)}`}
+        {condition}.
+        {years && ` Uncheck "Only show components from ${formatYearRange(years)}" to see all.`}
+    </p>
+);
+
 export const BuildPlannerPage: React.FC = () => {
     const [build, setBuild] = useState<PCBuild>({
         id: "build-1",
@@ -49,6 +77,19 @@ export const BuildPlannerPage: React.FC = () => {
         storage: [],
         peripherals: [],
     });
+
+    const [yearInput, setYearInput] = useState("");
+    const [yearSpread, setYearSpread] = useState(0);
+    const [onlyBuildYear, setOnlyBuildYear] = useState(true);
+    const buildYear = /^\d{4}$/.test(yearInput) ? Number(yearInput) : undefined;
+    const buildYearRange = useMemo(
+        () =>
+            buildYear === undefined
+                ? undefined
+                : { from: buildYear - yearSpread, to: buildYear + yearSpread },
+        [buildYear, yearSpread],
+    );
+    const yearFilter = onlyBuildYear ? buildYearRange : undefined;
 
     const [currentStep, setCurrentStep] = useState<BuildStep>("case");
     const [selectedFormFactors, setSelectedFormFactors] = useState<MotherboardFormFactor[]>([]);
@@ -193,6 +234,7 @@ export const BuildPlannerPage: React.FC = () => {
             peripherals: [],
         });
         setSelectedFormFactors([]);
+        setYearInput("");
         setCurrentStep("case");
         setCopySuccess(false);
     };
@@ -267,13 +309,20 @@ export const BuildPlannerPage: React.FC = () => {
     };
 
     const copyBuildToClipboard = async () => {
-        if (!build.case || !build.motherboard || !build.cpu || !build.powerSupply) {
+        if (
+            !build.case ||
+            !build.motherboard ||
+            !build.cpu ||
+            !build.powerSupply ||
+            buildYear === undefined
+        ) {
             return;
         }
 
         const savedBuild: SavedBuild = {
             id: `build-${Date.now()}`,
             name: build.name,
+            year: buildYear,
             caseId: build.case.id,
             motherboardId: build.motherboard.id,
             cpuIds: [build.cpu.id],
@@ -301,37 +350,54 @@ export const BuildPlannerPage: React.FC = () => {
 
     // Filter cases based on selected form factors
     const filteredCases = useMemo(() => {
+        const casesFromYear = releasedIn(cases, yearFilter);
         if (selectedFormFactors.length === 0) {
-            return cases;
+            return casesFromYear;
         }
-        return cases.filter((pcCase) =>
+        return casesFromYear.filter((pcCase) =>
             selectedFormFactors.some((formFactor) =>
                 pcCase.supportedFormFactors.includes(formFactor),
             ),
         );
-    }, [selectedFormFactors]);
+    }, [selectedFormFactors, yearFilter]);
 
     // Filter motherboards based on selected case
     const availableMotherboards = useMemo(() => {
+        const motherboardsFromYear = releasedIn(motherboards, yearFilter);
         if (!build.case) {
-            return motherboards;
+            return motherboardsFromYear;
         }
-        return motherboards.filter((mb) =>
+        return motherboardsFromYear.filter((mb) =>
             build.case!.supportedFormFactors.includes(mb.formFactor),
         );
-    }, [build.case]);
+    }, [build.case, yearFilter]);
 
     // Filter compatible CPUs based on selected motherboard
     const compatibleCPUs = useMemo(() => {
         if (!build.motherboard) return [];
-        return cpus.filter((cpu) => cpu.socket === build.motherboard!.socket);
-    }, [build.motherboard]);
+        return releasedIn(cpus, yearFilter).filter(
+            (cpu) => cpu.socket === build.motherboard!.socket,
+        );
+    }, [build.motherboard, yearFilter]);
 
     // Filter compatible RAM based on selected motherboard
     const compatibleRAM = useMemo(() => {
         if (!build.motherboard) return [];
-        return ram.filter((ramModule) => build.motherboard!.memoryTypes.includes(ramModule.type));
-    }, [build.motherboard]);
+        return releasedIn(ram, yearFilter).filter((ramModule) =>
+            build.motherboard!.memoryTypes.includes(ramModule.type),
+        );
+    }, [build.motherboard, yearFilter]);
+
+    const availablePowerSupplies = useMemo(
+        () => releasedIn(powerSupplies, yearFilter),
+        [yearFilter],
+    );
+    const availableGraphicsCards = useMemo(
+        () => releasedIn(graphicsCards, yearFilter),
+        [yearFilter],
+    );
+    const availableStorage = useMemo(() => releasedIn(storage, yearFilter), [yearFilter]);
+    const availablePeripherals = useMemo(() => releasedIn(peripherals, yearFilter), [yearFilter]);
 
     const totalRAMCapacity = build.ram.reduce((total, ramModule) => total + ramModule.capacity, 0);
     const slotsUsed = build.ram.length;
@@ -342,6 +408,50 @@ export const BuildPlannerPage: React.FC = () => {
             <div className="build-planner-header">
                 <h1>PC Build Planner</h1>
                 <p>Plan your perfect PC build with compatible components</p>
+            </div>
+
+            <div className="build-settings">
+                <label className="build-year-field">
+                    <span>Build year</span>
+                    <input
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={4}
+                        placeholder="e.g. 2004"
+                        className="build-year-input"
+                        value={yearInput}
+                        onChange={(e) => setYearInput(e.target.value.replace(/\D/g, ""))}
+                    />
+                </label>
+                <label className="build-year-field">
+                    <span>Range</span>
+                    <input
+                        type="range"
+                        min={0}
+                        max={10}
+                        step={1}
+                        className="build-year-spread"
+                        value={yearSpread}
+                        aria-valuetext={`plus or minus ${yearSpread} years`}
+                        onChange={(e) => setYearSpread(Number(e.target.value))}
+                    />
+                    <span className="build-year-spread-value">
+                        ± {yearSpread} {yearSpread === 1 ? "year" : "years"}
+                    </span>
+                </label>
+                <label className="build-year-only">
+                    <input
+                        type="checkbox"
+                        checked={onlyBuildYear}
+                        onChange={(e) => setOnlyBuildYear(e.target.checked)}
+                    />
+                    Only show components from{" "}
+                    {buildYearRange
+                        ? formatYearRange(buildYearRange)
+                        : yearSpread > 0
+                          ? `the build year ± ${yearSpread}`
+                          : "the build year"}
+                </label>
             </div>
 
             <div className="build-progress">
@@ -706,6 +816,17 @@ export const BuildPlannerPage: React.FC = () => {
                                 />
                             </FilterBar>
 
+                            {filteredCases.length === 0 && (
+                                <NoParts
+                                    parts="cases"
+                                    condition={
+                                        selectedFormFactors.length > 0
+                                            ? " with the selected form factors"
+                                            : ""
+                                    }
+                                    years={yearFilter}
+                                />
+                            )}
                             <div className="parts-grid">
                                 {filteredCases.map((pcCase) => (
                                     <PartCard
@@ -768,10 +889,16 @@ export const BuildPlannerPage: React.FC = () => {
                                     />
                                 ))}
                             </div>
-                            {build.case && availableMotherboards.length === 0 && (
-                                <p className="no-compatible">
-                                    No motherboards compatible with this case's form factors.
-                                </p>
+                            {availableMotherboards.length === 0 && (
+                                <NoParts
+                                    parts="motherboards"
+                                    condition={
+                                        build.case
+                                            ? " compatible with this case's form factors"
+                                            : ""
+                                    }
+                                    years={yearFilter}
+                                />
                             )}
                         </div>
                     )}
@@ -784,9 +911,11 @@ export const BuildPlannerPage: React.FC = () => {
                                 motherboard.
                             </p>
                             {compatibleCPUs.length === 0 ? (
-                                <p className="no-compatible">
-                                    No compatible CPUs found for this motherboard.
-                                </p>
+                                <NoParts
+                                    parts="CPUs"
+                                    condition=" compatible with this motherboard"
+                                    years={yearFilter}
+                                />
                             ) : (
                                 <div className="parts-grid">
                                     {compatibleCPUs.map((cpu) => (
@@ -820,9 +949,11 @@ export const BuildPlannerPage: React.FC = () => {
                                 multiple modules (up to {maxSlots} slots).
                             </p>
                             {compatibleRAM.length === 0 ? (
-                                <p className="no-compatible">
-                                    No compatible RAM found for this motherboard.
-                                </p>
+                                <NoParts
+                                    parts="RAM"
+                                    condition=" compatible with this motherboard"
+                                    years={yearFilter}
+                                />
                             ) : (
                                 <>
                                     <div className="ram-info">
@@ -882,8 +1013,11 @@ export const BuildPlannerPage: React.FC = () => {
                         <div className="step-content">
                             <h2>Step 5: Select a Power Supply</h2>
                             <p>Choose a power supply for your build.</p>
+                            {availablePowerSupplies.length === 0 && (
+                                <NoParts parts="power supplies" years={yearFilter} />
+                            )}
                             <div className="parts-grid">
-                                {powerSupplies.map((psu) => (
+                                {availablePowerSupplies.map((psu) => (
                                     <PartCard
                                         key={psu.id}
                                         part={psu}
@@ -912,8 +1046,11 @@ export const BuildPlannerPage: React.FC = () => {
                                 Choose a graphics card for your build, or skip this step if not
                                 needed.
                             </p>
+                            {availableGraphicsCards.length === 0 && (
+                                <NoParts parts="graphics cards" years={yearFilter} />
+                            )}
                             <div className="parts-grid">
-                                {graphicsCards.map((gpu) => {
+                                {availableGraphicsCards.map((gpu) => {
                                     const isSelected = build.graphicsCard?.id === gpu.id;
                                     return (
                                         <PartCard
@@ -950,8 +1087,11 @@ export const BuildPlannerPage: React.FC = () => {
                                 Choose storage drives for your build. You can select multiple
                                 drives, or skip this step.
                             </p>
+                            {availableStorage.length === 0 && (
+                                <NoParts parts="storage drives" years={yearFilter} />
+                            )}
                             <div className="parts-grid">
-                                {storage.map((item) => {
+                                {availableStorage.map((item) => {
                                     const isSelected = build.storage.some((s) => s.id === item.id);
                                     return (
                                         <PartCard
@@ -988,8 +1128,11 @@ export const BuildPlannerPage: React.FC = () => {
                                 Choose peripherals for your build (e.g. optical drives). You can
                                 select multiple, or skip this step.
                             </p>
+                            {availablePeripherals.length === 0 && (
+                                <NoParts parts="peripherals" years={yearFilter} />
+                            )}
                             <div className="parts-grid">
-                                {peripherals.map((item) => {
+                                {availablePeripherals.map((item) => {
                                     const isSelected = build.peripherals.some(
                                         (p) => p.id === item.id,
                                     );
@@ -1032,6 +1175,9 @@ export const BuildPlannerPage: React.FC = () => {
                                 <h3>Build Summary</h3>
                                 <ul>
                                     <li>
+                                        <strong>Year:</strong> {buildYear ?? "Not set"}
+                                    </li>
+                                    <li>
                                         <strong>Case:</strong> {build.case?.name}
                                     </li>
                                     <li>
@@ -1071,9 +1217,15 @@ export const BuildPlannerPage: React.FC = () => {
                                 <button
                                     onClick={copyBuildToClipboard}
                                     className={`btn ${copySuccess ? "btn-success" : "btn-primary"}`}
+                                    disabled={buildYear === undefined}
                                 >
                                     {copySuccess ? "Copied!" : "Copy Build to Clipboard"}
                                 </button>
+                                {buildYear === undefined && (
+                                    <span className="step-hint">
+                                        Enter a build year at the top of the page to copy the build.
+                                    </span>
+                                )}
                             </div>
                         </div>
                     )}

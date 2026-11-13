@@ -18,6 +18,7 @@ import type {
     GraphicsCard,
     Storage,
     Peripheral,
+    PCPart,
 } from "../types";
 import { ScrollToTop } from "../components/ScrollToTop";
 import "./BuildsPage.css";
@@ -25,6 +26,7 @@ import "./BuildsPage.css";
 interface ResolvedBuild {
     id: string;
     name: string;
+    year: number;
     description?: string;
     case?: Case;
     motherboard?: Motherboard;
@@ -56,6 +58,7 @@ export const BuildsPage: React.FC = () => {
             (build): ResolvedBuild => ({
                 id: build.id,
                 name: build.name,
+                year: build.year,
                 description: build.description,
                 case: componentMaps.cases.get(build.caseId),
                 motherboard: componentMaps.motherboards.get(build.motherboardId),
@@ -112,35 +115,41 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
 
     return (
         <div className="build-card">
-            <h2>{build.name}</h2>
+            <div className="build-card-header">
+                <h2>{build.name}</h2>
+                <span className="build-year">{build.year}</span>
+            </div>
             {build.description && <p className="build-description">{build.description}</p>}
 
             <div className="build-components">
                 {build.case && (
-                    <div className="build-component">
-                        <span className="component-label">Case</span>
+                    <BuildComponent label="Case" parts={[build.case]} buildYear={build.year}>
                         <span className="component-value">{build.case.name}</span>
                         <span className="component-detail">
                             {build.case.supportedFormFactors.join(", ")}
                         </span>
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.motherboard && (
-                    <div className="build-component">
-                        <span className="component-label">Motherboard</span>
+                    <BuildComponent
+                        label="Motherboard"
+                        parts={[build.motherboard]}
+                        buildYear={build.year}
+                    >
                         <span className="component-value">{build.motherboard.name}</span>
                         <span className="component-detail">
                             {build.motherboard.socket} | {build.motherboard.formFactor}
                         </span>
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.cpus.length > 0 && (
-                    <div className="build-component">
-                        <span className="component-label">
-                            CPU{build.cpus.length > 1 ? "s" : ""}
-                        </span>
+                    <BuildComponent
+                        label={`CPU${build.cpus.length > 1 ? "s" : ""}`}
+                        parts={build.cpus}
+                        buildYear={build.year}
+                    >
                         {build.cpus.map((cpu) => (
                             <div key={cpu.id}>
                                 <span className="component-value">{cpu.name}</span>
@@ -149,12 +158,11 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                                 </span>
                             </div>
                         ))}
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.ram.length > 0 && (
-                    <div className="build-component">
-                        <span className="component-label">RAM</span>
+                    <BuildComponent label="RAM" parts={build.ram} buildYear={build.year}>
                         <span className="component-value">
                             {totalRamCapacity}GB total ({build.ram.length} module
                             {build.ram.length > 1 ? "s" : ""})
@@ -164,24 +172,24 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                                 {r.capacity}GB {r.type} @ {r.speed} MT/s
                             </span>
                         ))}
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.powerSupply && (
-                    <div className="build-component">
-                        <span className="component-label">PSU</span>
+                    <BuildComponent label="PSU" parts={[build.powerSupply]} buildYear={build.year}>
                         <span className="component-value">{build.powerSupply.name}</span>
                         <span className="component-detail">
                             {build.powerSupply.wattage}W | {build.powerSupply.efficiency}
                         </span>
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.graphicsCards.length > 0 && (
-                    <div className="build-component">
-                        <span className="component-label">
-                            GPU{build.graphicsCards.length > 1 ? "s" : ""}
-                        </span>
+                    <BuildComponent
+                        label={`GPU${build.graphicsCards.length > 1 ? "s" : ""}`}
+                        parts={build.graphicsCards}
+                        buildYear={build.year}
+                    >
                         {build.graphicsCards.map((gpu) => (
                             <div key={gpu.id}>
                                 <span className="component-value">{gpu.name}</span>
@@ -190,12 +198,11 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                                 </span>
                             </div>
                         ))}
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.storage.length > 0 && (
-                    <div className="build-component">
-                        <span className="component-label">Storage</span>
+                    <BuildComponent label="Storage" parts={build.storage} buildYear={build.year}>
                         {build.storage.map((s) => (
                             <div key={s.id}>
                                 <span className="component-value">{s.name}</span>
@@ -204,14 +211,15 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                                 </span>
                             </div>
                         ))}
-                    </div>
+                    </BuildComponent>
                 )}
 
                 {build.peripherals.length > 0 && (
-                    <div className="build-component">
-                        <span className="component-label">
-                            Peripheral{build.peripherals.length > 1 ? "s" : ""}
-                        </span>
+                    <BuildComponent
+                        label={`Peripheral${build.peripherals.length > 1 ? "s" : ""}`}
+                        parts={build.peripherals}
+                        buildYear={build.year}
+                    >
                         {build.peripherals.map((p) => (
                             <div key={p.id}>
                                 <span className="component-value">{p.name}</span>
@@ -220,9 +228,49 @@ const BuildCard: React.FC<{ build: ResolvedBuild }> = ({ build }) => {
                                 </span>
                             </div>
                         ))}
-                    </div>
+                    </BuildComponent>
                 )}
             </div>
+        </div>
+    );
+};
+
+/* One component "square": label and release year(s) on top, details below */
+const BuildComponent: React.FC<{
+    label: string;
+    parts: PCPart[];
+    buildYear: number;
+    children: React.ReactNode;
+}> = ({ label, parts, buildYear, children }) => {
+    const years = [
+        ...new Set(
+            parts.map((p) => p.releaseYear).filter((year): year is number => year !== undefined),
+        ),
+    ].sort((a, b) => a - b);
+
+    return (
+        <div className="build-component">
+            <div className="component-header">
+                <span className="component-label">{label}</span>
+                {years.length > 0 && (
+                    <span className="component-years">
+                        {years.map((year) => (
+                            <span
+                                key={year}
+                                className={year !== buildYear ? "year-mismatch" : undefined}
+                                title={
+                                    year !== buildYear
+                                        ? `Released ${year}, build year is ${buildYear}`
+                                        : `Released ${year}`
+                                }
+                            >
+                                {year}
+                            </span>
+                        ))}
+                    </span>
+                )}
+            </div>
+            {children}
         </div>
     );
 };

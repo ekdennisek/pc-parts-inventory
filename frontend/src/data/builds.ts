@@ -4,6 +4,7 @@ export const builds: SavedBuild[] = [
     {
         id: "build-1773939455715",
         name: "År 2006",
+        year: 2006,
         caseId: "case-3",
         motherboardId: "mb-3",
         cpuIds: ["cpu-19"],
@@ -16,6 +17,7 @@ export const builds: SavedBuild[] = [
     {
         id: "build-1778776230325",
         name: "År 2004",
+        year: 2004,
         caseId: "case-4",
         motherboardId: "mb-15",
         cpuIds: ["cpu-47"],
@@ -28,6 +30,7 @@ export const builds: SavedBuild[] = [
     {
         id: "build-1792611298032",
         name: "År 1998",
+        year: 1998,
         caseId: "case-5",
         motherboardId: "mb-22",
         cpuIds: ["cpu-71"],
