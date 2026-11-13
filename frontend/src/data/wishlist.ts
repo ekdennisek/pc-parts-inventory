@@ -23,6 +23,18 @@ export const cpuWishlist: WishlistCPU[] = [
 
 export const motherboardWishlist: WishlistMotherboard[] = [
     {
+        socket: "LGA 775",
+        chipset: "Intel X38",
+        ioShield: true,
+        box: true,
+    },
+    {
+        socket: "LGA 775",
+        chipset: "Intel X48",
+        ioShield: true,
+        box: true,
+    },
+    {
         socket: "LGA 1366",
         chipset: "Intel X58",
         ioShield: true,
