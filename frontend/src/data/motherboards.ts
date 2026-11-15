@@ -474,4 +474,24 @@ export const motherboards: Motherboard[] = [
         ioShield: true,
         box: false,
     },
+    {
+        id: "mb-25",
+        name: "QDI PlatiniX 4X",
+        brand: "QDI",
+        description: "Socket 423 ATX motherboard",
+        socket: "Socket 423",
+        formFactor: "ATX",
+        chipset: "Intel 850",
+        memorySlots: 4,
+        maxMemory: 2,
+        memoryTypes: ["RDRAM"],
+        expansionSlots: {
+            "AGP 1.5": 1,
+            "PCI 2.2": 4,
+            // TODO: CNR: 1
+        },
+        releaseYear: 2001, // Or maybe 2000
+        ioShield: true,
+        box: true,
+    },
 ];

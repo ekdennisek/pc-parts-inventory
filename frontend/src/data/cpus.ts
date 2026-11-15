@@ -1027,4 +1027,18 @@ export const cpus: CPU[] = [
         codename: "Willamette-128",
         sSpec: "SL69Z",
     },
+    {
+        id: "cpu-75",
+        name: "Intel Pentium 4 1.7",
+        brand: "Intel",
+        description: "Socket 423 Willamette processor",
+        cores: 1,
+        threads: 1,
+        baseClock: 1.7,
+        boostClock: 0, // TODO
+        socket: "Socket 423",
+        releaseYear: 2001,
+        codename: "Willamette",
+        sSpec: "SL57V",
+    },
 ];
