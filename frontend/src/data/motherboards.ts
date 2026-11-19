@@ -494,4 +494,24 @@ export const motherboards: Motherboard[] = [
         ioShield: true,
         box: true,
     },
+    {
+        id: "mb-26",
+        name: "ASUS P6X58D-E",
+        brand: "ASUS",
+        description: "LGA 1366 ATX motherboard",
+        socket: "LGA 1366",
+        formFactor: "ATX",
+        chipset: "Intel X58",
+        memorySlots: 6,
+        maxMemory: 24,
+        memoryTypes: ["DDR3"],
+        expansionSlots: {
+            "PCIe 2.0 x16": 3,
+            "PCIe 1.0 x1": 1, // TODO Verify version
+            "PCI 2.2": 2, // TODO Verify version
+        },
+        releaseYear: 2010,
+        ioShield: true,
+        box: true,
+    },
 ];
